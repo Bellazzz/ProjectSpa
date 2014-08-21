@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-20 14:13:41
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-21 21:00:22
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_titles.html" */ ?>
 <?php /*%%SmartyHeaderCode:201123c30cd2bb41949-63708203%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '27378bcd0e170dfc447ebcad9120101faf889e50' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_titles.html',
-      1 => 1408470956,
+      1 => 1408610158,
       2 => 'file',
     ),
   ),
@@ -112,7 +112,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </table>
     </form>
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
-	    <tbody>
+     <tbody>
 		    <tr>
                 <td>
                     <label>ตำแหน่ง:</label>
