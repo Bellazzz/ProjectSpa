@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-21 21:00:22
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-21 21:07:20
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_titles.html" */ ?>
 <?php /*%%SmartyHeaderCode:201123c30cd2bb41949-63708203%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '27378bcd0e170dfc447ebcad9120101faf889e50' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_titles.html',
-      1 => 1408610158,
+      1 => 1408626430,
       2 => 'file',
     ),
   ),
@@ -111,36 +111,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	    </tbody>
     </table>
     </form>
-    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
-     <tbody>
-		    <tr>
-                <td>
-                    <label>ตำแหน่ง:</label>
-				    <div id="ref_pos_id" class="select-reference form-input half"></div>
-			    </td>
-			    <td>
-				    <label>วันที่จอง</label>
-				    <input id="bk_date" name="bk_date" type="text" class="form-input half">
-			    </td>
-		    </tr>
-            <tr>
-                <td>
-                    <label class="twoInput twoInput-large">% completed</label>
-                    <label class="twoInput twoInput-small">Priority</label>
-                    <br />
-                    <input type="text" class="form-input twoInput twoInput-large" />
-                    <input type="text" class="form-input twoInput twoInput-small" />
-                </td>
-                <td>
-                    <label class="twoInput twoInput-small">จำนวน</label>
-                    <label class="twoInput twoInput-large"></label>
-                    <br />
-                    <input type="text" class="form-input twoInput twoInput-large" />
-                    <div id="unit_id" class="select-reference form-input twoInput twoInput-small" />
-                </td>
-            </tr>
-	    </tbody>
-    </table>
 </div>
 </body>
 </html><?php }} ?>
