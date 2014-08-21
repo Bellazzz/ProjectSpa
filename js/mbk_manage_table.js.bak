@@ -1,0 +1,216 @@
+$(document).ready(function () {
+    pullTable(true, true);
+	/*
+	 * Sidebar
+	 */
+    $('.sidebar-body, .sidebar-footer').click(function (e) {
+        toggleShowSidebar();
+        deleteRecord();
+    });
+ 
+
+	/*
+	 * Tree view tool
+	 */
+    $('.tree-view').click(function (e) {
+        e.stopPropagation();
+    });
+	$('.tree-view-root').click(function(){
+		$(this).siblings('.tree-view-child').slideToggle(100);
+	});
+	$('.tree-view ul li').click(function () {
+        // Effect
+		$(this).siblings('li').removeClass('selected');
+		$(this).addClass('selected');
+
+	    // Show table data
+		clearTable();
+		table.name = $(this).attr('id').replace('tn-', '');
+		pullTable(true, true);
+	});
+});
+
+/*
+ * Data of page
+ */
+var table = {
+    'name'      : '',
+    'sortcol'   : '',
+    'sortby'    : ''
+};
+
+function setTable(table) {
+    this.table = table;
+}
+
+function clearTable() {
+    table = {
+        'name': '',
+        'sortcol': '',
+        'sortby': ''
+    };
+}
+
+function pullTable(reThead, reTbody) {
+    // Effect
+    if (reThead) {
+        $('table.mbk thead').css('opacity', '0.5');
+    }
+    if (reThead) {
+        $('table.mbk tbody').css('opacity', '0.5');
+    }
+
+    $.ajax({
+        url: 'table_data.php',
+        type: 'POST',
+        data: 'tableName=' + this.table.name + '&sortcol=' + this.table.sortcol + '&sortby=' + this.table.sortby,
+        success:
+		function (response) {
+		    var htmlResponse;
+		    if (response == 'EMPTY') {
+		        htmlResponse = 'EMPTY';
+		    } else {
+		        htmlResponse = response;
+		    }
+		    $('#table-data').html('');
+		    $('#table-data').html(htmlResponse);
+		    refreshTable(reThead, reTbody);
+
+            // Effect
+		    if (reThead) {
+		        $('table.mbk thead').css('opacity', '1');
+		    }
+		    if (reThead) {
+		        $('table.mbk tbody').css('opacity', '1');
+		    }
+		}
+    });
+}
+
+function refreshTable(reThead, reTbody) {
+    var tbody = '', thead = '';
+    if (typeof (this.table.data) != 'undefined' && this.table.data != null) {
+        if (reThead) {
+            // Define sort function
+            function sortTable(sortcolNew) {
+                if (sortcolNew == table.sortcol) {
+                    table.sortby = table.sortby == 'asc' ? 'desc' : 'asc';
+                } else {
+                    table.sortby = 'asc';
+                }
+                table.sortcol = sortcolNew;
+                pullTable(true, true);
+            }
+            
+            // Gen thead
+            thead += '<tr>'
+                   + '<th class="icon-col"><input type="checkbox" id="check-all-record" class="mbk-checkbox" onclick="checkAllRecord(this)"></th>'
+                   + '<th class="icon-col"></th>';
+            for (index in table.fieldNameEn) {
+                var fieldEn = table.fieldNameEn[index];
+                var fieldTh = table.fieldNameTh[index];
+                thead += '<th id="tf-' + fieldEn + '" class="tablesorter-header';
+                if (fieldEn == table.sortcol) {
+                    var classSort = table.sortby == 'asc' ? 'tablesorter-headerAsc' : 'tablesorter-headerDesc';
+                    thead += ' ' + classSort;
+                }
+                thead += '">'
+                       + '<div class="table-sorter-header-inner">'
+                       + '<a class="mbk-table-header-content">' + fieldTh + '</a>'
+                       + '</div></th>';
+            }
+            thead += '</tr>';
+            $('table.mbk thead').html(thead);
+            // Add thead Trigger
+            $('.tablesorter-header').click(function () {
+                var sortcolNew = $(this).attr('id').replace('tf-', '');
+                sortTable(sortcolNew);
+            });
+        }
+        if (reTbody) {
+            // Gen tbody
+            for (row in this.table.data) {
+                tbody += '<tr>'
+                       + '<td class="icon-col">'
+                       + '<input type="checkbox" value="' + table.data[row][table.keyFieldName] + '" name="table-record[]" class="mbk-checkbox" onclick="checkRecord(this)"></td>'
+                       + '<td class="action-col" align="center">'
+                       + '<a title="á¡éä¢" class="icon"></a>'
+                       + '</td>';
+                for (field in table.data[row]) {
+                    tbody += '<td>' + table.data[row][field] + '</td>';
+                }
+                tbody += '</tr>';
+            }
+            $('table.mbk tbody').html(tbody);
+        }
+        
+        $('#table-data-empty').css('display', 'none');
+        $('table.mbk').css('display', 'table');
+    } else {
+        $('table.mbk').css('display', 'none');
+        $('#table-data-empty').css('display', 'block');
+    }
+    
+}
+
+function deleteRecord() {
+    var keySelected = Array();
+    var checkboxs = document.getElementsByName('table-record[]');
+    for (i = 0; i < checkboxs.length; i++) {
+        if (checkboxs[i].checked) {
+            keySelected.push(checkboxs[i].value);
+        }
+    }
+
+    $.ajax({
+        url: 'delete_record.php',
+        type: 'POST',
+        data: {
+            'keySelected'   : keySelected,
+            'tableName'     : table.name
+        },
+        success:
+		function (response) {
+		    var htmlResponse;
+		    if (response == 'PASS') {
+		        // Delete Success
+		        pullTable(false, true);
+		    } else {
+		        alert(response);
+		    }
+		}
+    });
+}
+
+
+
+function checkRecord(item) {
+    var tr = item.parentNode.parentNode;
+    if(item.checked) {
+        $(tr).addClass('selected');
+    } else {
+        $(tr).removeClass('selected');
+    }
+}
+
+function checkAllRecord(value) {
+    var checkboxs = document.getElementsByName('table-record[]');
+    for (i = 0; i < checkboxs.length; i++) {
+        checkboxs[i].checked = value.checked;
+        checkRecord(checkboxs[i]);
+    }
+}
+
+
+/*
+ * Side bar
+ */
+function toggleShowSidebar() {
+    var newFlag = $('.sidebar').attr('aria-expanded') == 'true' ? 'false' : 'true';
+    $('.sidebar').attr('aria-expanded', newFlag);
+    if (newFlag == 'false') {
+        $('.tree-view').css('display', 'none');
+    } else {
+        $('.tree-view').css('display', 'block');
+    }
+}

@@ -1,0 +1,106 @@
+<?php
+/*
+ * Database
+ */
+define('DB_HOST', 		'localhost');
+define('DB_USERNAME', 	'root');
+define('DB_PASSWORD', 	'root');
+define('DB_NAME', 		'projectSpa');
+
+/*
+ * Global Connection
+ */
+$dbConn;
+dbConnect();
+function dbConnect() {
+	global $dbConn;
+	$dbConn = mysql_connect(DB_HOST, DB_USERNAME, DB_PASSWORD);
+	if($dbConn) {
+		if(mysql_select_db(DB_NAME, $dbConn)) {
+			// Initial
+			mysql_query("SET NAMES UTF8", $dbConn);
+		} else {
+			throw new Exception('Cannot select database');
+		}
+	} else {
+		throw new Exception('Cannot connect host');
+	}
+}
+function dbClose() {
+	global $dbConn;
+	return mysql_close($dbConn);
+}
+
+/*
+ * การใช้ตัวแปร $table
+ * 1. keyFieldName = ชื่อ primary key
+ * 2. keyFieldType = ชนิดของ primary key
+ *		(1) = Auto number
+ *		(2) = Char running เป็น pk ที่ขึ้นต้นด้วยตัวอักษรและตามด้วยตัวเลข โดยมีการ run ตัวเลขจากน้อยไปมาก เช่น T01, EMP00001 เป็นต้น
+ *		(3) = Char running with year เหมือนกับชนิดที่ 2 แต่ลงท้ายด้วย ปี พ.ศ. เช่น OR00001/57, RE00001/57 เป็นต้น
+ * 3. keyChar = ตัวอักษรที่ขึ้นต้นของ primary key เช่น ตาราง employees ขึ้นต้นด้วย EM ก็ให้ใส่ 'EM' เป็นต้น
+ * 4. keyLength = ขนาดของ primary key ทั้งหมด (รวมตัวอักษร และ ปี พ.ศ. ด้วย) เช่น P01 มีขนาด 3, OR00001/57 มีขนาด 10 เป็นต้น
+ * 5. fieldNameList = ชื่อฟิลด์ของตาราง ฝั่งซ้ายเป็นชื่อภาษาอังกฤษ ฝั่งขวาเป็นชื่อภาษาไทย
+ *		- หากเป็นตารางที่ทำการ join เพื่อดึงฟิลด์จากตารางอื่นมาแสดง ก็ให้ใส่ชื่อฟิลด์นั้นด้วย เช่น ตาราง employees จะแสดง ชื่อตำแหน่ง (pos_name) ไม่ใช่ รหัสตำแหน่ง (pos_id) ดังนั้นจะต้องใส่ฟิลด์ pos_name แทนที่จะใส่ pos_id เป็นต้น
+ */
+ $table = array(
+	'titles' => array(
+		'keyFieldName'  => 'title_id',
+		'keyFieldType'	=> 2,
+		'keyChar'		=> 'T',
+		'keyLength'		=> 3,
+		'fieldNameList'	=> array(
+				'title_id'		=> 'รหัสคำนำหน้าชื่อ',
+				'title_name'	=> 'ชื่อคำนำหน้าชื่อ'
+		)
+	),
+	'positions' => array(
+		'keyFieldName'  => 'pos_id',
+		'keyFieldType'	=> 2, 
+		'keyChar'		=> 'P',
+		'keyLength'		=> 3,
+		'fieldNameList'	=> array(
+				'pos_id'		=> 'รหัสตำแหน่ง',
+				'pos_name'		=> 'ชื่อตำแหน่ง'
+		)
+	),
+	'employees' => array(
+		'keyFieldName'  => 'emp_id',
+		'keyFieldType'	=> 2,
+		'fieldNameList'	=> array(
+				'emp_id'		=> 'รหัสพนักงาน',
+				'title_name'	=> 'คำนำหน้า',
+				'pos_name'		=> 'ตำแหน่ง',
+				'emp_name'		=> 'ชื่อ',
+				'emp_surname'	=> 'นามสกุล',
+				'emp_addr'		=> 'ที่อยู่',
+				'emp_tel'		=> 'เบอร์โทร',
+				'emp_username'	=> 'Username',
+				'emp_password'	=> 'Password',
+				'emp_pic'		=> 'รูปภาพ'
+		)
+	),
+	'units' => array(
+		'keyFieldName'  => 'unit_id',
+		'keyFieldType'	=> 2, 
+		'keyChar'		=> 'U',
+		'keyLength'		=> 3,
+		'fieldNameList'	=> array(
+				'unit_id'		=> 'รหัสหน่วยนับ',
+				'unit_name'		=> 'ชื่อหน่วยนับ'
+		)
+	),
+	'beds' => array(
+		'keyFieldName'  => 'bed_id',
+		'keyFieldType'	=> 2, 
+		'keyChar'		=> 'BE',
+		'keyLength'		=> 4,
+		'fieldNameList'	=> array(
+				'bed_id'		=> 'รหัสเตียง',
+				'room_name'		=> 'ชื่อห้อง',
+				'bed_name'		=> 'ชื่อเตียง'
+		)
+	)
+ );
+ /*วิธีการเรียกใช้ array $table['employees']['fieldNameList']['pos_name'];*/
+?>

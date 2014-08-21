@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Spa - Backoffice</title>
+	<meta charset="utf-8"/>
+    {literal}
+	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/mbk_main.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../js/mbk_manage_table.js"></script>
+	{/literal}
+</head>
+<body>
+    <div class="overlay-inner"></div>
+    <div class="overlay-full"></div>
+    <div class="action-dialog"></div>
+    <div id="manage-box">
+        <div class="manage-box-loading"></div>
+        <div class="iframe-container">
+            <iframe id="iframe-form-table" src="form_titles.php?action=ADD" height="100%" width="100%" frameBorder="0"></iframe>
+        </div>
+    </div>
+<div id="page">
+	<div id="wrapper">
+		<div id="header">
+			<div id="header-logo">Logo</div>
+			<ul class="nav">
+				<li><a href="#">จัดการข้อมูล</a></li>
+				<li><a href="#">แคชเชียร์</a></li>
+				<li><a href="#">จัดการสิทธิ์</a></li>
+				<li><a href="#">จัดการเว็บไซต์</a></li>
+			</ul>
+			<ul id="header-tool">
+				<li><div id="account-box"></div></li>
+			</ul>
+		</div>
+		<div class="sidebar" aria-expanded="true">
+            <div class="sidebar-body">
+                <div class="tree-view">
+			        <div class="tree-view-root">ข้อมูลพื้นฐาน</div>
+			        <div class="tree-view-child">
+				        <ul>
+					        <li id="tn-titles">คำนำหน้าชื่อ</li>
+					        <li id="tn-positions">ตำแหน่ง</li>
+					        <li id="tn-units">หน่วยนับ</li>
+				        </ul>
+			        </div>
+		        </div>
+		        <div class="tree-view">
+			        <div class="tree-view-root">พนักงาน</div>
+			        <div class="tree-view-child">
+				        <ul>
+					        <li id="tn-employees">ข้อมูลพนักงาน</li>
+					        <li id="tn-Commission">คอมมิชชั่น</li>
+					        <li>เงินเดือน</li>
+				        </ul>
+			        </div>
+		        </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="sidebar-footer-inner">
+                    <span class="mbk-icon"></span>
+                </div>
+            </div>
+		</div>
+        <div id="table-control">
+            <div class="table-control-inner">
+                <div class="table-control-container">
+                    <div>
+                        <button id="add-record-btn">เพิ่ม</button>
+                    </div>
+                    <div id="table-toolbar" class="clearfix">
+                        <span id="toolbar-curselect"></span>
+                        <div class="toolbar-container">
+                            <ul class="toolbar-menu">
+                                <li>
+                                    <a id="edit-record-btn" style="display: none;">
+                                        <span class="mbk-icon mbk-edit"></span> แก้ไข
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="delete-record-btn" style="display: none;">
+                                        <span class="mbk-icon mbk-delete"></span> ลบ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="cancel-select-btn" style="display: none;">ยกเลิก</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="search-container">
+                            <select id="search-record-filter" name="search-record-filter">
+                            </select>
+                            <input id="search-record-input" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="page-panel">
+			<div class="page-panel-inner">
+                <div class="page-panel-content">
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end page-->
+</body>
+</html>

@@ -1,0 +1,32 @@
+$(document).ready(function () {
+    hideOverlayInner();
+    hideOverlayFull();
+    showActionDialog({
+        title: 'ลบข้อมูล'
+    });
+});
+
+function showOverlayInner() {
+    $('.overlay-inner').css('display', 'block');
+}
+
+function hideOverlayInner() {
+    $('.overlay-inner').css('display', 'none');
+}
+
+function showOverlayFull() {
+    $('.overlay-full').css('display', 'block');
+}
+
+function hideOverlayFull() {
+    $('.overlay-full').css('display', 'none');
+}
+
+function showActionDialog(obj) {
+    var actionDialog    = '<div class="action-dialog">'
+                        + '<h2>' + obj.title + '</h2>';
+                        + '</div>';
+
+    showOverlayFull();
+    $('body').append(actionDialog);
+}
