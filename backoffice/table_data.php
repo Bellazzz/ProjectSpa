@@ -119,7 +119,7 @@ if($rows > 0){
 		'fieldNameList'	: <? echo json_encode($table[$tableName]['fieldNameList']); ?>
 	};
 	setTable(table);
-	$('#tmpScriptTableData').remove();
+	$('#tmpScriptTableData').remove();//.remove() is jQuery fn
 </script>
 <table class="mbk mbk-table-sortable">
 	<thead>
