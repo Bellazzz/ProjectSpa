@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 00:41:05
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 14:08:04
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking_status.html" */ ?>
 <?php /*%%SmartyHeaderCode:3248353f9b599ee2d75-42572897%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1f49f5e86a24427adf654320f0872a95eece5ab7' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking_status.html',
-      1 => 1408898286,
+      1 => 1408898288,
       2 => 'file',
     ),
   ),
