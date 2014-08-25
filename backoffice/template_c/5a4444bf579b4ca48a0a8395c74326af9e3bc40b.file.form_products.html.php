@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 15:13:06
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 17:19:59
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_products.html" */ ?>
 <?php /*%%SmartyHeaderCode:2420553fa1c5c7f4eb6-82257556%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5a4444bf579b4ca48a0a8395c74326af9e3bc40b' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_products.html',
-      1 => 1408900254,
+      1 => 1408952541,
       2 => 'file',
     ),
   ),
@@ -110,7 +110,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<tr>
 			    <td colspan="2">
 				    <label class="input-required">ชื่อยี่ห้อ</label>
-				    <div id="brand_id" class="select-reference form-input full"></div>
+				    <div id="brand_id"  class="select-reference form-input full"></div>
 			    </td>
 		    </tr>
 		    <tr>

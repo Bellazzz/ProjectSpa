@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 15:46:21
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 16:46:31
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_customers.html" */ ?>
 <?php /*%%SmartyHeaderCode:805553fae210b29ae3-82717823%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a1643d9f3b7447d1c25ce2a05226a857b050290' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_customers.html',
-      1 => 1408952769,
+      1 => 1408956381,
       2 => 'file',
     ),
   ),
@@ -111,6 +111,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 <td colspan="2">
                     <label>ที่อยู่</label>
                     <input id="cus_addr" name="cus_addr" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_addr'];?>
+">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="input-required">เบอร์โทร</label>
+                    <input id="cus_tel" name="cus_tel" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_tel'];?>
+">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>วันเกิด</label>
+                    <input id="bk_date" name="cus_birthdate" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_birthdate'];?>
 ">
                 </td>
             </tr>
