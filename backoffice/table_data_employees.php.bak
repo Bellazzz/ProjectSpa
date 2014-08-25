@@ -10,27 +10,30 @@ $tableName	= 'employees';
 $sortCol	= $_REQUEST['sortCol'];
 $sortBy		= $_REQUEST['sortBy'];
 $order		= $_REQUEST['order'];
-$pathEmpPic = '../img/employees/';
+$pathPic = '../img/employees/';
 $where		= 'WHERE e.title_id = t.title_id AND p.pos_id = e.pos_id';
+$tableInfo	= getTableInfo($tableName);
 
 if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 	$searchCol		= $_REQUEST['searchCol'];
 	$searchInput	= $_REQUEST['searchInput'];
 	$like			= "$searchCol like '%$searchInput%'";
+	$like			= str_replace('title_id', 't.title_name', $like);
+	$like			= str_replace('pos_id', 'p.pos_name', $like);
 	$where		   .= ' AND '.$like;
 }
 
 // Query table data
 $sql = "SELECT e.emp_pic,
 		e.emp_id,
-		t.title_name,
+		t.title_name title_id,
 		e.emp_name,
 		e.emp_surname,
 		e.emp_addr,
 		e.emp_tel,
-		p.pos_name,
-		e.emp_username,
-		e.emp_password 
+		p.pos_name pos_id,
+		e.emp_user,
+		e.emp_pass 
 		FROM employees e, titles t, positions p 
 		$where
 		$order";
@@ -53,45 +56,12 @@ for($i = 0; $i < $rows; $i++) {
 if($rows > 0){
 //Has record will display table data
 ?>
-<script type="text/javascript">
-	var table = {
-		'name'			: '<?=$tableName?>',
-		'sortCol'		: '<?=$sortCol?>',
-		'sortBy'		: '<?=$sortBy?>',
-		'fieldNameList'	: <? echo json_encode($table[$tableName]['fieldNameList']); ?>
-	};
-	parent.setTable(table);
-</script>
 <table class="mbk mbk-table-sortable">
-	<thead>
-		<tr>
-			<th class="icon-col">
-				<input type="checkbox" id="check-all-record" class="mbk-checkbox" onclick="checkAllRecord(this)">
-			</th>
-            <th class="action-col"></th>
-			<?
-			// Create table head
-			foreach($tableData[0] as $fieldEn => $value) {
-				$fieldTh	 = $table[$tableName]['fieldNameList'][$fieldEn];
-				$classSorter = 'tablesorter-header';
-				if($fieldEn == $sortCol) {
-					$classSorter .= $sortBy == 'asc' ? ' tablesorter-headerAsc' : ' tablesorter-headerDesc';
-				}
-				?>
-				<th id="tf-<?=$fieldEn?>" class="<?=$classSorter?>">
-					<div class="table-sorter-header-inner">
-						<a class="mbk-table-header-content"><?=$fieldTh?></a>
-					</div>
-				</th>
-				<?
-			}
-			?>
-		</tr>
-	</thead>
+	<? include('table_data_thead.php') ?>
 	<tbody id="table-data">
 		<?
 		foreach($tableData as $key => $row) {
-			$code = $row[$table[$tableName]['keyFieldName']];
+			$code = $row[$tableInfo['keyFieldName']];
 			?>
 			<tr>
 				<td class="icon-col">
@@ -106,7 +76,7 @@ if($rows > 0){
 			foreach($row as $field => $value) {
 				if($field == 'emp_pic') {
 				?>
-					<td><img src="<?echo $pathEmpPic.$value?>" style="width: 100px;" title="<?=$value?>"></td>
+					<td><img src="<?echo $pathPic.$value?>" style="width: 100px;" title="<?=$value?>"></td>
 				<?
 				} else {
 				?>
@@ -121,6 +91,23 @@ if($rows > 0){
 		?>
 	</tbody>
 </table>
+<script id="tmpScriptTableData1" type="text/javascript" src="../js/table_data.js"></script>
+<script id="tmpScriptTableData2" type="text/javascript">
+	// Set table data
+	var table = {
+		'name'			: '<?=$tableName?>',
+		'sortCol'		: '<?=$sortCol?>',
+		'sortBy'		: '<?=$sortBy?>',
+		'fieldNameList'	: <? echo json_encode($tableInfo['fieldNameList']); ?>
+	};
+	setTable(table);
+
+	// Config column
+	configColumn(<? echo count($tableInfo['fieldNameList']); ?>);
+
+	$('#tmpScriptTableData1').remove();
+	$('#tmpScriptTableData2').remove();
+</script>
 <?
 }
 else{

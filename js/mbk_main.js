@@ -73,7 +73,7 @@ function selectReference(select) {
     var textFieldName   = select.textFieldName;
     var searchTool      = true;
     var defaultValue    = '';
-    var limit           = 5; //Option limit
+    var limit           = 15; //Option item limit
     var selectRefCon;
     var optionCon;
     var searchCon;
@@ -100,7 +100,7 @@ function selectReference(select) {
 
         select.elem.attr('more', 'true');
         select.elem.attr('begin', '0');
-        select.elem.append(initTag);
+        select.elem.html(initTag);
 
         // Add Event Listener
         $(select.elem).click(function (e) {
@@ -175,8 +175,8 @@ function selectReference(select) {
         $(li).off();
         $(li).on('click', function (e) {
             e.stopPropagation();
+            $(this).parent().parent().parent().removeClass('required');
             selectRefCon.siblings('.select-reference-text').text($(this).children('.text').text());
-            //selectRefCon.siblings('.select-reference-value').text($(this).children('.value').text());
             selectRefCon.siblings('.select-reference-input').val($(this).children('.value').text());
             hideAllPopup();
         });
@@ -206,7 +206,7 @@ function selectReference(select) {
 
         $(optionCon).off();
         $(optionCon).on('scroll', function () {
-            if (this.scrollTop + $(this).innerHeight() >= this.scrollHeight) {
+            if (this.scrollTop + $(this).innerHeight() >= this.scrollHeight - $(this).find('.more-loader').height()) {
                 pullRefData();
             }
         });                                                                                                             
@@ -221,6 +221,7 @@ function selectReference(select) {
     }
     
     // Create select reference input
+	$(select.elem).html('กำลังโหลด...');
     $.ajax({
         url: '../common/get_default_value_select_reference.php',
         type: 'POST',

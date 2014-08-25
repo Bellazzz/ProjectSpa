@@ -4,6 +4,7 @@
 	<title>Spa - Backoffice</title>
 	<meta charset="utf-8"/>
     {literal}
+	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="../js/mbk_main.js"></script>
@@ -23,7 +24,9 @@
 <div id="page">
 	<div id="wrapper">
 		<div id="header">
-			<div id="header-logo"></div>
+			<div id="header-logo">
+				<img src="../img/backoffice/logo-back-office.png">
+			</div>
 			<ul class="nav">
 				<li><a href="#">จัดการข้อมูล</a></li>
 				<li><a href="#">แคชเชียร์</a></li>
@@ -231,7 +234,7 @@
                                     <span class="item-label">การจอง</span>
                                 </a>
 					        </li>
-                            <li id="tn-booking_sevice_lists">
+                            <li id="tn-booking_service_lists">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-booking_sevice_lists"></span>
                                     <span class="item-label">รายละเอียดรายการบริการที่จอง</span>
@@ -358,29 +361,12 @@
         <div id="table-control">
             <div class="table-control-inner">
                 <div class="table-control-container">
+					<div class="cur-table-name">
+						<h1>กำลังโหลด...</h1>
+					</div>
                     <div>
-                        <button id="add-record-btn">เพิ่ม</button>
-                    </div>
-                    <div id="table-toolbar" class="clearfix">
-                        <span id="toolbar-curselect"></span>
-                        <div class="toolbar-container">
-                            <ul class="toolbar-menu">
-                                <li>
-                                    <a id="edit-record-btn" style="display: none;">
-                                        <span class="mbk-icon mbk-edit"></span> แก้ไข
-                                    </a>
-                                </li>
-                                <li>
-                                    <a id="delete-record-btn" style="display: none;">
-                                        <span class="mbk-icon mbk-delete"></span> ลบ
-                                    </a>
-                                </li>
-                                <li>
-                                    <a id="cancel-select-btn" style="display: none;">ยกเลิก</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="search-container">
+                        <button id="add-record-btn" class="button large button-icon button-icon-add">เพิ่ม</button>
+						<div class="search-container">
                             <select id="search-record-filter" name="search-record-filter">
                             </select>
                             <div class="mbk-input-icon">
@@ -390,9 +376,22 @@
                             </div>
                         </div>
                     </div>
+                    <div id="table-toolbar" class="clearfix">
+						<div class="table-toolbar-inner">
+							<span id="toolbar-curselect"></span>
+							<button id="edit-record-btn" class="button button-icon button-icon-add">แก้ไข</button>
+							<button id="delete-record-btn" class="button button-icon button-icon-add">ลบ</button>
+							<button id="cancel-select-btn" class="button button-icon">ยกเลิก</button>
+						</div>
+                    </div>
                 </div>
             </div>
         </div>
+		<div class="no-select-table">
+		  <div class="no-select-table-inner">
+			<i class="fa fa-list-alt"></i><br>No table selected
+		  </div>
+		</div>
 		<div class="page-panel">
 			<div class="page-panel-inner">
                 <div class="page-panel-content">

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-19 22:59:08
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-24 23:29:27
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
 <?php /*%%SmartyHeaderCode:257733c30cd2b650c25-52805220%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9a020b9c81648d3d03f178f9f9d6dd68f5ff5d78' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\manage_table.html',
-      1 => 1408352808,
+      1 => 1408894121,
       2 => 'file',
     ),
   ),
@@ -25,6 +25,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<title>Spa - Backoffice</title>
 	<meta charset="utf-8"/>
     
+	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="../js/mbk_main.js"></script>
@@ -44,7 +45,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <div id="page">
 	<div id="wrapper">
 		<div id="header">
-			<div id="header-logo"></div>
+			<div id="header-logo">
+				<img src="../img/backoffice/logo-back-office.png">
+			</div>
 			<ul class="nav">
 				<li><a href="#">จัดการข้อมูล</a></li>
 				<li><a href="#">แคชเชียร์</a></li>
@@ -252,7 +255,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                     <span class="item-label">การจอง</span>
                                 </a>
 					        </li>
-                            <li id="tn-booking_sevice_lists">
+                            <li id="tn-booking_service_lists">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-booking_sevice_lists"></span>
                                     <span class="item-label">รายละเอียดรายการบริการที่จอง</span>
@@ -379,29 +382,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <div id="table-control">
             <div class="table-control-inner">
                 <div class="table-control-container">
+					<div class="cur-table-name">
+						<h1>กำลังโหลด...</h1>
+					</div>
                     <div>
-                        <button id="add-record-btn">เพิ่ม</button>
-                    </div>
-                    <div id="table-toolbar" class="clearfix">
-                        <span id="toolbar-curselect"></span>
-                        <div class="toolbar-container">
-                            <ul class="toolbar-menu">
-                                <li>
-                                    <a id="edit-record-btn" style="display: none;">
-                                        <span class="mbk-icon mbk-edit"></span> แก้ไข
-                                    </a>
-                                </li>
-                                <li>
-                                    <a id="delete-record-btn" style="display: none;">
-                                        <span class="mbk-icon mbk-delete"></span> ลบ
-                                    </a>
-                                </li>
-                                <li>
-                                    <a id="cancel-select-btn" style="display: none;">ยกเลิก</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="search-container">
+                        <button id="add-record-btn" class="button large button-icon button-icon-add">เพิ่ม</button>
+						<div class="search-container">
                             <select id="search-record-filter" name="search-record-filter">
                             </select>
                             <div class="mbk-input-icon">
@@ -411,9 +397,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                             </div>
                         </div>
                     </div>
+                    <div id="table-toolbar" class="clearfix">
+						<div class="table-toolbar-inner">
+							<span id="toolbar-curselect"></span>
+							<button id="edit-record-btn" class="button button-icon button-icon-add">แก้ไข</button>
+							<button id="delete-record-btn" class="button button-icon button-icon-add">ลบ</button>
+							<button id="cancel-select-btn" class="button button-icon">ยกเลิก</button>
+						</div>
+                    </div>
                 </div>
             </div>
         </div>
+		<div class="no-select-table">
+		  <div class="no-select-table-inner">
+			<i class="fa fa-list-alt"></i><br>No table selected
+		  </div>
+		</div>
 		<div class="page-panel">
 			<div class="page-panel-inner">
                 <div class="page-panel-content">

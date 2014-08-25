@@ -19,6 +19,15 @@ body {
 	font-family: Tahoma, sans-serif;
 	font-size: 14px;
 }
+
+@font-face {
+    font-family: FontAwesome;
+    src: url('../inc/font-awesome/fonts/fontawesome-webfont.eot');
+    src: url('../inc/font-awesome/fonts/fontawesome-webfont.eot?') format('embedded-opentype'),
+         url('../inc/font-awesome/fonts/fontawesome-webfont.woff') format('woff'),
+         url('../inc/font-awesome/fonts/fontawesome-webfont.ttf') format('truetype');
+}
+
 .clearfix:after {
     clear: both;
     content: '';
@@ -42,7 +51,7 @@ body {
 	border-bottom: 1px solid #2e3d54;
 	color: #fff;
 	padding: 0 10px;
-	height: 30px;
+	height: 60px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -50,14 +59,10 @@ body {
 }
 #header-logo {
 	float: left;
-	width: 120px;
-	height: 30px;
-	line-height: 30px;
-	/*background: #1C8B0C;*/
-	color: white;
-	text-align: center;
-    background: url('../img/backoffice/logo-back-office.png') no-repeat;
-    background-size: auto 100%;
+	height: 60px;
+}
+#header-logo img {
+	height: 100%;
 }
 .nav{
 	margin: 0px;
@@ -67,7 +72,7 @@ body {
 }
 .nav li {
 	float: left;
-	height: 30px;
+	height: 60px;
 	line-height: 35px;
 }
 .nav li a {
@@ -84,13 +89,13 @@ body {
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
-	height: 30px;
+	height: 60px;
 	float: right;
 }
 #header-tool li {
 	float: left;
-	height: 30px;
-	line-height: 30px;
+	height: 60px;
+	line-height: 60px;
 }
 #account-box {
 	float: right;
@@ -107,7 +112,7 @@ body {
 	height: 100%;
 	position: fixed;
 	top: 0;
-	padding-top: 30px;
+	padding-top: 60px;
 	left: 0;
 	border-right: 1px solid #ccc;
 	background-color: #f5f5f5;
@@ -125,7 +130,7 @@ body {
     bottom: 40px;
     overflow-y: auto;
     position: absolute;
-    top: 30px;
+    top: 60px;
     width: 100%;
     cursor: pointer;
 }
@@ -175,7 +180,7 @@ body {
 	border-right-width: 0;
 	clear: both;
 	display: block;
-	margin-top: 30px;
+	margin-top: 60px;
 	padding-left: 280px;
 	position: relative;
 	width: 100%;
@@ -190,7 +195,7 @@ body {
     display: table-cell;
     padding: 20px;
     vertical-align: top;
-    padding-top: 110px;
+    padding-top: 165px;
 }
 /*
  * Table Control
@@ -198,11 +203,12 @@ body {
 #table-control {
     width: 100%;
     position: fixed;
-    top: 30px;
+    top: 60px;
     left: 0px;
     padding-left: 280px;
     background: white;
     z-index: 1;
+	font-size: 16px;
 }
 .sidebar[aria-expanded="false"] ~ #table-control {
     padding-left: 56px;
@@ -212,8 +218,15 @@ body {
     padding: 0 20px;
 }
 .table-control-container {
-    padding: 20px 0;
+    padding-top: 20px;
     border-bottom: 1px solid #ccc;
+}
+.table-control-container .cur-table-name h1 {
+	font-size: 24px;
+	font-weight: normal;
+	line-height: 1.25;
+	margin: 0 0 20px 0;
+	color: #666;
 }
 #table-control .toolbar-container {
     float: left;
@@ -222,7 +235,17 @@ body {
     float: right;
 }
 #table-toolbar {
-    
+    height: 50px;
+	display: table;
+	margin-top: 20px;
+}
+.table-toolbar-inner {
+	display: table-cell;
+	vertical-align: middle;
+}
+#table-toolbar #edit-record-btn, #table-toolbar #delete-record-btn, #table-toolbar #cancel-select-btn {
+	margin-right: 15px;
+	display: none;
 }
 .toolbar-menu {
     list-style: none;
@@ -238,10 +261,10 @@ body {
     font-weight: bold;
     padding: 5px;
     margin-right: 25px;
-    display: inline-block;
+	font-size: 16px;
 }
 .toolbar-menu>li>a:hover {
-    color: #205081;
+    color: #45A858;
 }
 .toolbar-menu .mbk-icon.edit {
     background: url('../img/backoffice/edit-icon.png') no-repeat center;
@@ -252,11 +275,7 @@ body {
     background-size: 16px;
 }
 #toolbar-curselect {
-    float: left;
     margin-right: 20px;
-    height: 26px;
-    display: inline-block;
-    overflow: hidden;
     padding: 5px;
     color: #7d7d7d;
     display: none;
@@ -274,6 +293,38 @@ body {
 }
 
 /*
+ * No select table
+ */
+.no-select-table {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: white;
+	width: 100%;
+	height: 100%;
+	padding-top: 60px;
+	padding-left: 280px;
+	z-index: 1;
+	display: table;
+}
+.sidebar[aria-expanded="false"] ~ .no-select-table {
+    padding-left: 56px;
+}
+.sidebar[table-selected="true"] ~ .no-select-table {
+	display: none;
+}
+.no-select-table-inner {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	color: #ddd;
+	font-size: 20px;
+}
+.no-select-table i {
+	font-size: 150px;
+}
+
+/*
  * Table MBK
  */
 table.mbk {
@@ -284,6 +335,10 @@ table.mbk {
 table.mbk > thead {
     border-bottom: 1px solid #ccc;
 }
+table.mbk td {
+    white-space: nowrap;
+}
+
 table.mbk>thead>tr>th, table.mbk>tbody>tr>th, table.mbk>thead>tr>td, table.mbk>tbody>tr>td, table.mbk>tfoot>tr>td {
     padding: 7px 10px;
     text-align: left;
@@ -354,13 +409,31 @@ table.mbk .action-col {
     padding-left: 0;
     padding-right: 0;
     text-align: center !important;
+	line-height: 16px;
 }
-table.mbk .action-col span, table.mbk.hasSelectRecord .action-col span, table.mbk.hasSelectRecord tbody tr:hover .action-col span{
+table.mbk .action-col > a > i {
+	font-size: 18px;
+	color: #7d7d7d;
+	cursor: pointer;
+}
+table.mbk .action-col > a > i:first-child {
+	margin-right: 8px;
+}
+table.mbk .action-col > a > i:hover {
+	color: #333;
+}
+table.mbk .txtLong-col {
+    width: 250px;
+    min-width: 250px;
+    white-space: normal;
+}
+table.mbk .action-col > a, table.mbk.hasSelectRecord .action-col span, table.mbk.hasSelectRecord tbody tr:hover .action-col > a{
     visibility: hidden;
 }
-table.mbk tbody tr:hover .action-col span {
+table.mbk tbody tr:hover .action-col > a{
     visibility: visible;
 }
+
 
 
 /*
@@ -754,7 +827,7 @@ table.mbk .icon {
     z-index: 6;
     right: 0;
     bottom: 0;
-    top: 30px;
+    top: 60px;
     width: 80%;
     max-width: 800px;
     min-width: 600px;
@@ -788,7 +861,7 @@ table.mbk .icon {
 .overlay-inner {
     width: 100%;
     position: fixed;
-    top: 30px;
+    top: 60px;
     bottom: 0;
     left: 0;
     background: rgba(0,0,0,0.2);
@@ -849,14 +922,23 @@ table.mbk .icon {
     position: fixed;
     top: 0;
     left: 0;
-    padding: 30px 40px;
+    padding: 30px 40px 20px 40px;
     z-index: 7;
     background: white;
+}
+.ftb-header .title-container > h1 {
+	font-size: 22px;
+	font-weight: normal;
+	color: #666;
+	margin-bottom: 10px;
+	margin-top: 0;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
 }
 .ftb-body {
     min-height: 100%;
     width: 100%;
-    padding: 100px 40px 20px 40px;
+    padding: 135px 40px 20px 40px;
     position: absolute;
     top: 0;
     left: 0;
@@ -898,16 +980,25 @@ table.mbk .icon {
 }
 .mbk-form-input-normal .form-input.full {
     width: 520px;
+	max-width: 520px;
+	min-width: 520px;
+}
+.mbk-form-input-normal label.input-required:before {
+	content: "* ";
+	color: #D80000;
 }
 
-.mbk-form-input-normal input[type="text"], .mbk-form-input-normal input[type="number"], .mbk-form-input-normal select {
+.mbk-form-input-normal input[type="text"], .mbk-form-input-normal input[type="number"], .mbk-form-input-normal select, .mbk-form-input-normal textarea {
     border: 1px solid #ccc;
     padding: 5px;
     outline: none;
     margin-top: 0;
 }
-.mbk-form-input-normal input[type="text"]:hover, .mbk-form-input-normal input[type="number"]:hover, .mbk-form-input-normal select:hover {
+.mbk-form-input-normal input[type="text"]:hover, .mbk-form-input-normal input[type="number"]:hover, .mbk-form-input-normal select:hover, .mbk-form-input-normal textarea:hover {
     border: 1px solid #888;
+}
+.mbk-form-input-normal textarea {
+	min-height: 1.2em;
 }
 
 
@@ -931,7 +1022,7 @@ table.mbk .icon {
     top: 100%;
     left: 0;
     background: white;
-    box-shadow: 0 5px 3px #ddd;
+    box-shadow: 3px 3px 3px #ddd;
     display: none;
     border: 1px solid #ccc;
     z-index: 2; /*Add by Bell*/
@@ -940,7 +1031,7 @@ table.mbk .icon {
     margin: 0;
     padding: 0;
     list-style: none;
-    max-height: 100px;
+    max-height: 405px;
     overflow: auto;
 }
 .select-reference .option-container li{
@@ -948,7 +1039,8 @@ table.mbk .icon {
     padding: 5px 5px 5px 15px;
 }
 .select-reference .option-container li:hover{
-    background: #ddd;
+    background: #45A858;
+	color: white;
 }
 .select-reference .option-container li .value, .select-reference .select-reference-value{
     width: 0;
@@ -962,6 +1054,10 @@ table.mbk .icon {
     background-size: 20px;
     height: 30px;
 }
+.select-reference .option-container .no-result {
+	padding: 10px;
+	text-align: center;
+}
 .select-reference .search-container {
     width: 100%;
     padding: 5px;
@@ -973,4 +1069,73 @@ table.mbk .icon {
 .select-reference .search-container .search-input {
     width: 100%;
     padding-left: 32px;
+}
+
+/*
+ * Button 
+ */
+.button {
+ 	border: none;
+ 	padding: 5px 20px;
+	margin: 0;
+ 	font-size: 16px;
+ 	font-weight: bold;
+ 	cursor: pointer;
+	outline: none;
+	font-family: Tahoma, san-serif;
+ }
+ .button-icon {
+	background: none;
+	color: #666;
+	padding: 0;
+}
+.button-icon:before {
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: inherit;
+	color: #666;
+	font-size: 16px;
+	padding-right: 0.25em;
+	left: 15px;
+	z-index: 1;
+}
+.button.large, .button.large.button-icon:before {
+	font-size: 20px;
+}
+.button-icon:hover, .button-icon:hover:before {
+	color: #45A858;
+}
+.button-icon-add:before {
+	content: "\f055";
+}
+
+/*
+ * Tool tip
+ */
+.table-tooltip {
+	position: fixed;
+	top: 30px;
+	left: 20px;
+	background: #333;
+	background: rgba(0,0,0,0.7);
+	z-index: 10;
+	padding: 5px 15px;
+	color: white;
+	border-radius: 4px;
+	margin-left: 5px;
+	margin-top: 3px;
+}
+.table-tooltip:before {
+	position: absolute;
+	left: -5px;
+	top: 50%;
+	margin-top: -5px;
+	content: "";
+	width:0;
+	height:0;
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-right: 5px solid #333;
+	border-right: 5px solid rgba(0,0,0,0.7);
 }

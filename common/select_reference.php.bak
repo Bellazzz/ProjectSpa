@@ -31,8 +31,11 @@ if($rows > 0) {
 } else {
 	echo 'EMPTY';
 }
+
+$nextBegin = $begin + $rows;
 ?>
 <script id="temp-script" type="text/javascript">
 $('#<?=$id?>').attr('responserows', <?=$rows?>);
+$('#<?=$id?>').attr('begin', <?=$nextBegin?>);
 $('#temp-script').remove();
 </script>

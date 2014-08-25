@@ -7,13 +7,14 @@ include('../config/config.php');
 $tplName = "form_$tableName.html";
 $subDir	 = WEB_ROOTDIR.'/backoffice/';
 include('../common/common_header.php');
+$tableInfo = getTableInfo($tableName);
 
 if(!$_REQUEST['ajaxCall']) {
 	//1. Display form
 	if($action == 'EDIT') {
 		$tableRecord = new TableSpa($tableName, $code);
 		$values      = array();
-		foreach($table[$tableName]['fieldNameList'] as $field => $value) {
+		foreach($tableInfo['fieldNameList'] as $field => $value) {
 			$values[$field] = $tableRecord->getFieldValue($field);
 		}
 		$smarty->assign('values', $values);
@@ -21,6 +22,7 @@ if(!$_REQUEST['ajaxCall']) {
 
 	$smarty->assign('action', $action);
 	$smarty->assign('tableName', $tableName);
+	$smarty->assign('tableNameTH', $tableInfo['tableNameTH']);
 	$smarty->assign('code', $code);
 	include('../common/common_footer.php');
 } else {
@@ -29,20 +31,40 @@ if(!$_REQUEST['ajaxCall']) {
 	$values			= array();
 	$fieldListEn	= array();
 	parse_str($_REQUEST['formData'], $formData);
-	$requiredFields = explode(',', $formData['requiredFields']);
-
+	
 	// Check input required
-	foreach($requiredFields as $key => $fieldName) {
-		if(!hasValue($formData[$fieldName])) {
-			$response['status'] = 'REQURIED_VALUE';
-			$response['text']	= $fieldName;
-			echo json_encode($response);
-			exit();
+	if(hasValue($formData['requiredFields'])) {
+		$requiredFields = explode(',', $formData['requiredFields']);
+		foreach($requiredFields as $key => $fieldName) {
+			if(!hasValue($formData[$fieldName])) {
+				$response['status'] = 'REQURIED_VALUE';
+				$response['text']	= $fieldName;
+				echo json_encode($response);
+				exit();
+			}
 		}
 	}
 
+	// Check unique filed
+	if(hasValue($formData['uniqueFields'])) {
+		$uniqueFields = explode(',', $formData['uniqueFields']);
+		foreach($uniqueFields as $key => $fieldName) {
+			$value = "'".$formData[$fieldName]."'";
+
+			$sql	= "SELECT $fieldName FROM $tableName WHERE $fieldName = $value LIMIT 1";
+			$result	= mysql_query($sql, $dbConn);
+			if(mysql_num_rows($result) > 0) {
+				$response['status'] = 'UNIQUE_VALUE';
+				$response['text']	= $fieldName;
+				echo json_encode($response);
+				exit();
+			}
+		}
+	}
+	
+
 	// Prepare variable
-	foreach($table[$tableName]['fieldNameList'] as $field => $value) {
+	foreach($tableInfo['fieldNameList'] as $field => $value) {
 		array_push($fieldListEn, $field);
 	}
 
@@ -53,7 +75,7 @@ if(!$_REQUEST['ajaxCall']) {
 		
 		// Push values to array
 		foreach($formData as $fieldName => $value) {
-			if($fieldName != 'requiredFields') {
+			if($fieldName != 'requiredFields' && $fieldName != 'uniqueFields') {
 				array_push($values['fieldName'], $fieldName);
 				array_push($values['fieldValue'], $value);
 			}
@@ -65,7 +87,7 @@ if(!$_REQUEST['ajaxCall']) {
 			$response['status'] = 'ADD_PASS';
 			echo json_encode($response);
 		} else {
-			$response['status'] = 'ADD_FAIL';
+			$response['status'] = 'ADD_FAIL'.$formData['title_name'];
 			echo json_encode($response);
 		}
 	} else if($action == 'EDIT') {

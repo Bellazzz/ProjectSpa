@@ -7,6 +7,17 @@ $(document).ready(function () {
     $('.sidebar-body, .sidebar-footer').click(function (e) {
         toggleShowSidebar();
     });
+	$('.tree-view-child li ').mouseenter(function() {
+		if($('.sidebar').attr('aria-expanded') == 'false') {
+			var top	= $(this).offset().top;
+			var left = $('.sidebar').width();
+			var text = $(this).find('.item-label').text();
+			showTableTooltip( $(this).offset().top, left, text);
+		}
+	});
+	$('.tree-view-child li ').mouseleave(function() {
+		hideTableTooltip();
+	});
  
 
 	/*
@@ -25,6 +36,7 @@ $(document).ready(function () {
 	});
 	$('.tree-view ul li').click(function () {
         // Effect
+		$('.sidebar').attr('table-selected', 'true');
 	    $('.tree-view ul li').removeClass('selected');
 		$(this).addClass('selected');
 
@@ -97,6 +109,7 @@ var timer;
 
 function setTable(table) {
     this.table = table;
+	$('.cur-table-name h1').text(this.table.nameTH);
 }
 
 function clearTable() {
@@ -260,20 +273,6 @@ function checkRecord(item) {
     refreshToolbarMenu();
 }
 
-function checkAllRecord(value) {
-    var checkboxs = document.getElementsByName('table-record[]');
-    for (i = 0; i < checkboxs.length; i++) {
-        checkboxs[i].checked = value.checked;
-        var tr = checkboxs[i].parentNode.parentNode;
-        if (checkboxs[i].checked) {
-            $(tr).addClass('selected');
-        } else {
-            $(tr).removeClass('selected');
-        }
-    }
-    refreshToolbarMenu();
-}
-
 
 /*
  * Side bar
@@ -317,7 +316,9 @@ function refreshToolbarMenu() {
         $('#cancel-select-btn').css('display', 'inline-block');
         $('table.mbk').addClass('hasSelectRecord');
     } else {
-        $('.toolbar-menu a').css('display', 'none');
+       $('#edit-record-btn').css('display', 'none');
+        $('#delete-record-btn').css('display', 'none');
+        $('#cancel-select-btn').css('display', 'none');
         $('#toolbar-curselect').css('display', 'none');
         $('table.mbk').removeClass('hasSelectRecord');
     }
@@ -437,4 +438,14 @@ function confirmCloseFormTable(action) {
 function closeFormTable() {
     hideOverlayInner();
     $('#manage-box').css('display', 'none');
+}
+
+function showTableTooltip(top, left, text) {
+	var htmlTooltip = '<div class="table-tooltip">' + text + '</div>';
+	$('body').append(htmlTooltip);
+	$('.table-tooltip').css('top', top + 'px');
+	$('.table-tooltip').css('left', left + 'px');
+}
+function hideTableTooltip() {
+	$('.table-tooltip').remove();
 }

@@ -29,7 +29,7 @@ if($rows > 0) {
 		<?
 	}
 } else {
-	echo 'EMPTY';
+	echo '<div class="no-result">ไม่พบข้อมูลที่ค้นหา</div>';
 }
 
 $nextBegin = $begin + $rows;
