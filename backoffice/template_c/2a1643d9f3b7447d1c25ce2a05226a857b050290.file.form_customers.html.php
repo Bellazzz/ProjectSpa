@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 15:13:20
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 15:43:31
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_customers.html" */ ?>
 <?php /*%%SmartyHeaderCode:805553fae210b29ae3-82717823%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a1643d9f3b7447d1c25ce2a05226a857b050290' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_customers.html',
-      1 => 1408950769,
+      1 => 1408952603,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fae210c16787_09090272',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fae210c16787_09090272',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53fae210c16787_09090272')) {function content_53fae210c16787_09090272($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -53,12 +53,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
         $(document).ready(function () {
             selectReference({
-                elem			: $('#room_id'),
-                tableName		: 'rooms',
-                keyFieldName	: 'room_id',
-                textFieldName	: 'room_name',
+                elem			: $('#custype_id'),
+                tableName		: 'customer_types',
+                keyFieldName	: 'custype_id',
+                textFieldName	: 'custype_name',
 				searchTool		: false,
-                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['room_id'];?>
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['custype_id'];?>
+'
+            });
+            selectReference({
+                elem            : $('#title_id'),
+                tableName       : 'titles',
+                keyFieldName    : 'title_id',
+                textFieldName   : 'title_name',
+                searchTool      : false,
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['title_id'];?>
 '
             });
         });
@@ -76,17 +85,35 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	    <tbody>
 		    <tr>
 			    <td>
-				    <label class="input-required">ชื่อผู้ใช้บริการ</label>
+				    <label class="input-required twoInput">ชื่อผู้ใช้บริการ</label>
 				    <input id="cus_name" name="cus_name" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_name'];?>
 ">
 			    </td>
+
+                <td>
+                    <label class="input-required twoInput">นามสกุลผู้ใช้บริการ</label>
+                    <input id="cus_surname" name="cus_surname" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_surname'];?>
+">
+                </td>
 		    </tr>
             <tr>
 			    <td>
-				    <label class="input-required">ชื่อห้องนวด</label>
-				    <div id="room_id" class="select-reference form-input full"></div>
+				    <label class="input-required">ประเภทผู้ใช้บริการ</label>
+				    <div id="custype_id" class="select-reference form-input half"></div>
 			    </td>
+
+                <td>
+                    <label class="input-required">คำนำหน้าชื่อ</label>
+                    <div id="title_id" class="select-reference form-input half"></div>
+                </td>    
 		    </tr>
+              <tr>
+                <td>
+                    <label>ที่อยู่</label>
+                    <input id="cus_addr" name="cus_addr" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_addr'];?>
+">
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>

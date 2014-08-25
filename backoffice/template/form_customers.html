@@ -20,12 +20,20 @@
 
         $(document).ready(function () {
             selectReference({
-                elem			: $('#room_id'),
-                tableName		: 'rooms',
-                keyFieldName	: 'room_id',
-                textFieldName	: 'room_name',
+                elem			: $('#custype_id'),
+                tableName		: 'customer_types',
+                keyFieldName	: 'custype_id',
+                textFieldName	: 'custype_name',
 				searchTool		: false,
-                defaultValue	: '{/literal}{$values.room_id}{literal}'
+                defaultValue	: '{/literal}{$values.custype_id}{literal}'
+            });
+            selectReference({
+                elem            : $('#title_id'),
+                tableName       : 'titles',
+                keyFieldName    : 'title_id',
+                textFieldName   : 'title_name',
+                searchTool      : false,
+                defaultValue    : '{/literal}{$values.title_id}{literal}'
             });
         });
     </script>
@@ -41,16 +49,32 @@
 	    <tbody>
 		    <tr>
 			    <td>
-				    <label class="input-required">ชื่อผู้ใช้บริการ</label>
+				    <label class="input-required twoInput">ชื่อผู้ใช้บริการ</label>
 				    <input id="cus_name" name="cus_name" type="text" class="form-input half" value="{$values.cus_name}">
 			    </td>
+
+                <td>
+                    <label class="input-required twoInput">นามสกุลผู้ใช้บริการ</label>
+                    <input id="cus_surname" name="cus_surname" type="text" class="form-input half" value="{$values.cus_surname}">
+                </td>
 		    </tr>
             <tr>
 			    <td>
-				    <label class="input-required">ชื่อห้องนวด</label>
-				    <div id="room_id" class="select-reference form-input full"></div>
+				    <label class="input-required">ประเภทผู้ใช้บริการ</label>
+				    <div id="custype_id" class="select-reference form-input half"></div>
 			    </td>
+
+                <td>
+                    <label class="input-required">คำนำหน้าชื่อ</label>
+                    <div id="title_id" class="select-reference form-input half"></div>
+                </td>    
 		    </tr>
+              <tr>
+                <td>
+                    <label>ที่อยู่</label>
+                    <input id="cus_addr" name="cus_addr" type="text" class="form-input full" value="{$values.cus_addr}">
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>
