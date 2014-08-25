@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 14:50:05
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 14:53:21
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_element_types.html" */ ?>
 <?php /*%%SmartyHeaderCode:2252253fadc9d9b60f3-25775205%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '14dfd3253f146b4d88112e967ac9ba84dfa572fb' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_element_types.html',
-      1 => 1408949400,
+      1 => 1408949558,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fadc9dbd5755_27012586',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fadc9dbd5755_27012586',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53fadc9dbd5755_27012586')) {function content_53fadc9dbd5755_27012586($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -65,7 +65,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	    <tbody>
 		    <tr>
 			    <td>
-				    <label class="input-required">ชื่อประเภทการชำระเงิน</label>
+				    <label class="input-required">ชื่อประเภทธาตุ</label>
 				    <input id="eletyp_name" name="eletyp_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['eletyp_name'];?>
 ">
 			    </td>
