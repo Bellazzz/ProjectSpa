@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 15:43:31
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 15:46:21
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_customers.html" */ ?>
 <?php /*%%SmartyHeaderCode:805553fae210b29ae3-82717823%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a1643d9f3b7447d1c25ce2a05226a857b050290' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_customers.html',
-      1 => 1408952603,
+      1 => 1408952769,
       2 => 'file',
     ),
   ),
@@ -108,7 +108,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 </td>    
 		    </tr>
               <tr>
-                <td>
+                <td colspan="2">
                     <label>ที่อยู่</label>
                     <input id="cus_addr" name="cus_addr" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_addr'];?>
 ">
