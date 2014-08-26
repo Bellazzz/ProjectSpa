@@ -1,22 +1,22 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 19:47:10
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_time_attendances.html" */ ?>
-<?php /*%%SmartyHeaderCode:1558253fc6a898ea760-35268137%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 19:49:20
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_payrolls.html" */ ?>
+<?php /*%%SmartyHeaderCode:2770453fc715011d650-54455661%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '295699239a84b69240c01c78752ca400e4ba34ff' => 
+    '7f6b5fe50418d9648bdbbe8a9fee3ac0520b3718' => 
     array (
-      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_time_attendances.html',
-      1 => 1409053617,
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_payrolls.html',
+      1 => 1409053680,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '1558253fc6a898ea760-35268137',
+  'nocache_hash' => '2770453fc715011d650-54455661',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fc6a89b35905_77602645',
+  'unifunc' => 'content_53fc71503ac4f4_62340841',
   'variables' => 
   array (
     'action' => 0,
@@ -27,7 +27,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_53fc6a89b35905_77602645')) {function content_53fc6a89b35905_77602645($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_53fc71503ac4f4_62340841')) {function content_53fc71503ac4f4_62340841($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -52,7 +52,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
 ';
         var ajaxUrl     = 'form_table.php';
- 
+
         $(document).ready(function () {
             selectReference({
                 elem			: $('#emp_id'),
@@ -65,8 +65,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				pattern			: 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
 
-			$("#timeatt_in").datepicker();
-			$("#timeatt_out").datepicker();
+			$("#paymonth").datepicker();
+			
         });
     </script>
     
@@ -77,27 +77,34 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="emp_id,timeatt_in,timeatt_out">
+	<input type="hidden" name="requiredFields" value="emp_id,payroll_salary,payroll_monthly">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 			<tr>
 			    <td colspan="2">
 				    <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
-				    <div id="emp_id" class="select-reference form-input full"></div>
+				    <div id="emp_id" class="select-reference form-input full" > </div>
 			    </td>
 		    </tr>
 			<tr>
                 <td>
-                    <label class="input-required">วัน-เวลาที่เข้า</label>
-				    <input id="timeatt_in" name="timeatt_in" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['timeatt_in'];?>
+                    <label class="input-required">จำนวนเงินเดือน(บาท)</label>
+				    <input id="payroll_salary" name="payroll_salary" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['payroll_salary'];?>
 ">
 			    </td>
 			    <td>
-				    <label class="input-required">วัน-เวลาที่ออก</label>
-				    <input id="timeatt_out" name="timeatt_out" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['timeatt_out'];?>
+				    <label>ค่าคอมมิชชั่น(บาท)</label>
+				    <input id="payroll_commission" name="payroll_commission" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['payroll_commission'];?>
 ">
 			    </td>
 		    </tr>
+            <tr>
+                <td>
+                    <label class="input-required">ประจำเดือน-ปี</label>
+                    <input id="paymonth" name="pay_monthly" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['paymonthly'];?>
+">
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>
