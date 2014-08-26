@@ -604,7 +604,7 @@ function dbClose() {
 		case 'service_packages':
 			 return array(
 				'tableNameTH'	=> 'รายละเอียดการใช้บริการแพ็คเกจ',
-				'keyFieldName'  => 'svlpkg_id',
+				'keyFieldName'  => 'serpkg_id',
 				'keyFieldType'	=> 2, 
 				'keyChar'		=> 'SK',
 				'keyLength'		=> 14,
@@ -636,7 +636,7 @@ function dbClose() {
 		case 'service_promotions':
 			 return array(
 				'tableNameTH'	=> 'รายละเอียดการใช้บริการโปรโมชั่น',
-				'keyFieldName'  => 'pkgdtl_id',
+				'keyFieldName'  => 'serprm_id',
 				'keyFieldType'	=> 2, 
 				'keyChar'		=> 'SP',
 				'keyLength'		=> 14,

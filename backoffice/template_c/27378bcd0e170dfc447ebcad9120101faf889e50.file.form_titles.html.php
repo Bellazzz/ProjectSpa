@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 00:54:11
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 15:21:23
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_titles.html" */ ?>
 <?php /*%%SmartyHeaderCode:201123c30cd2bb41949-63708203%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '27378bcd0e170dfc447ebcad9120101faf889e50' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_titles.html',
-      1 => 1408985647,
+      1 => 1409037667,
       2 => 'file',
     ),
   ),
@@ -35,9 +35,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-    <link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> <!--include if want to use datepicker-->
+    <link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
+    <!--include if want to use datepicker-->
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> <!--include if want to use datepicker-->
+    <script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> 
+    <!--include if want to use datepicker-->
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -88,7 +90,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			    <td>
 				    <label class="input-required">คำนำหน้าชื่อ</label>
 				    <input id="title_name" name="title_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['title_name'];?>
-" pattern="email"> <!--เปลี่ยน id, name, value-->
+"> <!--เปลี่ยน id, name, value-->
 			    </td>
 		    </tr>
 	    </tbody>

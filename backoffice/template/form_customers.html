@@ -6,7 +6,11 @@
     {literal}
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
+    <link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
+    <!--include if want to use datepicker-->
     <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> 
+    <!--include if want to use datepicker-->
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -19,6 +23,8 @@
         var ajaxUrl     = 'form_table.php';
 
         $(document).ready(function () {
+            $("#bk_date").datepicker();
+
             selectReference({
                 elem			: $('#custype_id'),
                 tableName		: 'customer_types',
@@ -44,7 +50,8 @@
 {include file="form_table_header.html"}
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="bed_name,room_id">
+	<input type="hidden" name="requiredFields" value="custype_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date">
+    <input type="hidden" name="uniqueFields" value="">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 		    <tr>
@@ -71,7 +78,7 @@
 		    </tr>
               <tr>
                 <td colspan="2">
-                    <label>ที่อยู่</label>
+                    <label class="input-required">ที่อยู่</label>
                     <input id="cus_addr" name="cus_addr" type="text" class="form-input full" value="{$values.cus_addr}">
                 </td>
             </tr>
@@ -80,11 +87,44 @@
                     <label class="input-required">เบอร์โทร</label>
                     <input id="cus_tel" name="cus_tel" type="text" class="form-input half" value="{$values.cus_tel}">
                 </td>
-            </tr>
-             <tr>
                 <td>
                     <label>วันเกิด</label>
                     <input id="bk_date" name="cus_birthdate" type="text" class="form-input half" value="{$values.cus_birthdate}">
+                </td>
+            </tr>
+             <tr>
+                <td colspan="2">
+                    <label>Faceook(Link)</label>
+                    <input id="cus_facebook" name="cus_facebook" type="text" class="form-input full" value="{$values.cus_facebook}">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label>Line(ID)</label>
+                    <input id="cus_line_id" name="cus_line_id" type="text" class="form-input full"  value="{$values.cus_line_id}">
+                </td>
+            </tr>
+             <tr>
+                <td colspan="2">
+                    <label>E-mail</label>
+                    <input id="cus_email" name="cus_email" type="text" class="form-input full" 
+                    value="{$values.cus_email}" pattern = "email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>วันที่สมัคร</label>
+                    <input id="bk_date" name="cus_registered_date" type="text" class="form-input half" value="{$values.cus_registered_date}">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>Username</label>
+                    <input id="cus_user" name="cus_user" type="text" class="form-input half" value="{$values.cus_user}">
+                </td>
+                <td>
+                    <label>Password</label>
+                    <input id="cus_pass" name="cus_pass" type="text" class="form-input half" value="{$values.cus_pass}">
                 </td>
             </tr>
 	    </tbody>

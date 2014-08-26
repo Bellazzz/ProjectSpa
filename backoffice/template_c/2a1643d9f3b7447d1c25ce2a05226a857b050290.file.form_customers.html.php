@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 16:46:31
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 16:43:22
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_customers.html" */ ?>
 <?php /*%%SmartyHeaderCode:805553fae210b29ae3-82717823%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a1643d9f3b7447d1c25ce2a05226a857b050290' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_customers.html',
-      1 => 1408956381,
+      1 => 1409042595,
       2 => 'file',
     ),
   ),
@@ -35,7 +35,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
+    <link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
+    <!--include if want to use datepicker-->
     <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> 
+    <!--include if want to use datepicker-->
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -52,6 +56,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         var ajaxUrl     = 'form_table.php';
 
         $(document).ready(function () {
+            $("#bk_date").datepicker();
+            $("#bk_date").datepicker();
+
             selectReference({
                 elem			: $('#custype_id'),
                 tableName		: 'customer_types',
@@ -80,7 +87,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="bed_name,room_id">
+	<input type="hidden" name="requiredFields" value="custype_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date">
+    <input type="hidden" name="uniqueFields" value="">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 		    <tr>
@@ -108,7 +116,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 </td>    
 		    </tr>
               <tr>
-                <td colspan="2">
+                <td class="input-required" colspan="2">
                     <label>ที่อยู่</label>
                     <input id="cus_addr" name="cus_addr" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_addr'];?>
 ">
@@ -120,11 +128,50 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <input id="cus_tel" name="cus_tel" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_tel'];?>
 ">
                 </td>
-            </tr>
-             <tr>
                 <td>
                     <label>วันเกิด</label>
                     <input id="bk_date" name="cus_birthdate" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_birthdate'];?>
+">
+                </td>
+            </tr>
+             <tr>
+                <td colspan="2">
+                    <label>Faceook(Link)</label>
+                    <input id="cus_facebook" name="cus_facebook" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_facebook'];?>
+">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label>Line(ID)</label>
+                    <input id="cus_line_id" name="cus_line_id" type="text" class="form-input full"  value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_line_id'];?>
+">
+                </td>
+            </tr>
+             <tr>
+                <td colspan="2">
+                    <label>E-mail</label>
+                    <input id="cus_email" name="cus_email" type="text" class="form-input full" 
+                    value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_email'];?>
+" pattern = "email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>วันที่สมัคร</label>
+                    <input id="bk_date" name="cus_registered_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_registered_date'];?>
+">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>Username</label>
+                    <input id="cus_user" name="cus_user" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_user'];?>
+">
+                </td>
+                <td>
+                    <label>Password</label>
+                    <input id="cus_pass" name="cus_pass" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_pass'];?>
 ">
                 </td>
             </tr>
