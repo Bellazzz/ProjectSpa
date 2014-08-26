@@ -53,7 +53,7 @@
 		    <tr>
 			    <td>
 				    <label class="input-required">คำนำหน้าชื่อ</label>
-				    <input id="title_name" name="title_name" type="text" class="form-input full" value="{$values.title_name}"> <!--เปลี่ยน id, name, value-->
+				    <input id="title_name" name="title_name" type="text" class="form-input full" value="{$values.title_name}" pattern="email"> <!--เปลี่ยน id, name, value-->
 			    </td>
 		    </tr>
 	    </tbody>

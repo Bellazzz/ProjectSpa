@@ -9,13 +9,37 @@ $textFieldName	= $_REQUEST['textFieldName'];
 $searchText		= $_REQUEST['searchText'];
 $begin			= $_REQUEST['begin'];
 $limit			= $_REQUEST['limit'];
+$pattern		= $_REQUEST['pattern'];
 $where			= '';
 
-if(hasValue($searchText)) {
-	$where = "WHERE $textFieldName like '%$searchText%'";
+// Generate pattern
+$textFieldList = explode(',', $textFieldName);
+if(!hasValue($pattern)) {
+	if(count($textFieldList) > 1) {
+		$pattern = 'CONCAT('.implode(',"  ",', $textFieldList).')';
+	} else if(count($textFieldList) == 1) {
+		$pattern = $textFieldList[0];
+	}
+} else {
+	$pattern = str_replace("\'", "'", $pattern);
+	$pattern = str_replace('\\"', '"', $pattern);
+	$pattern = str_replace('\"', '\\', $pattern);
 }
 
-$sql = "SELECT $keyFieldName, $textFieldName FROM $tableName $where LIMIT $begin,$limit";
+// Generate where
+if(hasValue($searchText)) {
+	if(count($textFieldList) > 1) {
+		$like = array();
+		foreach($textFieldList as $key => $textField) {
+			array_push($like, $textField." like '%$searchText%'");
+		}
+		$where = 'WHERE '.implode(' OR ', $like);
+	} else if(count($textFieldList) == 1) {
+		$where = "WHERE $textFieldName like '%$searchText%'";
+	}
+}
+
+$sql = "SELECT $keyFieldName, $pattern pattern FROM $tableName $where LIMIT $begin,$limit";
 $result = mysql_query($sql, $dbConn);
 $rows	= mysql_num_rows($result);
 
@@ -23,7 +47,7 @@ if($rows > 0) {
 	while($record = mysql_fetch_assoc($result)) {
 		?>
 		<li>
-			<span class="text"><?=$record[$textFieldName]?></span>
+			<span class="text"><?=$record['pattern']?></span>
 			<span class="value"><?=$record[$keyFieldName]?></span>
         </li>
 		<?

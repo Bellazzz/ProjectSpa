@@ -49,9 +49,13 @@ if(!$_REQUEST['ajaxCall']) {
 	if(hasValue($formData['uniqueFields'])) {
 		$uniqueFields = explode(',', $formData['uniqueFields']);
 		foreach($uniqueFields as $key => $fieldName) {
-			$value = "'".$formData[$fieldName]."'";
+			$value = $formData[$fieldName];
+			$value = str_replace("\\\'", "'", $value);
+			$value = str_replace('\\\"', '"', $value);
+			$value = str_replace('\\\\"', '\\', $value);
+			$value = "'$value'";
 
-			$sql	= "SELECT $fieldName FROM $tableName WHERE $fieldName = $value LIMIT 1";
+			$sql	= "SELECT $fieldName FROM $tableName WHERE $fieldName = $value AND ".$tableInfo['keyFieldName']." != '$code' LIMIT 1";
 			$result	= mysql_query($sql, $dbConn);
 			if(mysql_num_rows($result) > 0) {
 				$response['status'] = 'UNIQUE_VALUE';
@@ -72,10 +76,13 @@ if(!$_REQUEST['ajaxCall']) {
 		//2.1 Insert new record
 		$values['fieldName']  = array();
 		$values['fieldValue'] = array();
-		
+
 		// Push values to array
 		foreach($formData as $fieldName => $value) {
 			if($fieldName != 'requiredFields' && $fieldName != 'uniqueFields') {
+				$value = str_replace("\\\'", "'", $value);
+				$value = str_replace('\\\"', '"', $value);
+				$value = str_replace('\\\\"', '\\', $value);
 				array_push($values['fieldName'], $fieldName);
 				array_push($values['fieldValue'], $value);
 			}
@@ -87,7 +94,7 @@ if(!$_REQUEST['ajaxCall']) {
 			$response['status'] = 'ADD_PASS';
 			echo json_encode($response);
 		} else {
-			$response['status'] = 'ADD_FAIL'.$formData['title_name'];
+			$response['status'] = 'ADD_FAIL';
 			echo json_encode($response);
 		}
 	} else if($action == 'EDIT') {

@@ -73,6 +73,7 @@ function selectReference(select) {
     var textFieldName   = select.textFieldName;
     var searchTool      = true;
     var defaultValue    = '';
+	var pattern			= '';
     var limit           = 15; //Option item limit
     var selectRefCon;
     var optionCon;
@@ -142,6 +143,7 @@ function selectReference(select) {
                 'tableName'     : tableName,
                 'keyFieldName'  : keyFieldName,
                 'textFieldName' : textFieldName,
+				'pattern'		: pattern,
                 'searchText'    : $(searchInput).val(),
                 'begin'         : select.elem.attr('begin'),
                 'limit'         : limit
@@ -219,6 +221,9 @@ function selectReference(select) {
     if (typeof (select.defaultValue) != 'undefined' && select.defaultValue != null) {
         defaultValue = select.defaultValue;
     }
+	if (typeof (select.pattern) != 'undefined' && select.pattern != null) {
+        pattern = select.pattern;
+    }
     
     // Create select reference input
 	$(select.elem).html('กำลังโหลด...');
@@ -229,7 +234,8 @@ function selectReference(select) {
             'key'           : defaultValue,
             'tableName'     : tableName,
             'keyFieldName'  : keyFieldName,
-            'textFieldName' : textFieldName
+            'textFieldName' : textFieldName,
+			'pattern'		: pattern
         },
         success:
         function (response) {

@@ -54,7 +54,10 @@ function saveRecord() {
 					$('#' + response.text).addClass('required');
 					$('#' + response.text).focus();
 				} else if(response.status== 'UNIQUE_VALUE') {
-					alert(response.text + ' ซ้ำ');
+					alert(response.text + ' ไม่สามารถเป็นค่าซ้ำได้');
+					// Add required
+					$('#' + response.text).addClass('required');
+					$('#' + response.text).focus();
 				} else {
 					alert(response.status + "\n" + response.text);
 				}
@@ -86,7 +89,15 @@ function checkRequiredInput() {
 			} else {
 				// Check input pattern
 				if(input.attr('pattern') == 'email') {
-					alert('check email pattern');
+					if(!validateEmail(input.val())) {
+						alert('รูปแบบ E-mail ไม่ถูกต้อง');
+						$('#' + name).addClass('required');
+						if(hasFocus) {
+							$('#' + name).focus();
+							hasFocus = false;
+						}
+						pass = false;
+					}
 				}
 			}
 		}
@@ -94,3 +105,8 @@ function checkRequiredInput() {
 
 	return pass;
 }
+
+function validateEmail(email) { 
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+} 

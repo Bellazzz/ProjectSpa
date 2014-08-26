@@ -221,7 +221,10 @@ function delteCurrentRecord(code) {
                     // Delete Success
                     hideActionDialog();
                     pullTable(false);
-                } else {
+                } else if(response == 'DELETE_REFERENCE') {
+					alert('ไม่สามารถลบข้อมูลได้ เนื่องจากมีตารางอื่นอ้างอิงข้อมูลนี้อยู่');
+					hideActionDialog();
+				} else {
                     alert(response);
                 }
             }
@@ -250,11 +253,13 @@ function deleteRecordSelected() {
         },
         success:
 		function (response) {
-		    var htmlResponse;
 		    if (response == 'PASS') {
 		        // Delete Success
 		        pullTable(false);
-		    } else {
+		    }else if(response == 'DELETE_REFERENCE') {
+				alert('ไม่สามารถลบข้อมูลได้ เนื่องจากมีตารางอื่นอ้างอิงข้อมูลนี้อยู่');
+				hideActionDialog();
+			} else {
 		        alert(response);
 		    }
 		}

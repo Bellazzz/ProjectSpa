@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 14:01:53
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 00:42:53
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_beds.html" */ ?>
 <?php /*%%SmartyHeaderCode:1756953f38d3ae19b95-46016884%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '44724cb8359dbd74c97794fd74a01024fded5ac4' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_beds.html',
-      1 => 1408898246,
+      1 => 1408898245,
       2 => 'file',
     ),
   ),

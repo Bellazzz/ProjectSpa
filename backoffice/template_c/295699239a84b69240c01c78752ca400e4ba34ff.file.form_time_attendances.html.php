@@ -1,22 +1,22 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-25 00:41:05
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking_status.html" */ ?>
-<?php /*%%SmartyHeaderCode:3248353f9b599ee2d75-42572897%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 02:24:31
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_time_attendances.html" */ ?>
+<?php /*%%SmartyHeaderCode:637453fb750c1fd101-56946201%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '1f49f5e86a24427adf654320f0872a95eece5ab7' => 
+    '295699239a84b69240c01c78752ca400e4ba34ff' => 
     array (
-      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking_status.html',
-      1 => 1408898286,
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_time_attendances.html',
+      1 => 1408991067,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '3248353f9b599ee2d75-42572897',
+  'nocache_hash' => '637453fb750c1fd101-56946201',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53f9b59a066295_29901593',
+  'unifunc' => 'content_53fb750c2ff813_35037037',
   'variables' => 
   array (
     'action' => 0,
@@ -27,7 +27,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_53f9b59a066295_29901593')) {function content_53f9b59a066295_29901593($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_53fb750c2ff813_35037037')) {function content_53fb750c2ff813_35037037($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -35,7 +35,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
+	<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> <!--include if want to use datepicker-->
     <script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> <!--include if want to use datepicker-->
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -50,6 +52,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
 ';
         var ajaxUrl     = 'form_table.php';
+
+        $(document).ready(function () {
+            selectReference({
+                elem			: $('#emp_id'),
+                tableName		: 'employees',
+                keyFieldName	: 'emp_id',
+                textFieldName	: 'emp_id,emp_name,emp_surname',
+				searchTool		: true,
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_id'];?>
+',
+				pattern			: 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
+            });
+
+			$("#timeatt_in").datepicker();
+			$("#timeatt_out").datepicker();
+        });
     </script>
     
 </head>
@@ -59,14 +77,24 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="bkgstat_name">
-	<input type="hidden" name="uniqueFields" value="bkgstat_name">
+	<input type="hidden" name="requiredFields" value="emp_id,timeatt_in,timeatt_out">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
-		    <tr>
+			<tr>
+			    <td colspan="2">
+				    <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
+				    <div id="emp_id" class="select-reference form-input full"></div>
+			    </td>
+		    </tr>
+			<tr>
+                <td>
+                    <label class="input-required">วัน-เวลาที่เข้า</label>
+				    <input id="timeatt_in" name="timeatt_in" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['timeatt_in'];?>
+">
+			    </td>
 			    <td>
-				    <label class="input-required">ชื่อสถานะการจอง</label>
-				    <input id="bkgstat_name" name="bkgstat_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkgstat_name'];?>
+				    <label class="input-required">วัน-เวลาที่ออก</label>
+				    <input id="timeatt_out" name="timeatt_out" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['timeatt_out'];?>
 ">
 			    </td>
 		    </tr>
@@ -80,4 +108,5 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     [Note]
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
+	3.  input[name="uniqueFields"] ใส่ชื่อฟิลด์ที่ต้องการเช็คว่าห้ามซ้ำ
 --><?php }} ?>

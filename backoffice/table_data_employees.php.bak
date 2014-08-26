@@ -96,6 +96,7 @@ if($rows > 0){
 	// Set table data
 	var table = {
 		'name'			: '<?=$tableName?>',
+		'nameTH'		: '<?=$tableInfo["tableNameTH"]?>',
 		'sortCol'		: '<?=$sortCol?>',
 		'sortBy'		: '<?=$sortBy?>',
 		'fieldNameList'	: <? echo json_encode($tableInfo['fieldNameList']); ?>

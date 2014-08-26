@@ -19,9 +19,16 @@ if($keyType == 2) {
 
 // Delete record
 $sql = "DELETE FROM $tableName WHERE $keyName in (" . implode($keySelected, ',') . ')';
-if(mysql_query($sql, $dbConn)) {
-	echo "PASS";
-} else {
-	throw new Exception('Cannot delete record');
+
+try {
+	if(mysql_query($sql, $dbConn)) {
+		echo "PASS";
+	} else {
+		throw new Exception(mysql_error(), mysql_errno());
+	}
+} catch (Exception $e) {
+    if ($e->getCode() == 1451) {
+        echo "DELETE_REFFERENCE";
+    }
 }
 ?>

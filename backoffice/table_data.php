@@ -7,25 +7,23 @@ include('../common/common_function.php');
 
 // Pre Valiables
 $tableName	= 'titles';
-$sortCol	= '';
-$sortBy		= 'asc';
-$where		= '';
-$like		= '';
-$order		= '';
-
-
 if(hasValue($_REQUEST['tableName'])) {
 	$tableName = $_REQUEST['tableName'];
 }
 $tableInfo	= getTableInfo($tableName);
+$sortCol	= $tableInfo['keyFieldName'];
+$sortBy		= 'asc';
+$where		= '';
+$like		= '';
+$order		= '';
 
 if(hasValue($_REQUEST['sortBy'])) {
 	$sortBy	= $_REQUEST['sortBy'];
 }
 if(hasValue($_REQUEST['sortCol'])) {
 	$sortCol = $_REQUEST['sortCol'];
-	$order	 = "ORDER BY $sortCol $sortBy";
 }
+$order	 = "ORDER BY $sortCol $sortBy";
 
 $searchCol = $tableInfo['keyFieldName'];
 if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
