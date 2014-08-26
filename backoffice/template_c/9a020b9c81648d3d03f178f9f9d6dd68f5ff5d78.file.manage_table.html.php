@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 17:06:08
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 20:28:12
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
 <?php /*%%SmartyHeaderCode:2538853fc4e0034e808-60662230%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9a020b9c81648d3d03f178f9f9d6dd68f5ff5d78' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\manage_table.html',
-      1 => 1408894122,
+      1 => 1409056087,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
   'unifunc' => 'content_53fc4e00412596_04519465',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53fc4e00412596_04519465')) {function content_53fc4e00412596_04519465($_smarty_tpl) {?>﻿<!DOCTYPE html>
 <html>
@@ -400,8 +400,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <div id="table-toolbar" class="clearfix">
 						<div class="table-toolbar-inner">
 							<span id="toolbar-curselect"></span>
-							<button id="edit-record-btn" class="button button-icon button-icon-add">แก้ไข</button>
-							<button id="delete-record-btn" class="button button-icon button-icon-add">ลบ</button>
+							<button id="edit-record-btn" class="button button-icon button-icon-edit">แก้ไข</button>
+							<button id="delete-record-btn" class="button button-icon button-icon-delete">ลบ</button>
 							<button id="cancel-select-btn" class="button button-icon">ยกเลิก</button>
 						</div>
                     </div>
