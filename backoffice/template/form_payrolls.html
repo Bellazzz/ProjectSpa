@@ -22,7 +22,7 @@
 
         $(document).ready(function () {
             selectReference({
-                elem			: $('#empd_id'),
+                elem			: $('#emp_id'),
                 tableName		: 'employees',
                 keyFieldName	: 'emp_id',
                 textFieldName	: 'emp_id,emp_name,emp_surname',
@@ -31,8 +31,8 @@
 				pattern			: 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
 
-			$("#timeatt_in").datepicker();
-			$("#timeatt_out").datepicker();
+			$("#paymonth").datepicker();
+			
         });
     </script>
     {/literal}
@@ -42,25 +42,31 @@
 {include file="form_table_header.html"}
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="emp_id,timeatt_in,timeatt_out">
+	<input type="hidden" name="requiredFields" value="emp_id,payroll_salary,payroll_monthly">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 			<tr>
 			    <td colspan="2">
-				    <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
+				    <label class="input-required">รหัสพนักงาน</label>
 				    <div id="emp_id" class="select-reference form-input full"></div>
 			    </td>
 		    </tr>
 			<tr>
                 <td>
-                    <label class="input-required">วัน-เวลาที่เข้า</label>
-				    <input id="timeatt_in" name="timeatt_in" type="text" class="form-input half" value="{$values.timeatt_in}">
+                    <label class="input-required">จำนวนเงินเดือน(บาท)</label>
+				    <input id="payroll_salary" name="payroll_salary" type="text" class="form-input half" value="{$values.payroll_salary}">
 			    </td>
 			    <td>
-				    <label class="input-required">วัน-เวลาที่ออก</label>
-				    <input id="timeatt_out" name="timeatt_out" type="text" class="form-input half" value="{$values.timeatt_out}">
+				    <label>ค่าคอมมิชชั่น(บาท)</label>
+				    <input id="payroll_commission" name="payroll_commission" type="text" class="form-input half" value="{$values.payroll_commission}">
 			    </td>
 		    </tr>
+            <tr>
+                <td>
+                    <label class="input-required">ประจำเดือน-ปี</label>
+                    <input id="paymonth" name="pay_monthly" type="text" class="form-input half" value="{$values.paymonthly}">
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>
