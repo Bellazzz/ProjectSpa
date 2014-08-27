@@ -1,14 +1,7 @@
 <?php
 $action			= isset($_REQUEST['action']) ? $_REQUEST['action'] : 'ADD';
-$tableName		= $_REQUEST['tableName'];
+$tableName		= 'employees';
 $code			= $_REQUEST['code'];
-
-// Check table
-switch ($tableName) {
-	case 'employees':
-		header("location:form_employees.php?action=$action&code=$code");
-		break;
-}
 
 include('../config/config.php');
 $tplName = "form_$tableName.html";
@@ -84,6 +77,24 @@ if(!$_REQUEST['ajaxCall']) {
 		$values['fieldName']  = array();
 		$values['fieldValue'] = array();
 
+		// Rename Image
+		if(strpos($formData['emp_pic'], 'temp_')) {
+			$type		= str_replace(".", "", strrchr($formData['emp_pic'],"."));
+			$tmpRecord	= new TableSpa('employees', null);
+			$emp_pic	= $tmpRecord->genKeyCharRunning().".$type";
+			if(rename('../img/temp/'.$formData['emp_pic'], '../img/employees/'.$emp_pic)) {
+				$formData['emp_pic'] = $emp_pic;
+			} else {
+				$response['status'] = 'RENAME_FAIL';
+				echo json_encode($response);
+				exit();
+			}
+		}
+
+		// Encryption password
+		$formData['emp_pass'] = md5($formData['emp_pass']);
+		
+
 		// Push values to array
 		foreach($formData as $fieldName => $value) {
 			if($fieldName != 'requiredFields' && $fieldName != 'uniqueFields') {
@@ -107,6 +118,20 @@ if(!$_REQUEST['ajaxCall']) {
 	} else if($action == 'EDIT') {
 		//2.2 Update record
 		$tableRecord = new TableSpa($tableName, $code);
+
+		// Rename Image
+		if(strpos($formData['emp_pic'], 'temp_')) {
+			$type		= str_replace(".", "", strrchr($formData['emp_pic'],"."));
+			$tmpRecord	= new TableSpa('employees', null);
+			$emp_pic	= $tmpRecord->genKeyCharRunning().".$type";
+			if(rename('../img/temp/'.$formData['emp_pic'], '../img/employees/'.$emp_pic)) {
+				$formData['emp_pic'] = $emp_pic;
+			} else {
+				$response['status'] = 'RENAME_FAIL';
+				echo json_encode($response);
+				exit();
+			}
+		}
 
 		// Set all field value
 		foreach($formData as $fieldName => $value) {

@@ -249,3 +249,78 @@ function selectReference(select) {
         }
     });
 }
+
+/*
+ * Upload image input
+ */
+ function uploadImageInput(data) {
+	 var imgData = Array();
+	 
+	 // Set default image
+	 if(typeof(data.defaultValue) != 'undefined' && data.defaultValue != '') {
+		 var url = "url(" + data.defaultValue + ")";
+		 $(data.area).css('background-image', url);
+	 }
+	
+	// Add event
+	$(data.area).click(function(){
+		data.selector.click();
+	});
+
+	data.selector.change(function(e){
+		// fetch FileList object
+		var allowType	= ['jpg', 'jpeg', 'gif', 'png'];
+		var files		= e.target.files || e.dataTransfer.files;
+		var file		= files[0]; // Only one file
+		var ftype		= file.type.replace("image/","");
+		var form		= $(this).parent();
+
+		// Parse file
+		if(file.type.indexOf("image") == 0) {
+			// Show image in area
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				showImage(e.target.result);
+				
+				// Ajax upload temp image
+				var xhr;
+				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+					xhr = new XMLHttpRequest();
+				}
+				else {// code for IE6, IE5
+					xhr = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				if(xhr.upload){
+					// start upload
+					imgType	= file.type.replace("image/","");
+					xhr.open("POST", "../common/ajaxUploadTempImage.php?imgType=" + imgType);
+					xhr.send(file);
+					xhr.onreadystatechange = function() {
+						if (xhr.readyState == 4) {
+							var response = $.parseJSON(xhr.responseText);
+							if(response.status == "PASS") {
+								data.input.val(response.imgName);
+							} else {
+								alert(response.status);
+							}
+						}
+					}
+				}
+			}
+			reader.readAsDataURL(file);
+		}
+	});
+
+	function showImage(bg) {
+		var img = new Image();
+		img.src = bg;
+		img.onload = function() {
+			//Image size less than wrapper
+			if(img.width <= $(window).width() && img.height <= $(window).height()) {
+				$(data.area).css("background-size", "auto");
+			}
+		}
+		var url = "url(" + img.src + ")";
+		$(data.area).css('background-image', url);
+	}
+ }

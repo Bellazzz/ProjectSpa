@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 15:59:45
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 16:35:45
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_services.html" */ ?>
 <?php /*%%SmartyHeaderCode:2916153fd8ff1625050-13514861%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '501011bf7a8de77445f0f40fe18ec9508e2c1836' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_services.html',
-      1 => 1409126373,
+      1 => 1409128442,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fd8ff1745049_09960395',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fd8ff1745049_09960395',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53fd8ff1745049_09960395')) {function content_53fd8ff1745049_09960395($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -123,7 +123,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="cus_id,emp_id,svltyp_id,paytyp_id,bed_id,bkg_id,ser_date,ser_total_price">
+    <input type="hidden" name="requiredFields" value="cus_id,emp_id,svltyp_id,paytyp_id,bed_id,bkg_id,ser_date,ser_total_price">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>

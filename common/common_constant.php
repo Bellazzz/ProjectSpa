@@ -77,12 +77,15 @@ function dbClose() {
 				'tableNameTH'	=> 'พนักงาน',
 				'keyFieldName'  => 'emp_id',
 				'keyFieldType'	=> 2,
+				'keyChar'		=> 'EM',
+				'keyLength'		=> 6,
 				'fieldNameList'	=> array(
 						'emp_id'		=> 'รหัสพนักงาน',
 						'title_id'	=> 'คำนำหน้า',
 						'pos_id'		=> 'ตำแหน่ง',
 						'emp_name'		=> 'ชื่อ',
 						'emp_surname'	=> 'นามสกุล',
+						'emp_birthdate' => 'วันเกิด',
 						'emp_addr'		=> 'ที่อยู่',
 						'emp_tel'		=> 'เบอร์โทร',
 						'emp_user'		=> 'Username',
@@ -519,12 +522,12 @@ function dbClose() {
 				'keyChar'		=> 'BP',
 				'keyLength'		=> 14,
 				'fieldNameList'	=> array(
-						'bkgpkg_id'	  		 	=> 'รหัสรายละเอียดแพ็คเกจที่จอง',
-						'pkgsvl_id'	          	=> 'รหัสรายการบริการที่จัดแพ็คเกจ',
-						'bkg_id' 		      	=> 'รหัสการจอง',
-						'bkgpkg_date'        	=> 'วัน-เวลาที่ใช้บริการ',
-						'bkgpkg_total_price' 	=> 'ราคารวมการจองแพ็คเกจ(บาท)',
-						'bkgpkg_persons'      	=> 'จำนวนผู้ใช้บริการ'
+						'bkgpkg_id'	  		  => 'รหัสรายละเอียดแพ็คเกจที่จอง',
+						'pkgsvl_id'	          => 'รหัสรายการบริการที่จัดแพ็คเกจ',
+						'bkg_id' 		      => 'รหัสการจอง',
+						'bkgpkg _date'        => 'วัน-เวลาที่ใช้บริการ',
+						'bkgpkg_total_price' => 'ราคารวมการจองแพ็คเกจ(บาท)',
+						'bkgpkg_persons'      => 'จำนวนผู้ใช้บริการ'
 				)
 			);
 			break;
@@ -537,12 +540,12 @@ function dbClose() {
 				'keyChar'		=> 'BP',
 				'keyLength'		=> 14,
 				'fieldNameList'	=> array(
-						'bkgprm_id'	  		  	=> 'รหัสรายละเอียดโปรโมชั่นที่จอง',
-						'prmsvl_id'	          	=> 'รหัสรายการบริการที่จัดโปรโมชั่น',
-						'bkg_id' 		      	=> 'รหัสการจอง',
-						'bkgprm_date'        	=> 'วัน-เวลาที่ใช้บริการ',
-						'bkgprm_total_price' 	=> 'ราคารวมการจองโปรโมชั่น(บาท)',
-						'bkgprm_persons'      	=> 'จำนวนผู้ใช้บริการ'
+						'bkgprm_id'	  		  => 'รหัสรายละเอียดโปรโมชั่นที่จอง',
+						'prmsvl_id'	          => 'รหัสรายการบริการที่จัดโปรโมชั่น',
+						'bkg_id' 		      => 'รหัสการจอง',
+						'bkgprm_date'        => 'วัน-เวลาที่ใช้บริการ',
+						'bkgprm_total_price' => 'ราคารวมการจองโปรโมชั่น(บาท)',
+						'bkgprm_persons'      => 'จำนวนผู้ใช้บริการ'
 						
 				)
 			);
