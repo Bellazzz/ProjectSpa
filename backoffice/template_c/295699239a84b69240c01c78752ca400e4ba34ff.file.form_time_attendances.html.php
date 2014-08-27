@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 19:47:10
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 19:07:53
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_time_attendances.html" */ ?>
 <?php /*%%SmartyHeaderCode:1558253fc6a898ea760-35268137%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '295699239a84b69240c01c78752ca400e4ba34ff' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_time_attendances.html',
-      1 => 1409053617,
+      1 => 1408991068,
       2 => 'file',
     ),
   ),
@@ -15,8 +15,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fc6a89b35905_77602645',
   'variables' => 
   array (
     'action' => 0,
@@ -26,6 +24,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fc6a89b35905_77602645',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53fc6a89b35905_77602645')) {function content_53fc6a89b35905_77602645($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -52,7 +52,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
 ';
         var ajaxUrl     = 'form_table.php';
- 
+
         $(document).ready(function () {
             selectReference({
                 elem			: $('#emp_id'),

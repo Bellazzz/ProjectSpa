@@ -24,7 +24,7 @@
 
         $(document).ready(function () {
             $("#bk_date").datepicker();
-            $("#cus_registered_date").datepicker();
+            $("#bt_date").datepicker();
 
             selectReference({
                 elem			: $('#custype_id'),
@@ -114,8 +114,8 @@
             </tr>
             <tr>
                 <td>
-                    <label class="input-required">วันที่สมัคร</label>
-                    <input id="cus_registered_date" name="cus_registered_date" type="text" class="form-input half" value="{$values.cus_registered_date}">
+                    <label>วันที่สมัคร</label>
+                    <input id="bt_date" name="cus_registered_date" type="text" class="form-input half" value="{$values.cus_registered_date}">
                 </td>
             </tr>
              <tr>

@@ -22,25 +22,17 @@
 
         $(document).ready(function () {
             selectReference({
-                elem			: $('#svl_id'),
-                tableName		: 'service_lists',
-                keyFieldName	: 'svl_id',
-                textFieldName	: 'svl_name',
+                elem			: $('#emp_id'),
+                tableName		: 'employees',
+                keyFieldName	: 'emp_id',
+                textFieldName	: 'emp_id,emp_name,emp_surname',
 				searchTool		: true,
-                defaultValue	: '{/literal}{$values.svl_id}{literal}',
-				
-            });
-             
-              selectReference({
-                elem            : $('#bkg_id'),
-                tableName       : 'booking',
-                keyFieldName    : 'bkg_id',
-                textFieldName   : 'bkg_id',
-                searchTool      : true,
-                defaultValue    : '{/literal}{$values.bkg_id}{literal}'
+                defaultValue	: '{/literal}{$values.emp_id}{literal}',
+				pattern			: 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
 
-			$("#bkgsvl_date").datepicker();
+			$("#timeatt_in").datepicker();
+			$("#timeatt_out").datepicker();
         });
     </script>
     {/literal}
@@ -50,38 +42,25 @@
 {include file="form_table_header.html"}
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="svl_id,bkg_id,bkgsvl_date,bkgsvl_total_price,bkgsvl_persons">
+	<input type="hidden" name="requiredFields" value="svl_id,prm_id,prmsvl_price,prmsvl_start,prmsvl_end">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
-            <tr>
-                <td>
-                    <label class="input-required">รายการบริการ</label>
-                    <div id="svl_id" class="select-reference form-input half" > </div>
-                </td>
-            			    
-                <td>
-				    <label class="input-required">รหัสการจอง</label>
-				    <div id="bkg_id" class="select-reference form-input half" > </div>
+			<tr>
+			    <td colspan="2">
+				    <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
+				    <div id="emp_id" class="select-reference form-input full"></div>
 			    </td>
 		    </tr>
 			<tr>
                 <td>
-                    <label class="input-required">วัน-เวลาที่ใช้บริการ</label>
-				      <input id="bkgsvl_date" name="bkgsvl_date" type="text" class="form-input half" value="{$values.bkgsvl_date}">
+                    <label class="input-required">วัน-เวลาที่เข้า</label>
+				    <input id="timeatt_in" name="timeatt_in" type="text" class="form-input half" value="{$values.timeatt_in}">
 			    </td>
 			    <td>
-				    <label class="input-required">ราคารวมการจองรายการบริการ(บาท)</label>
-				    <input id="bkgsvl_total_price" name="bkgsvl_total_price" type="text" class="form-input half" value="{$values.bkgsvl_total_price}">
+				    <label class="input-required">วัน-เวลาที่ออก</label>
+				    <input id="timeatt_out" name="timeatt_out" type="text" class="form-input half" value="{$values.timeatt_out}">
 			    </td>
 		    </tr>
-            <tr>
-                <td>
-                    <label class="input-required">จำนวนผู้ใช้บริการ</label>
-                    <input id="bkgsvl_persons" name="bkgsvl_persons" type="text" class="form-input half" value="{$values.bkgsvl_persons}">
-                </td>
-                
-            </tr>
-             
 	    </tbody>
     </table>
     </form>

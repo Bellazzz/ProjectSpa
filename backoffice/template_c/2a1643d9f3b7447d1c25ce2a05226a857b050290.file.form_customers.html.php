@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 12:37:38
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 17:06:17
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_customers.html" */ ?>
 <?php /*%%SmartyHeaderCode:2785153fc4e099aecc9-03650575%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a1643d9f3b7447d1c25ce2a05226a857b050290' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_customers.html',
-      1 => 1409060626,
+      1 => 1409043956,
       2 => 'file',
     ),
   ),
@@ -15,8 +15,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fc4e09b3d412_82559777',
   'variables' => 
   array (
     'action' => 0,
@@ -26,6 +24,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fc4e09b3d412_82559777',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53fc4e09b3d412_82559777')) {function content_53fc4e09b3d412_82559777($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -57,7 +57,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
         $(document).ready(function () {
             $("#bk_date").datepicker();
-            $("#cus_registered_date").datepicker();
+            $("#bt_date").datepicker();
 
             selectReference({
                 elem			: $('#custype_id'),
@@ -158,8 +158,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             </tr>
             <tr>
                 <td>
-                    <label class="input-required">วันที่สมัคร</label>
-                    <input id="cus_registered_date" name="cus_registered_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_registered_date'];?>
+                    <label>วันที่สมัคร</label>
+                    <input id="bt_date" name="cus_registered_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_registered_date'];?>
 ">
                 </td>
             </tr>
