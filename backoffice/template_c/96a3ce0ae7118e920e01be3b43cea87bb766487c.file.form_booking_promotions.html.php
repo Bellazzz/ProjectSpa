@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 15:23:36
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking_packages.html" */ ?>
-<?php /*%%SmartyHeaderCode:2945753fd62b78fc722-12558662%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 15:21:12
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking_promotions.html" */ ?>
+<?php /*%%SmartyHeaderCode:1078253fd86e85a1745-69802660%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '27adb2e18d9ee252470b90161594e58f9959373d' => 
+    '96a3ce0ae7118e920e01be3b43cea87bb766487c' => 
     array (
-      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking_packages.html',
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking_promotions.html',
       1 => 1409124060,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2945753fd62b78fc722-12558662',
+  'nocache_hash' => '1078253fd86e85a1745-69802660',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fd62b7a17123_11236645',
   'variables' => 
   array (
     'action' => 0,
@@ -26,8 +24,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fd86e869eb73_69684704',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_53fd62b7a17123_11236645')) {function content_53fd62b7a17123_11236645($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_53fd86e869eb73_69684704')) {function content_53fd86e869eb73_69684704($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -55,12 +55,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
         $(document).ready(function () {
             selectReference({
-                elem			: $('#pkgsvl_id'),
-                tableName		: 'package_service_lists',
-                keyFieldName	: 'pkgsvl_id',
-                textFieldName	: 'pkgsvl_id',
+                elem			: $('#prmsvl_id'),
+                tableName		: 'promotion_service_lists',
+                keyFieldName	: 'prmsvl_id',
+                textFieldName	: 'prmsvl_id',
 				searchTool		: true,
-                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['pkgsvl_id'];?>
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['prmsvl_id'];?>
 ',
 				
             });
@@ -75,7 +75,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 '
             });
 
-			$("#bkgpkg_date").datepicker();
+			$("#bkgprm_date").datepicker();
         });
     </script>
     
@@ -86,13 +86,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="ftb-body">    
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="pkgsvl_id,bkg_id,bkgpkg_date,bkgpkg_total_price,bkgpkg_persons">
+	<input type="hidden" name="requiredFields" value="prmsvl_id,bkg_id,bkgprm_date,bkgprm_total_price,bkgprm_persons">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>
                 <td>
-                    <label class="input-required">รายการบริการที่จัดแพ็คเกจ</label>
-                    <div id="pkgsvl_id" class="select-reference form-input half" > </div>
+                    <label class="input-required">รายการบริการที่จัดโปรโมชั่น</label>
+                    <div id="prmsvl_id" class="select-reference form-input half" > </div>
                 </td>
             			    
                 <td>
@@ -103,19 +103,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<tr>
                 <td>
                     <label class="input-required">วัน-เวลาที่ใช้บริการ</label>
-				      <input id="bkgpkg_date" name="bkgpkg_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkgpkg_date'];?>
+				      <input id="bkgprm_date" name="bkgprm_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkgprm_date'];?>
 ">
 			    </td>
 			    <td>
-				    <label class="input-required">ราคารวมการจองแพ็คเกจ(บาท)</label>
-				    <input id="bkgpkg_total_price" name="bkgpkg_total_price" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkgpkg_total_price'];?>
+				    <label class="input-required">ราคารวมการจองโปรโมชั่น(บาท)</label>
+				    <input id="bkgpkg_total_price" name="bkgprm_total_price" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkgprm_total_price'];?>
 ">
 			    </td>
 		    </tr>
             <tr>
                 <td>
                     <label class="input-required">จำนวนผู้ใช้บริการ</label>
-                    <input id="bkgpkg_persons" name="bkgpkg_persons" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkgpkg_persons'];?>
+                    <input id="bkgprm_persons" name="bkgprm_persons" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkgprm_persons'];?>
 ">
                 </td>
                 
