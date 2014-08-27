@@ -22,12 +22,12 @@
 
         $(document).ready(function () {
             selectReference({
-                elem			: $('#svl_id'),
-                tableName		: 'service_lists',
-                keyFieldName	: 'svl_id',
-                textFieldName	: 'svl_name',
+                elem			: $('#pkgsvl_id'),
+                tableName		: 'package_service_lists',
+                keyFieldName	: 'pkgsvl_id',
+                textFieldName	: 'pkgsvl_id',
 				searchTool		: true,
-                defaultValue	: '{/literal}{$values.svl_id}{literal}',
+                defaultValue	: '{/literal}{$values.pkgsvl_id}{literal}',
 				
             });
              
@@ -50,13 +50,13 @@
 {include file="form_table_header.html"}
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="svl_id,bkg_id,bkgpkg_date,bkgpkg_total_price,bkgpkg_persons">
+	<input type="hidden" name="requiredFields" value="pkgsvl_id,bkg_id,bkgpkg_date,bkgpkg_total_price,bkgpkg_persons">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>
                 <td>
                     <label class="input-required">รายการบริการที่จัดแพ็คเกจ</label>
-                    <div id="svl_id" class="select-reference form-input half" > </div>
+                    <div id="pkgsvl_id" class="select-reference form-input half" > </div>
                 </td>
             			    
                 <td>
