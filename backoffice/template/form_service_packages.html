@@ -39,16 +39,17 @@
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
         <tbody>
             <tr>
-                <td>
+                <td colspan="2">
                     <label class="input-required">รหัสการใช้บริการ</label>
-                    <div id="ser_id" class="select-reference form-input half"></div>
-                </td>
-                <td>
-                    <label class="input-required">ราคารวม(บาท)</label>
-                     <input id="serpkg_total_price" name="serpkg_total_price" type="text" class="form-input half" value="{$values.serpkg_total_price}">
+                    <div id="ser_id" class="select-reference form-input full"></div>
                 </td>
             </tr>
-            
+            <tr>
+                <td>
+                    <label class="input-required">ราคารวม (บาท)</label>
+                     <input id="serpkg_total_price" name="serpkg_total_price" type="text" class="form-input full" value="{$values.serpkg_total_price}">
+                </td>
+            </tr>
         </tbody>
     </table>
     </form>
