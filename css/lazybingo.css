@@ -1109,7 +1109,12 @@ table.mbk .icon {
 .button-icon-add:before {
 	content: "\f055";
 }
-
+.button-icon-edit:before {
+    content: "\f040";
+}
+.button-icon-delete:before {
+    content: "\f00d";
+}
 /*
  * Tool tip
  */
@@ -1138,21 +1143,4 @@ table.mbk .icon {
 	border-bottom: 5px solid transparent;
 	border-right: 5px solid #333;
 	border-right: 5px solid rgba(0,0,0,0.7);
-}
-
-/*
- * Upload image input
- */
- .uploadImageArea {
-	width: 150px;
-	height: 150px;
-	border: 1px solid #ddd;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-.uploadImageSelector {
-	width: 0;
-	height: 0;
-	overflow: hidden;
 }
