@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 12:46:47
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 12:53:18
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking_packages.html" */ ?>
 <?php /*%%SmartyHeaderCode:2945753fd62b78fc722-12558662%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '27adb2e18d9ee252470b90161594e58f9959373d' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking_packages.html',
-      1 => 1409114766,
+      1 => 1409115130,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fd62b7a17123_11236645',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fd62b7a17123_11236645',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53fd62b7a17123_11236645')) {function content_53fd62b7a17123_11236645($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -60,7 +60,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 keyFieldName	: 'pkgsvl_id',
                 textFieldName	: 'pkgsvl_id',
 				searchTool		: true,
-                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_id'];?>
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['pkgsvl_id'];?>
 ',
 				
             });
