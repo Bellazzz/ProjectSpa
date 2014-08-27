@@ -23,11 +23,11 @@
         $(document).ready(function () {
             selectReference({
                 elem			: $('#pkgsvl_id'),
-                tableName		: 'package_service_lists',
-                keyFieldName	: 'pkgsvl_id',
-                textFieldName	: 'pkgsvl_id',
+                tableName		: 'packages',
+                keyFieldName	: 'pkg_id',
+                textFieldName	: 'pkg_name',
 				searchTool		: true,
-                defaultValue	: '{/literal}{$values.pkgsvl_id}{literal}',
+                defaultValue	: '{/literal}{$values.pkg_id}{literal}',
 				
             });
              
