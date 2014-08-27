@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 18:07:03
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 18:11:18
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_service_packages.html" */ ?>
 <?php /*%%SmartyHeaderCode:3107853fdaa52ecf5c8-72745772%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c4d6f43546568019a153c4a71d005eaf3b77b18d' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_service_packages.html',
-      1 => 1409133995,
+      1 => 1409134267,
       2 => 'file',
     ),
   ),
@@ -74,17 +74,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
         <tbody>
             <tr>
-                <td>
+                <td colspan="2">
                     <label class="input-required">รหัสการใช้บริการ</label>
-                    <div id="ser_id" class="select-reference form-input half"></div>
+                    <div id="ser_id" class="select-reference form-input full"></div>
                 </td>
+            </tr>
+            <tr>
                 <td>
-                    <label class="input-required">ราคารวม(บาท)</label>
-                     <input id="serpkg_total_price" name="serpkg_total_price" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['serpkg_total_price'];?>
+                    <label class="input-required">ราคารวม (บาท)</label>
+                     <input id="serpkg_total_price" name="serpkg_total_price" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['serpkg_total_price'];?>
 ">
                 </td>
             </tr>
-            
         </tbody>
     </table>
     </form>

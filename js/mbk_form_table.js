@@ -77,7 +77,13 @@ function checkRequiredInput() {
 		
 		for(i in requiredFields) {
 			var name	=  requiredFields[i];
-			var input	= $('input[name="' + name + '"]');
+			//var input	= $('input[name="' + name + '"]');
+			var input;
+			if($('input[name="' + name + '"]').length){
+				input = $('input[name="' + name + '"]');
+			} else if($('textarea[name="' + name + '"]').length){
+				input = $('textarea[name="' + name + '"]');
+			}
 
 			if(input.val() == '') {
 				$('#' + name).addClass('required');
