@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 21:41:54
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 21:44:50
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking_service_lists.html" */ ?>
 <?php /*%%SmartyHeaderCode:2102753fc8987a24679-19481296%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '36d75e95668141b453660122c4bdc7ac8928024e' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking_service_lists.html',
-      1 => 1409060502,
+      1 => 1409060668,
       2 => 'file',
     ),
   ),
@@ -94,9 +94,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <label class="input-required">รายการบริการ</label>
                     <div id="svl_id" class="select-reference form-input half" > </div>
                 </td>
-            </tr>
-			<tr>
-			    <td>
+            			    
+                <td>
 				    <label class="input-required">รหัสการจอง</label>
 				    <div id="bkg_id" class="select-reference form-input half" > </div>
 			    </td>
@@ -108,7 +107,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ">
 			    </td>
 			    <td>
-				    <label class="input-required">ราคารวทการจองรายการบริการ(บาท)</label>
+				    <label class="input-required">ราคารวมการจองรายการบริการ(บาท)</label>
 				    <input id="bkgsvl_total_price" name="bkgsvl_total_price" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkgsvl_total_price'];?>
 ">
 			    </td>
