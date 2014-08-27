@@ -1139,3 +1139,20 @@ table.mbk .icon {
 	border-right: 5px solid #333;
 	border-right: 5px solid rgba(0,0,0,0.7);
 }
+
+/*
+ * Upload image input
+ */
+ .uploadImageArea {
+	width: 150px;
+	height: 150px;
+	border: 1px solid #ddd;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.uploadImageSelector {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}

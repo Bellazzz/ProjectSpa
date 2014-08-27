@@ -164,7 +164,6 @@ class DBRecord {
 	}
 
 	public function genKeyCharRunning() {
-		global $table;
 		$keyLength	= $this->tableInfo['keyLength'];
 		$keyChar	= $this->tableInfo['keyChar'];
 		$keyCharLen	= strlen($keyChar);
@@ -191,11 +190,11 @@ class DBRecord {
 			}
 			$newkey .= '1';
 		}
+
 		return $newkey;
 	}
 
 	public function genKeyCharRunningWithYear() {
-		global $table;
 		$keyLength	= $this->tableInfo['keyLength'];
 		$keyChar	= $this->tableInfo['keyChar'];
 		$keyCharLen	= strlen($keyChar);
