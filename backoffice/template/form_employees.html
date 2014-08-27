@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+	<title>Spa - Backoffice</title>
+	<meta charset="UTF-8"/>
+    {literal}
+	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
+	<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> 
+    <script type="text/javascript" src="../js/mbk_common_function.js"></script>
+    <script type="text/javascript" src="../js/mbk_main.js"></script>
+    <script type="text/javascript" src="../js/mbk_form_table.js"></script>
+    <script type="text/javascript">
+        // Global variables
+        var action      = '{/literal}{$action}{literal}';
+        var tableName   = '{/literal}{$tableName}{literal}';
+		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
+        var code        = '{/literal}{$code}{literal}';
+        var ajaxUrl     = 'form_employees.php';
+
+		$(document).ready(function() {
+			$("#emp_birthdate").datepicker();
+
+			selectReference({
+                elem			: $('#title_id'),
+                tableName		: 'titles',
+                keyFieldName	: 'title_id',
+                textFieldName	: 'title_name',
+				searchTool		: false,
+                defaultValue	: '{/literal}{$values.title_id}{literal}'
+            });
+            selectReference({
+                elem            : $('#pos_id'),
+                tableName       : 'positions',
+                keyFieldName    : 'pos_id',
+                textFieldName   : 'pos_name',
+                searchTool      : false,
+                defaultValue    : '{/literal}{$values.pos_id}{literal}'
+            });
+
+			uploadImageInput({
+				area: $('#emp_pic'),
+				input: $('input[name="emp_pic"]'),
+				selector: $('#emp_pic_file'),
+				defaultValue: '../img/employees/{/literal}{$values.emp_pic}{literal}'
+			});
+
+			// Set default value of textarea
+			$('#emp_addr').text('{/literal}{$values.emp_addr}{literal}');
+		});
+    </script>
+    {/literal}
+</head>
+<body>
+ 	 	 	 	 
+{include file="form_table_header.html"}
+<div class="ftb-body"> 	 	 	 	 	 	
+    <form id="form-table" name="form-table" onsubmit="return false;">
+	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_birthdate,emp_user,emp_pass">
+    <input type="hidden" name="uniqueFields" value="emp_user">
+    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+	    <tbody>
+			<tr>
+				<td colspan=2>
+					<div id="emp_pic" class="uploadImageArea"></div>
+					<input type="hidden" name="emp_pic" value="{$values.emp_pic}">
+				</td>
+			</tr>
+			<tr>
+                <td>
+					<label class="twoInput twoInput-small input-required">คำนำหน้าชื่อ</label>
+                    <label class="twoInput twoInput-large input-required">ชื่อพนักงาน</label>
+                    <br>
+					<div id="title_id" class="select-reference form-input twoInput twoInput-small"></div>
+                    <input id="emp_name" name="emp_name" type="text" class="form-input twoInput twoInput-large" value="{$values.emp_name}">
+                </td>
+                <td>
+                    <label class="input-required">นามสกุล</label>
+                    <input id="emp_surname" name="emp_surname" type="text" class="form-input half" value="{$values.emp_surname}">
+                </td>
+            </tr>
+			<tr>
+				<td colspan=2>
+					<label class="input-required">ตำแหน่ง</label>
+					<div id="pos_id" class="select-reference form-input full"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2>
+					<label class="input-required">ที่อยู่</label>
+					<textarea id="emp_addr" name="emp_addr" class="form-input full" value="{$values.emp_addr}"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="input-required">วันเกิด</label>
+					<input id="emp_birthdate" name="emp_birthdate" type="text" class="form-input half" value="{$values.emp_birthdate}">
+				</td>
+				<td>
+					<label class="input-required">เบอร์โทรศัพท์</label>
+					<input id="emp_tel" name="emp_tel" type="text" class="form-input half" value="{$values.emp_tel}">
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2>
+					<label class="input-required">Username</label>
+					<input id="emp_user" name="emp_user" type="text" class="form-input full" value="{$values.emp_user}">
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2>
+					<label class="input-required">Password</label>
+					<input id="emp_pass" name="emp_pass" type="text" class="form-input full" value="{$values.emp_pass}">
+				</td>
+			</tr>
+	    </tbody>
+    </table>
+    </form>
+	<form method="post" enctype="multipart/form-data">
+		<input id="emp_pic_file" type="file" name="imageFile" class="uploadImageSelector" multiple="multiple">
+	</form>
+</div>
+</body>
+</html>
+<!--
+    [Note]
+    1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
+    2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
+-->
