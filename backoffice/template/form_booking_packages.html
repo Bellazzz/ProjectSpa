@@ -22,7 +22,7 @@
 
         $(document).ready(function () {
             selectReference({
-                elem			: $('#pkgsvl_id'),
+                elem			: $('#svl_id'),
                 tableName		: 'service_lists',
                 keyFieldName	: 'svl_id',
                 textFieldName	: 'svl_name',
@@ -50,13 +50,13 @@
 {include file="form_table_header.html"}
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="pkgsvl_id,bkg_id,bkgpkg_date,bkgpkg_total_price,bkgpkg_persons">
+	<input type="hidden" name="requiredFields" value="svl_id,bkg_id,bkgpkg_date,bkgpkg_total_price,bkgpkg_persons">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>
                 <td>
                     <label class="input-required">รายการบริการที่จัดแพ็คเกจ</label>
-                    <div id="pkgsvl_id" class="select-reference form-input half" > </div>
+                    <div id="svl_id" class="select-reference form-input half" > </div>
                 </td>
             			    
                 <td>
