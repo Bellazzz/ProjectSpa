@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 15:21:12
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 15:30:49
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking_promotions.html" */ ?>
 <?php /*%%SmartyHeaderCode:1078253fd86e85a1745-69802660%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '96a3ce0ae7118e920e01be3b43cea87bb766487c' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking_promotions.html',
-      1 => 1409124060,
+      1 => 1409124617,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fd86e869eb73_69684704',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fd86e869eb73_69684704',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53fd86e869eb73_69684704')) {function content_53fd86e869eb73_69684704($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -108,7 +108,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			    </td>
 			    <td>
 				    <label class="input-required">ราคารวมการจองโปรโมชั่น(บาท)</label>
-				    <input id="bkgpkg_total_price" name="bkgprm_total_price" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkgprm_total_price'];?>
+				    <input id="bkgprm_total_price" name="bkgprm_total_price" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkgprm_total_price'];?>
 ">
 			    </td>
 		    </tr>

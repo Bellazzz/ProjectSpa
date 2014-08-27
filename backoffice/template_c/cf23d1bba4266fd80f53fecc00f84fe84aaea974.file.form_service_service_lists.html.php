@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 15:51:47
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_companies.html" */ ?>
-<?php /*%%SmartyHeaderCode:3082253fc74201fb2a4-39421441%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 15:57:16
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_service_service_lists.html" */ ?>
+<?php /*%%SmartyHeaderCode:3134453fd8f5cc64079-75870922%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '7765a680013337f193ec07ff2df8e153935290dc' => 
+    'cf23d1bba4266fd80f53fecc00f84fe84aaea974' => 
     array (
-      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_companies.html',
-      1 => 1409125673,
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_service_service_lists.html',
+      1 => 1408902072,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '3082253fc74201fb2a4-39421441',
+  'nocache_hash' => '3134453fd8f5cc64079-75870922',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fc7420536bc0_71981902',
   'variables' => 
   array (
     'action' => 0,
@@ -26,8 +24,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fd8f5cd785c2_14595878',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_53fc7420536bc0_71981902')) {function content_53fc7420536bc0_71981902($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_53fd8f5cd785c2_14595878')) {function content_53fd8f5cd785c2_14595878($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -51,51 +51,38 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ';
         var ajaxUrl     = 'form_table.php';
 
-        // Set default value of textarea
-        $('#comp_addr').text('<?php echo $_smarty_tpl->tpl_vars['values']->value['comp_addr'];?>
-');
+        $(document).ready(function () {
+            selectReference({
+                elem			: $('#ser_id'),
+                tableName		: 'services',
+                keyFieldName	: 'ser_id',
+                textFieldName	: 'ser_id',
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['ser_id'];?>
+'
+            });
+        });
     </script>
     
 </head>
 <body>
- 	 	 	 	 
+
 <?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="comp_name,comp_tel,comp_addr">
+	<input type="hidden" name="requiredFields" value="ser_id,sersvl_total_price">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
-		    <tr>
+			<tr>
 			    <td colspan="2">
-				    <label class="input-required">ชื่อบริษัท</label>
-				    <input id="comp_name" name="comp_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['comp_name'];?>
-">
+				    <label class="input-required">รหัสการใช้บริการ</label>
+				    <div id="ser_id" class="select-reference form-input full"></div>
 			    </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label class="input-required">ที่อยู่</label>
-                    <textarea id="comp_addr" name="comp_addr" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['comp_addr'];?>
-"></textarea>
-                </td>
-            </tr>
-            <tr>
+		    </tr>
+		    <tr>
                 <td>
-                    <label class="input-required">เบอร์โทร</label>
-                    <input id="comp_tel" name="comp_tel" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['comp_tel'];?>
-">
-                </td>
-                <td>
-                    <label>แฟ็ก</label>
-                    <input id="fax" name="fax" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['fax'];?>
-">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label>ชื่อผู้ติดต่อ</label>
-                    <input id="comp_contact" name="comp_contact" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['comp_contact'];?>
+                    <label class="input-required">ราคารวม (บาท)</label>
+					 <input id="sersvl_total_price" name="sersvl_total_price" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['sersvl_total_price'];?>
 ">
                 </td>
             </tr>
@@ -109,4 +96,5 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     [Note]
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
+	3.  input[name="uniqueFields"] ใส่ชื่อฟิลด์ที่ต้องการเช็คว่าห้ามซ้ำ
 --><?php }} ?>
