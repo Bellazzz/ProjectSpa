@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 18:30:20
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 23:56:37
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_services.html" */ ?>
 <?php /*%%SmartyHeaderCode:2013953fdb10710d3b2-74422884%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '501011bf7a8de77445f0f40fe18ec9508e2c1836' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_services.html',
-      1 => 1409135380,
+      1 => 1409152878,
       2 => 'file',
     ),
   ),
@@ -52,7 +52,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
 ';
         var ajaxUrl     = 'form_table.php';
-
+//ser_id    cus_id  emp_id  svltyp_id   paytyp_id   bed_id  bkg_id  ser_date    ser_total_price
         $(document).ready(function () {
              selectReference({
                 elem            : $('#emp_id'),
@@ -112,7 +112,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             });
 
 			$("#ser_date").datepicker();
-			
         });
     </script>
     

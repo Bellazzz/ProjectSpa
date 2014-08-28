@@ -614,7 +614,7 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'serpkg_id'	  		  => 'รหัสรายละเอียดการใช้บริการแพ็คเกจ',
 						'ser_id'	          => 'รหัสรายการใช้บริการ',
-						'serpkg_total_ price' => 'ราคารวม(บาท)'
+						'serpkg_total_price' => 'ราคารวม(บาท)'
 				)
 			);
 			break;
@@ -646,7 +646,7 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'serprm_id'	  		  => 'รหัสรายละเอียดการใช้บริการโปรโมชั่น',
 						'ser_id'	  		  => 'รหัสการใช้บริการ',
-						'serprm_total_ price' => 'ราคารวม(บาท)'
+						'serprm_total_price'  => 'ราคารวม(บาท)'
 				)
 			);
 			break;
