@@ -44,7 +44,7 @@
 				area: $('#emp_pic'),
 				input: $('input[name="emp_pic"]'),
 				selector: $('#emp_pic_file'),
-				defaultValue: '../img/employees/{/literal}{$values.emp_pic}{literal}'
+				defaultValue: '{/literal}{if $values.emp_pic}../img/employees/{$values.emp_pic}{/if}{literal}'
 			});
 
 			// Set default value of textarea
@@ -63,30 +63,28 @@
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 			<tr>
-				<td colspan=2>
+				<td>
 					<div id="emp_pic" class="uploadImageArea"></div>
 					<input type="hidden" name="emp_pic" value="{$values.emp_pic}">
 				</td>
-			</tr>
-			<tr>
-                <td>
-					<label class="twoInput twoInput-small input-required">คำนำหน้าชื่อ</label>
-                    <label class="twoInput twoInput-large input-required">ชื่อพนักงาน</label>
-                    <br>
-					<div id="title_id" class="select-reference form-input twoInput twoInput-small"></div>
-                    <input id="emp_name" name="emp_name" type="text" class="form-input twoInput twoInput-large" value="{$values.emp_name}">
-                </td>
-                <td>
-                    <label class="input-required">นามสกุล</label>
-                    <input id="emp_surname" name="emp_surname" type="text" class="form-input half" value="{$values.emp_surname}">
-                </td>
-            </tr>
-			<tr>
-				<td colspan=2>
+				<td style="vertical-align:top">
+					<label class="input-required">คำนำหน้าชื่อ</label>
+					<div id="title_id" class="select-reference form-input half"></div>
+			
+					<label class="input-required">ชื่อพนักงาน</label>
+					<input id="emp_name" name="emp_name" type="text" class="form-input half" value="{$values.emp_name}">
+
+					<label class="input-required">นามสกุล</label>
+					<input id="emp_surname" name="emp_surname" type="text" class="form-input half" value="{$values.emp_surname}">
+	
 					<label class="input-required">ตำแหน่ง</label>
-					<div id="pos_id" class="select-reference form-input full"></div>
+					<div id="pos_id" class="select-reference form-input half"></div>
 				</td>
 			</tr>
+		</tbody>
+    </table>
+	<table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+		<tbody>
 			<tr>
 				<td colspan=2>
 					<label class="input-required">ที่อยู่</label>
