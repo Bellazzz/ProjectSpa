@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-28 10:52:25
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-28 17:46:35
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
-<?php /*%%SmartyHeaderCode:2424853fda6b8492c36-24436587%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1326853fefa7bdc4955-26158899%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'bda8342328ba1fe618076434ede7e93df947df7f' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_employees.html',
-      1 => 1009911206,
+      1 => 1409218606,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2424853fda6b8492c36-24436587',
+  'nocache_hash' => '1326853fefa7bdc4955-26158899',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fda6b86a6664_07559536',
   'variables' => 
   array (
     'action' => 0,
@@ -26,8 +24,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fefa7c0fba31_66805913',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_53fda6b86a6664_07559536')) {function content_53fda6b86a6664_07559536($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_53fefa7c0fba31_66805913')) {function content_53fefa7c0fba31_66805913($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -155,7 +155,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<tr>
 				<td colspan=2>
 					<label class="input-required">Password</label>
-					<input id="emp_pass" name="emp_pass" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pass'];?>
+					<input id="emp_pass" name="emp_pass" type="password" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pass'];?>
 ">
 				</td>
 			</tr>

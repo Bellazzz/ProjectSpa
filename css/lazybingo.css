@@ -17,7 +17,7 @@ a {
 body {
 	color: #333;
 	font-family: Tahoma, sans-serif;
-	font-size: 14px;
+	font-size: 16px;
 }
 
 @font-face {
@@ -988,13 +988,13 @@ table.mbk .icon {
 	color: #D80000;
 }
 
-.mbk-form-input-normal input[type="text"], .mbk-form-input-normal input[type="number"], .mbk-form-input-normal select, .mbk-form-input-normal textarea {
+.mbk-form-input-normal input[type="text"], .mbk-form-input-normal input[type="password"], .mbk-form-input-normal input[type="number"], .mbk-form-input-normal select, .mbk-form-input-normal textarea {
     border: 1px solid #ccc;
     padding: 5px;
     outline: none;
     margin-top: 0;
 }
-.mbk-form-input-normal input[type="text"]:hover, .mbk-form-input-normal input[type="number"]:hover, .mbk-form-input-normal select:hover, .mbk-form-input-normal textarea:hover {
+.mbk-form-input-normal input[type="text"]:hover, .mbk-form-input-normal input[type="password"]:hover, .mbk-form-input-normal input[type="number"]:hover, .mbk-form-input-normal select:hover, .mbk-form-input-normal textarea:hover {
     border: 1px solid #888;
 }
 .mbk-form-input-normal textarea {

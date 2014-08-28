@@ -53,7 +53,7 @@ function dbClose() {
 				'keyLength'		=> 3,
 				'fieldNameList'	=> array(
 					'title_id'		=> 'รหัสคำนำหน้าชื่อ',
-					'title_name'	=> 'ชื่อคำนำหน้าชื่อ'
+					'title_name'	=> 'คำนำหน้าชื่อ'
 				)
 			);
 			break;
@@ -67,7 +67,7 @@ function dbClose() {
 				'keyLength'		=> 3,
 				'fieldNameList'	=> array(
 						'pos_id'		=> 'รหัสตำแหน่ง',
-						'pos_name'		=> 'ชื่อตำแหน่ง'
+						'pos_name'		=> 'ตำแหน่ง'
 				)
 			);
 			break;
@@ -104,7 +104,7 @@ function dbClose() {
 				'keyLength'		=> 3,
 				'fieldNameList'	=> array(
 						'unit_id'		=> 'รหัสหน่วยนับ',
-						'unit_name'		=> 'ชื่อหน่วยนับ'
+						'unit_name'		=> 'หน่วยนับ'
 				)
 			);
 			break;
@@ -118,8 +118,8 @@ function dbClose() {
 				'keyLength'		=> 4,
 				'fieldNameList'	=> array(
 						'bed_id'		=> 'รหัสเตียงนวด',
-						'room_id'		=> 'ชื่อห้องนวด',
-						'bed_name'		=> 'ชื่อเตียงนวด'
+						'room_id'		=> 'ห้องนวด',
+						'bed_name'		=> 'เตียงนวด'
 				)
 			);
 			break;
@@ -150,7 +150,7 @@ function dbClose() {
 				'keyLength'		=> 4,
 				'fieldNameList'	=> array(
 						'room_id'		=> 'รหัสห้องนวด',
-						'room_name'		=> 'ชื่อห้องนวด'	
+						'room_name'		=> 'ห้องนวด'	
 				)
 			);
 			break;
@@ -164,7 +164,7 @@ function dbClose() {
 				'keyLength'		=> 3,
 				'fieldNameList'	=> array(
 						'bkgstat_id'		=> 'รหัสสถานะการจอง',
-						'bkgstat_name'		=> 'ชื่อสถานะการจอง'
+						'bkgstat_name'		=> 'สถานะการจอง'
 				)
 			);
 			break;
@@ -178,7 +178,7 @@ function dbClose() {
 				'keyLength'		=> 4,
 				'fieldNameList'	=> array(
 						'brand_id'		=> 'รหัสยี่ห้อ',
-						'brand_name'	=> 'ชื่อยี่ห้อ'
+						'brand_name'	=> 'ยี่ห้อ'
 				)
 			);
 			break;
@@ -192,7 +192,7 @@ function dbClose() {
 				'keyLength'		=> 4,
 				'fieldNameList'	=> array(
 						'paytyp_id'		=> 'รหัสประเภทการชำระเงิน',
-						'paytyp_name'	=> 'ชื่อประเภทการชำระเงิน'
+						'paytyp_name'	=> 'ประเภทการชำระเงิน'
 				)
 			);
 			break;
@@ -206,7 +206,7 @@ function dbClose() {
 				'keyLength'		=> 4,
 				'fieldNameList'	=> array(
 						'eletyp_id'		=> 'รหัสประเภทธาตุ',
-						'eletyp_name'	=> 'ชื่อประเภทธาตุ'
+						'eletyp_name'	=> 'ประเภทธาตุ'
 				)
 			);
 			break;
@@ -220,7 +220,7 @@ function dbClose() {
 				'keyLength'		=> 4,
 				'fieldNameList'	=> array(
 						'prdtyp_id'		=> 'รหัสประเภทผลิตภัณฑ์',
-						'prdtyp_name'	=> 'ชื่อประเภทผลิตภัณฑ์'
+						'prdtyp_name'	=> 'ประเภทผลิตภัณฑ์'
 				)
 			);
 			break;
@@ -233,8 +233,8 @@ function dbClose() {
 				'keyChar'		=> 'OT',
 				'keyLength'		=> 3,
 				'fieldNameList'	=> array(
-						'ordtyp_id'		=> 'รหัสประเภทการสั่งซื้อผลิตภัณฑ์',
-						'ordtyp_name'	=> 'ชื่อประเภทการสั่งซื้อผลิตภัณฑ์'
+						'ordtyp_id'		=> 'รหัสประเภทการสั่งซื้อ',
+						'ordtyp_name'	=> 'ประเภทการสั่งซื้อ'
 				)
 			);
 			break;
@@ -248,7 +248,7 @@ function dbClose() {
 				'keyLength'		=> 4,
 				'fieldNameList'	=> array(
 						'svltyp_id'		=> 'รหัสประเภทรายการบริการ',
-						'svltyp_name'	=> 'ชื่อประเภทรายการบริการ'
+						'svltyp_name'	=> 'ประเภทรายการบริการ'
 				)
 			);
 			break;
@@ -262,7 +262,7 @@ function dbClose() {
 				'keyLength'		=> 3,
 				'fieldNameList'	=> array(
 						'custype_id'		=> 'รหัสประเภทผู้ใช้บริการ',
-						'custype_name'		=> 'ชื่อประเภทผู้ใช้บริการ'
+						'custype_name'		=> 'ประเภทผู้ใช้บริการ'
 				)
 			);
 			break;
@@ -293,20 +293,20 @@ function dbClose() {
 				'keyChar'		=> 'CM',
 				'keyLength'		=> 8,
 				'fieldNameList'	=> array(
-						'cus_id'	    => 'รหัสผู้ใช้บริการ',
-						'custype_id'	=> 'ประเภทผู้ใช้บริการ',
-						'title_id'      => 'คำนำหน้าชื่อ',
-						'cus_name'      => 'ชื่อ',
-						'cus_surname'   => 'นามสกุล',
-						'cus_addr'      => 'ที่อยู่',
-						'cus_tel'       => 'เบอร์โทรศัพท์',
-						'cus_user'      => 'ชื่อผู้ใช้',
-						'cus_pass'      => 'รหัสผ่าน',
-						'cus_birthdate' => 'วันที่เกิด',
-						'cus_registered_date'  => 'วันที่สมัคร',
-						'cus_facebook'  => 'facebook',
-						'cus_line_id'   => 'Line',
-						'cus_email'     => 'E-mail' 
+						'cus_id'	    		=> 'รหัสผู้ใช้บริการ',
+						'custype_id'			=> 'ประเภทผู้ใช้บริการ',
+						'title_id'      		=> 'คำนำหน้าชื่อ',
+						'cus_name'      		=> 'ชื่อ',
+						'cus_surname'   		=> 'นามสกุล',
+						'cus_addr'      		=> 'ที่อยู่',
+						'cus_tel'       		=> 'เบอร์โทรศัพท์',
+						'cus_user'      		=> 'ชื่อผู้ใช้',
+						'cus_pass'      		=> 'รหัสผ่าน',
+						'cus_birthdate' 		=> 'วันที่เกิด',
+						'cus_registered_date'   => 'วันที่สมัคร',
+						'cus_facebook'  		=> 'facebook',
+						'cus_line_id'   		=> 'Line',
+						'cus_email'     		=> 'E-mail' 
 				)
 			);
 			break;
@@ -323,7 +323,7 @@ function dbClose() {
 						'svltyp_id'			=> 'ประเภทรายการใช้บริการ',
 						'svl_min'			=> 'เวลาที่ใช้(นาที)',
 						'svl_hr'			=> 'เวลาที่ใช้(ชั่วโมง)',
-						'svl_name'			=> 'ชื่อรายการบริการ',
+						'svl_name'			=> 'รายการบริการ',
 						'svl_price'			=> 'ราคา(บาท)',
 						'svl_commission'	=> 'ค่าคอมมิชชั่น(บาท)',
 						'svl_desc'			=> 'คำอธิบาย',
@@ -341,7 +341,7 @@ function dbClose() {
 				'keyLength'		=> 5,
 				'fieldNameList'	=> array(
 						'pkg_id'	    => 'รหัสแพ็คเกจ',
-						'pkg_name'	    => 'ชื่อแพ็คเกจ',
+						'pkg_name'	    => 'แพ็คเกจ',
 						'pkg_start'     => 'วันที่เริ่มใช้',
 						'pkg_stop'      => 'วันเวลาที่สิ้นสุด',
 						'pkg_desc'      => 'คำอธิบาย',
@@ -360,8 +360,8 @@ function dbClose() {
 				'keyLength'		=> 8,
 				'fieldNameList'	=> array(
 						'pkgsvl_id'	    => 'รหัสรายการบริการที่จัดแพ็คเกจ',
-						'svl_id'	    => 'ชื่อรายการบริการ',
-						'pkg_id'        => 'ชื่อแพ็คเกจ'
+						'svl_id'	    => 'รายการบริการ',
+						'pkg_id'        => 'แพ็คเกจ'
 				)
 			);
 			break;
@@ -375,7 +375,7 @@ function dbClose() {
 				'keyLength'		=> 6,
 				'fieldNameList'	=> array(
 						'prm_id'			=> 'รหัสโปรโมชั่น',
-						'prm_name'			=> 'ชื่อโปรโมชั่น',
+						'prm_name'			=> 'โปรโมชั่น',
 						'prm_use_amount'	=> 'จำนวนครั้งที่ใช้บริการ',
 						'prm_free_amount'	=> 'จำนวนครั้งที่ฟรี',
 						'prm_startdate'	    => 'วันที่เริ่มใช้',
@@ -394,12 +394,12 @@ function dbClose() {
 				'keyLength'		=> 8,
 				'fieldNameList'	=> array(
 						'prmsvl_id'	      => 'รหัสรายการบริการที่จัดโปรโมชั่น',
-						'svl_id'	      => 'ชื่อรายการบริการ',
-						'prm_id'          => 'ชื่อโปรโมชั่น',
+						'svl_id'	      => 'รายการบริการ',
+						'prm_id'          => 'โปรโมชั่น',
 						'prmsvl_start'	  => 'วันที่เริ่มใช้',
 						'prmsvl_end'	  => 'วันที่สิ้นสุด',
 						'prmsvl_desc'     => 'คำอธิบาย',
-						'prmsvl_price'     => 'ราคา(บาท)'
+						'prmsvl_price'    => 'ราคา(บาท)'
 				)
 			);
 			break;
@@ -417,7 +417,7 @@ function dbClose() {
 						'fax'             => 'แฟ็กซ์',
 						'comp_tel'	      => 'เบอร์โทรศัพท์',
 						'comp_addr'	      => 'ที่อยู่',
-						'comp_contact'    => 'ชื่อผู้ติดต่อ'
+						'comp_contact'    => 'ผู้ติดต่อ'
 				)
 			);
 			break;
@@ -431,10 +431,10 @@ function dbClose() {
 				'keyLength'		=> 6,
 				'fieldNameList'	=> array(
 						'prd_id'	      => 'รหัสผลิตภัณฑ์',
-						'prdtyp_id'	      => 'ชื่อประเภทผลิตภัณฑ์',
-						'unit_id'         => 'ชื่อหน่ายนับ',
-						'brand_id'	      => 'ชื่อยี่ห้อ',
-						'prd_name'	      => 'ชื่อผลิตภัณฑ์',
+						'prdtyp_id'	      => 'ประเภทผลิตภัณฑ์',
+						'unit_id'         => 'หน่ายนับ',
+						'brand_id'	      => 'ยี่ห้อ',
+						'prd_name'	      => 'ผลิตภัณฑ์',
 						'prd_price'       => 'ราคา(บาท)',
 						'prd_amount'      => 'จำนวน'
 				)
@@ -485,7 +485,7 @@ function dbClose() {
 						'bkg_id'	  		=> 'รหัสการจอง',
 						'cus_id'	        => 'ชื่อ-นามสกุลผู้ใช้บริการ',
 						'emp_id' 		    => 'ชื่อ-นามสกุลพนักงาน',
-						'status_id'         => 'ชื่อสถานะการจอง',
+						'status_id'         => 'สถานะการจอง',
 						'bnkacc_id'	        => 'เลขบัญชีธนาคาร',
 						'bkg_transfer_time'=> 'วัน-เวลาที่โอน',
 						'bkg_transfer_evidence'  => 'หลักฐานการโอน',
@@ -526,7 +526,7 @@ function dbClose() {
 						'pkgsvl_id'	          => 'รหัสรายการบริการที่จัดแพ็คเกจ',
 						'bkg_id' 		      => 'รหัสการจอง',
 						'bkgpkg _date'        => 'วัน-เวลาที่ใช้บริการ',
-						'bkgpkg_total_price' => 'ราคารวมการจองแพ็คเกจ(บาท)',
+						'bkgpkg_total_price'  => 'ราคารวมการจองแพ็คเกจ(บาท)',
 						'bkgpkg_persons'      => 'จำนวนผู้ใช้บริการ'
 				)
 			);
@@ -543,8 +543,8 @@ function dbClose() {
 						'bkgprm_id'	  		  => 'รหัสรายละเอียดโปรโมชั่นที่จอง',
 						'prmsvl_id'	          => 'รหัสรายการบริการที่จัดโปรโมชั่น',
 						'bkg_id' 		      => 'รหัสการจอง',
-						'bkgprm_date'        => 'วัน-เวลาที่ใช้บริการ',
-						'bkgprm_total_price' => 'ราคารวมการจองโปรโมชั่น(บาท)',
+						'bkgprm_date'         => 'วัน-เวลาที่ใช้บริการ',
+						'bkgprm_total_price'  => 'ราคารวมการจองโปรโมชั่น(บาท)',
 						'bkgprm_persons'      => 'จำนวนผู้ใช้บริการ'
 						
 				)
@@ -614,7 +614,7 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'serpkg_id'	  		  => 'รหัสรายละเอียดการใช้บริการแพ็คเกจ',
 						'ser_id'	          => 'รหัสรายการใช้บริการ',
-						'serpkg_total_price' => 'ราคารวม(บาท)'
+						'serpkg_total_price'  => 'ราคารวม(บาท)'
 				)
 			);
 			break;
@@ -713,7 +713,7 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'orddtl_id'	  		  => 'รหัสรายละเอียดการสั่งซื้อผลิตภัณฑ์',
 						'ord_id' 		      => 'รหัสการสั่งซื้อผลิตภัณฑ์',
-						'prd_id' 			  => 'ชื่อผลิตภัณฑ์',
+						'prd_id' 			  => 'ผลิตภัณฑ์',
 						'orddtl_amount'	  	  => 'จำนวนที่สั่งซื้อ'
 				)
 			);
@@ -746,7 +746,7 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'recdtl_id'	  		  => 'รหัสรายละเอียดการรับผลิตภัณฑ์',
 						'rec_id'	  		  => 'รหัสการรับผลิตภัณฑ์',
-						'prd_id' 		      => 'ชื่อผลิตภัณฑ์',
+						'prd_id' 		      => 'ผลิตภัณฑ์',
 						'recdtl_amount' 	  => 'จำนวนที่รับ',
 						'recdtl_price'	  	  => 'ราคาต่อหน่วย(บาท)'
 				)
@@ -780,7 +780,7 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'wdwdtl_id'	  		  => 'รหัสรายละเอียดการเบิกผลิตภัณฑ์',
 						'wdw_id'	  		  => 'รหัสการเบิกผลิตภัณฑ์',
-						'prd_id'	  		  => 'ชื่อผลิตภัณฑ์',
+						'prd_id'	  		  => 'ผลิตภัณฑ์',
 						'wdwdtl_amount' 	  => 'จำนวนที่เบิก'
 						
 				)
@@ -813,7 +813,7 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'saledtl_id'	  	  => 'รหัสรายละเอียดการขาย',
 						'sale_id'	  		  => 'รหัสการขาย',
-						'prd_id'	  		  => 'ชื่อผลิตภัณฑ์',
+						'prd_id'	  		  => 'ผลิตภัณฑ์',
 						'saledtl_amount'	  => 'จำนวน',
 						'saledtl_price' 	  => 'ราคาต่อหน่วย(บาท)'
 				)

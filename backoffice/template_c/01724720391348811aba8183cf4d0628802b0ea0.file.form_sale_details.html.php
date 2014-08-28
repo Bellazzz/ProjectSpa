@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-28 12:12:01
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_receives.html" */ ?>
-<?php /*%%SmartyHeaderCode:2592053feac11335906-10354983%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-28 18:12:51
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_sale_details.html" */ ?>
+<?php /*%%SmartyHeaderCode:2469053ff00a317e862-86342855%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'a4b0372ea48b9eb81ac0e87d0244d72c11fc23ba' => 
+    '01724720391348811aba8183cf4d0628802b0ea0' => 
     array (
-      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_receives.html',
-      1 => 1409199062,
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_sale_details.html',
+      1 => 1409216959,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2592053feac11335906-10354983',
+  'nocache_hash' => '2469053ff00a317e862-86342855',
   'function' => 
   array (
   ),
@@ -25,9 +25,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53feac11422039_62875595',
+  'unifunc' => 'content_53ff00a3286372_00488854',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_53feac11422039_62875595')) {function content_53feac11422039_62875595($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_53ff00a3286372_00488854')) {function content_53ff00a3286372_00488854($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -55,30 +55,27 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
         $(document).ready(function () {
             selectReference({
-                elem            : $('#ord_id'),
-                tableName       : 'orders',
-                keyFieldName    : 'ord_id',
-                textFieldName   : 'ord_id',
-                searchTool      : true,
-                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['ord_id'];?>
+                elem			: $('#sale_id'),
+                tableName		: 'sales',
+                keyFieldName	: 'sale_id',
+                textFieldName	: 'sale_id',
+				searchTool		: true,
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['sale_id'];?>
 ',
-                
+				
             });
              
              selectReference({
-                elem            : $('#emp_id'),
-                tableName       : 'employees',
-                keyFieldName    : 'emp_id',
-                textFieldName   : 'emp_id,emp_name,emp_surname',
+                elem            : $('#prd_id'),
+                tableName       : 'products',
+                keyFieldName    : 'prd_id',
+                textFieldName   : 'prd_name',
                 searchTool      : true,
-                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_id'];?>
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['prd_id'];?>
 ',
-                pattern         : 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
+                
             });
-             
 
-			$("#rec_date").datepicker();
-       
         });
     </script>
     
@@ -89,34 +86,32 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="ftb-body">    
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="ord_id,emp_id,rec_date,rec_total_price">
+	<input type="hidden" name="requiredFields" value="sale_id,prd_id,saledtl_amount,saledtl_price">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>
                 <td>
-                    <label class="input-required">รหัสการสั่งซื้อผลิตภัณฑ์</label>
-                      <div id="ord_id" class="select-reference form-input half" > </div>
+                    <label class="input-required">รหัสการขายผลิตภัณฑ์</label>
+                    <div id="sale_id" class="select-reference form-input half" > </div>
                 </td>
-                <td>
-                    <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
-                    <div id="emp_id" class="select-reference form-input half" > </div>
+                 <td>
+                    <label class="input-required">ชื่อผลิตภัณฑ์</label>
+                    <div id="prd_id" class="select-reference form-input half" > </div>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <label class="input-required">วันที่รับผลิตภัณฑ์</label>
-                      <input id="rec_date" name="rec_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['rec_date'];?>
+               <td>
+                    <label class="input-required">จำนวน</label>
+                       <input id="saledtl_amount" name="saledtl_amount" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['saledtl_amount'];?>
 ">
                 </td>
                 <td>
-				    <label class="input-required">ราคารวม(บาท)</label>
-				    <input id="rec_total_price" name="rec_total_price" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['rec_total_price'];?>
+                    <label>ราคาต่อหน่วย(บาท)</label>
+                       <input id="saledtl_price" name="saledtl_price" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['saledtl_price'];?>
 ">
-			    </td>
-                 
+                </td>
 		    </tr>
 			
-            
 	    </tbody>
     </table>
     </form>
