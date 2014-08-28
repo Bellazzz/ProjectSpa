@@ -204,7 +204,6 @@ class DBRecord {
 
 		$sql		= "SELECT MAX(SUBSTR($this->keyFieldName, ".($keyCharLen+1).", $keyNumLen)) lastNo "
 					. "FROM $this->tableName WHERE $this->keyFieldName LIKE '%$minYear'";
-					echo $sql;
 		$result		= mysql_query($sql, $this->database);
 		$record		= mysql_fetch_assoc($result);
 		$lastNo		= $record['lastNo'];

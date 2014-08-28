@@ -1,3 +1,5 @@
+var imgTmp = Array();
+
 $(document).ready(function () {
     hideOverlayInner();
     hideOverlayFull();
@@ -5,6 +7,11 @@ $(document).ready(function () {
     $(document).click(function () {
         hideAllPopup();
     });
+
+	// Clear temp image when close page
+	$(window).bind("beforeunload",function(event) {
+		clearTempImage();
+	});
 });
 
 function showOverlayInner() {
@@ -268,6 +275,8 @@ function selectReference(select) {
 	});
 
 	data.selector.change(function(e){
+		clearTempImage();
+
 		// fetch FileList object
 		var allowType	= ['jpg', 'jpeg', 'gif', 'png'];
 		var files		= e.target.files || e.dataTransfer.files;
@@ -300,6 +309,7 @@ function selectReference(select) {
 							var response = $.parseJSON(xhr.responseText);
 							if(response.status == "PASS") {
 								data.input.val(response.imgName);
+								imgTmp.push(response.imgPath);
 							} else {
 								alert(response.status);
 							}
@@ -316,11 +326,29 @@ function selectReference(select) {
 		img.src = bg;
 		img.onload = function() {
 			//Image size less than wrapper
-			if(img.width <= $(window).width() && img.height <= $(window).height()) {
+			if(img.width <= data.area.width() && img.height <= data.area.height()) {
 				$(data.area).css("background-size", "auto");
 			}
 		}
 		var url = "url(" + img.src + ")";
 		$(data.area).css('background-image', url);
 	}
+ }
+
+ function clearTempImage() {
+	 for(i in imgTmp) {
+		 $.ajax({
+			 url: '../common/ajaxDeleteTempImage.php',
+			 type: 'POST',
+			 data: {imgPath: imgTmp[i]},
+			 success:
+			 function(response) {
+				 if(response == 'PASS') {
+					 delete imgTmp[i];
+				 } else {
+					alert(response);
+				 }
+			 }
+		 });
+	 }
  }

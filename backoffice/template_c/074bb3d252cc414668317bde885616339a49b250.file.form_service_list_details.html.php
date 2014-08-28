@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 17:42:06
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-28 00:04:28
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_service_list_details.html" */ ?>
 <?php /*%%SmartyHeaderCode:1495753fda7eeb29b62-50461384%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '074bb3d252cc414668317bde885616339a49b250' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_service_list_details.html',
-      1 => 1409132493,
+      1 => 1409133995,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fda7eec1e7a1_43997526',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fda7eec1e7a1_43997526',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53fda7eec1e7a1_43997526')) {function content_53fda7eec1e7a1_43997526($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -109,7 +109,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 </td>
                 <td>
                     <label class="input-required">ค่าคอมมิชชั่น(บาท)</label>
-                     <input id="svldtl_com" name="svldtl_com" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['svldtl_com'];?>
+                     <input id="svldtl_com" name="svldtl_com" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['svldtl_com'];?>
 ">
                 </td>
             </tr>

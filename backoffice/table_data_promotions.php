@@ -64,8 +64,12 @@ if($rows > 0){
 					<input type="checkbox" value="<?=$code?>" name="table-record[]" class="mbk-checkbox" onclick="checkRecord(this)">
 				</td>
 				<td class="action-col">
-					<span class="mbk-icon mbk-edit" onclick="openFormTable('EDIT', '<?=$code?>')"></span>
-					<span class="mbk-icon mbk-delete" onclick="delteCurrentRecord('<?=$code?>')"></span>
+					<a title="แก้ไข">
+						<i class="fa fa-pencil" onclick="openFormTable('EDIT', '<?=$code?>')"></i>
+					</a>
+					<a title="ลบ">
+						<i class="fa fa-times" onclick="delteCurrentRecord('<?=$code?>')"></i>
+					</a>
 				</td>
 			
 			<?

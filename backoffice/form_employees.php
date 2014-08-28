@@ -78,11 +78,22 @@ if(!$_REQUEST['ajaxCall']) {
 		$values['fieldValue'] = array();
 
 		// Rename Image
-		if(strpos($formData['emp_pic'], 'temp_')) {
+		if(strpos($formData['emp_pic'], 'temp_') !== FALSE) {
 			$type		= str_replace(".", "", strrchr($formData['emp_pic'],"."));
 			$tmpRecord	= new TableSpa('employees', null);
 			$emp_pic	= $tmpRecord->genKeyCharRunning().".$type";
-			if(rename('../img/temp/'.$formData['emp_pic'], '../img/employees/'.$emp_pic)) {
+			$emp_pic_path = '../img/employees/'.$emp_pic;
+
+			// Delete Old Image
+			if(file_exists($emp_pic_path)) {
+				if(!unlink($emp_pic_path)) {
+					$response['status'] = 'DELETE_OLD_IMG_FAIL';
+					echo json_encode($response);
+					exit();
+				}
+			}
+
+			if(rename('../img/temp/'.$formData['emp_pic'], $emp_pic_path)) {
 				$formData['emp_pic'] = $emp_pic;
 			} else {
 				$response['status'] = 'RENAME_FAIL';
@@ -120,10 +131,19 @@ if(!$_REQUEST['ajaxCall']) {
 		$tableRecord = new TableSpa($tableName, $code);
 
 		// Rename Image
-		if(strpos($formData['emp_pic'], 'temp_')) {
+		if(strpos($formData['emp_pic'], 'temp_') !== FALSE) {
+			// Delete Old Image
+			$oldImg = '../img/employees/'.$tableRecord->getFieldValue('emp_pic');
+			if(file_exists($oldImg)) {
+				if(!unlink($oldImg)) {
+					$response['status'] = 'DELETE_OLD_IMG_FAIL';
+					echo json_encode($response);
+					exit();
+				}
+			}
+		
 			$type		= str_replace(".", "", strrchr($formData['emp_pic'],"."));
-			$tmpRecord	= new TableSpa('employees', null);
-			$emp_pic	= $tmpRecord->genKeyCharRunning().".$type";
+			$emp_pic	= $code.".$type";
 			if(rename('../img/temp/'.$formData['emp_pic'], '../img/employees/'.$emp_pic)) {
 				$formData['emp_pic'] = $emp_pic;
 			} else {

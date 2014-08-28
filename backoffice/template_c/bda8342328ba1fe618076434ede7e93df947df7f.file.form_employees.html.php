@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-27 17:36:56
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-28 10:52:25
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
 <?php /*%%SmartyHeaderCode:2424853fda6b8492c36-24436587%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bda8342328ba1fe618076434ede7e93df947df7f' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_employees.html',
-      1 => 1009857058,
+      1 => 1009911206,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fda6b86a6664_07559536',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fda6b86a6664_07559536',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53fda6b86a6664_07559536')) {function content_53fda6b86a6664_07559536($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -79,8 +79,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				area: $('#emp_pic'),
 				input: $('input[name="emp_pic"]'),
 				selector: $('#emp_pic_file'),
-				defaultValue: '../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
-'
+				defaultValue: '<?php if ($_smarty_tpl->tpl_vars['values']->value['emp_pic']) {?>../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
+<?php }?>'
 			});
 
 			// Set default value of textarea
@@ -101,33 +101,31 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 			<tr>
-				<td colspan=2>
+				<td>
 					<div id="emp_pic" class="uploadImageArea"></div>
 					<input type="hidden" name="emp_pic" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
 ">
 				</td>
-			</tr>
-			<tr>
-                <td>
-					<label class="twoInput twoInput-small input-required">คำนำหน้าชื่อ</label>
-                    <label class="twoInput twoInput-large input-required">ชื่อพนักงาน</label>
-                    <br>
-					<div id="title_id" class="select-reference form-input twoInput twoInput-small"></div>
-                    <input id="emp_name" name="emp_name" type="text" class="form-input twoInput twoInput-large" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
+				<td style="vertical-align:top">
+					<label class="input-required">คำนำหน้าชื่อ</label>
+					<div id="title_id" class="select-reference form-input half"></div>
+			
+					<label class="input-required">ชื่อพนักงาน</label>
+					<input id="emp_name" name="emp_name" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
 ">
-                </td>
-                <td>
-                    <label class="input-required">นามสกุล</label>
-                    <input id="emp_surname" name="emp_surname" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
+
+					<label class="input-required">นามสกุล</label>
+					<input id="emp_surname" name="emp_surname" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
 ">
-                </td>
-            </tr>
-			<tr>
-				<td colspan=2>
+	
 					<label class="input-required">ตำแหน่ง</label>
-					<div id="pos_id" class="select-reference form-input full"></div>
+					<div id="pos_id" class="select-reference form-input half"></div>
 				</td>
 			</tr>
+		</tbody>
+    </table>
+	<table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+		<tbody>
 			<tr>
 				<td colspan=2>
 					<label class="input-required">ที่อยู่</label>

@@ -1039,7 +1039,7 @@ table.mbk .icon {
     padding: 5px 5px 5px 15px;
 }
 .select-reference .option-container li:hover{
-    background: #45A858;
+    background: #8AC007;
 	color: white;
 }
 .select-reference .option-container li .value, .select-reference .select-reference-value{
@@ -1115,6 +1115,7 @@ table.mbk .icon {
 .button-icon-delete:before {
     content: "\f00d";
 }
+
 /*
  * Tool tip
  */
@@ -1143,4 +1144,23 @@ table.mbk .icon {
 	border-bottom: 5px solid transparent;
 	border-right: 5px solid #333;
 	border-right: 5px solid rgba(0,0,0,0.7);
+}
+
+/*
+ * Upload image input
+ */
+.uploadImageArea {
+	width: 250px;
+	height: 300px;
+	border: 1px solid #ddd;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
+	position: relative;
+}
+.uploadImageSelector {
+	width: 0;
+	height: 0;
+	overflow: hidden;
 }

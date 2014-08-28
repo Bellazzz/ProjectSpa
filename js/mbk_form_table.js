@@ -14,6 +14,7 @@ $(document).ready(function () {
     });
     $('#cancel-btn').click(function () {
         parent.confirmCloseFormTable(action);
+		clearTempImage();
     });
 
     // Remove required
