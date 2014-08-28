@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-26 17:06:17
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-28 11:15:08
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_customers.html" */ ?>
 <?php /*%%SmartyHeaderCode:2785153fc4e099aecc9-03650575%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a1643d9f3b7447d1c25ce2a05226a857b050290' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_customers.html',
-      1 => 1409043956,
+      1 => 1409195663,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_53fc4e09b3d412_82559777',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_53fc4e09b3d412_82559777',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_53fc4e09b3d412_82559777')) {function content_53fc4e09b3d412_82559777($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -78,6 +78,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 '
             });
         });
+        // Set default value of textarea
+        $('#cus_addr').text('<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_addr'];?>
+');
     </script>
     
 </head>
@@ -118,8 +121,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
               <tr>
                 <td colspan="2">
                     <label class="input-required">ที่อยู่</label>
-                    <input id="cus_addr" name="cus_addr" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_addr'];?>
-">
+                    <textarea id="cus_addr" name="cus_addr" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_addr'];?>
+"></textarea>
                 </td>
             </tr>
             <tr>

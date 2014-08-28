@@ -43,6 +43,8 @@
                 defaultValue    : '{/literal}{$values.title_id}{literal}'
             });
         });
+        // Set default value of textarea
+        $('#cus_addr').text('{/literal}{$values.cus_addr}{literal}');
     </script>
     {/literal}
 </head>
@@ -80,7 +82,7 @@
               <tr>
                 <td colspan="2">
                     <label class="input-required">ที่อยู่</label>
-                    <input id="cus_addr" name="cus_addr" type="text" class="form-input full" value="{$values.cus_addr}">
+                    <textarea id="cus_addr" name="cus_addr" type="text" class="form-input full" value="{$values.cus_addr}"></textarea>
                 </td>
             </tr>
             <tr>
