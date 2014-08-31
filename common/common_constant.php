@@ -276,12 +276,13 @@ function dbClose() {
 				'keyLength'		=> 4,
 				'fieldNameList'	=> array(
 						'spa_id'		=> 'รหัสสปา',
-						'sap_name'		=> 'ชื่อสปา',
+						'spa_name'		=> 'ชื่อสปา',
 						'spa_addr'		=> 'ที่อยู่',
 						'spa_tel'		=> 'เบอร์โทรศัพท์',
 						'spa_fax'		=> 'แฟ็กซ์',
 						'spa_logo'		=> 'รูปภาพ'
-				)
+				),
+				'hiddenFields'	=> array('spa_addr','spa_logo')
 			);
 			break;
 

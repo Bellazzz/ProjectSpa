@@ -69,7 +69,7 @@ if($rows > 0){
 				</td>
 				<td class="action-col">
 					<a title="พิมพ์บัตรพนักงาน">
-						<i class="fa fa-credit-card" onclick=""></i>
+						<i class="fa fa-credit-card" onclick="openPrintEmpCard('<?=$code?>')"></i>
 					</a>
 					<a title="แก้ไข">
 						<i class="fa fa-pencil" onclick="openFormTable('EDIT', '<?=$code?>')"></i>

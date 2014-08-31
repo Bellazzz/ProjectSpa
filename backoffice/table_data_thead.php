@@ -5,6 +5,11 @@
 		<?
 		// Create table head
 		foreach($tableData[0] as $fieldEn => $value) {
+			//skip hidden fileds
+			if(isset($tableInfo['hiddenFields']) && in_array($fieldEn, $tableInfo['hiddenFields'])){
+				continue;
+			}
+			//Display field
 			$fieldTh	 = $tableInfo['fieldNameList'][$fieldEn];
 			$classSorter = 'tablesorter-header';
 			if($fieldEn == $sortCol) {

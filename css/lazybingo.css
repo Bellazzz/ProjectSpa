@@ -433,6 +433,9 @@ table.mbk .action-col > a, table.mbk.hasSelectRecord .action-col span, table.mbk
 table.mbk tbody tr:hover .action-col > a{
     visibility: visible;
 }
+table.mbk .real-col {
+	text-align: right;
+}
 
 
 
@@ -915,6 +918,29 @@ table.mbk .icon {
 }
 
 /*
+ * Iframe Dialog
+ */
+.iframe-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -175px;
+    width: auto;
+    background: white;
+    z-index: 8;
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.5);
+    padding: 25px;
+    display: none;
+}
+.iframe-dialog-body iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/*
  * Form Table
  */
 .ftb-header {
@@ -993,6 +1019,9 @@ table.mbk .icon {
     padding: 5px;
     outline: none;
     margin-top: 0;
+	font-family: Tahoma, sans-serif;
+	font-size: 16px;
+	color: #555;
 }
 .mbk-form-input-normal input[type="text"]:hover, .mbk-form-input-normal input[type="password"]:hover, .mbk-form-input-normal input[type="number"]:hover, .mbk-form-input-normal select:hover, .mbk-form-input-normal textarea:hover {
     border: 1px solid #888;
@@ -1113,6 +1142,9 @@ table.mbk .icon {
 .button-icon-delete:before {
     content: "\f00d";
 }
+.button-icon-print:before {
+	content: "\f02f";
+}
 
 /*
  * Tool tip
@@ -1156,6 +1188,9 @@ table.mbk .icon {
 	background-position: center;
 	cursor: pointer;
 	position: relative;
+}
+.uploadImageArea.full{
+    width: 520px;
 }
 .uploadImageSelector {
 	width: 0;

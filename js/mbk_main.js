@@ -66,6 +66,45 @@ function hideAllPopup() {
     $('.select-reference-container').css('display', 'none'); // select reference
 }
 
+function showIframeDialog(dialog) {
+	// Create dialog
+	var dialogHtml	= '<div class="iframe-dialog" style="width:' + dialog.boxWidth + 'px; height:' + dialog.boxHeight + 'px;">'
+					+ '		<h1>' + dialog.title + '</h1>'
+					+ '		<div class="iframe-dialog-body">'
+					+ '			<iframe id="iframe-iframe-dialog" src="' + dialog.src + '">'
+					+ '		</div>'
+					+ '</div>';
+	$('body').append(dialogHtml);
+	$('.iframe-dialog').css('display', 'none');
+
+	// Set position
+    $('.iframe-dialog').css('margin-top', -Math.abs($('.iframe-dialog').height() / 2));
+    $('.iframe-dialog').css('margin-left', -Math.abs($('.iframe-dialog').width() / 2));
+	
+	// Show dialog
+	showOverlayFull();
+    $('.iframe-dialog').css('display', 'block');
+	
+	// Iframe load
+	var iframe = document.getElementById('iframe-iframe-dialog');
+    iframe.style.visibility = "hidden";
+
+    function endload() {
+        $('.manage-box-loading').css('display', 'none');
+        iframe.style.visibility = "visible";
+        $('#manage-box').css('display', 'block');
+    }
+
+    if (iframe.attachEvent) {
+        iframe.attachEvent('onload', endload);
+    }
+    else {
+        iframe.onload = endload;
+    }
+
+    iframe.src = dialog.src;
+}
+
 /*
  * Select Reference
  */

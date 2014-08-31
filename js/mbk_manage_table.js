@@ -358,17 +358,12 @@ function refreshSearchRecord() {
 /*
  * Dialog Box
  */
-function openFormTable(action, code) {
-    showOverlayInner();
+function openManageBox(src) {
+	showOverlayInner();
     $('#manage-box').css('display', 'block');
     $('.manage-box-loading').css('display', 'block');
     
     var tableForm = document.getElementById('iframe-form-table');
-    var src = 'form_table.php' + '?action=' + action + '&tableName=' + this.table.name;
-    if (typeof(code) != 'undefinded' && code != null) {
-        src += '&code=' + code;
-    }
-
     tableForm.style.visibility = "hidden";
 
     function endload() {
@@ -385,6 +380,20 @@ function openFormTable(action, code) {
     }
 
     tableForm.src = src;
+}
+
+function closeManageBox() {
+	hideOverlayInner();
+    $('#manage-box').css('display', 'none');
+}
+
+function openFormTable(action, code) {
+    var src = 'form_table.php' + '?action=' + action + '&tableName=' + this.table.name;
+    if (typeof(code) != 'undefinded' && code != null) {
+        src += '&code=' + code;
+    }
+
+    openManageBox(src);
 }
 
 function confirmCloseFormTable(action) {
@@ -441,8 +450,12 @@ function confirmCloseFormTable(action) {
 }
 
 function closeFormTable() {
-    hideOverlayInner();
-    $('#manage-box').css('display', 'none');
+    closeManageBox();
+}
+
+function openPrintEmpCard(empId) {
+	var src = 'printEmployeeCard.php?empId=' + empId;
+	openManageBox(src);
 }
 
 function showTableTooltip(top, left, text) {

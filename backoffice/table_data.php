@@ -33,7 +33,7 @@ if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 }
 
 // check for table that display special
-switch ($tableName) {
+/*switch ($tableName) {
 	case 'employees':
 		header("location:table_data_employees.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
 		break;
@@ -52,7 +52,7 @@ switch ($tableName) {
 	case 'booking':
 		header("location:table_data_booking.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
 		break;
-}
+}*/
 
 // Query table data
 switch ($tableName) {
@@ -445,7 +445,6 @@ for($i = 0; $i < $rows; $i++) {
 }
 ?>
 
-
 <?
 /*
  * Display Zone
@@ -466,6 +465,15 @@ if($rows > 0){
 					<input type="checkbox" value="<?=$code?>" name="table-record[]" class="mbk-checkbox" onclick="checkRecord(this)">
 				</td>
 				<td class="action-col">
+					<?
+						if($tableName == 'employees'){
+							?>
+							<a title="พิมพ์บัตรพนักงาน">
+								<i class="fa fa-credit-card" onclick="openPrintEmpCard('<?=$code?>')"></i>
+							</a>
+							<?
+						}
+					?>
 					<a title="แก้ไข">
 						<i class="fa fa-pencil" onclick="openFormTable('EDIT', '<?=$code?>')"></i>
 					</a>
@@ -473,12 +481,24 @@ if($rows > 0){
 						<i class="fa fa-times" onclick="delteCurrentRecord('<?=$code?>')"></i>
 					</a>
 				</td>
-			
 			<?
+			$offset = 0;
 			foreach($row as $field => $value) {
-				?>
-				<td><?=$value?></td>
-				<?
+				//Skip hidden field
+				if(isset($tableInfo['hiddenFields']) && in_array($field, $tableInfo['hiddenFields'])){
+					continue;
+				}
+				//Display field
+				if(mysql_field_type($result, $offset) == 'real') {
+					?>
+					<td class="real-col"><? echo number_format($value,2);?></td>
+					<?
+				} else {
+					?>
+					<td><?=$value?></td>
+					<?
+				}
+				$offset++;
 			}
 			?>
 			</tr>
