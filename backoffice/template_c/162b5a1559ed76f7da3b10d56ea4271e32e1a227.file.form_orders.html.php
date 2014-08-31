@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-31 21:30:16
+<?php /* Smarty version Smarty-3.1.18, created on 2014-08-31 22:26:31
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_orders.html" */ ?>
-<?php /*%%SmartyHeaderCode:237405402b99d294848-35609131%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:814854033097892788-11355739%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '162b5a1559ed76f7da3b10d56ea4271e32e1a227' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_orders.html',
-      1 => 1409491384,
+      1 => 1409494917,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '237405402b99d294848-35609131',
+  'nocache_hash' => '814854033097892788-11355739',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5402b99d75cf01_51949444',
   'variables' => 
   array (
     'action' => 0,
@@ -26,8 +24,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_540330979b42e5_10691004',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5402b99d75cf01_51949444')) {function content_5402b99d75cf01_51949444($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_540330979b42e5_10691004')) {function content_540330979b42e5_10691004($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -130,9 +130,25 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ">
                 </td>
 		    </tr>
-            
              
 	    </tbody>
+    </table>
+
+    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr>
+                <td>
+                    <label class="input-required">วันที่สั่งซื้อ</label>
+                    <input id="ord_date" name="ord_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['ord_date'];?>
+">
+                </td>
+                 <td>
+                    <label>วันที่จัดส่ง</label>
+                    <input id="ord_snd_date" name="ord_snd_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['ord_snd_date'];?>
+">
+                </td>
+            </tr>
+        </tbody>
     </table>
     </form>
 </div>
