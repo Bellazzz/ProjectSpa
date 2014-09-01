@@ -108,7 +108,7 @@ if(!$_REQUEST['ajaxCall']) {
 
 		// Push values to array
 		foreach($formData as $fieldName => $value) {
-			if($fieldName != 'requiredFields' && $fieldName != 'uniqueFields') {
+			if($fieldName != 'requiredFields' && $fieldName != 'uniqueFields' && $fieldName != 'emp_re_pass') {
 				$value = str_replace("\\\'", "'", $value);
 				$value = str_replace('\\\"', '"', $value);
 				$value = str_replace('\\\\"', '\\', $value);

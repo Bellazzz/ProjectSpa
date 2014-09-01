@@ -29,6 +29,10 @@ $(document).ready(function () {
 
 function saveRecord() {
 	if(checkRequiredInput()) {
+		if(function_exists('beforeSaveRecord')) {
+			beforeSaveRecord();
+		}
+
 		$.ajax({
 			url: ajaxUrl,
 			type: 'POST',
