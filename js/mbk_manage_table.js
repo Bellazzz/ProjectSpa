@@ -27,6 +27,9 @@ $(document).ready(function () {
         e.stopPropagation();
     });
 	$('.tree-view-root').click(function(){
+        $(this).parent().siblings('.tree-view').find('.tree-view-child').slideUp(200);
+        $(this).parent().siblings('.tree-view').find('.tree-view-root').removeClass('hideChild');
+
 	    $(this).siblings('.tree-view-child').slideToggle(200);
 	    if ($(this).hasClass('hideChild')) {
 	        $(this).removeClass('hideChild');
