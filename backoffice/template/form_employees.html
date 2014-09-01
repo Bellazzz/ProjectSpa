@@ -52,7 +52,16 @@
 		});
 		
 		function beforeSaveRecord() {
-			alert('check re pass!');
+			// Check password
+			if($('#emp_pass').val() != $('#emp_re_pass').val()) {
+				$('#emp_pass').addClass('required');
+				$('#emp_re_pass').addClass('required');
+				alert('กรุณากรอก password ให้ตรงกันค่ะ');
+				$('#emp_re_pass').focus();
+				return true;
+			} else {
+				return false;
+			}
 		}
     </script>
     {/literal}
