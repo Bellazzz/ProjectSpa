@@ -69,6 +69,48 @@ switch ($tableName) {
 				$where 
 				$order";
 		break;
+		case 'service_lists':
+		$where		= 'WHERE s.svltyp_id = t.svltyp_id';
+		if(hasValue($like)) {
+			$like		= str_replace('svltyp_id', 't.svltyp_name', $like);
+			$where .= " AND $like";
+			//$where	   .= ' AND '.$like;
+		}
+		$sql = "SELECT s.svl_picture,
+				s.svl_id,
+				s.svl_name,
+				t.svltyp_name svltyp_id,
+				s.svl_desc,
+				s.svl_hr,
+				s.svl_min,
+				s.svl_price,
+				s.svl_commission
+		FROM service_lists s, service_list_types t 
+		$where 
+		$order";
+		break;
+		case 'employees':
+		$where = 'WHERE e.title_id = t.title_id AND p.pos_id = e.pos_id ';
+		if(hasValue($like)) {
+			$like		= "$searchCol like '%$searchInput%'";
+			$like		= str_replace('title_id', 't.title_name', $like);
+			$like		= str_replace('pos_id', 'p.pos_name', $like);
+			$where	   .= ' AND '.$like;
+		}
+		$sql = "SELECT e.emp_pic,
+				e.emp_id,
+				t.title_name title_id,
+				e.emp_name,
+				e.emp_surname,
+				e.emp_addr,
+				e.emp_tel,
+				p.pos_name pos_id,
+				e.emp_user,
+				e.emp_pass 
+		FROM employees e, titles t, positions p 
+		$where
+		$order";
+		break;
 
 	case 'customers':
 		$where = 'WHERE c.custype_id = ct.custype_id and c.title_id = t.title_id ';
@@ -486,6 +528,7 @@ if($rows > 0){
 			foreach($row as $field => $value) {
 				//Skip hidden field
 				if(isset($tableInfo['hiddenFields']) && in_array($field, $tableInfo['hiddenFields'])){
+					$offset++;
 					continue;
 				}
 				//Display field
@@ -493,7 +536,13 @@ if($rows > 0){
 					?>
 					<td class="real-col"><? echo number_format($value,2);?></td>
 					<?
-				} else {
+				} 
+				else if (mysql_field_type($result, $offset) == 'int'){
+					?>
+					<td class="real-col"><?=$value?></td>
+					<?
+				}
+				else {
 					?>
 					<td><?=$value?></td>
 					<?

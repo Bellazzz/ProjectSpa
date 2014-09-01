@@ -81,7 +81,7 @@ function dbClose() {
 				'keyLength'		=> 6,
 				'fieldNameList'	=> array(
 						'emp_id'		=> 'รหัสพนักงาน',
-						'title_id'	=> 'คำนำหน้า',
+						'title_id'	    => 'คำนำหน้า',
 						'pos_id'		=> 'ตำแหน่ง',
 						'emp_name'		=> 'ชื่อ',
 						'emp_surname'	=> 'นามสกุล',
@@ -91,7 +91,8 @@ function dbClose() {
 						'emp_user'		=> 'Username',
 						'emp_pass'		=> 'Password',
 						'emp_pic'		=> 'รูปภาพ'
-				)
+				),
+				'hiddenFields'	=> array('emp_birthdate','emp_addr','emp_tel','emp_user','emp_pass','emp_pic')
 			);
 			break;
 		
@@ -308,7 +309,9 @@ function dbClose() {
 						'cus_facebook'  		=> 'facebook',
 						'cus_line_id'   		=> 'Line',
 						'cus_email'     		=> 'E-mail' 
-				)
+				),
+				'hiddenFields'	=> array('cus_user','cus_pass','cus_birthdate','cus_registered_date',
+					'cus_facebook','cus_line_id','cus_email')
 			);
 			break;
 
@@ -329,7 +332,8 @@ function dbClose() {
 						'svl_commission'	=> 'ค่าคอมมิชชั่น(บาท)',
 						'svl_desc'			=> 'คำอธิบาย',
 						'svl_picture'		=> 'รูปภาพ'	
-				)
+				),
+				'hiddenFields'	=> array('svl_desc','svl_picture','svl_commission')
 			);
 			break;
 
@@ -348,7 +352,8 @@ function dbClose() {
 						'pkg_desc'      => 'คำอธิบาย',
 						'pkg_price'     => 'ราคา(บาท)',
 						'pkg_picture'   => 'รูปภาพ'			
-				)
+				),
+				'hiddenFields'	=> array('pkg_desc','pkg_picture')
 			);
 			break;
 
@@ -382,7 +387,8 @@ function dbClose() {
 						'prm_startdate'	    => 'วันที่เริ่มใช้',
 						'prm_enddate'		=> 'วันที่สิ้นสุด',
 						'prm_picture'		=> 'รูปภาพ'
-				)
+				),
+				'hiddenFields'	=> array('prm_picture')
 			);
 			break;
 
@@ -401,7 +407,8 @@ function dbClose() {
 						'prmsvl_end'	  => 'วันที่สิ้นสุด',
 						'prmsvl_desc'     => 'คำอธิบาย',
 						'prmsvl_price'    => 'ราคา(บาท)'
-				)
+				),
+				'hiddenFields'	=> array('prmsvl_desc')
 			);
 			break;
 
@@ -526,7 +533,7 @@ function dbClose() {
 						'bkgpkg_id'	  		  => 'รหัสรายละเอียดแพ็คเกจที่จอง',
 						'pkgsvl_id'	          => 'รหัสรายการบริการที่จัดแพ็คเกจ',
 						'bkg_id' 		      => 'รหัสการจอง',
-						'bkgpkg _date'        => 'วัน-เวลาที่ใช้บริการ',
+						'bkgpkg_date'         => 'วัน-เวลาที่ใช้บริการ',
 						'bkgpkg_total_price'  => 'ราคารวมการจองแพ็คเกจ(บาท)',
 						'bkgpkg_persons'      => 'จำนวนผู้ใช้บริการ'
 				)
