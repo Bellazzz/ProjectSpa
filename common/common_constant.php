@@ -81,7 +81,7 @@ function dbClose() {
 				'keyLength'		=> 6,
 				'fieldNameList'	=> array(
 						'emp_id'		=> 'รหัสพนักงาน',
-						'title_id'	=> 'คำนำหน้า',
+						'title_id'	    => 'คำนำหน้า',
 						'pos_id'		=> 'ตำแหน่ง',
 						'emp_name'		=> 'ชื่อ',
 						'emp_surname'	=> 'นามสกุล',
@@ -91,7 +91,8 @@ function dbClose() {
 						'emp_user'		=> 'Username',
 						'emp_pass'		=> 'Password',
 						'emp_pic'		=> 'รูปภาพ'
-				)
+				),
+				'hiddenFields'	=> array('emp_birthdate','emp_addr','emp_tel','emp_user','emp_pass','emp_pic')
 			);
 			break;
 		

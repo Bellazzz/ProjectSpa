@@ -70,6 +70,29 @@ switch ($tableName) {
 				$order";
 		break;
 
+		case 'employees':
+		$where = 'WHERE e.title_id = t.title_id AND p.pos_id = e.pos_id ';
+		if(hasValue($like)) {
+			$like		= "$searchCol like '%$searchInput%'";
+			$like		= str_replace('title_id', 't.title_name', $like);
+			$like		= str_replace('pos_id', 'p.pos_name', $like);
+			$where	   .= ' AND '.$like;
+		}
+		$sql = "SELECT e.emp_pic,
+				e.emp_id,
+				t.title_name title_id,
+				e.emp_name,
+				e.emp_surname,
+				e.emp_addr,
+				e.emp_tel,
+				p.pos_name pos_id,
+				e.emp_user,
+				e.emp_pass 
+		FROM employees e, titles t, positions p 
+		$where
+		$order";
+		break;
+
 	case 'customers':
 		$where = 'WHERE c.custype_id = ct.custype_id and c.title_id = t.title_id ';
 		if(hasValue($like)) {
