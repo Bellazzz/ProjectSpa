@@ -387,7 +387,8 @@ function dbClose() {
 						'prm_startdate'	    => 'วันที่เริ่มใช้',
 						'prm_enddate'		=> 'วันที่สิ้นสุด',
 						'prm_picture'		=> 'รูปภาพ'
-				)
+				),
+				'hiddenFields'	=> array('prm_picture')
 			);
 			break;
 

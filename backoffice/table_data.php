@@ -72,9 +72,9 @@ switch ($tableName) {
 		case 'service_lists':
 		$where		= 'WHERE s.svltyp_id = t.svltyp_id';
 		if(hasValue($like)) {
-			$like		= "$searchCol like '%$searchInput%'";
 			$like		= str_replace('svltyp_id', 't.svltyp_name', $like);
-			$where	   .= ' AND '.$like;
+			$where .= " AND $like";
+			//$where	   .= ' AND '.$like;
 		}
 		$sql = "SELECT s.svl_picture,
 				s.svl_id,
@@ -85,9 +85,9 @@ switch ($tableName) {
 				s.svl_min,
 				s.svl_price,
 				s.svl_commission
-				FROM service_lists s, service_list_types t 
-				$where 
-				$order";
+		FROM service_lists s, service_list_types t 
+		$where 
+		$order";
 		break;
 		case 'employees':
 		$where = 'WHERE e.title_id = t.title_id AND p.pos_id = e.pos_id ';
@@ -528,6 +528,7 @@ if($rows > 0){
 			foreach($row as $field => $value) {
 				//Skip hidden field
 				if(isset($tableInfo['hiddenFields']) && in_array($field, $tableInfo['hiddenFields'])){
+					$offset++;
 					continue;
 				}
 				//Display field
