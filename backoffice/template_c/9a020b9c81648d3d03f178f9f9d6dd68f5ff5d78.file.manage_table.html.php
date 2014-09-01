@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-01 22:49:21
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-01 23:31:14
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
-<?php /*%%SmartyHeaderCode:1897954048771445677-74330040%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-=======
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-01 23:01:39
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
-<?php /*%%SmartyHeaderCode:67954048a53aa8a16-70532546%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
->>>>>>> e31198cf13ff909cb6d2edd36f0c75fe58e98600
+<?php /*%%SmartyHeaderCode:145905404914254d747-92010523%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -17,25 +11,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-<<<<<<< HEAD
-  'nocache_hash' => '1897954048771445677-74330040',
-=======
-  'nocache_hash' => '67954048a53aa8a16-70532546',
->>>>>>> e31198cf13ff909cb6d2edd36f0c75fe58e98600
+  'nocache_hash' => '145905404914254d747-92010523',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-<<<<<<< HEAD
-  'unifunc' => 'content_54048771b35087_40004018',
+  'unifunc' => 'content_540491425f4887_39286023',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54048771b35087_40004018')) {function content_54048771b35087_40004018($_smarty_tpl) {?>﻿<!DOCTYPE html>
-=======
-  'unifunc' => 'content_54048a53d5b005_47530748',
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54048a53d5b005_47530748')) {function content_54048a53d5b005_47530748($_smarty_tpl) {?>﻿<!DOCTYPE html>
->>>>>>> e31198cf13ff909cb6d2edd36f0c75fe58e98600
+<?php if ($_valid && !is_callable('content_540491425f4887_39286023')) {function content_540491425f4887_39286023($_smarty_tpl) {?>﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Spa - Backoffice</title>
