@@ -1,33 +1,25 @@
-<<<<<<< HEAD
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-01 21:33:02
-=======
-<?php /* Smarty version Smarty-3.1.18, created on 2014-08-31 22:30:08
->>>>>>> 5dff5e06f3efa5f0fcad542aa7b6a2e7e75249ff
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-01 23:01:39
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
-<?php /*%%SmartyHeaderCode:291835404758e1e2761-75337314%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:67954048a53aa8a16-70532546%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '9a020b9c81648d3d03f178f9f9d6dd68f5ff5d78' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\manage_table.html',
-      1 => 1409493315,
+      1 => 1409134228,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '291835404758e1e2761-75337314',
+  'nocache_hash' => '67954048a53aa8a16-70532546',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.18',
-<<<<<<< HEAD
-  'unifunc' => 'content_5404758e344835_16636265',
-=======
-  'unifunc' => 'content_5403308fe52978_68863581',
   'has_nocache_code' => false,
->>>>>>> 5dff5e06f3efa5f0fcad542aa7b6a2e7e75249ff
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_54048a53d5b005_47530748',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5404758e344835_16636265')) {function content_5404758e344835_16636265($_smarty_tpl) {?>﻿<!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_54048a53d5b005_47530748')) {function content_54048a53d5b005_47530748($_smarty_tpl) {?>﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Spa - Backoffice</title>

@@ -309,7 +309,9 @@ function dbClose() {
 						'cus_facebook'  		=> 'facebook',
 						'cus_line_id'   		=> 'Line',
 						'cus_email'     		=> 'E-mail' 
-				)
+				),
+				'hiddenFields'	=> array('cus_user','cus_pass','cus_birthdate','cus_registered_date',
+					'cus_facebook','cus_line_id','cus_email')
 			);
 			break;
 
@@ -330,7 +332,8 @@ function dbClose() {
 						'svl_commission'	=> 'ค่าคอมมิชชั่น(บาท)',
 						'svl_desc'			=> 'คำอธิบาย',
 						'svl_picture'		=> 'รูปภาพ'	
-				)
+				),
+				'hiddenFields'	=> array('svl_desc','svl_picture','svl_commission')
 			);
 			break;
 
@@ -349,7 +352,8 @@ function dbClose() {
 						'pkg_desc'      => 'คำอธิบาย',
 						'pkg_price'     => 'ราคา(บาท)',
 						'pkg_picture'   => 'รูปภาพ'			
-				)
+				),
+				'hiddenFields'	=> array('pkg_desc','pkg_picture')
 			);
 			break;
 
@@ -402,7 +406,8 @@ function dbClose() {
 						'prmsvl_end'	  => 'วันที่สิ้นสุด',
 						'prmsvl_desc'     => 'คำอธิบาย',
 						'prmsvl_price'    => 'ราคา(บาท)'
-				)
+				),
+				'hiddenFields'	=> array('prmsvl_desc')
 			);
 			break;
 
