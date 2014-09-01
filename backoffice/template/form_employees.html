@@ -58,7 +58,7 @@
 {include file="form_table_header.html"}
 <div class="ftb-body"> 	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_birthdate,emp_user,emp_pass">
+	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_birthdate,emp_user,emp_pass{if action=='ADD'},emp_re_pass{/if}">
     <input type="hidden" name="uniqueFields" value="emp_user">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
@@ -116,7 +116,7 @@
 			<tr>
 				<td colspan=2>
 					<label class="input-required">Re-Password</label>
-					<input id="emp_pass" name="emp_pass" type="password" class="form-input full" value="{$values.emp_pass}">
+					<input id="emp_re_pass" name="emp_re_pass" type="password" class="form-input full">
 				</td>
 			</tr>
 	    </tbody>
