@@ -117,6 +117,7 @@ function selectReference(select) {
     var tableName       = select.tableName;
     var keyFieldName    = select.keyFieldName;
     var textFieldName   = select.textFieldName;
+    var orderFieldName  = select.orderFieldName;
     var searchTool      = true;
     var defaultValue    = '';
 	var pattern			= '';
@@ -192,6 +193,7 @@ function selectReference(select) {
                 'tableName'     : tableName,
                 'keyFieldName'  : keyFieldName,
                 'textFieldName' : textFieldName,
+                'orderFieldName': orderFieldName,
 				'pattern'		: pattern,
                 'searchText'    : $(searchInput).val(),
                 'begin'         : select.elem.attr('begin'),

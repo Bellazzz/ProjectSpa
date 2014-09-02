@@ -26,6 +26,7 @@
                 tableName		: 'employees',
                 keyFieldName	: 'emp_id',
                 textFieldName	: 'emp_id,emp_name,emp_surname',
+                orderFieldName  : 'emp_name',
 				searchTool		: true,
                 defaultValue	: '{/literal}{$values.emp_id}{literal}',
 				pattern			: 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
