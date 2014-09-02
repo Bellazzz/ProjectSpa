@@ -18,7 +18,7 @@ $tableInfo = getTableInfo($tableName);
 
 if(!$_REQUEST['ajaxCall']) {
 	//1. Display form
-	if($action == 'EDIT') {
+	if($action == 'EDIT' || $action == 'VIEW_DETAIL') {
 		$tableRecord = new TableSpa($tableName, $code);
 		$values      = array();
 		foreach($tableInfo['fieldNameList'] as $field => $value) {

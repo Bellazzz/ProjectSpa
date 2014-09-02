@@ -532,7 +532,19 @@ if($rows > 0){
 					continue;
 				}
 				//Display field
-				if(mysql_field_type($result, $offset) == 'real') {
+				if($field == $tableInfo['keyFieldName']) {
+					if(isset($tableInfo['hiddenFields'])) {
+						// ถ้าตารางนี้มี hiddenFields แสดงว่าต้องมีหน้าแสดงรายละเอียด
+						?>
+						<td><a href="javascript:openFormTable('VIEW_DETAIL', '<?=$value?>');" class="normal-link" title="คลิกเพื่อดูรายละเอียด"><?=$value?></a></td>
+						<?
+					} else {
+						?>
+						<td><?=$value?></td>
+						<?
+					}
+				}
+				else if(mysql_field_type($result, $offset) == 'real') {
 					?>
 					<td class="real-col"><? echo number_format($value,2);?></td>
 					<?

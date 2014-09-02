@@ -449,6 +449,9 @@ function confirmCloseFormTable(action) {
         $('#action-btn-cancel').click(function () {
             hideActionDialog();
         });
+    } else {
+        hideOverlayInner();
+        $('#manage-box').css('display', 'none');
     }
 }
 

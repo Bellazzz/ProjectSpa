@@ -149,17 +149,20 @@ function selectReference(select) {
         select.elem.attr('begin', '0');
         select.elem.html(initTag);
 
-        // Add Event Listener
-        $(select.elem).click(function (e) {
-            e.stopPropagation();
+         // Skip this if has class text
+        if(!select.elem.hasClass('text')) {
+            // Add Event Listener
+            $(select.elem).click(function (e) {
+                e.stopPropagation();
 
-            if (selectRefCon.css('display') == 'none') {
-                hideAllPopup();
-                showSelectReference($(this));
-            } else {
-                hideAllPopup();
-            }
-        });
+                if (selectRefCon.css('display') == 'none') {
+                    hideAllPopup();
+                    showSelectReference($(this));
+                } else {
+                    hideAllPopup();
+                }
+            });
+        }
 
         // Prepare variable
         inputHidden = select.elem.find('.select-reference-input');
@@ -291,7 +294,11 @@ function selectReference(select) {
                 textShow.text(response);
                 inputHidden.val(defaultValue);
             }
-            pullRefData();
+
+            // Skip this if has class text
+            if(!select.elem.hasClass('text')) {
+                pullRefData();
+            }
         }
     });
 }

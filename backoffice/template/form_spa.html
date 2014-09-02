@@ -38,7 +38,38 @@
 <body>
  	 	 	 	 
 {include file="form_table_header.html"}
-<div class="ftb-body"> 	 	 	 	 	 	
+<div class="ftb-body">
+	{if $action == 'VIEW_DETAIL'}
+	<!-- VIEW_DETAIL -->
+	<div class="table-view-detail-image full">
+		<img src="../img/spa/{$values.spa_logo}">
+	</div>
+	<table class="table-view-detail">
+		<tbody>
+			<tr>
+				<td>รหัสสปา :</td>
+				<td>{$code}</td>
+			</tr>
+			<tr>
+				<td>ชื่อสปา :</td>
+				<td>{$values.spa_name}</td>
+			</tr>
+			<tr>
+				<td>ที่อยู่ :</td>
+				<td>{$values.spa_addr}</td>
+			</tr>
+			<tr>
+				<td>เบอร์โทร :</td>
+				<td>{$values.spa_tel}</td>
+			</tr>
+			<tr>
+				<td>โทรสาร :</td>
+				<td>{$values.spa_fax}</td>
+			</tr>
+		</tbody>
+	</table>
+	{else}	 	
+	<!-- ADD, EDIT -->	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="spa_name,spa_addr,spa_tel">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
@@ -71,8 +102,8 @@
 					<input id="spa_tel" name="spa_tel" type="text" class="form-input half" value="{$values.spa_tel}">
 				</td>
 				<td>
-					<label class="input-required">เบอร์โทร</label>
-					<input id="spa_tel" name="spa_tel" type="text" class="form-input half" value="{$values.spa_tel}">
+					<label>โทรสาร</label>
+					<input id="spa_fax" name="spa_fax" type="text" class="form-input half" value="{$values.spa_fax}">
 				</td>
 			</tr>
 		</tbody>
@@ -81,6 +112,7 @@
 	<form method="post" enctype="multipart/form-data">
 		<input id="spa_logo_file" type="file" name="imageFile" class="uploadImageSelector" multiple="multiple">
 	</form>
+	{/if}
 </div>
 </body>
 </html>

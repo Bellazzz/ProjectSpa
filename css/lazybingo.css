@@ -10,9 +10,12 @@ html, body, p, div, h1, h2, h3, h4, h5, h6, img, pre, form, fieldset {
 p, ul, ol, dl, h1, h2, h3, h4, h5, h6, blockquote, pre, form.aui, table.mbk {
     margin: 10px 0 0 0;
 }
-a {
-    color: #3b73af;
+a.normal-link {
+    color: #167ac6;
     text-decoration: none;
+}
+a.normal-link:hover {
+    text-decoration: underline;
 }
 body {
 	color: #333;
@@ -396,6 +399,32 @@ a.mbk-table-header-content {
     opacity: 1;
     filter: alpha(opacity=100);
     top: 2px;
+}
+
+/*
+ * Table view detail
+ */
+table.table-view-detail {
+    color: #666;
+    max-width: 520px;
+    padding: 20px 0;
+}
+table.table-view-detail tr td {
+    padding-bottom: 10px;
+}
+table.table-view-detail tr td:first-child {
+    text-align: right;
+    white-space: nowrap;
+    vertical-align: top;
+}
+table.table-view-detail tr td:last-child {
+    padding-left: 10px;
+}
+.table-view-detail-image {
+    text-align: center;
+}
+.table-view-detail-image.full {
+    width: 520px;
 }
 
 /*Width of column*/
@@ -1041,6 +1070,7 @@ table.mbk .icon {
 .select-reference:hover > span.mbk-icon-16{
     background-position: -16px -16px;
 }
+
 .select-reference-container{
     width: 100%;
     position: absolute;
@@ -1094,6 +1124,19 @@ table.mbk .icon {
 .select-reference .search-container .search-input {
     width: 100%;
     padding-left: 32px;
+}
+/*
+ * Select reference text
+ */
+.select-reference.text {
+    padding: 0;
+    margin: 0;
+    cursor: default;
+    border: none;
+    display: inline;
+}
+.select-reference.text span:first-child {
+    display: none;
 }
 
 /*

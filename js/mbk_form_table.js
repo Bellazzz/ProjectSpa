@@ -3,8 +3,10 @@ $(document).ready(function () {
 	var ftbTitle;
 	if(action == 'ADD') {
 		ftbTitle = 'เพิ่มข้อมูล' + tableNameTH;
-	} else {
+	} else if(action == 'EDIT') {
 		ftbTitle = 'แก้ไขข้อมูล' + tableNameTH + ' (' + code + ')';
+	} else if(action == 'VIEW_DETAIL') {
+		ftbTitle = 'ข้อมูล' + tableNameTH + ' (' + code + ')';
 	}
 	$('#ftb-title').html(ftbTitle);
 
@@ -15,6 +17,9 @@ $(document).ready(function () {
     $('#cancel-btn').click(function () {
         parent.confirmCloseFormTable(action);
 		clearTempImage();
+    });
+    $('#edit-btn').click(function () {
+        parent.openFormTable('EDIT', code);
     });
 
     // Remove required

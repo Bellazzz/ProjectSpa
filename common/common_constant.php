@@ -323,7 +323,7 @@ function dbClose() {
 				'keyChar'		=> 'SL',
 				'keyLength'		=> 5,
 				'fieldNameList'	=> array(
-						'svl_id'			=> 'รหัสผู้ใช้บริการ',
+						'svl_id'			=> 'รหัสรายการบริการ',
 						'svltyp_id'			=> 'ประเภทรายการใช้บริการ',
 						'svl_min'			=> 'เวลาที่ใช้(นาที)',
 						'svl_hr'			=> 'เวลาที่ใช้(ชั่วโมง)',
