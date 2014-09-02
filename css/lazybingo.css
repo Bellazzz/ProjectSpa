@@ -423,9 +423,13 @@ table.table-view-detail tr td:last-child {
 .table-view-detail-image {
     text-align: center;
 }
+.table-view-detail-image img {
+    max-width: 100%;
+}
 .table-view-detail-image.full {
     width: 520px;
 }
+
 
 /*Width of column*/
 table.mbk .icon-col {

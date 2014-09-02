@@ -50,7 +50,46 @@
 <body>
  	 	 	 	 
 {include file="form_table_header.html"}
-<div class="ftb-body"> 	 	 	 	 	 	
+<div class="ftb-body">
+	{if $action == 'VIEW_DETAIL'}
+	<!-- VIEW_DETAIL -->
+	<div class="table-view-detail-image full">
+		<img src="../img/service_lists/{$values.svl_picture}">
+	</div>
+	<table class="table-view-detail">
+		<tbody>
+			<tr>
+				<td>รหัสรายการบริการ :</td>
+				<td>{$code}</td>
+			</tr>
+			<tr>
+				<td>ชื่อรายการบริการ :</td>
+				<td>{$values.svl_name}</td>
+			</tr>
+			<tr>
+				<td>ประเภทรายการบริการ :</td>
+				<td><div id="svltyp_id" class="select-reference text"></td>
+			</tr>
+			<tr>
+				<td>เวลาที่ใช้ :</td>
+				<td>{$values.svl_hr} ชั่วโมง {$values.svl_min} นาที</td>
+			</tr>
+			<tr>
+				<td>ราคา :</td>
+				<td>{$values.svl_price} บาท</td>
+			</tr>
+			<tr>
+				<td>ค่าคอมมิชชั่น :</td>
+				<td>{$values.svl_commission} บาท</td>
+			</tr>
+			<tr>
+				<td>คำอธิบาย :</td>
+				<td>{$values.svl_desc}</td>
+			</tr>
+		</tbody>
+	</table>
+	{else}	 	
+	<!-- ADD, EDIT -->		 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="svltyp_id,svl_name,svl_price,svl_commission">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
@@ -99,6 +138,7 @@
 	<form method="post" enctype="multipart/form-data">
 		<input id="svl_picture_file" type="file" name="imageFile" class="uploadImageSelector" multiple="multiple">
 	</form>
+	{/if}
 </div>
 </body>
 </html>
