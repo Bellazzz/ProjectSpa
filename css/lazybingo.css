@@ -1190,6 +1190,9 @@ table.mbk .icon {
 .button-icon-print:before {
 	content: "\f02f";
 }
+.button-icon-unlock:before {
+    content: "\f09c";
+}
 
 /*
  * Tool tip
