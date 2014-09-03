@@ -554,6 +554,15 @@ if($rows > 0){
 					<td class="real-col"><?=$value?></td>
 					<?
 				}
+				else if (mysql_field_type($result, $offset) == 'date' || mysql_field_type($result, $offset) == 'datetime'){
+					$time 		= strtotime($value);
+					$yearMinTH 	= substr(date('Y', $time) + 543, 2);
+					$month 		= $monthThaiMin[(int)date('m', $time)];
+					$dateValue 	= date('d', $time).' '.$month.' '.$yearMinTH;
+					?>
+					<td><?=$dateValue?></td>
+					<?
+				}
 				else {
 					?>
 					<td><?=$value?></td>

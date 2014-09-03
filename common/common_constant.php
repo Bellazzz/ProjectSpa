@@ -7,6 +7,9 @@ define('DB_USERNAME', 	'root');
 define('DB_PASSWORD', 	'root');
 define('DB_NAME', 		'projectSpa');
 
+$monthThai 		= array('มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม');
+$monthThaiMin 	= array('ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.');
+
 /*
  * Global Connection
  */
