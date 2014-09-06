@@ -124,15 +124,17 @@ switch ($tableName) {
 		$order";
 		break;
 		case 'employees':
-		$where = 'WHERE e.title_id = t.title_id AND p.pos_id = e.pos_id ';
+		$where = 'WHERE e.sex_id = s.sex_id AND e.title_id = t.title_id AND p.pos_id = e.pos_id ';
 		if(hasValue($like)) {
 			$like		= "$searchCol like '%$searchInput%'";
+			$like		= str_replace('sex_id', 's.sex_name', $like);
 			$like		= str_replace('title_id', 't.title_name', $like);
 			$like		= str_replace('pos_id', 'p.pos_name', $like);
 			$where	   .= ' AND '.$like;
 		}
 		$sql = "SELECT e.emp_pic,
 				e.emp_id,
+				s.sex_name sex_id,
 				t.title_name title_id,
 				e.emp_name,
 				e.emp_surname,
@@ -141,20 +143,22 @@ switch ($tableName) {
 				p.pos_name pos_id,
 				e.emp_user,
 				e.emp_pass 
-		FROM employees e, titles t, positions p 
+		FROM employees e, sex s, titles t, positions p 
 		$where
 		$order";
 		break;
 
 	case 'customers':
-		$where = 'WHERE c.custype_id = ct.custype_id and c.title_id = t.title_id ';
+		$where = 'WHERE c.sex_id = s.sex_id AND c.custype_id = ct.custype_id and c.title_id = t.title_id ';
 		if(hasValue($like)) {
+			$like	= str_replace('sex_id', 's.sex_name', $like);
 			$like	= str_replace('custype_id', 'ct.custype_name', $like);
 			$like	= str_replace('title_id', 't.title_name', $like);
 			$where .= " AND $like";
 		}
 		$sql = "SELECT c.cus_id,
 				ct.custype_name custype_id,
+				s.sex_name sex_id,
 				t.title_name title_id,
 				c.cus_name,
 				c.cus_surname,
@@ -167,7 +171,7 @@ switch ($tableName) {
 				c.cus_line_id,
 				c.cus_facebook,
 				c.cus_email 
-				FROM customers c, customer_types ct, titles t 
+				FROM customers c, sex s, customer_types ct, titles t 
 				$where 
 				$order";
 		break;
@@ -232,10 +236,12 @@ switch ($tableName) {
 				$like = "(e.emp_name like '%$searchInput%' OR e.emp_surname like '%$searchInput%') ";
 			}
 			$where .= " AND $like";
-		}
+		}//timeatt_id	emp_id	dateatt_in	timeatt_in	dateatt_out	timeatt_out
 		$sql = "SELECT t.timeatt_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
+				t.dateatt_in,
 				t.timeatt_in,
+				t.dateatt_out,
 				t.timeatt_out 
 				FROM time_attendances t, employees e 
 				$where 
