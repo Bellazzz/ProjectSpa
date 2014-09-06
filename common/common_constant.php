@@ -493,17 +493,20 @@ function dbClose() {
 				'keyChar'		=> 'BK',
 				'keyLength'		=> 15,
 				'fieldNameList'	=> array(
-						'bkg_id'	  		=> 'รหัสการจอง',
-						'cus_id'	        => 'ชื่อ-นามสกุลผู้ใช้บริการ',
-						'emp_id' 		    => 'ชื่อ-นามสกุลพนักงาน',
-						'status_id'         => 'สถานะการจอง',
-						'bnkacc_id'	        => 'เลขบัญชีธนาคาร',
-						'bkg_transfer_time'=> 'วัน-เวลาที่โอน',
-						'bkg_transfer_evidence'  => 'หลักฐานการโอน',
+						'bkg_id'	  			  => 'รหัสการจอง',
+						'cus_id'	        	  => 'ชื่อ-นามสกุลผู้ใช้บริการ',
+						'emp_id' 		    	  => 'ชื่อ-นามสกุลพนักงาน',
+						'status_id'         	  => 'สถานะการจอง',
+						'bnkacc_id'	        	  => 'เลขบัญชีธนาคาร',
+						'bkg_transfer_date'  	  => 'วันที่โอน',
+						'bkg_transfer_time'  	  => 'เวลาที่โอน',
+						'bkg_transfer_evidence'   => 'หลักฐานการโอน',
 						'bkg_total_price'         => 'ราคารวมการจองทั้งหมด(บาท)',
-						'bkg_date'    			  => 'วัน-เวลาที่จอง',
+						'bkg_date'    			  => 'วันที่จอง',
+						'bkg_time'    			  => 'เวลาที่จอง',
 						'bkg_transfer_money'      => 'จำนวนเงินที่โอน(บาท)'
-				)
+				),
+				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time')
 			);
 			break;
 
