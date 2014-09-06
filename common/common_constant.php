@@ -84,6 +84,7 @@ function dbClose() {
 				'keyLength'		=> 6,
 				'fieldNameList'	=> array(
 						'emp_id'		=> 'รหัสพนักงาน',
+						'sex_id' 		=> 'เพศ',
 						'title_id'	    => 'คำนำหน้า',
 						'pos_id'		=> 'ตำแหน่ง',
 						'emp_name'		=> 'ชื่อ',
@@ -299,6 +300,7 @@ function dbClose() {
 				'keyLength'		=> 8,
 				'fieldNameList'	=> array(
 						'cus_id'	    		=> 'รหัสผู้ใช้บริการ',
+						'sex_id' 				=> 'เพศ',
 						'custype_id'			=> 'ประเภทผู้ใช้บริการ',
 						'title_id'      		=> 'คำนำหน้าชื่อ',
 						'cus_name'      		=> 'ชื่อ',
@@ -462,8 +464,10 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'timeatt_id'	  => 'รหัสการเข้าออกงาน',
 						'emp_id'	      => 'ชื่อ-นามสกุลพนักงาน',
-						'timeatt_in'      => 'วัน-เวลาที่เข้า',
-						'timeatt_out'	  => 'วัน-เวลาที่ออก'
+						'dateatt_in'      => 'วันที่เข้า',
+						'timeatt_in'      => 'เวลาที่เข้า',
+						'dateatt_out'	  => 'วันที่ออก',
+						'timeatt_out'	  => 'เวลาที่ออก'
 				)
 			);
 			break;
@@ -506,7 +510,7 @@ function dbClose() {
 						'bkg_time'    			  => 'เวลาที่จอง',
 						'bkg_transfer_money'      => 'จำนวนเงินที่โอน(บาท)'
 				),
-				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time')
+				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time')
 			);
 			break;
 

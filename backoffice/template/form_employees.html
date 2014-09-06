@@ -24,6 +24,14 @@
 			$("#emp_birthdate").datepicker();
 
 			selectReference({
+                elem			: $('#sex_id'),
+                tableName		: 'sex',
+                keyFieldName	: 'sex_id',
+                textFieldName	: 'sex_name',
+				searchTool		: false,
+                defaultValue	: '{/literal}{$values.sex_id}{literal}'
+            });
+			selectReference({
                 elem			: $('#title_id'),
                 tableName		: 'titles',
                 keyFieldName	: 'title_id',
@@ -131,6 +139,9 @@
 
 					<label class="input-required">นามสกุล</label>
 					<input id="emp_surname" name="emp_surname" type="text" class="form-input half" value="{$values.emp_surname}">
+
+					<label class="input-required">เพศ</label>
+					<div id="sex_id" class="select-reference form-input half"></div>
 	
 					<label class="input-required">ตำแหน่ง</label>
 					<div id="pos_id" class="select-reference form-input half"></div>

@@ -27,6 +27,14 @@
             $("#bt_date").datepicker();
 
             selectReference({
+                elem            : $('#sex_id'),
+                tableName       : 'sex',
+                keyFieldName    : 'sex_id',
+                textFieldName   : 'sex_name',
+                searchTool      : false,
+                defaultValue    : '{/literal}{$values.sex_id}{literal}'
+            });
+            selectReference({
                 elem			: $('#custype_id'),
                 tableName		: 'customer_types',
                 keyFieldName	: 'custype_id',
@@ -52,7 +60,7 @@
 {include file="form_table_header.html"}
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="custype_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date">
+	<input type="hidden" name="requiredFields" value="custype_id,sex_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date">
     <input type="hidden" name="uniqueFields" value="">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
@@ -78,7 +86,13 @@
                     <div id="title_id" class="select-reference form-input half"></div>
                 </td>    
 		    </tr>
-              <tr>
+             <tr>
+                <td colspan="2">
+                    <label class="input-required">เพศ</label>
+                    <div id="sex_id" class="select-reference form-input full"></div>
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2">
                     <label class="input-required">ที่อยู่</label>
                     <textarea id="cus_addr" name="cus_addr" type="text" class="form-input full">{$values.cus_addr}</textarea>

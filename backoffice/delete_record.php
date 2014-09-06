@@ -10,11 +10,9 @@ $tableInfo	= getTableInfo($tableName);
 $keyName	= $tableInfo['keyFieldName'];
 $keyType	= $tableInfo['keyFieldType'];
 
-// Add single quote if field is varchar
-if($keyType == 2) {
-	foreach($keySelected as $index => $value) {
-		$keySelected[$index] = wrapSingleQuote($value);
-	}
+// Add single quote
+foreach($keySelected as $index => $value) {
+	$keySelected[$index] = "'$value'";
 }
 
 // Delete record
