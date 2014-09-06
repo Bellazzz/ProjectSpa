@@ -391,11 +391,11 @@ function selectReference(select) {
 			 data: {imgPath: imgTmp[i]},
 			 success:
 			 function(response) {
-				 if(response == 'PASS') {
-					 delete imgTmp[i];
-				 } else {
+				if(response == 'PASS' || response == 'FILE_NOT_EXISTS') {
+					delete imgTmp[i];
+				} else {
 					alert(response);
-				 }
+				}
 			 }
 		 });
 	 }
