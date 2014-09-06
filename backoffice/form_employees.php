@@ -9,23 +9,7 @@ $subDir	 = WEB_ROOTDIR.'/backoffice/';
 include('../common/common_header.php');
 $tableInfo = getTableInfo($tableName);
 
-if(!$_REQUEST['ajaxCall']) {
-	//1. Display form
-	if($action == 'EDIT') {
-		$tableRecord = new TableSpa($tableName, $code);
-		$values      = array();
-		foreach($tableInfo['fieldNameList'] as $field => $value) {
-			$values[$field] = $tableRecord->getFieldValue($field);
-		}
-		$smarty->assign('values', $values);
-	}
-
-	$smarty->assign('action', $action);
-	$smarty->assign('tableName', $tableName);
-	$smarty->assign('tableNameTH', $tableInfo['tableNameTH']);
-	$smarty->assign('code', $code);
-	include('../common/common_footer.php');
-} else {
+if($_REQUEST['ajaxCall']) {
 	//2. Process record
 	$formData		= array();
 	$values			= array();

@@ -4,11 +4,11 @@ $tableName		= $_REQUEST['tableName'];
 $code			= $_REQUEST['code'];
 
 // Check table
-switch ($tableName) {
+/*switch ($tableName) {
 	case 'employees':
 		header("location:form_employees.php?action=$action&code=$code");
 		break;
-}
+}*/
 
 include('../config/config.php');
 $tplName = "form_$tableName.html";
