@@ -69,6 +69,40 @@ switch ($tableName) {
 				$where 
 				$order";
 		break;
+
+		case'booking':
+		$where		= 'WHERE b.cus_id = c.cus_id and b.emp_id = e.emp_id and b.status_id = s.bkgstat_id and b.bnkacc_id = a.bnkacc_id ';
+		if(hasValue($like)) {
+			if($searchCol == 'emp_id') {
+				$like = "(e.emp_name like '%$searchInput%' OR e.emp_surname like '%$searchInput%') ";
+			} else if($searchCol == 'cus_id') {
+				$like = "(c.cus_name like '%$searchInput%' OR c.cus_surname like '%$searchInput%') ";
+			} else {
+				$like		= str_replace('cus_id','c.cus_name', $like);
+				$like		= str_replace('emp_id','e.emp_name', $like);
+				$like		= str_replace('status_id','s.bkgstat_name', $like);
+				$like		= str_replace('bnkacc_id','a.bnkacc_no', $like);
+			}
+			$where .= " AND $like";						
+		}
+		$sql = "SELECT b.bkg_id,
+				CONCAT(c.cus_name, ' ', c.cus_surname) cus_id,
+				CONCAT(e.emp_name, ' ', e.emp_surname) emp_id,
+				s.bkgstat_name status_id,
+				a.bnkacc_no bnkacc_id,
+				b.bkg_transfer_date,
+				b.bkg_transfer_time,
+				b.bkg_transfer_evidence,
+				b.bkg_total_price,
+				b.bkg_total_price,
+				b.bkg_date,
+				b.bkg_time,
+				b.bkg_transfer_money 
+		FROM booking b, booking_status s, employees e, bank_accounts a, customers c 
+		$where 
+		$order";
+		break;
+
 		case 'service_lists':
 		$where		= 'WHERE s.svltyp_id = t.svltyp_id';
 		if(hasValue($like)) {
