@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 16:44:06
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 16:54:58
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_services.html" */ ?>
 <?php /*%%SmartyHeaderCode:31695540c1a7f0938c0-82194616%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '501011bf7a8de77445f0f40fe18ec9508e2c1836' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_services.html',
-      1 => 1410079438,
+      1 => 1410080088,
       2 => 'file',
     ),
   ),
@@ -52,7 +52,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
 ';
         var ajaxUrl     = 'form_table.php';
-//ser_id    cus_id  emp_id  svltyp_id   paytyp_id   bed_id  bkg_id  ser_date    ser_total_price
+//ser_id    cus_id  emp_id  paytyp_id   bed_id  bkg_id  ser_date    ser_time    ser_total_price
         $(document).ready(function () {
              selectReference({
                 elem            : $('#emp_id'),
