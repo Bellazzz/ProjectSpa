@@ -811,6 +811,10 @@ table.mbk .icon {
     background: url('../img/backoffice/mbk-icon-table.png') no-repeat;
     background-position: -360px -60px;
 }
+.mbk-icon.icon-sex {
+    background: url('../img/backoffice/mbk-icon-table.png') no-repeat;
+    background-position: -100px -20px;
+}
 
 .mbk-icon-16 {
     width: 16px;

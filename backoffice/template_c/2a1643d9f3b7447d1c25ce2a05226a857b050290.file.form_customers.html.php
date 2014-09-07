@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-02 01:17:43
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 15:17:37
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_customers.html" */ ?>
 <?php /*%%SmartyHeaderCode:174055404a65c39e385-08774600%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a1643d9f3b7447d1c25ce2a05226a857b050290' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_customers.html',
-      1 => 1409591856,
+      1 => 1410019421,
       2 => 'file',
     ),
   ),
@@ -60,6 +60,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             $("#bt_date").datepicker();
 
             selectReference({
+                elem            : $('#sex_id'),
+                tableName       : 'sex',
+                keyFieldName    : 'sex_id',
+                textFieldName   : 'sex_name',
+                searchTool      : false,
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['sex_id'];?>
+'
+            });
+            selectReference({
                 elem			: $('#custype_id'),
                 tableName		: 'customer_types',
                 keyFieldName	: 'custype_id',
@@ -88,7 +97,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="custype_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date">
+	<input type="hidden" name="requiredFields" value="custype_id,sex_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date">
     <input type="hidden" name="uniqueFields" value="">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
@@ -116,7 +125,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <div id="title_id" class="select-reference form-input half"></div>
                 </td>    
 		    </tr>
-              <tr>
+             <tr>
+                <td colspan="2">
+                    <label class="input-required">เพศ</label>
+                    <div id="sex_id" class="select-reference form-input full"></div>
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2">
                     <label class="input-required">ที่อยู่</label>
                     <textarea id="cus_addr" name="cus_addr" type="text" class="form-input full"><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_addr'];?>

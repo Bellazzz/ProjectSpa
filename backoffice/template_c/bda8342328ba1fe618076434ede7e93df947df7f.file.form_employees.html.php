@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-02 00:34:10
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 15:56:55
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
 <?php /*%%SmartyHeaderCode:208355404a002bd1062-52542044%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bda8342328ba1fe618076434ede7e93df947df7f' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_employees.html',
-      1 => 1409589029,
+      1 => 1410076607,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5404a002d6fea0_66797972',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5404a002d6fea0_66797972',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5404a002d6fea0_66797972')) {function content_5404a002d6fea0_66797972($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -57,6 +57,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			$("#emp_birthdate").datepicker();
 
 			selectReference({
+                elem			: $('#sex_id'),
+                tableName		: 'sex',
+                keyFieldName	: 'sex_id',
+                textFieldName	: 'sex_name',
+				searchTool		: false,
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['sex_id'];?>
+'
+            });
+			selectReference({
                 elem			: $('#title_id'),
                 tableName		: 'titles',
                 keyFieldName	: 'title_id',
@@ -86,10 +95,61 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			// Set default value of textarea
 			$('#emp_addr').text('<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_addr'];?>
 ');
+
+			// Add input password
+			if(action == 'ADD') {
+				addInputPassword();
+			}
 		});
 		
 		function beforeSaveRecord() {
-			alert('check re pass!');
+			// Check password
+			if($('#emp_pass').val() != $('#emp_re_pass').val()) {
+				$('#emp_pass').addClass('required');
+				$('#emp_re_pass').addClass('required');
+				alert('กรุณากรอก password ให้ตรงกันค่ะ');
+				$('#emp_re_pass').focus();
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function addInputPassword() {
+			var inputPassHTML = '<tr>'
+							  + '	<td colspan=2>'
+							  + '		<label class="input-required">Password</label>'
+							  + '		<input id="emp_pass" name="emp_pass" type="password" class="form-input full">'
+							  + '	</td>'
+							  + '</tr>'
+							  + '<tr>'
+							  + '	<td colspan=2>'
+							  + '		<label class="input-required">Re-Password</label>'
+							  + '		<input id="emp_re_pass" name="emp_re_pass" type="password" class="form-input full">'
+							  + '	</td>'
+							  + '</tr>';
+			$('#tableforAddPass tbody').append(inputPassHTML);
+
+			function removeRequired(input) {
+				if (input.val() != '') {
+		            input.removeClass('required');
+		        }
+			}
+
+			// Add event for remove required
+			$('#emp_pass').focusout(function(){
+				removeRequired($(this));
+			});
+			$('#emp_re_pass').focusout(function(){
+				removeRequired($(this));
+			});
+		}
+
+		function resetPass() {
+			var oldRequired = $('input[name="requiredFields"]').val();
+			$('input[name="requiredFields"]').val(oldRequired + ',emp_pass,emp_re_pass');
+			$('#trResetPass').remove();
+			addInputPassword();
 		}
     </script>
     
@@ -100,7 +160,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="ftb-body"> 	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_birthdate,emp_user,emp_pass<?php if ($_smarty_tpl->tpl_vars['action']->value=='ADD') {?>,emp_re_pass<?php }?>">
+	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_birthdate,emp_user<?php if ($_smarty_tpl->tpl_vars['action']->value=='ADD') {?>,emp_pass,emp_re_pass<?php }?>">
     <input type="hidden" name="uniqueFields" value="emp_user">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
@@ -121,6 +181,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<label class="input-required">นามสกุล</label>
 					<input id="emp_surname" name="emp_surname" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
 ">
+
+					<label class="input-required">เพศ</label>
+					<div id="sex_id" class="select-reference form-input half"></div>
 	
 					<label class="input-required">ตำแหน่ง</label>
 					<div id="pos_id" class="select-reference form-input half"></div>
@@ -128,7 +191,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</tr>
 		</tbody>
     </table>
-	<table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+	<table id="tableforAddPass" class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 		<tbody>
 			<tr>
 				<td colspan=2>
@@ -150,25 +213,26 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				</td>
 			</tr>
 			<tr>
+				<td>
+					<label class="input-required">วันที่เข้าทำงาน</label>
+					<input id="emp_indate" name="emp_indate" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_indate'];?>
+">
+				</td>
+			</tr>
+			<tr>
 				<td colspan=2>
 					<label class="input-required">Username</label>
 					<input id="emp_user" name="emp_user" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_user'];?>
 ">
 				</td>
 			</tr>
-			<tr>
-				<td colspan=2>
-					<label class="input-required">Password</label>
-					<input id="emp_pass" name="emp_pass" type="password" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pass'];?>
-">
+			<?php if ($_smarty_tpl->tpl_vars['action']->value=='EDIT') {?>
+			<tr id="trResetPass">
+				<td colspan="2">
+					<a href="javascript:resetPass();" class="normal-link">ตั้งรหัสผ่านใหม่</a>
 				</td>
 			</tr>
-			<tr>
-				<td colspan=2>
-					<label class="input-required">Re-Password</label>
-					<input id="emp_re_pass" name="emp_re_pass" type="password" class="form-input full">
-				</td>
-			</tr>
+			<?php }?>
 	    </tbody>
     </table>
     </form>

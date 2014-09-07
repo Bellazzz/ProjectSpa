@@ -1,9 +1,38 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 16:19:30
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_element_checks.html" */ ?>
+<?php /*%%SmartyHeaderCode:2437540c14fcd5db72-68109490%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'b8d465e7164c4c54eb12f0a405e483706b345d81' => 
+    array (
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_element_checks.html',
+      1 => 1410077958,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '2437540c14fcd5db72-68109490',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_540c14fce3e0b9_26419197',
+  'variables' => 
+  array (
+    'action' => 0,
+    'tableName' => 0,
+    'tableNameTH' => 0,
+    'code' => 0,
+    'values' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_540c14fce3e0b9_26419197')) {function content_540c14fce3e0b9_26419197($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
 	<meta charset="UTF-8"/>
-    {literal}
+    
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
 	<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> <!--include if want to use datepicker-->
@@ -14,10 +43,14 @@
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
     <script type="text/javascript">
         // Global variables
-        var action      = '{/literal}{$action}{literal}';
-        var tableName   = '{/literal}{$tableName}{literal}';
-		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
-        var code        = '{/literal}{$code}{literal}';
+        var action      = '<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
+';
+        var tableName   = '<?php echo $_smarty_tpl->tpl_vars['tableName']->value;?>
+';
+		var tableNameTH = '<?php echo $_smarty_tpl->tpl_vars['tableNameTH']->value;?>
+';
+        var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+';
         var ajaxUrl     = 'form_table.php';
 
         $(document).ready(function () {
@@ -27,7 +60,8 @@
                 keyFieldName	: 'eletyp_id',
                 textFieldName	: 'eletyp_name',
 				searchTool		: true,
-                defaultValue	: '{/literal}{$values.eletyp_id}{literal}',
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['eletyp_id'];?>
+',
 				
             });
              
@@ -37,7 +71,8 @@
                 keyFieldName    : 'emp_id',
                 textFieldName   : 'emp_id,emp_name,emp_surname',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.emp_id}{literal}',
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_id'];?>
+',
                 pattern         : 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
                selectReference({
@@ -46,18 +81,20 @@
                 keyFieldName    : 'cus_id',
                 textFieldName   : 'cus_id,cus_name,cus_surname',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.cus_id}{literal}',
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_id'];?>
+',
                 pattern         : 'CONCAT("(",cus_id,") ",cus_name," ",cus_surname)'
             });
 
 			$("#elechk_date").datepicker();
         });
     </script>
-    {/literal}
+    
 </head>
 <body>
 
-{include file="form_table_header.html"}
+<?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <div class="ftb-body">    
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="eletyp_id,emp_id,cus_id,elechk_date,elechk_time">
@@ -77,11 +114,13 @@
 			<tr>
                 <td>
                     <label class="input-required">วันที่ตรวจ</label>
-				      <input id="elechk_date" name="elechk_date" type="text" class="form-input half" value="{$values.elechk_date}">
+				      <input id="elechk_date" name="elechk_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['elechk_date'];?>
+">
 			    </td>
 			    <td>
                     <label class="input-required">เวลาที่ตรวจ</label>
-                      <input id="elechk_time" name="elechk_time" type="text" class="form-input half" value="{$values.elechk_time}">
+                      <input id="elechk_time" name="elechk_time" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['elechk_time'];?>
+">
                 </td>
 		    </tr>
             <tr>
@@ -101,4 +140,4 @@
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
 	3.  input[name="uniqueFields"] ใส่ชื่อฟิลด์ที่ต้องการเช็คว่าห้ามซ้ำ
--->
+--><?php }} ?>

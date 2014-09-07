@@ -123,6 +123,7 @@ switch ($tableName) {
 		$where 
 		$order";
 		break;
+
 		case 'employees':
 		$where = 'WHERE e.sex_id = s.sex_id AND e.title_id = t.title_id AND p.pos_id = e.pos_id ';
 		if(hasValue($like)) {
@@ -141,6 +142,8 @@ switch ($tableName) {
 				e.emp_addr,
 				e.emp_tel,
 				p.pos_name pos_id,
+				e.emp_birthdate,
+				e.emp_indate,
 				e.emp_user,
 				e.emp_pass 
 		FROM employees e, sex s, titles t, positions p 
@@ -267,7 +270,7 @@ switch ($tableName) {
 		break;
  	  	 	 	 	 	 	
 	case 'services':
-		$where = 'WHERE s.svltyp_id = st.svltyp_id AND s.cus_id = c.cus_id '
+		$where = 'WHERE s.cus_id = c.cus_id '
 			   . 'AND s.emp_id = e.emp_id AND s.paytyp_id = p.paytyp_id AND s.bed_id = b.bed_id ';
 		if(hasValue($like)) {
 			if($searchCol == 'cus_id') {
@@ -275,7 +278,6 @@ switch ($tableName) {
 			} else if($searchCol == 'emp_id') {
 				$like = "(e.emp_name like '%$searchInput%' OR e.emp_surname like '%$searchInput%') ";
 			} else {
-				$like	= str_replace('svltyp_id', 'st.svltyp_name', $like);
 				$like	= str_replace('paytyp_id', 'p.paytyp_name', $like);
 				$like	= str_replace('bed_id', 'b.bed_name', $like);
 			}
@@ -284,13 +286,13 @@ switch ($tableName) {
 		$sql = "SELECT s.ser_id,
 				s.bkg_id,
 				s.ser_date,
+				s.ser_time,
 				CONCAT(c.cus_name, '  ', c.cus_surname) cus_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
-				st.svltyp_name svltyp_id,
 				p.paytyp_name paytyp_id,
 				b.bed_name bed_id,
 				s.ser_total_price 
-				FROM services s, customers c, employees e, service_list_types st, pay_types p, beds b 
+				FROM services s, customers c, employees e, pay_types p, beds b 
 				$where 
 				$order";
 		break;
@@ -364,6 +366,7 @@ switch ($tableName) {
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				CONCAT(c.cus_name, '  ', c.cus_surname) cus_id,
 				ec.elechk_date,
+				ec.elechk_time,
 				et.eletyp_name eletyp_id 
 				FROM element_checks ec, employees e, customers c, element_types et
 				$where 
@@ -487,6 +490,7 @@ switch ($tableName) {
 		$sql = "SELECT s.sale_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				s.sale_date,
+				s.sale_time,
 				s.sale_total_price 
 				FROM sales s, employees e 
 				$where 

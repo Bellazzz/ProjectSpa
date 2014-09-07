@@ -61,6 +61,20 @@ function dbClose() {
 			);
 			break;
 
+		case 'sex':
+			return array(
+				'tableNameTH'	=> 'เพศ',
+				'keyFieldName'  => 'sex_id',
+				'keyFieldType'	=> 2,
+				'keyChar'		=> 'X',
+				'keyLength'		=> 2,
+				'fieldNameList'	=> array(
+					'sex_id'		=> 'รหัสเพศ',
+					'sex_name'	=> 'ชื่อเพศ'
+				)
+			);
+			break;
+
 		case 'positions':
 			 return array(
 				'tableNameTH'	=> 'ตำแหน่ง',
@@ -92,11 +106,12 @@ function dbClose() {
 						'emp_birthdate' => 'วันเกิด',
 						'emp_addr'		=> 'ที่อยู่',
 						'emp_tel'		=> 'เบอร์โทร',
+						'emp_indate'	=> 'วันที่เข้าทำงาน',
 						'emp_user'		=> 'Username',
 						'emp_pass'		=> 'Password',
 						'emp_pic'		=> 'รูปภาพ'
 				),
-				'hiddenFields'	=> array('emp_birthdate','emp_addr','emp_tel','emp_user','emp_pass','emp_pic')
+				'hiddenFields'	=> array('emp_indate','emp_birthdate','emp_addr','emp_tel','emp_user','emp_pass','emp_pic')
 			);
 			break;
 		
@@ -315,7 +330,7 @@ function dbClose() {
 						'cus_line_id'   		=> 'Line',
 						'cus_email'     		=> 'E-mail' 
 				),
-				'hiddenFields'	=> array('cus_user','cus_pass','cus_birthdate','cus_registered_date',
+				'hiddenFields'	=> array('cus_tel','cus_addr','cus_user','cus_pass','cus_birthdate','cus_registered_date',
 					'cus_facebook','cus_line_id','cus_email')
 			);
 			break;
@@ -580,13 +595,14 @@ function dbClose() {
 						'ser_id'	  		  => 'รหัสการใช้บริการ',
 						'cus_id'	          => 'ชื่อ-นามสกุลผู้ใช้บริการ',
 						'emp_id' 		      => 'ชื่อ-นามสกุลพนักงานที่รับเงิน',
-						'svltyp_id'           => 'รหัสประเภทรายการใช้บริการ',
 						'paytyp_id'			  => 'รหัสประเภทการชำระเงิน',
 						'bed_id'      		  => 'รหัสเตียงนวด',
 						'bkg_id'	  		  => 'รหัสการจอง',
-						'ser_date'	          => 'วัน-เวลาที่ใช้บริการ',
+						'ser_date'	          => 'เวลาที่ใช้บริการ',
+						'ser_time'	          => 'เวลาที่ใช้บริการ',
 						'ser_total_price' 	  => 'ราคารวมทั้งหมด(บาท)'
-				)
+				),
+				'hiddenFields'	=> array('emp_id','bed_id','bkg_id','ser_date','ser_time','ser_total_price')
 			);
 			break;
 
@@ -698,7 +714,8 @@ function dbClose() {
 						'eletyp_id' 		  => 'ชื่อประเภทธาตุ',
 						'emp_id' 			  => 'ชื่อ-นามสกุลพนักงาน',
 						'cus_id'	  		  => 'ชื่อ-สกุลผู้ใช้บริการ',
-						'elechk_date'	  	  => 'วัน-เวลาที่ตรวจ'
+						'elechk_date'	  	  => 'วันที่ตรวจ',
+						'elechk_time'	  	  => 'เวลาที่ตรวจ'
 				)
 			);
 			break;
@@ -816,6 +833,7 @@ function dbClose() {
 						'sale_id'	  		  => 'รหัสการขาย',
 						'emp_id'	  		  => 'ชื่อ-นามสกุลพนักงานที่ขาย',
 						'sale_date'	  		  => 'วันที่ขาย',
+						'sale_time'	  		  => 'เวลาที่ขาย',
 						'sale_total_price' 	  => 'ราคารวม(บาท)'
 				)
 			);

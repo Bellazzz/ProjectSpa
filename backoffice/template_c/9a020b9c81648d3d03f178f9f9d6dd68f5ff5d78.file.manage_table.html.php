@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-02 00:31:35
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 15:26:38
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
 <?php /*%%SmartyHeaderCode:2596554049f678ede45-24329934%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9a020b9c81648d3d03f178f9f9d6dd68f5ff5d78' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\manage_table.html',
-      1 => 1409493315,
+      1 => 1410074793,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
   'unifunc' => 'content_54049f679cb3e6_57279624',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_54049f679cb3e6_57279624')) {function content_54049f679cb3e6_57279624($_smarty_tpl) {?>﻿<!DOCTYPE html>
 <html>
@@ -69,6 +69,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			        </div>
 			        <div class="tree-view-child">
 				        <ul>
+                            <li id="tn-sex">
+                                <a class="tree-view-item">
+                                    <span class="item-icon mbk-icon icon-sex"></span>
+                                    <span class="item-label">เพศ</span>
+                                </a>
+                            </li>
 					        <li id="tn-titles">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-titles"></span>
@@ -195,24 +201,24 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                     <span class="item-label">แพ็คเกจ</span>
                                 </a>
 					        </li>
-                            <li id="tn-package_service_lists">
+                            <!--<li id="tn-package_service_lists">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-package_service_lists"></span>
                                     <span class="item-label">รายการบริการที่จัดแพ็คเกจ</span>
                                 </a>
-                            </li>
+                            </li>-->
 					        <li id="tn-promotions">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-promotions"></span>
                                     <span class="item-label">โปรโมชั่น</span>
                                 </a>
 					        </li>
-                             <li id="tn-promotion_service_lists">
+                            <!--<li id="tn-promotion_service_lists">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-promotion_service_lists"></span>
                                     <span class="item-label">รายการบริการที่จัดโปรโมชั่น</span>
                                 </a>
-                            </li>
+                            </li>-->
 					        <li id="tn-companies">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-companies"></span>
@@ -255,7 +261,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                     <span class="item-label">การจอง</span>
                                 </a>
 					        </li>
-                            <li id="tn-booking_service_lists">
+                            <!--<li id="tn-booking_service_lists">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-booking_sevice_lists"></span>
                                     <span class="item-label">รายละเอียดรายการบริการที่จอง</span>
@@ -272,14 +278,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                     <span class="item-icon mbk-icon icon-booking_promotions"></span>
                                     <span class="item-label">รายละเอียดโปรโมชั่นที่จอง</span>
                                 </a>
-                            </li>
+                            </li>-->
 					        <li id="tn-services">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-services"></span>
                                     <span class="item-label">การใช้บริการ</span>
                                 </a>
 					        </li>
-                            <li id="tn-service_service_lists">
+                            <!--<li id="tn-service_service_lists">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-service_service_lists"></span>
                                     <span class="item-label">รายละเอียดการใช้บริการรายการบริการ</span>
@@ -313,7 +319,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-promotion_details"></span>
                                     <span class="item-label">รายละเอียดโปรโมชั่น</span>
-                                </a>
+                                </a>-->
                             </li>
 					        <li id="tn-element_checks">
                                 <a class="tree-view-item">
@@ -327,11 +333,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                     <span class="item-label">การสั่งซื้อ</span>
                                 </a>
 					        </li>
-                            <li id="tn-order_details">
+                            <!--<li id="tn-order_details">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-order-details"></span>
                                     <span class="item-label">รายละเอียดการสั่งซื้อ</span>
-                                </a>
+                                </a>-->
                             </li>
 					        <li id="tn-receives">
                                 <a class="tree-view-item">
@@ -339,11 +345,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                     <span class="item-label">การรับ</span>
                                 </a>
 					        </li>
-                            <li id="tn-receive_details">
+                            <!--<li id="tn-receive_details">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-receive-details"></span>
                                     <span class="item-label">รายละเอียดการรับ</span>
-                                </a>
+                                </a>-->
                             </li>
                             <li id="tn-withdraws">
                                 <a class="tree-view-item">
@@ -351,11 +357,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                     <span class="item-label">การเบิก</span>
                                 </a>
                             </li>
-                            <li id="tn-withdraw_details">
+                            <!--<li id="tn-withdraw_details">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-withdraw_details"></span>
                                     <span class="item-label">รายละเอียดการเบิก</span>
-                                </a>
+                                </a>-->
                             </li>
 					        <li id="tn-sales">
                                 <a class="tree-view-item">
@@ -363,12 +369,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                     <span class="item-label">การขาย</span>
                                 </a>
 					        </li>
-                             <li id="tn-sale_details">
+                             <!--<li id="tn-sale_details">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-sale_details"></span>
                                     <span class="item-label">รายละเอียดการขาย</span>
                                 </a>
-                            </li>
+                            </li>-->
 				        </ul>
 			        </div>
 		        </div>
