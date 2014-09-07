@@ -50,8 +50,61 @@
                 searchTool      : false,
                 defaultValue    : '{/literal}{$values.title_id}{literal}'
             });
+        // Add input password
+            if(action == 'ADD') {
+                addInputPassword();
+            }
         });
         
+        function beforeSaveRecord() {
+            // Check password
+            if($('#cus_pass').val() != $('#cus_re_pass').val()) {
+                $('#cus_pass').addClass('required');
+                $('#cus_re_pass').addClass('required');
+                alert('กรุณาป้อน password ให้ตรงกันค่ะ');
+                $('#cus_re_pass').focus();
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function addInputPassword() {
+            var inputPassHTML = '<tr>'
+                              + '   <td colspan=2>'
+                              + '       <label>Password</label>'
+                              + '       <input id="cus_pass" name="cus_pass" type="password" class="form-input full">'
+                              + '   </td>'
+                              + '</tr>'
+                              + '<tr>'
+                              + '   <td colspan=2>'
+                              + '       <label>Re-Password</label>'
+                              + '       <input id="cus_re_pass" name="cus_re_pass" type="password" class="form-input full">'
+                              + '   </td>'
+                              + '</tr>';
+            $('#tableforAddPass tbody').append(inputPassHTML);
+
+            function removeRequired(input) {
+                if (input.val() != '') {
+                    input.removeClass('required');
+                }
+            }
+
+            // Add event for remove required
+            $('#cus_pass').focusout(function(){
+                removeRequired($(this));
+            });
+            $('#cus_re_pass').focusout(function(){
+                removeRequired($(this));
+            });
+        }
+
+        function resetPass() {
+            var oldRequired = $('input[name="requiredFields"]').val();
+            $('input[name="requiredFields"]').val(oldRequired + ',cus_pass,cus_re_pass');
+            $('#trResetPass').remove();
+            addInputPassword();
+        }
     </script>
     {/literal}
 </head>
@@ -59,10 +112,11 @@
 
 {include file="form_table_header.html"}
 <div class="ftb-body">
+
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="custype_id,sex_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date">
-    <input type="hidden" name="uniqueFields" value="">
-    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+	<input type="hidden" name="requiredFields" value="custype_id,sex_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date,sex_id">
+    <input type="hidden" name="uniqueFields" value="cus_user{if $action=='ADD'},cus_pass,cus_re_pass{/if}">
+    <table id="tableforAddPass" class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 		    <tr>
 			    <td>
@@ -138,14 +192,22 @@
                     <label>Username</label>
                     <input id="cus_user" name="cus_user" type="text" class="form-input half" value="{$values.cus_user}">
                 </td>
-                <td>
+                <!--<td>
                     <label>Password</label>
                     <input id="cus_pass" name="cus_pass" type="password" class="form-input half" value="{$values.cus_pass}">
+                </td>-->
+            </tr>
+            {if $action == 'EDIT'}
+            <tr id="trResetPass">
+                <td colspan="2">
+                    <a href="javascript:resetPass();" class="normal-link">ตั้งรหัสผ่านใหม่</a>
                 </td>
             </tr>
+            {/if}
 	    </tbody>
     </table>
     </form>
+    
 </div>
 </body>
 </html>

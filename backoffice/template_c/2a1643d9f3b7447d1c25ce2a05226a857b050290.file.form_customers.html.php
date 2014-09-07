@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 15:17:37
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 23:29:25
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_customers.html" */ ?>
 <?php /*%%SmartyHeaderCode:174055404a65c39e385-08774600%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a1643d9f3b7447d1c25ce2a05226a857b050290' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_customers.html',
-      1 => 1410019421,
+      1 => 1410103076,
       2 => 'file',
     ),
   ),
@@ -86,8 +86,61 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['title_id'];?>
 '
             });
+        // Add input password
+            if(action == 'ADD') {
+                addInputPassword();
+            }
         });
         
+        function beforeSaveRecord() {
+            // Check password
+            if($('#cus_pass').val() != $('#cus_re_pass').val()) {
+                $('#cus_pass').addClass('required');
+                $('#cus_re_pass').addClass('required');
+                alert('กรุณาป้อน password ให้ตรงกันค่ะ');
+                $('#cus_re_pass').focus();
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function addInputPassword() {
+            var inputPassHTML = '<tr>'
+                              + '   <td colspan=2>'
+                              + '       <label>Password</label>'
+                              + '       <input id="cus_pass" name="cus_pass" type="password" class="form-input full">'
+                              + '   </td>'
+                              + '</tr>'
+                              + '<tr>'
+                              + '   <td colspan=2>'
+                              + '       <label>Re-Password</label>'
+                              + '       <input id="cus_re_pass" name="cus_re_pass" type="password" class="form-input full">'
+                              + '   </td>'
+                              + '</tr>';
+            $('#tableforAddPass tbody').append(inputPassHTML);
+
+            function removeRequired(input) {
+                if (input.val() != '') {
+                    input.removeClass('required');
+                }
+            }
+
+            // Add event for remove required
+            $('#cus_pass').focusout(function(){
+                removeRequired($(this));
+            });
+            $('#cus_re_pass').focusout(function(){
+                removeRequired($(this));
+            });
+        }
+
+        function resetPass() {
+            var oldRequired = $('input[name="requiredFields"]').val();
+            $('input[name="requiredFields"]').val(oldRequired + ',cus_pass,cus_re_pass');
+            $('#trResetPass').remove();
+            addInputPassword();
+        }
     </script>
     
 </head>
@@ -96,10 +149,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div class="ftb-body">
+
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="custype_id,sex_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date">
-    <input type="hidden" name="uniqueFields" value="">
-    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+	<input type="hidden" name="requiredFields" value="custype_id,sex_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date,sex_id">
+    <input type="hidden" name="uniqueFields" value="cus_user<?php if ($_smarty_tpl->tpl_vars['action']->value=='ADD') {?>,cus_pass,cus_re_pass<?php }?>">
+    <table id="tableforAddPass" class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 		    <tr>
 			    <td>
@@ -185,15 +239,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <input id="cus_user" name="cus_user" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_user'];?>
 ">
                 </td>
-                <td>
+                <!--<td>
                     <label>Password</label>
                     <input id="cus_pass" name="cus_pass" type="password" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_pass'];?>
 ">
+                </td>-->
+            </tr>
+            <?php if ($_smarty_tpl->tpl_vars['action']->value=='EDIT') {?>
+            <tr id="trResetPass">
+                <td colspan="2">
+                    <a href="javascript:resetPass();" class="normal-link">ตั้งรหัสผ่านใหม่</a>
                 </td>
             </tr>
+            <?php }?>
 	    </tbody>
     </table>
     </form>
+    
 </div>
 </body>
 </html>

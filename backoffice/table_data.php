@@ -263,7 +263,8 @@ switch ($tableName) {
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				p.payroll_salary,
 				p.payroll_commission,
-				p.payroll_monthly 
+				p.payroll_monthly,
+				p.payroll_date 
 				FROM payrolls p, employees e 
 				$where 
 				$order";
@@ -601,7 +602,7 @@ if($rows > 0){
 				else if (mysql_field_type($result, $offset) == 'date' || mysql_field_type($result, $offset) == 'datetime'){
 					$time 		= strtotime($value);
 					$yearMinTH 	= substr(date('Y', $time) + 543, 2);
-					$month 		= $monthThaiMin[(int)date('m', $time)];
+					$month 		= $monthThaiMin[(int)date('m', $time)-1];
 					$dateValue 	= date('d', $time).' '.$month.' '.$yearMinTH;
 					?>
 					<td><?=$dateValue?></td>

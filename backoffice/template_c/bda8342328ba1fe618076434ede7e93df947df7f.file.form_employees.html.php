@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 15:56:55
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 23:24:18
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
 <?php /*%%SmartyHeaderCode:208355404a002bd1062-52542044%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bda8342328ba1fe618076434ede7e93df947df7f' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_employees.html',
-      1 => 1410076607,
+      1 => 1410103390,
       2 => 'file',
     ),
   ),
@@ -107,7 +107,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			if($('#emp_pass').val() != $('#emp_re_pass').val()) {
 				$('#emp_pass').addClass('required');
 				$('#emp_re_pass').addClass('required');
-				alert('กรุณากรอก password ให้ตรงกันค่ะ');
+				alert('กรุณาป้อน password ให้ตรงกันค่ะ');
 				$('#emp_re_pass').focus();
 				return true;
 			} else {
@@ -118,13 +118,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		function addInputPassword() {
 			var inputPassHTML = '<tr>'
 							  + '	<td colspan=2>'
-							  + '		<label class="input-required">Password</label>'
+							  + '		<label>Password</label>'
 							  + '		<input id="emp_pass" name="emp_pass" type="password" class="form-input full">'
 							  + '	</td>'
 							  + '</tr>'
 							  + '<tr>'
 							  + '	<td colspan=2>'
-							  + '		<label class="input-required">Re-Password</label>'
+							  + '		<label>Re-Password</label>'
 							  + '		<input id="emp_re_pass" name="emp_re_pass" type="password" class="form-input full">'
 							  + '	</td>'
 							  + '</tr>';
@@ -160,7 +160,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="ftb-body"> 	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_birthdate,emp_user<?php if ($_smarty_tpl->tpl_vars['action']->value=='ADD') {?>,emp_pass,emp_re_pass<?php }?>">
+	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_indate,sex_id,emp_user<?php if ($_smarty_tpl->tpl_vars['action']->value=='ADD') {?>,emp_pass,emp_re_pass<?php }?>">
     <input type="hidden" name="uniqueFields" value="emp_user">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
@@ -202,7 +202,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</tr>
 			<tr>
 				<td>
-					<label class="input-required">วันเกิด</label>
+					<label>วันเกิด</label>
 					<input id="emp_birthdate" name="emp_birthdate" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_birthdate'];?>
 ">
 				</td>
@@ -221,7 +221,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</tr>
 			<tr>
 				<td colspan=2>
-					<label class="input-required">Username</label>
+					<label>Username</label>
 					<input id="emp_user" name="emp_user" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_user'];?>
 ">
 				</td>
