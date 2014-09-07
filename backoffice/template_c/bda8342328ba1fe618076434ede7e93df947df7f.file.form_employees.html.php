@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 23:24:18
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 23:57:13
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
 <?php /*%%SmartyHeaderCode:208355404a002bd1062-52542044%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bda8342328ba1fe618076434ede7e93df947df7f' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_employees.html',
-      1 => 1410103390,
+      1 => 1410105426,
       2 => 'file',
     ),
   ),
@@ -118,13 +118,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		function addInputPassword() {
 			var inputPassHTML = '<tr>'
 							  + '	<td colspan=2>'
-							  + '		<label>Password</label>'
+							  + '		<label>รหัสผ่าน</label>'
 							  + '		<input id="emp_pass" name="emp_pass" type="password" class="form-input full">'
 							  + '	</td>'
 							  + '</tr>'
 							  + '<tr>'
 							  + '	<td colspan=2>'
-							  + '		<label>Re-Password</label>'
+							  + '		<label>ป้อนรหัสผ่านอีกครั้ง</label>'
 							  + '		<input id="emp_re_pass" name="emp_re_pass" type="password" class="form-input full">'
 							  + '	</td>'
 							  + '</tr>';
@@ -158,7 +158,75 @@ $_valid = $_smarty_tpl->decodeProperties(array (
  	 	 	 	 
 <?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
-<div class="ftb-body"> 	 	 	 	 	 	
+<div class="ftb-body"> 	 
+	<div class="ftb-body">
+	<?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
+	<!-- VIEW_DETAIL -->
+	<div class="table-view-detail-image full">
+		<img src="../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
+">
+	</div>
+	<table class="table-view-detail">
+		<tbody>
+			<tr>
+				<td>รหัสพนักงาน :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+</td>
+			</tr>
+			<tr>
+				<td>คำนำหน้าชื่อ :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['title_id'];?>
+</td>
+			</tr>
+			<tr>
+				<td>ชื่อพนักงาน :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
+</td>
+			</tr>
+			<tr>
+				<td>นามสกุล :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
+</td>
+			</tr>
+			<tr>
+				<td>เพศ :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['sex_id'];?>
+</td>
+			</tr>
+			<tr>
+				<td>ตำแหน่ง :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['pos_id'];?>
+</td>
+			</tr>
+			<tr>
+				<td>ที่อยู่ :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_addr'];?>
+</td>
+			</tr>
+			<tr>
+				<td>เบอร์โทรศัพท์ :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_tel'];?>
+</td>
+			</tr>
+			<tr>
+				<td>วันเกิด :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_birthdate'];?>
+</td>
+			</tr>
+			<tr>
+				<td>วันที่เข้าทำงาน :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_indate'];?>
+</td>
+			</tr>
+			<tr>
+				<td>ชื่อผู้ใช้งาน :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_user'];?>
+</td>
+			</tr>
+		</tbody>
+	</table>
+	<?php } else { ?>	 	
+	<!-- ADD, EDIT -->	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_indate,sex_id,emp_user<?php if ($_smarty_tpl->tpl_vars['action']->value=='ADD') {?>,emp_pass,emp_re_pass<?php }?>">
     <input type="hidden" name="uniqueFields" value="emp_user">
@@ -166,27 +234,38 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	    <tbody>
 			<tr>
 				<td>
-					<div id="emp_pic" class="uploadImageArea"></div>
-					<input type="hidden" name="emp_pic" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
-">
-				</td>
-				<td style="vertical-align:top">
 					<label class="input-required">คำนำหน้าชื่อ</label>
 					<div id="title_id" class="select-reference form-input half"></div>
-			
-					<label class="input-required">ชื่อพนักงาน</label>
-					<input id="emp_name" name="emp_name" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
-">
-
-					<label class="input-required">นามสกุล</label>
-					<input id="emp_surname" name="emp_surname" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
-">
-
+				</td>
+				<td>
 					<label class="input-required">เพศ</label>
 					<div id="sex_id" class="select-reference form-input half"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<label class="input-required">ชื่อพนักงาน</label>
+					<input id="emp_name" name="emp_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
+">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<label class="input-required">นามสกุล</label>
+					<input id="emp_surname" name="emp_surname" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
+">
 	
+				</td>
+			</tr>
+			<tr>
+				<td>
 					<label class="input-required">ตำแหน่ง</label>
 					<div id="pos_id" class="select-reference form-input half"></div>
+				</td>
+				<td>
+					<label class="input-required">วันที่เข้าทำงาน</label>
+					<input id="emp_indate" name="emp_indate" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_indate'];?>
+">
 				</td>
 			</tr>
 		</tbody>
@@ -202,26 +281,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</tr>
 			<tr>
 				<td>
-					<label>วันเกิด</label>
-					<input id="emp_birthdate" name="emp_birthdate" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_birthdate'];?>
-">
-				</td>
-				<td>
 					<label class="input-required">เบอร์โทรศัพท์</label>
 					<input id="emp_tel" name="emp_tel" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_tel'];?>
 ">
 				</td>
-			</tr>
-			<tr>
 				<td>
-					<label class="input-required">วันที่เข้าทำงาน</label>
-					<input id="emp_indate" name="emp_indate" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_indate'];?>
+					<label>วันเกิด</label>
+					<input id="emp_birthdate" name="emp_birthdate" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_birthdate'];?>
 ">
 				</td>
 			</tr>
 			<tr>
 				<td colspan=2>
-					<label>Username</label>
+					<label>ชื่อผู้ใช้งาน</label>
 					<input id="emp_user" name="emp_user" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_user'];?>
 ">
 				</td>
@@ -235,10 +307,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<?php }?>
 	    </tbody>
     </table>
+    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+	    <tbody>
+	    	<tr>
+	    		<td>
+					<div id="emp_pic" class="uploadImageArea full"></div>
+					<input type="hidden" name="emp_pic" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
+">
+				</td>
+	    	</tr>
+	    </tbody>
     </form>
 	<form method="post" enctype="multipart/form-data">
 		<input id="emp_pic_file" type="file" name="imageFile" class="uploadImageSelector" multiple="multiple">
 	</form>
+	<?php }?>
 </div>
 </body>
 </html>
