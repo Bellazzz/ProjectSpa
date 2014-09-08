@@ -40,12 +40,12 @@
                 pattern         : 'CONCAT("(",cus_id,") ",cus_name," ",cus_surname)'
             });
 			  selectReference({
-                elem            : $('#bkgstat_id'),
+                elem            : $('#status_id'),
                 tableName       : 'booking_status',
                 keyFieldName    : 'bkgstat_id',
                 textFieldName   : 'bkgstat_name',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.bkgstat_id}{literal}',
+                defaultValue    : '{/literal}{$values.status_id}{literal}',
              
             });
 			   selectReference({
@@ -79,7 +79,7 @@
 	{if $action == 'VIEW_DETAIL'}
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-		<img src="../img/promotions/{$values.bkg_transfer_evidence}">
+		<img src="../img/booking/{$values.bkg_transfer_evidence}">
 	</div>
 	<table class="table-view-detail">
 		<tbody> 			
@@ -161,7 +161,7 @@
 			<tr>
 				<td>
 					<label class="input-required">สถานะการจอง</label>
-					 <div id="bkgstat_id" class="select-reference form-input half" > </div>
+					 <div id="status_id" class="select-reference form-input half" > </div>
 				</td>
 				<td>
 					<label class="input-required">บัญชีธนาคาร</label>

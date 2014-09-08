@@ -73,6 +73,55 @@
 
 {include file="form_table_header.html"}
 <div class="ftb-body">
+    <div class="ftb-body">
+    {if $action == 'VIEW_DETAIL'}
+    <!-- VIEW_DETAIL -->
+    <div class="table-view-detail-image full">
+                        
+    </div>
+    <table class="table-view-detail">
+        <tbody>
+            <tr>
+                <td>รหัสการใช้บริการ :</td>
+                <td>{$code}</td>
+            </tr>
+            <tr>
+                <td>ผู้ใช้บริการ :</td>
+                <td>{$values.cus_id}</td>
+            </tr>
+            <tr>
+                <td>พนักงาน :</td>
+                <td>{$values.emp_id }</td>
+            </tr>
+            <tr>
+                <td>ประเภทการชำระเงิน :</td>
+                <td>{$values.paytyp_id}</td>
+            </tr>
+            <tr>
+                <td>เตียง :</td>
+                <td>{$values.bed_id}</td>
+            </tr>
+            <tr>
+                <td>รหัสการจอง :</td>
+                <td>{$values.bkg_id}</td>
+            </tr>
+            <tr>
+                <td>วันที่ใช้บริการ :</td>
+                <td>{$values.ser_date }</td>
+            </tr>
+            <tr>
+                <td>เวลาที่ใช้บริการ :</td>
+                <td>{$values.ser_time}</td>
+            </tr>
+            <tr>
+                <td>ราคารวมทั้งหมด(บาท) :</td>
+                <td>{$values.ser_total_price}</td>
+            </tr>
+           
+        </tbody> 
+    </table> 
+    {else}      
+    <!-- ADD, EDIT -->             
     <form id="form-table" name="form-table" onsubmit="return false;">
     <input type="hidden" name="requiredFields" value="emp_id,cus_id,paytyp_id,bed_id,ser_date,ser_total_price,ser_time">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
@@ -125,6 +174,7 @@
 	    </tbody>
     </table>
     </form>
+    {/if}
 </div>
 </body>
 </html>

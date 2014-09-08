@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 19:19:32
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_services.html" */ ?>
 <?php /*%%SmartyHeaderCode:19984540d90c47dcb29-85412509%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 19:16:04
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_services.html" */ ?>
+<?php /*%%SmartyHeaderCode:24109540d8e248858b9-39134022%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '501011bf7a8de77445f0f40fe18ec9508e2c1836' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_services.html',
+<<<<<<< HEAD
       1 => 1410080405,
       2 => 'file',
     ),
@@ -15,6 +22,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+=======
+      1 => 1410174956,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '24109540d8e248858b9-39134022',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_540d8e2498bfc9_03485709',
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
   'variables' => 
   array (
     'action' => 0,
@@ -24,10 +43,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
+<<<<<<< HEAD
   'version' => 'Smarty-3.1.18',
   'unifunc' => 'content_540d90c493a127_27713824',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_540d90c493a127_27713824')) {function content_540d90c493a127_27713824($_smarty_tpl) {?><!DOCTYPE html>
+=======
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_540d8e2498bfc9_03485709')) {function content_540d8e2498bfc9_03485709($_smarty_tpl) {?><!DOCTYPE html>
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -112,6 +136,67 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div class="ftb-body">
+<<<<<<< HEAD
+=======
+    <div class="ftb-body">
+    <?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
+    <!-- VIEW_DETAIL -->
+    <div class="table-view-detail-image full">
+                        
+    </div>
+    <table class="table-view-detail">
+        <tbody>
+            <tr>
+                <td>รหัสการใช้บริการ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+</td>
+            </tr>
+            <tr>
+                <td>ผู้ใช้บริการ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_id'];?>
+</td>
+            </tr>
+            <tr>
+                <td>พนักงาน :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_id'];?>
+</td>
+            </tr>
+            <tr>
+                <td>ประเภทการชำระเงิน :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['paytyp_id'];?>
+</td>
+            </tr>
+            <tr>
+                <td>เตียง :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['bed_id'];?>
+</td>
+            </tr>
+            <tr>
+                <td>รหัสการจอง :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_id'];?>
+</td>
+            </tr>
+            <tr>
+                <td>วันที่ใช้บริการ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['ser_date'];?>
+</td>
+            </tr>
+            <tr>
+                <td>เวลาที่ใช้บริการ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['ser_time'];?>
+</td>
+            </tr>
+            <tr>
+                <td>ราคารวมทั้งหมด(บาท) :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['ser_total_price'];?>
+</td>
+            </tr>
+           
+        </tbody> 
+    </table> 
+    <?php } else { ?>      
+    <!-- ADD, EDIT -->             
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
     <form id="form-table" name="form-table" onsubmit="return false;">
     <input type="hidden" name="requiredFields" value="emp_id,cus_id,paytyp_id,bed_id,ser_date,ser_total_price,ser_time">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
@@ -167,6 +252,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	    </tbody>
     </table>
     </form>
+<<<<<<< HEAD
+=======
+    <?php }?>
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
 </div>
 </body>
 </html>

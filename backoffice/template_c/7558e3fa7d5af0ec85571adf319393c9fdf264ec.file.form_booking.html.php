@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 19:17:30
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking.html" */ ?>
 <?php /*%%SmartyHeaderCode:30614540d904a307d88-60130256%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 18:59:46
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking.html" */ ?>
+<?php /*%%SmartyHeaderCode:8088540d8729816017-53731967%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '7558e3fa7d5af0ec85571adf319393c9fdf264ec' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking.html',
+<<<<<<< HEAD
       1 => 1410172532,
       2 => 'file',
     ),
@@ -15,6 +22,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+=======
+      1 => 1410173970,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '8088540d8729816017-53731967',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_540d87299c2bc6_75919782',
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
   'variables' => 
   array (
     'action' => 0,
@@ -24,10 +43,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
+<<<<<<< HEAD
   'version' => 'Smarty-3.1.18',
   'unifunc' => 'content_540d904a553de8_47393854',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_540d904a553de8_47393854')) {function content_540d904a553de8_47393854($_smarty_tpl) {?><!DOCTYPE html>
+=======
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_540d87299c2bc6_75919782')) {function content_540d87299c2bc6_75919782($_smarty_tpl) {?><!DOCTYPE html>
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -75,12 +99,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 pattern         : 'CONCAT("(",cus_id,") ",cus_name," ",cus_surname)'
             });
 			  selectReference({
+<<<<<<< HEAD
                 elem            : $('#bkgstat_id'),
+=======
+                elem            : $('#status_id'),
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
                 tableName       : 'booking_status',
                 keyFieldName    : 'bkgstat_id',
                 textFieldName   : 'bkgstat_name',
                 searchTool      : true,
+<<<<<<< HEAD
                 defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['bkgstat_id'];?>
+=======
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['status_id'];?>
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
 ',
              
             });
@@ -118,7 +150,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
+<<<<<<< HEAD
 		<img src="../img/promotions/<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_evidence'];?>
+=======
+		<img src="../img/booking/<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_evidence'];?>
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
 ">
 	</div>
 	<table class="table-view-detail">
@@ -213,7 +249,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<tr>
 				<td>
 					<label class="input-required">สถานะการจอง</label>
+<<<<<<< HEAD
 					 <div id="bkgstat_id" class="select-reference form-input half" > </div>
+=======
+					 <div id="status_id" class="select-reference form-input half" > </div>
+>>>>>>> 50843fb937e32bc27379e698754d877fedf41197
 				</td>
 				<td>
 					<label class="input-required">บัญชีธนาคาร</label>
