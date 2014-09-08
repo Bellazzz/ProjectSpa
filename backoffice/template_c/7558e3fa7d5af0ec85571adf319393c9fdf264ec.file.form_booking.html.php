@@ -1,9 +1,38 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 22:36:27
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking.html" */ ?>
+<?php /*%%SmartyHeaderCode:32711540dbe73d7b0f6-02528860%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '7558e3fa7d5af0ec85571adf319393c9fdf264ec' => 
+    array (
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking.html',
+      1 => 1410186980,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '32711540dbe73d7b0f6-02528860',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_540dbe73f3c3d9_96423732',
+  'variables' => 
+  array (
+    'action' => 0,
+    'tableName' => 0,
+    'tableNameTH' => 0,
+    'code' => 0,
+    'values' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_540dbe73f3c3d9_96423732')) {function content_540dbe73f3c3d9_96423732($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
 	<meta charset="UTF-8"/>
-    {literal}
+    
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
 	<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
@@ -14,10 +43,14 @@
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
     <script type="text/javascript">
         // Global variables
-        var action      = '{/literal}{$action}{literal}';
-        var tableName   = '{/literal}{$tableName}{literal}';
-		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
-        var code        = '{/literal}{$code}{literal}';
+        var action      = '<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
+';
+        var tableName   = '<?php echo $_smarty_tpl->tpl_vars['tableName']->value;?>
+';
+		var tableNameTH = '<?php echo $_smarty_tpl->tpl_vars['tableNameTH']->value;?>
+';
+        var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+';
         var ajaxUrl     = 'form_booking.php';
 
 		$(document).ready(function() {
@@ -27,7 +60,8 @@
                 keyFieldName    : 'emp_id',
                 textFieldName   : 'emp_id,emp_name,emp_surname',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.emp_id}{literal}',
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_id'];?>
+',
                 pattern         : 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
 			  selectReference({
@@ -36,7 +70,8 @@
                 keyFieldName    : 'cus_id',
                 textFieldName   : 'cus_id,cus_name,cus_surname',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.cus_id}{literal}',
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_id'];?>
+',
                 pattern         : 'CONCAT("(",cus_id,") ",cus_name," ",cus_surname)'
             });
 			  selectReference({
@@ -45,7 +80,8 @@
                 keyFieldName    : 'bkgstat_id',
                 textFieldName   : 'bkgstat_name',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.status_id}{literal}',
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['status_id'];?>
+',
              
             });
 			   selectReference({
@@ -54,7 +90,8 @@
                 keyFieldName    : 'bnkacc_id',
                 textFieldName   : 'bnkacc_name',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.bnkacc_id}{literal}',
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['bnkacc_id'];?>
+',
              
             });
 			
@@ -62,30 +99,34 @@
 				area: $('#bkg_transfer_evidence'),
 				input: $('input[name="bkg_transfer_evidence"]'),
 				selector: $('#bkg_transfer_evidence_file'),
-				defaultValue: '{/literal}{if $values.bkg_transfer_evidence}../img/booking/{$values.bkg_transfer_evidence}{/if}{literal}'
+				defaultValue: '<?php if ($_smarty_tpl->tpl_vars['values']->value['bkg_transfer_evidence']) {?>../img/booking/<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_evidence'];?>
+<?php }?>'
 			});
 
 			$("#bkg_date").datepicker(); 
 			$("#bkg_transfer_date").datepicker();
 		});
     </script>
-    {/literal}
+    
 </head>
 <body>
  	 	 	 	 
-{include file="form_table_header.html"}
+<?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <div class="ftb-body"> 
 <div class="ftb-body">
-	{if $action == 'VIEW_DETAIL'}
+	<?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-		<img src="../img/booking/{$values.bkg_transfer_evidence}">
+		<img src="../img/booking/<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_evidence'];?>
+">
 	</div>
 	<table class="table-view-detail">
 		<tbody> 			
 			<tr>
 				<td>รหัสการจอง :</td>
-				<td>{$code}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+</td>
 			</tr>
 			<tr>
 				<td>ชื่อผู้ใช้บริการ :</td>
@@ -105,33 +146,39 @@
 			</tr>
 			<tr>
 				<td>วันที่โอน :</td>
-				<td>{$values.bkg_transfer_date}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_date'];?>
+</td>
 			</tr>
 			<tr>
 				<td>เวลาที่โอน :</td>
-				<td>{$values.bkg_transfer_time}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_time'];?>
+</td>
 			</tr>
 			<tr>
 				<td>ราคารวมการจองทั้งหมด(บาท) :</td>
-				<td>{$values.bkg_total_price}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_total_price'];?>
+</td>
 			</tr>
 			<tr>
 				<td>วันที่จอง :</td>
-				<td>{$values.bkg_date}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_date'];?>
+</td>
 			</tr>
 			<tr>
 				<td>เวลาที่จอง :</td>
-				<td>{$values.bkg_time}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_time'];?>
+</td>
 			</tr>
 			<tr>
 				<td>จำนวนเงินที่โอน(บาท) :</td>
-				<td>{$values.bkg_transfer_money}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_money'];?>
+</td>
 			</tr>
 			
 													
 		</tbody>
 	</table>
-	{else}	 	
+	<?php } else { ?>	 	
 	<!-- ADD, EDIT -->	 	 	 	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="cus_id,emp_id,status_id,bnkacc_id,bkg_total_price,bkg_date,bkg_time,bkg_transfer_money">
@@ -140,7 +187,8 @@
 			<tr>
 				<td>
 					<div id="bkg_transfer_evidence" class="uploadImageArea full"></div>
-					<input type="hidden" name="bkg_transfer_evidence" value="{$values.bkg_transfer_evidence}">
+					<input type="hidden" name="bkg_transfer_evidence" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_evidence'];?>
+">
 				</td>
 		</tbody> 											
 			</tr> 
@@ -171,31 +219,37 @@
 			<tr>
 				<td>
 					<label>วันที่โอน</label>
-                	<input id="bkg_transfer_date" name="bkg_transfer_date" type="text" class="form-input half" value="{$values.bkg_transfer_date}">
+                	<input id="bkg_transfer_date" name="bkg_transfer_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_date'];?>
+">
                 </td>
                 <td>
 					<label>เวลาที่โอน</label>
-                	<input id="bkg_transfer_time" name="bkg_transfer_time" type="text" class="form-input half" value="{$values.bkg_transfer_time}">
+                	<input id="bkg_transfer_time" name="bkg_transfer_time" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_time'];?>
+">
                 </td>
 			</tr>
 			<tr>
 				<td>
 					<label class="input-required">ราคารวมการจอง(บาท)</label>
-					<input id="bkg_total_price" name="bkg_total_price" type="text" class="form-input half" value="{$values.bkg_total_price}">
+					<input id="bkg_total_price" name="bkg_total_price" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_total_price'];?>
+">
 				</td>
 				<td>
 					<label class="input-required">วันที่จอง</label>
-					<input id="bkg_date" name="bkg_date" type="text" class="form-input half" value="{$values.bkg_date}">
+					<input id="bkg_date" name="bkg_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_date'];?>
+">
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<label class="input-required">เวลาที่จอง</label>
-					<input id="bkg_time" name="bkg_time" type="text" class="form-input half" value="{$values.bkg_time}">
+					<input id="bkg_time" name="bkg_time" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_time'];?>
+">
 				</td>
 				<td>
 					<label class="input-required">จำนวนเงินที่โอน(บาท)</label>
-					<input id="bkg_transfer_money" name="bkg_transfer_money" type="text" class="form-input half" value="{$values.bkg_transfer_money}">
+					<input id="bkg_transfer_money" name="bkg_transfer_money" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_money'];?>
+">
 				</td>
 			</tr>
 	    </tbody>
@@ -204,7 +258,7 @@
 	<form method="post" enctype="multipart/form-data">
 		<input id="bkg_transfer_evidence_file" type="file" name="imageFile" class="uploadImageSelector" multiple="multiple">
 	</form>
-	{/if}
+	<?php }?>
 </div>
 </body>
 </html>
@@ -212,4 +266,4 @@
     [Note]
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
--->
+--><?php }} ?>
