@@ -82,7 +82,7 @@ if(!$_REQUEST['ajaxCall']) {
 			$type		= str_replace(".", "", strrchr($formData['bkg_transfer_evidence'],"."));
 			$tmpRecord	= new TableSpa('booking', null);
 			$bkg_transfer_evidence	= $tmpRecord->genKeyCharRunning().".$type";
-			$prm_picture_path = '../img/booking/'.$bkg_transfer_evidence;
+			$bkg_transfer_evidence_path = '../img/booking/'.$bkg_transfer_evidence;
 
 			// Delete Old Image
 			if(file_exists($bkg_transfer_evidence_path)) {
