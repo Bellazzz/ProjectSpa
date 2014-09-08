@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 14:15:41
+=======
+<<<<<<< HEAD
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 14:02:49
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 23:57:13
+>>>>>>> 1bb98029f4e62f9cb0dbd8554402ead6b9370b48
+>>>>>>> d4226b7b48f0933c0cc2ee4796807c823ef6062c
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
 <?php /*%%SmartyHeaderCode:208355404a002bd1062-52542044%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +15,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bda8342328ba1fe618076434ede7e93df947df7f' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_employees.html',
+<<<<<<< HEAD
       1 => 1410155713,
+=======
+<<<<<<< HEAD
+      1 => 1410080159,
+=======
+      1 => 1410105426,
+>>>>>>> 1bb98029f4e62f9cb0dbd8554402ead6b9370b48
+>>>>>>> d4226b7b48f0933c0cc2ee4796807c823ef6062c
       2 => 'file',
     ),
   ),
