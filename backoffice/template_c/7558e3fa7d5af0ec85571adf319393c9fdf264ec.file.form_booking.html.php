@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 22:26:30
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking.html" */ ?>
 <?php /*%%SmartyHeaderCode:18286540dbc96613c48-62398063%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 22:36:27
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking.html" */ ?>
+<?php /*%%SmartyHeaderCode:32711540dbe73d7b0f6-02528860%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> 61a390baf21dcebdcc4a28ebb40c200120954d0f
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '7558e3fa7d5af0ec85571adf319393c9fdf264ec' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking.html',
+<<<<<<< HEAD
       1 => 1410175404,
       2 => 'file',
     ),
@@ -15,6 +22,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+=======
+      1 => 1410186980,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '32711540dbe73d7b0f6-02528860',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_540dbe73f3c3d9_96423732',
+>>>>>>> 61a390baf21dcebdcc4a28ebb40c200120954d0f
   'variables' => 
   array (
     'action' => 0,
@@ -24,10 +43,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
+<<<<<<< HEAD
   'version' => 'Smarty-3.1.18',
   'unifunc' => 'content_540dbc9681af54_81092660',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_540dbc9681af54_81092660')) {function content_540dbc9681af54_81092660($_smarty_tpl) {?><!DOCTYPE html>
+=======
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_540dbe73f3c3d9_96423732')) {function content_540dbe73f3c3d9_96423732($_smarty_tpl) {?><!DOCTYPE html>
+>>>>>>> 61a390baf21dcebdcc4a28ebb40c200120954d0f
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -129,6 +153,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </td>
 			</tr>
 			<tr>
+<<<<<<< HEAD
 				<td>รหัสผู้ใช้บริการ :</td>
 				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_id'];?>
 </td>
@@ -147,6 +172,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<td>รหัสบัญชีธนาคาร :</td>
 				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['bnkacc_id'];?>
 </td>
+=======
+				<td>ชื่อผู้ใช้บริการ :</td>
+				<td><div id="cus_id" class="select-reference text"></td>
+			</tr>
+			<tr>
+				<td>ชื่อพนักงาน :</td>
+				<td><div id="emp_id" class="select-reference text"></td>
+			</tr>
+			<tr>
+				<td>สถานะการจอง :</td>
+				<td><div id="status_id" class="select-reference text"></td>
+			</tr>
+			<tr>
+				<td>บัญชีธนาคาร :</td>
+				<td><div id="bnkacc_id" class="select-reference text"></td>
+>>>>>>> 61a390baf21dcebdcc4a28ebb40c200120954d0f
 			</tr>
 			<tr>
 				<td>วันที่โอน :</td>
