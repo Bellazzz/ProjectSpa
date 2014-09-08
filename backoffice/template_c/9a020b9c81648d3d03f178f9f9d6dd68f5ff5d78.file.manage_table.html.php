@@ -1,45 +1,25 @@
-<<<<<<< HEAD
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 18:37:53
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 19:24:53
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
-<?php /*%%SmartyHeaderCode:17752540d8701cc8ec8-76938389%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-=======
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 18:38:14
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
-<?php /*%%SmartyHeaderCode:23960540d87167d6db8-75962334%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
->>>>>>> 50843fb937e32bc27379e698754d877fedf41197
+<?php /*%%SmartyHeaderCode:29917540d9205e6b1a1-17324256%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '9a020b9c81648d3d03f178f9f9d6dd68f5ff5d78' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\manage_table.html',
-<<<<<<< HEAD
       1 => 1410080159,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '17752540d8701cc8ec8-76938389',
-=======
-      1 => 1410155713,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '23960540d87167d6db8-75962334',
->>>>>>> 50843fb937e32bc27379e698754d877fedf41197
+  'nocache_hash' => '29917540d9205e6b1a1-17324256',
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-<<<<<<< HEAD
-  'unifunc' => 'content_540d8702127107_47666144',
+  'unifunc' => 'content_540d92060474f4_37959917',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_540d8702127107_47666144')) {function content_540d8702127107_47666144($_smarty_tpl) {?>﻿<!DOCTYPE html>
-=======
-  'unifunc' => 'content_540d87168f6ef2_62231392',
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_540d87168f6ef2_62231392')) {function content_540d87168f6ef2_62231392($_smarty_tpl) {?>﻿<!DOCTYPE html>
->>>>>>> 50843fb937e32bc27379e698754d877fedf41197
+<?php if ($_valid && !is_callable('content_540d92060474f4_37959917')) {function content_540d92060474f4_37959917($_smarty_tpl) {?>﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Spa - Backoffice</title>
