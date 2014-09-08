@@ -6,9 +6,11 @@
     {literal}
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-	<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
+	<!--<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css">-->
+	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> 
+	<!--<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script>-->
+	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -21,7 +23,19 @@
         var ajaxUrl     = 'form_employees.php';
 
 		$(document).ready(function() {
-			$("#emp_birthdate").datepicker();
+			$('#emp_indate').datetimepicker({
+				lang:'th',
+				timepicker:false,
+				format:'Y-m-d',
+				closeOnDateSelect:true
+			});
+			$('#emp_birthdate').datetimepicker({
+				lang:'th',
+				timepicker:false,
+				format:'Y-m-d',
+				closeOnDateSelect:true
+			});
+
 
 			selectReference({
                 elem			: $('#sex_id'),

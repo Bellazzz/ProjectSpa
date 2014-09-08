@@ -6,9 +6,9 @@
     {literal}
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-	<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> <!--include if want to use datepicker-->
+	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> <!--include if want to use datepicker-->
+	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -21,6 +21,54 @@
         var ajaxUrl     = 'form_table.php';
 
         $(document).ready(function () {
+            $('#dateatt_in').datetimepicker({
+                lang:'th',
+                format:'Y/m/d',
+                closeOnDateSelect:true,
+                onShow:function( ct ){
+                    this.setOptions({
+                        maxDate:$('#dateatt_out').val()?$('#dateatt_out').val():false
+                    })
+                },
+                timepicker:false
+            });
+
+            $('#dateatt_out').datetimepicker({
+                lang:'th',
+                format:'Y/m/d',
+                closeOnDateSelect:true,
+                onShow:function( ct ){
+                    this.setOptions({
+                        minDate:$('#dateatt_in').val()?$('#dateatt_in').val():false
+                    })
+                },
+                timepicker:false
+            });
+
+            $('#timeatt_in').datetimepicker({
+                datepicker:false,
+                format:'H:i',
+                minTime:'06:00',
+                onShow:function( ct ){
+                    this.setOptions({
+                        maxTime:$('#timeatt_out').val()?$('#timeatt_out').val():'18:00'
+                    })
+                },
+                step:5
+            });
+
+            $('#timeatt_out').datetimepicker({
+                datepicker:false,
+                format:'H:i',
+                maxTime:'18:00',
+                onShow:function( ct ){
+                    this.setOptions({
+                        minTime:$('#timeatt_in').val()?$('#timeatt_in').val():'06:00'
+                    })
+                },
+                step:5
+            });
+
             selectReference({
                 elem			: $('#emp_id'),
                 tableName		: 'employees',
@@ -31,9 +79,6 @@
                 defaultValue	: '{/literal}{$values.emp_id}{literal}',
 				pattern			: 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
-
-			$("#dateatt_in").datepicker();
-			$("#dateatt_out").datepicker();
         });
     </script>
     {/literal}

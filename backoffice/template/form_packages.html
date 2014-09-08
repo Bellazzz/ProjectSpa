@@ -6,9 +6,9 @@
     {literal}
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-	<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
+	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> 
+	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -21,7 +21,30 @@
         var ajaxUrl     = 'form_packages.php';
 
 		$(document).ready(function() {
-			//pkg_id	pkg_name	pkg_start	pkg_stop	pkg_desc	pkg_price	pkg_picture
+			$('#pkg_start').datetimepicker({
+				lang:'th',
+			  	format:'Y/m/d',
+			  	closeOnDateSelect:true,
+			  	onShow:function( ct ){
+			   		this.setOptions({
+			    		maxDate:$('#pkg_stop').val()?$('#pkg_stop').val():false
+			   		})
+			  	},
+			  	timepicker:false
+			});
+
+			$('#pkg_stop').datetimepicker({
+			 	lang:'th',
+			  	format:'Y/m/d',
+			  	closeOnDateSelect:true,
+			  	onShow:function( ct ){
+			   		this.setOptions({
+			    		minDate:$('#pkg_start').val()?$('#pkg_start').val():false
+			   		})
+			  	},
+			  	timepicker:false
+			});
+
 			uploadImageInput({
 				area: $('#pkg_picture'),
 				input: $('input[name="pkg_picture"]'),
@@ -29,8 +52,6 @@
 				defaultValue: '{/literal}{if $values.pkg_picture}../img/packages/{$values.pkg_picture}{/if}{literal}'
 			});
 
-			$("#pkg_start").datepicker();
-			$("#pkg_stop").datepicker();
 			// Set default value of textarea
 			$('#pkg_desc').text('{/literal}{$values.pkg_desc}{literal}');
 		});
