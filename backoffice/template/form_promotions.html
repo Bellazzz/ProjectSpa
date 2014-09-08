@@ -18,21 +18,21 @@
         var tableName   = '{/literal}{$tableName}{literal}';
 		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
         var code        = '{/literal}{$code}{literal}';
-        var ajaxUrl     = 'form_packages.php';
+        var ajaxUrl     = 'form_promotions.php';
 
 		$(document).ready(function() {
-			//pkg_id	pkg_name	pkg_start	pkg_stop	pkg_desc	pkg_price	pkg_picture
+			 
 			uploadImageInput({
-				area: $('#pkg_picture'),
-				input: $('input[name="pkg_picture"]'),
-				selector: $('#pkg_picture_file'),
-				defaultValue: '{/literal}{if $values.pkg_picture}../img/packages/{$values.pkg_picture}{/if}{literal}'
+				area: $('#prm_picture'),
+				input: $('input[name="prm_picture"]'),
+				selector: $('#prm_picture_file'),
+				defaultValue: '{/literal}{if $values.prm_picture}../img/promotions/{$values.prm_picture}{/if}{literal}'
 			});
 
-			$("#pkg_start").datepicker();
-			$("#pkg_stop").datepicker();
-			// Set default value of textarea
-			$('#pkg_desc').text('{/literal}{$values.pkg_desc}{literal}');
+			$("#prm_startdate").datepicker();
+			$("#prm_enddate").datepicker();
+			
+			
 		});
     </script>
     {/literal}
@@ -45,47 +45,48 @@
 	{if $action == 'VIEW_DETAIL'}
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-		<img src="../img/packages/{$values.pkg_picture}">
+		<img src="../img/promotions/{$values.prm_picture}">
 	</div>
 	<table class="table-view-detail">
-		<tbody> 					
+		<tbody> 			
 			<tr>
-				<td>รหัสแพ็คเกจ :</td>
+				<td>รหัสโปรโมชั่น :</td>
 				<td>{$code}</td>
 			</tr>
 			<tr>
-				<td>ชื่อแพ็คเกจ :</td>
-				<td>{$values.pkg_name}</td>
+				<td>ชื่อโปรโมชั่น :</td>
+				<td>{$values.prm_name}</td>
+			</tr>
+			<tr>
+				<td>จำนวนครั้งที่ใช้บริการ :</td>
+				<td>{$values.prm_use_amount}</td>
+			</tr>
+			<tr>
+				<td>จำนวนครั้งที่ฟรี :</td>
+				<td>{$values.prm_free_amount}</td>
 			</tr>
 			<tr>
 				<td>วันที่เริ่มใช้ :</td>
-				<td>{$values.pkg_start}</td>
+				<td>{$values.prm_startdate}</td>
 			</tr>
 			<tr>
 				<td>วันที่สิ้นสุด :</td>
-				<td>{$values.pkg_stop}</td>
+				<td>{$values.prm_enddate}</td>
 			</tr>
-			<tr>
-				<td>คำอธิบาย :</td>
-				<td>{$values.pkg_desc}</td>
-			</tr>
-			<tr>
-				<td>ราคา(บาท) :</td>
-				<td>{$values.pkg_price}</td>
-			</tr>
+			
 			
 		</tbody>
 	</table>
 	{else}	 	
 	<!-- ADD, EDIT -->	 	 	 	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="pkg_name,pkg_start,pkg_price">
+	<input type="hidden" name="requiredFields" value="prm_name,prm_startdate">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 			<tr>
 				<td>
-					<div id="pkg_picture" class="uploadImageArea full"></div>
-					<input type="hidden" name="pkg_picture" value="{$values.pkg_picture}">
+					<div id="prm_picture" class="uploadImageArea full"></div>
+					<input type="hidden" name="prm_picture" value="{$values.prm_picture}">
 				</td>
 			</tr>
 		</tbody>
@@ -94,37 +95,37 @@
 		<tbody>
 			<tr>
 				<td colspan=2>
-					<label class="input-required">ชื่อแพ็คเกจ</label>
-					<input id="pkg_name" name="pkg_name" type="text" class="form-input full" value="{$values.pkg_name}">
+					<label class="input-required">ชื่อโปรโมชั่น</label>
+					<input id="prm_name" name="prm_name" type="text" class="form-input full" value="{$values.prm_name}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>จำนวนครั้งที่ใช้บริการ</label>
+					<input id="prm_use_amount" name="prm_use_amount" type="text" class="form-input half" value="{$values.prm_use_amount}">
+				</td>
+			
+				<td>
+					<label>จำนวนครั้งที่ฟรี</label>
+					<input id="prm_free_amount" name="prm_free_amount" type="text" class="form-input half" value="{$values.prm_free_amount}">
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<label class="input-required">วันที่เริ่มใช้</label>
-                	<input id="pkg_start" name="pkg_start" type="text" class="form-input half" value="{$values.pkg_start}">
+                	<input id="prm_startdate" name="prm_startdate" type="text" class="form-input half" value="{$values.prm_startdate}">
                 </td>
                 <td>
 					<label>วันที่สิ้นสุด</label>
-                	<input id="pkg_stop" name="pkg_stop" type="text" class="form-input half" value="{$values.pkg_stop}">
+                	<input id="prm_enddate" name="prm_enddate" type="text" class="form-input half" value="{$values.prm_enddate}">
                 </td>
 			</tr>
-			<tr>
-				<td colspan=2>
-					<label class="input-required">ราคา</label>
-					<input id="pkg_price" name="pkg_price" type="text" class="form-input full" value="{$values.pkg_price}">
-				</td>
-			</tr>
-			<tr>
-				<td colspan=2>
-					<label>คำอธิบาย</label>
-					<textarea id="pkg_desc" name="pkg_desc" class="form-input full" value="{$values.pkg_desc}"></textarea>
-				</td>
-			</tr>
+			
 	    </tbody>
     </table>
     </form>
 	<form method="post" enctype="multipart/form-data">
-		<input id="pkg_picture_file" type="file" name="imageFile" class="uploadImageSelector" multiple="multiple">
+		<input id="prm_picture_file" type="file" name="imageFile" class="uploadImageSelector" multiple="multiple">
 	</form>
 	{/if}
 </div>

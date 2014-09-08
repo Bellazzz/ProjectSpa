@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-07 23:29:25
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-08 14:24:26
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_customers.html" */ ?>
 <?php /*%%SmartyHeaderCode:174055404a65c39e385-08774600%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a1643d9f3b7447d1c25ce2a05226a857b050290' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_customers.html',
-      1 => 1410103076,
+      1 => 1410157458,
       2 => 'file',
     ),
   ),
@@ -149,6 +149,93 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div class="ftb-body">
+    <div class="ftb-body">
+    <?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
+    <!-- VIEW_DETAIL -->
+    <div class="table-view-detail-image full">
+       
+    </div>
+    <table class="table-view-detail">
+        <tbody>
+            <tr>
+                <td>รหัสผู้ใช้บริการ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+</td>
+            </tr>
+            <tr>
+                <td>รหัสประเภทผู้ใช้บริการ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['custype_id'];?>
+</td>
+            </tr>
+            <tr>
+                <td>คำนำหน้าชื่อ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['title_id'];?>
+</td>
+            </tr>
+            <tr>
+                <td>ชื่อผู้ใช้บริการ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_name'];?>
+</td>
+            </tr>
+            <tr>
+                <td>นามสกุล :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_surname'];?>
+</td>
+            </tr>
+            <tr>
+                <td>เพศ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['sex_id'];?>
+</td>
+            </tr>
+            <tr>
+                <td>ที่อยู่ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_addr'];?>
+</td>
+            </tr>
+            <tr>
+                <td>เบอร์โทรศัพท์ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_tel'];?>
+</td>
+            </tr>
+            <tr>
+                <td>ชื่อผู้ใช้งาน :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_user'];?>
+</td>
+            </tr>
+            <tr>
+                <td>รหัสผ่าน :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_pass'];?>
+</td>
+            </tr>
+            <tr>
+                <td>วันเกิด :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_birthdate'];?>
+</td>
+            </tr>
+            <tr>
+                <td>วันที่สมัคร :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_registered_date'];?>
+</td>
+            </tr>
+            <tr>
+                <td>ชื่อเฟสบุ๊ค :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_facebook'];?>
+</td>
+            </tr>
+            <tr>
+                <td>ไลน์ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_line_id'];?>
+</td>
+            </tr>
+            <tr>
+                <td>อีเมล์ :</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_email'];?>
+</td>
+            </tr>
+        </tbody> 
+    </table> 
+    <?php } else { ?>      
+    <!-- ADD, EDIT -->                      
 
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="custype_id,sex_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date,sex_id">
@@ -255,7 +342,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	    </tbody>
     </table>
     </form>
-    
+    <?php }?>
 </div>
 </body>
 </html>

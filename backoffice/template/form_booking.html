@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+	<title>Spa - Backoffice</title>
+	<meta charset="UTF-8"/>
+    {literal}
+	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
+	<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> 
+    <script type="text/javascript" src="../js/mbk_common_function.js"></script>
+    <script type="text/javascript" src="../js/mbk_main.js"></script>
+    <script type="text/javascript" src="../js/mbk_form_table.js"></script>
+    <script type="text/javascript">
+        // Global variables
+        var action      = '{/literal}{$action}{literal}';
+        var tableName   = '{/literal}{$tableName}{literal}';
+		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
+        var code        = '{/literal}{$code}{literal}';
+        var ajaxUrl     = 'form_booking.php';
+
+		$(document).ready(function() {
+			 selectReference({
+                elem            : $('#emp_id'),
+                tableName       : 'employees',
+                keyFieldName    : 'emp_id',
+                textFieldName   : 'emp_id,emp_name,emp_surname',
+                searchTool      : true,
+                defaultValue    : '{/literal}{$values.emp_id}{literal}',
+                pattern         : 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
+            });
+			  selectReference({
+                elem            : $('#cus_id'),
+                tableName       : 'customers',
+                keyFieldName    : 'cus_id',
+                textFieldName   : 'cus_id,cus_name,cus_surname',
+                searchTool      : true,
+                defaultValue    : '{/literal}{$values.cus_id}{literal}',
+                pattern         : 'CONCAT("(",cus_id,") ",cus_name," ",cus_surname)'
+            });
+			  selectReference({
+                elem            : $('#bkgstat_id'),
+                tableName       : 'booking_status',
+                keyFieldName    : 'bkgstat_id',
+                textFieldName   : 'bkgstat_name',
+                searchTool      : true,
+                defaultValue    : '{/literal}{$values.bkgstat_id}{literal}',
+             
+            });
+			   selectReference({
+                elem            : $('#bnkacc_id'),
+                tableName       : 'bank_accounts',
+                keyFieldName    : 'bnkacc_id',
+                textFieldName   : 'bnkacc_name',
+                searchTool      : true,
+                defaultValue    : '{/literal}{$values.bnkacc_id}{literal}',
+             
+            });
+			
+			uploadImageInput({
+				area: $('#bkg_transfer_evidence'),
+				input: $('input[name="bkg_transfer_evidence"]'),
+				selector: $('#bkg_transfer_evidence_file'),
+				defaultValue: '{/literal}{if $values.bkg_transfer_evidence}../img/booking/{$values.bkg_transfer_evidence}{/if}{literal}'
+			});
+
+			$("#bkg_date").datepicker(); 
+			$("#bkg_transfer_date").datepicker();
+		});
+    </script>
+    {/literal}
+</head>
+<body>
+ 	 	 	 	 
+{include file="form_table_header.html"}
+<div class="ftb-body"> 
+<div class="ftb-body">
+	{if $action == 'VIEW_DETAIL'}
+	<!-- VIEW_DETAIL -->
+	<div class="table-view-detail-image full">
+		<img src="../img/promotions/{$values.bkg_transfer_evidence}">
+	</div>
+	<table class="table-view-detail">
+		<tbody> 			
+			<tr>
+				<td>รหัสการจอง :</td>
+				<td>{$code}</td>
+			</tr>
+			<tr>
+				<td>รหัสผู้ใช้บริการ :</td>
+				<td>{$values.cus_id}</td>
+			</tr>
+			<tr>
+				<td>รหัสพนักงาน :</td>
+				<td>{$values.emp_id}</td>
+			</tr>
+			<tr>
+				<td>สถานะการจอง :</td>
+				<td>{$values.status_id}</td>
+			</tr>
+			<tr>
+				<td>รหัสบัญชีธนาคาร :</td>
+				<td>{$values.bnkacc_id}</td>
+			</tr>
+			<tr>
+				<td>วันที่โอน :</td>
+				<td>{$values.bkg_transfer_date}</td>
+			</tr>
+			<tr>
+				<td>เวลาที่โอน :</td>
+				<td>{$values.bkg_transfer_time}</td>
+			</tr>
+			<tr>
+				<td>ราคารวมการจองทั้งหมด(บาท) :</td>
+				<td>{$values.bkg_total_price}</td>
+			</tr>
+			<tr>
+				<td>วันที่จอง :</td>
+				<td>{$values.bkg_date}</td>
+			</tr>
+			<tr>
+				<td>เวลาที่จอง :</td>
+				<td>{$values.bkg_time}</td>
+			</tr>
+			<tr>
+				<td>จำนวนเงินที่โอน(บาท) :</td>
+				<td>{$values.bkg_transfer_money}</td>
+			</tr>
+			
+													
+		</tbody>
+	</table>
+	{else}	 	
+	<!-- ADD, EDIT -->	 	 	 	 	 	 	 	 	
+    <form id="form-table" name="form-table" onsubmit="return false;">
+	<input type="hidden" name="requiredFields" value="cus_id,emp_id,status_id,bnkacc_id,bkg_total_price,bkg_date,bkg_time,bkg_transfer_money">
+    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+	    <tbody>
+			<tr>
+				<td>
+					<div id="bkg_transfer_evidence" class="uploadImageArea full"></div>
+					<input type="hidden" name="bkg_transfer_evidence" value="{$values.bkg_transfer_evidence}">
+				</td>
+		</tbody> 											
+			</tr> 
+    </table>
+	<table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+		<tbody>
+			<tr>
+				<td>
+					<label class="input-required">ชื่อ-นามสกุลผู้ใช้บริการ</label>
+					 <div id="cus_id" class="select-reference form-input half" > </div>
+				</td>
+			
+				<td>
+					<label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
+					 <div id="emp_id" class="select-reference form-input half" > </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="input-required">สถานะการจอง</label>
+					 <div id="bkgstat_id" class="select-reference form-input half" > </div>
+				</td>
+				<td>
+					<label class="input-required">บัญชีธนาคาร</label>
+					 <div id="bnkacc_id" class="select-reference form-input half" > </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>วันที่โอน</label>
+                	<input id="bkg_transfer_date" name="bkg_transfer_date" type="text" class="form-input half" value="{$values.bkg_transfer_date}">
+                </td>
+                <td>
+					<label>เวลาที่โอน</label>
+                	<input id="bkg_transfer_time" name="bkg_transfer_time" type="text" class="form-input half" value="{$values.bkg_transfer_time}">
+                </td>
+			</tr>
+			<tr>
+				<td>
+					<label class="input-required">ราคารวมการจอง(บาท)</label>
+					<input id="bkg_total_price" name="bkg_total_price" type="text" class="form-input half" value="{$values.bkg_total_price}">
+				</td>
+				<td>
+					<label class="input-required">วันที่จอง</label>
+					<input id="bkg_date" name="bkg_date" type="text" class="form-input half" value="{$values.bkg_date}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="input-required">เวลาที่จอง</label>
+					<input id="bkg_time" name="bkg_time" type="text" class="form-input half" value="{$values.bkg_time}">
+				</td>
+				<td>
+					<label class="input-required">จำนวนเงินที่โอน(บาท)</label>
+					<input id="bkg_transfer_money" name="bkg_transfer_money" type="text" class="form-input half" value="{$values.bkg_transfer_money}">
+				</td>
+			</tr>
+	    </tbody>
+    </table>
+    </form>
+	<form method="post" enctype="multipart/form-data">
+		<input id="bkg_transfer_evidence_file" type="file" name="imageFile" class="uploadImageSelector" multiple="multiple">
+	</form>
+	{/if}
+</div>
+</body>
+</html>
+<!--
+    [Note]
+    1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
+    2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
+-->

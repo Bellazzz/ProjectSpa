@@ -112,6 +112,78 @@
 
 {include file="form_table_header.html"}
 <div class="ftb-body">
+    <div class="ftb-body">
+    {if $action == 'VIEW_DETAIL'}
+    <!-- VIEW_DETAIL -->
+    <div class="table-view-detail-image full">
+       
+    </div>
+    <table class="table-view-detail">
+        <tbody>
+            <tr>
+                <td>รหัสผู้ใช้บริการ :</td>
+                <td>{$code}</td>
+            </tr>
+            <tr>
+                <td>รหัสประเภทผู้ใช้บริการ :</td>
+                <td>{$values.custype_id}</td>
+            </tr>
+            <tr>
+                <td>คำนำหน้าชื่อ :</td>
+                <td>{$values.title_id}</td>
+            </tr>
+            <tr>
+                <td>ชื่อผู้ใช้บริการ :</td>
+                <td>{$values.cus_name}</td>
+            </tr>
+            <tr>
+                <td>นามสกุล :</td>
+                <td>{$values.cus_surname}</td>
+            </tr>
+            <tr>
+                <td>เพศ :</td>
+                <td>{$values.sex_id}</td>
+            </tr>
+            <tr>
+                <td>ที่อยู่ :</td>
+                <td>{$values.cus_addr}</td>
+            </tr>
+            <tr>
+                <td>เบอร์โทรศัพท์ :</td>
+                <td>{$values.cus_tel}</td>
+            </tr>
+            <tr>
+                <td>ชื่อผู้ใช้งาน :</td>
+                <td>{$values.cus_user}</td>
+            </tr>
+            <tr>
+                <td>รหัสผ่าน :</td>
+                <td>{$values.cus_pass}</td>
+            </tr>
+            <tr>
+                <td>วันเกิด :</td>
+                <td>{$values.cus_birthdate}</td>
+            </tr>
+            <tr>
+                <td>วันที่สมัคร :</td>
+                <td>{$values.cus_registered_date}</td>
+            </tr>
+            <tr>
+                <td>ชื่อเฟสบุ๊ค :</td>
+                <td>{$values.cus_facebook}</td>
+            </tr>
+            <tr>
+                <td>ไลน์ :</td>
+                <td>{$values.cus_line_id}</td>
+            </tr>
+            <tr>
+                <td>อีเมล์ :</td>
+                <td>{$values.cus_email}</td>
+            </tr>
+        </tbody> 
+    </table> 
+    {else}      
+    <!-- ADD, EDIT -->                      
 
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="custype_id,sex_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date,sex_id">
@@ -207,7 +279,7 @@
 	    </tbody>
     </table>
     </form>
-    
+    {/if}
 </div>
 </body>
 </html>
