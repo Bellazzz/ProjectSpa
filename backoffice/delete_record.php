@@ -3,7 +3,8 @@ if(!isset($keySelected) || $keySelected == '') {
 	echo 'NO_RECORD_SELECTED';
 	exit();
 }
-include('../common/common_constant.php');
+
+include('../common/class_database.php');
 include('../common/common_function.php');
 
 $tableInfo	= getTableInfo($tableName);
@@ -13,6 +14,24 @@ $keyType	= $tableInfo['keyFieldType'];
 // Add single quote
 foreach($keySelected as $index => $value) {
 	$keySelected[$index] = "'$value'";
+}
+
+// Delete detail
+if($tableName == 'orders') {
+	foreach($keySelected as $index => $ord_id) {
+		$sql = "SELECT orddtl_id FROM order_details WHERE ord_id = $ord_id";
+		$result = mysql_query($sql, $dbConn);
+		$rows 	= mysql_num_rows($result);
+		for($i=0; $i<$rows; $i++) {
+			$resultRow = mysql_fetch_assoc($result);
+			$orddtl_id = $resultRow['orddtl_id'];
+			$orderDetailRecord = new TableSpa('order_details', $orddtl_id);
+			if(!$orderDetailRecord->delete()) {
+				echo "DELETE_ORDER_DETAIL_FAIL";
+				exit();
+			}
+		}
+	}
 }
 
 // Delete record

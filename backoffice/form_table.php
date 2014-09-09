@@ -4,11 +4,11 @@ $tableName		= $_REQUEST['tableName'];
 $code			= $_REQUEST['code'];
 
 // Check table
-/*switch ($tableName) {
-	case 'employees':
-		header("location:form_employees.php?action=$action&code=$code");
+switch ($tableName) {
+	case 'orders':
+		header("location:form_orders.php?action=$action&code=$code");
 		break;
-}*/
+}
 
 include('../config/config.php');
 $tplName = "form_$tableName.html";
@@ -93,7 +93,7 @@ if(!$_REQUEST['ajaxCall']) {
 		foreach($formData as $fieldName => $value) {
 			if($fieldName != 'requiredFields' && $fieldName != 'uniqueFields') {
 				// Skip if value is empty and default this field is null
-				if($value == '' && in_array($fieldName, $tableInfo['defaultNull'])) {
+				if($value == '' && is_array($tableInfo['defaultNull']) && in_array($fieldName, $tableInfo['defaultNull'])) {
 					continue;
 				}
 				
@@ -122,7 +122,7 @@ if(!$_REQUEST['ajaxCall']) {
 		foreach($formData as $fieldName => $value) {
 			if(in_array($fieldName, $fieldListEn)) {
 				// value is empty will set default is null
-				if($value == '' && in_array($fieldName, $tableInfo['defaultNull'])) {
+				if($value == '' && is_array($tableInfo['defaultNull']) && in_array($fieldName, $tableInfo['defaultNull'])) {
 					$value = 'NULL';
 				}
 				

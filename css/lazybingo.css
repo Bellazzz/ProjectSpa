@@ -1048,6 +1048,14 @@ table.mbk .icon {
 	content: "* ";
 	color: #D80000;
 }
+.mbk-form-input-normal label.group-title {
+    font-size: 18px;
+    display: inline-block;
+    width: 520px;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0 2px 5px;
+    margin-bottom: 15px;
+}
 
 .mbk-form-input-normal input[type="text"], .mbk-form-input-normal input[type="password"], .mbk-form-input-normal input[type="number"], .mbk-form-input-normal select, .mbk-form-input-normal textarea {
     border: 1px solid #ccc;

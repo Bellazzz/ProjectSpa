@@ -6,21 +6,38 @@
     {literal}
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-	<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> <!--include if want to use datepicker-->
+	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> <!--include if want to use datepicker-->
+	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
+    <style type="text/css">
+        #order-detail-table tr:nth-child(3) .removeProductBtn {
+            display: none;
+        }
+    </style>
     <script type="text/javascript">
         // Global variables
         var action      = '{/literal}{$action}{literal}';
         var tableName   = '{/literal}{$tableName}{literal}';
 		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
         var code        = '{/literal}{$code}{literal}';
-        var ajaxUrl     = 'form_table.php';
+        var ajaxUrl     = 'form_orders.php';
+        var valuesDetail= '';
+
+        // Set valuesDetail
+        {/literal}
+        {if $valuesDetail}
+        {literal}
+            valuesDetail= {/literal}{$valuesDetail|@json_encode}{literal};
+        {/literal}
+        {/if}
+        {literal}
 
         $(document).ready(function () {
+            $('#addProjectBtn').click(addProduct);
+
             selectReference({
                 elem			: $('#ordtyp_id'),
                 tableName		: 'order_types',
@@ -50,9 +67,118 @@
                 
             });
 
-			$("#ord_date").datepicker();
-            $("#ord_snd_date").datepicker();
+			$('#ord_date').datetimepicker({
+                lang:'th',
+                format:'Y/m/d',
+                closeOnDateSelect:true,
+                onShow:function( ct ){
+                    this.setOptions({
+                        maxDate:$('#ord_snd_date').val()?$('#ord_snd_date').val():false
+                    })
+                },
+                timepicker:false
+            });
+
+            $('#ord_snd_date').datetimepicker({
+                lang:'th',
+                format:'Y/m/d',
+                closeOnDateSelect:true,
+                onShow:function( ct ){
+                    this.setOptions({
+                        minDate:$('#ord_date').val()?$('#ord_date').val():false
+                    })
+                },
+                timepicker:false
+            });
+
+            // Create product input
+            if(action == 'ADD') {
+                addProduct({
+                    defaultValue : false
+                });
+            } else if(action == 'EDIT') {
+                for(i in valuesDetail) {
+                     addProduct({
+                        defaultValue : true,
+                        orddtl_id   : valuesDetail[i].orddtl_id,
+                        prd_id      : valuesDetail[i].prd_id,
+                        prd_qty     : valuesDetail[i].orddtl_amount
+                    });
+                }
+            }
         });
+        
+        function addProduct(data) {
+            var randNum;
+            var selectRefDefault = '';
+            do {
+                randNum     = parseInt(Math.random()*1000);
+            } while($('prd_id_' + randNum).length > 0);
+            var inputKeyId  = 'prd_id_' + randNum;
+            var inputQtyId  = 'prd_qty_' + randNum;
+
+            // Create HTML and append
+            var prdRowHTML  = '<tr class="product-row">'
+                            + '     <td>'
+                            + '         <div id="' + inputKeyId + '" class="select-reference form-input half" ></div>'
+                            + '     </td>'
+                            + '     <td>';
+
+            // add input product amount
+            if(data.defaultValue) {
+                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half" value="' + data.prd_qty + '">';
+                selectRefDefault = data.prd_id;
+            } else {
+                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half">';
+            }
+
+            // add order detail id for update
+            if(action == 'EDIT' && typeof(data.orddtl_id) != 'undefined') {
+                prdRowHTML += '         <input name="orddtl_id[]" type="hidden" value="' + data.orddtl_id + '">';
+            }
+
+                prdRowHTML += '         <button class="removeProductBtn button button-icon button-icon-delete" onclick="removeProduct(\'' + randNum + '\')"></button>'
+                            + '     </td>'
+                            + '</tr>';
+            $('#order-detail-table tbody').append(prdRowHTML);
+
+            // Create select reference
+            selectReference({
+                elem            : $('#' + inputKeyId),
+                tableName       : 'products',
+                keyFieldName    : 'prd_id',
+                textFieldName   : 'prd_name',
+                searchTool      : true,
+                defaultValue    : selectRefDefault,
+                success         : 
+                function() {
+                    $('input[name="' + inputKeyId + '"]').attr('name', 'prd_id[]');
+                }
+            });
+        }
+
+        function removeProduct(randNum) {
+            // Remove html
+            $('#prd_id_' + randNum).parent().parent().remove();
+        }
+
+        function beforeSaveRecord() {
+            // Check product input required
+            var returnVal = false;
+            $('input[name="prd_id[]"]').each(function() {
+                if($(this).val() == '') {
+                    $(this).parent().addClass('required');
+                    returnVal = true;
+                }
+            });
+            $('input[name="prd_qty[]"]').each(function() {
+                if($(this).val() == '') {
+                    $(this).addClass('required');
+                    returnVal = true;
+                }
+            });
+            return returnVal;
+        }
     </script>
     {/literal}
 </head>
@@ -66,18 +192,23 @@
 	    <tbody>
             <tr>
                 <td colspan="2">
+                    <label class="group-title">ข้อมูลการสั่งซื้อ</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
                     <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
-                    <div id="emp_id" class="select-reference form-input full" > </div>
+                    <div id="emp_id" class="select-reference form-input full" ></div>
                 </td>
             </tr>
             <tr>
                 <td>
 				    <label class="input-required">ชื่อบริษัทจำหน่ายผลิตภัณฑ์</label>
-				    <div id="comp_id" class="select-reference form-input half" > </div>
+				    <div id="comp_id" class="select-reference form-input half" ></div>
 			    </td>
                 <td>
                     <label class="input-required">ประเภทการสั่งซื้อผลิตภัณฑ์</label>
-                    <div id="ordtyp_id" class="select-reference form-input half" > </div>
+                    <div id="ordtyp_id" class="select-reference form-input half" ></div>
                 </td>
 		    </tr>
 			<tr>
@@ -95,20 +226,23 @@
 	    </tbody>
     </table>
 
-    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+    <table id="order-detail-table" class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
         <tbody>
             <tr>
-                <td>
-                    <label class="input-required">วันที่สั่งซื้อ</label>
-                    <input id="ord_date" name="ord_date" type="text" class="form-input half" value="{$values.ord_date}">
-                </td>
-                 <td>
-                    <label>วันที่จัดส่ง</label>
-                    <input id="ord_snd_date" name="ord_snd_date" type="text" class="form-input half" value="{$values.ord_snd_date}">
+                <td colspan="2">
+                    <label class="group-title">รายละเอียดการสั่งซื้อ</label>
                 </td>
             </tr>
+            <tr>
+                <td><label class="input-required">ผลิตภัณฑ์</label></td>
+                <td><label class="input-required">จำนวน</label></td>
+            </tr>
+            {if $action == 'ADD'}
+            {elseif $action == 'EDIT'}
+            {/if}
         </tbody>
     </table>
+    <button id="addProjectBtn" class="button button-icon button-icon-add">เพิ่มผลิตภัณฑ์</button>
     </form>
 </div>
 </body>

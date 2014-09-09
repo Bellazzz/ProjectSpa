@@ -86,6 +86,10 @@ class DBRecord {
 			$sql .= $this->keyIsChar() ? '('.$this->wrapSingleQuote($pk).',' : '(';
 			$sql .= implode(',', $values) . ')';
 			$this->insertSuccess = mysql_query($sql, $this->database);
+			if($this->insertSuccess) {
+				$this->key = $pk;
+				$this->fetchData($pk);
+			}
 		} else {
 			throw new Exception('Number of parameter in field name and values not equal');
 		}
@@ -108,6 +112,10 @@ class DBRecord {
 			$sql .= $this->keyIsChar() ? '('.$this->wrapSingleQuote($pk).',' : '(';
 			$sql .= implode(',', $values) . ')';
 			$this->insertSuccess =  mysql_query($sql, $this->database);
+			if($this->insertSuccess) {
+				$this->key = $pk;
+				$this->fetchData($pk);
+			}
 		} else {
 			throw new Exception('Invalid number of values');
 		}
@@ -254,6 +262,10 @@ class DBRecord {
 
 	public function insertSuccess() {
 		return $this->insertSuccess;
+	}
+
+	public function getKey() {
+		return $this->key;
 	}
 }
 

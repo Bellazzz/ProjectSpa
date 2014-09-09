@@ -301,6 +301,11 @@ function selectReference(select) {
             if(!select.elem.hasClass('text')) {
                 pullRefData();
             }
+
+            // Call back function success
+            if(typeof(select.success) == 'function') {
+                select.success();
+            }
         }
     });
 }
