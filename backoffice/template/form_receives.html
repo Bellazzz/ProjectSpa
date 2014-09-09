@@ -5,10 +5,12 @@
 	<meta charset="UTF-8"/>
     {literal}
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-	<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> <!--include if want to use datepicker-->
+    <link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
+    <!--<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css">-->
+    <link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> <!--include if want to use datepicker-->
+    <!--<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script>-->
+    <script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -42,7 +44,12 @@
             });
              
 
-			$("#rec_date").datepicker();
+            $('#rec_date').datetimepicker({
+                lang:'th',
+                timepicker:false,
+                format:'Y-m-d',
+                closeOnDateSelect:true
+            });
        
         });
     </script>
