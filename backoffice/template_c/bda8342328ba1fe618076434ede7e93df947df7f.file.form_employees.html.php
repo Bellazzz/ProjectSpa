@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-09 12:16:38
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-09 22:54:04
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
 <?php /*%%SmartyHeaderCode:18875540e7f268365d1-03011553%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bda8342328ba1fe618076434ede7e93df947df7f' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_employees.html',
-      1 => 1410234583,
+      1 => 1410274412,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_540e7f269d9644_89605916',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_540e7f269d9644_89605916',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_540e7f269d9644_89605916')) {function content_540e7f269d9644_89605916($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -160,8 +160,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		}
 
 		function resetPass() {
-			var oldRequired = $('input[name="requiredFields"]').val();
-			$('input[name="requiredFields"]').val(oldRequired + ',emp_pass,emp_re_pass');
+			//var oldRequired = $('input[name="requiredFields"]').val();
+			//$('input[name="requiredFields"]').val(oldRequired + ',emp_pass,emp_re_pass');
 			$('#trResetPass').remove();
 			addInputPassword();
 		}
@@ -177,8 +177,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-		<img src="../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
-">
+		<img src="<?php if ($_smarty_tpl->tpl_vars['values']->value['emp_pic']) {?>../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
+<?php } else { ?>../img/backoffice/no-pic.png<?php }?>">
 	</div>
 	<table class="table-view-detail">
 		<tbody>
@@ -193,13 +193,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</tr>
 			<tr>
 				<td>ชื่อพนักงาน :</td>
-				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
-</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_name']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>นามสกุล :</td>
-				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
-</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_surname']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>เพศ :</td>
@@ -211,35 +211,35 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</tr>
 			<tr>
 				<td>ที่อยู่ :</td>
-				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_addr'];?>
-</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_addr']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_addr'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>เบอร์โทรศัพท์ :</td>
-				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_tel'];?>
-</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_tel']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_tel'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>วันเกิด :</td>
-				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_birthdate'];?>
-</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_birthdate']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_birthdate'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>วันที่เข้าทำงาน :</td>
-				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_indate'];?>
-</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_indate']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_indate'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>ชื่อผู้ใช้งาน :</td>
-				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_user'];?>
-</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_user']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_user'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 		</tbody>
 	</table>
 	<?php } else { ?>	 	
 	<!-- ADD, EDIT -->	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_indate,sex_id,emp_user<?php if ($_smarty_tpl->tpl_vars['action']->value=='ADD') {?>,emp_pass,emp_re_pass<?php }?>">
+	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_indate,sex_id">
     <input type="hidden" name="uniqueFields" value="emp_user">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-09 12:15:46
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-09 23:06:45
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking.html" */ ?>
 <?php /*%%SmartyHeaderCode:1561540e7ef20ee4c1-78212408%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7558e3fa7d5af0ec85571adf319393c9fdf264ec' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking.html',
-      1 => 1410186980,
+      1 => 1410275187,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_540e7ef2271960_42860847',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_540e7ef2271960_42860847',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_540e7ef2271960_42860847')) {function content_540e7ef2271960_42860847($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -35,9 +35,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-	<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
+	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> 
+	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script> 
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -102,9 +102,30 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				defaultValue: '<?php if ($_smarty_tpl->tpl_vars['values']->value['bkg_transfer_evidence']) {?>../img/booking/<?php echo $_smarty_tpl->tpl_vars['values']->value['bkg_transfer_evidence'];?>
 <?php }?>'
 			});
+			//	 	
 
-			$("#bkg_date").datepicker(); 
-			$("#bkg_transfer_date").datepicker();
+			$('#bkg_date').datetimepicker({
+				lang:'th',
+				timepicker:false,
+				format:'Y-m-d',
+				closeOnDateSelect:true
+			});
+			$('#bkg_transfer_date').datetimepicker({
+				lang:'th',
+				timepicker:false,
+				format:'Y-m-d',
+				closeOnDateSelect:true
+			});
+			 $('#bkg_time').datetimepicker({
+                datepicker:false,
+                format:'H:i',
+                minTime:'06:00',
+            });
+			  $('#bkg_transfer_time').datetimepicker({
+                datepicker:false,
+                format:'H:i',
+                minTime:'06:00',
+            });
 		});
     </script>
     
