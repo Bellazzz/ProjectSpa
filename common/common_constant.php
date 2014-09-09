@@ -111,7 +111,8 @@ function dbClose() {
 						'emp_pass'		=> 'Password',
 						'emp_pic'		=> 'รูปภาพ'
 				),
-				'hiddenFields'	=> array('emp_indate','emp_birthdate','emp_addr','emp_tel','emp_user','emp_pass','emp_pic')
+				'hiddenFields'	=> array('emp_indate','emp_birthdate','emp_addr','emp_tel','emp_user','emp_pass','emp_pic'),
+				'defaultNull' 	=> array('emp_pic','emp_birthdate','emp_user','emp_pass')
 			);
 			break;
 		

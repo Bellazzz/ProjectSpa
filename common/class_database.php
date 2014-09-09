@@ -151,7 +151,9 @@ class DBRecord {
 		if(isset($this->data)) {
 			 $fieldList = array();
 			 foreach($this->data as $fieldName => $fieldValue) {
-				$fieldValue = (gettype($fieldValue) == 'string' ? "'$fieldValue'" : $fieldValue);
+			 	if($fieldValue != 'NULL') {
+			 		$fieldValue = (gettype($fieldValue) == 'string' ? "'$fieldValue'" : $fieldValue);
+			 	}
 			 	array_push($fieldList, "$fieldName = $fieldValue");
 			 }
 			 $key = $this->keyIsChar() ? wrapSingleQuote($this->key) : $this->key;
