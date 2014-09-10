@@ -11,7 +11,7 @@ $tableInfo = getTableInfo($tableName);
 
 if(!$_REQUEST['ajaxCall']) {
 	//1. Display form
-	if($action == 'EDIT' || $action == 'VIEW_DETAIL') {
+	if($action == 'EDIT') {
 		// Get table orders data
 		$tableRecord = new TableSpa($tableName, $code);
 		$values      = array();
@@ -29,6 +29,32 @@ if(!$_REQUEST['ajaxCall']) {
 			array_push($valuesDetail, mysql_fetch_assoc($result));
 		}
 		$smarty->assign('valuesDetail', $valuesDetail);
+
+	} else if($action == 'VIEW_DETAIL') {
+		// Get table orders data
+		$tableRecord = new TableSpa($tableName, $code);
+		$values      = array();
+		foreach($tableInfo['fieldNameList'] as $field => $value) {
+			$values[$field] = $tableRecord->getFieldValue($field);
+		}
+		$smarty->assign('values', $values);
+
+		// Get detail of orders
+		$orderDetailList = array();
+		$sql 	= "	SELECT FORMAT(o.orddtl_amount, 0) orddtl_amount,
+					p.prd_name,
+					p.prd_price,
+					u.unit_name 
+					FROM order_details o, products p, units u 
+					WHERE o.prd_id = p.prd_id AND p.unit_id = u.unit_id 
+					AND o.ord_id = '$code'";
+		echo $sql;
+		$result = mysql_query($sql, $dbConn);
+		$rows 	= mysql_num_rows($result);
+		for($i=0; $i<$rows; $i++) {
+			array_push($orderDetailList, mysql_fetch_assoc($result));
+		}
+		$smarty->assign('orderDetailList', $orderDetailList);
 	}
 
 	$smarty->assign('action', $action);

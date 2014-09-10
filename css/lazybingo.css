@@ -405,12 +405,23 @@ a.mbk-table-header-content {
  * Table view detail
  */
 table.table-view-detail {
+    margin: 20px 0;
+    border-collapse: collapse;
+    width: 100%;
     color: #666;
-    max-width: 520px;
-    padding: 20px 0;
 }
-table.table-view-detail tr td {
-    padding-bottom: 10px;
+table.table-view-detail tr:nth-child(even) {
+    background-color: #ffffff;
+}
+table.table-view-detail tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+table.table-view-detail td {
+    border-bottom: 1px solid #ddd;
+    padding: 5px 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    vertical-align: top;
 }
 table.table-view-detail tr td:first-child {
     text-align: right;
@@ -418,7 +429,7 @@ table.table-view-detail tr td:first-child {
     vertical-align: top;
 }
 table.table-view-detail tr td:last-child {
-    padding-left: 10px;
+    width: 100%;
 }
 .table-view-detail-image {
     text-align: center;
@@ -430,6 +441,34 @@ table.table-view-detail tr td:last-child {
     width: 520px;
 }
 
+/*
+ * Table view detail reference
+ */
+table.view-detail-reference {
+    border-collapse: collapse;
+    width: 100%;
+}
+table.view-detail-reference th {
+    color: #ffffff;
+    background-color: #555555;
+    border: 1px solid #555555;
+    padding: 3px;
+    vertical-align: top;
+    text-align: left;
+}
+table.view-detail-reference tr:nth-child(even) {
+    background-color: #ffffff;
+}
+table.view-detail-reference tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+table.view-detail-reference td {
+    border: 1px solid #d4d4d4;
+    padding: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    vertical-align: top;
+}
 
 /*Width of column*/
 table.mbk .icon-col {
@@ -1055,6 +1094,13 @@ table.mbk .icon {
     border-bottom: 1px solid #ccc;
     padding: 10px 0 2px 5px;
     margin-bottom: 15px;
+}
+
+label.article-title {
+    display: block;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 10px;
 }
 
 .mbk-form-input-normal input[type="text"], .mbk-form-input-normal input[type="password"], .mbk-form-input-normal input[type="number"], .mbk-form-input-normal select, .mbk-form-input-normal textarea {

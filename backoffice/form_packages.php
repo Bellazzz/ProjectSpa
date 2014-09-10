@@ -128,24 +128,28 @@ if(!$_REQUEST['ajaxCall']) {
 
 		// Rename Image
 		if(strpos($formData['pkg_picture'], 'temp_') !== FALSE) {
+			$type		= str_replace(".", "", strrchr($formData['pkg_picture'],"."));
+			$pkg_picture = $code.".$type";
+			$imgTmpPath = '../img/temp/'.$formData['pkg_picture'];
+			$imgNewPath = '../img/packages/'.$pkg_picture;
+
 			// Delete Old Image
-			$oldImg = '../img/packages/'.$tableRecord->getFieldValue('pkg_picture');
-			if(file_exists($oldImg)) {
-				if(!unlink($oldImg)) {
+			if(file_exists($imgNewPath)) {
+				if(!unlink($imgNewPath)) {
 					$response['status'] = 'DELETE_OLD_IMG_FAIL';
 					echo json_encode($response);
 					exit();
 				}
 			}
-		
-			$type		= str_replace(".", "", strrchr($formData['pkg_picture'],"."));
-			$pkg_picture	= $code.".$type";
-			if(rename('../img/temp/'.$formData['pkg_picture'], '../img/packages/'.$pkg_picture)) {
-				$formData['pkg_picture'] = $pkg_picture;
-			} else {
-				$response['status'] = 'RENAME_FAIL';
-				echo json_encode($response);
-				exit();
+			// Rename temp to new image
+			if(file_exists($imgTmpPath)) {
+				if(rename($imgTmpPath, $imgNewPath)) {
+					$formData['pkg_picture'] = $pkg_picture;
+				} else {
+					$response['status'] = 'RENAME_FAIL';
+					echo json_encode($response);
+					exit();
+				}
 			}
 		}
 

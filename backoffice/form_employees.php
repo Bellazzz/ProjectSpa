@@ -126,27 +126,30 @@ if($_REQUEST['ajaxCall']) {
 
 		// Rename Image
 		if(strpos($formData['emp_pic'], 'temp_') !== FALSE) {
+			$type		= str_replace(".", "", strrchr($formData['emp_pic'],"."));
+			$emp_pic	= $code.".$type";
+			$imgTmpPath = '../img/temp/'.$formData['emp_pic'];
+			$imgNewPath = '../img/employees/'.$emp_pic;
+
 			// Delete Old Image
-			$oldImg = '../img/employees/'.$tableRecord->getFieldValue('emp_pic');
-			if(file_exists($oldImg)) {
-				if(!unlink($oldImg)) {
+			if(file_exists($imgNewPath)) {
+				if(!unlink($imgNewPath)) {
 					$response['status'] = 'DELETE_OLD_IMG_FAIL';
 					echo json_encode($response);
 					exit();
 				}
 			}
-		
-			$type		= str_replace(".", "", strrchr($formData['emp_pic'],"."));
-			$emp_pic	= $code.".$type";
-			if(rename('../img/temp/'.$formData['emp_pic'], '../img/employees/'.$emp_pic)) {
-				$formData['emp_pic'] = $emp_pic;
-			} else {
-				$response['status'] = 'RENAME_FAIL';
-				echo json_encode($response);
-				exit();
+			// Rename temp to new image
+			if(file_exists($imgTmpPath)) {
+				if(rename($imgTmpPath, $imgNewPath)) {
+					$formData['emp_pic'] = $emp_pic;
+				} else {
+					$response['status'] = 'RENAME_FAIL';
+					echo json_encode($response);
+					exit();
+				}
 			}
 		}
-
 
 
 		// Set all field value

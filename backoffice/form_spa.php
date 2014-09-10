@@ -128,25 +128,30 @@ if(!$_REQUEST['ajaxCall']) {
 
 		// Rename Image
 		if(strpos($formData['spa_logo'], 'temp_') !== FALSE) {
+			$type		= str_replace(".", "", strrchr($formData['spa_logo'],"."));
+			$spa_logo	= $code.".$type";
+			$imgTmpPath = '../img/temp/'.$formData['spa_logo'];
+			$imgNewPath = '../img/spa/'.$spa_logo;
+
 			// Delete Old Image
-			$oldImg = '../img/spa/'.$tableRecord->getFieldValue('spa_logo');
-			if(file_exists($oldImg)) {
-				if(!unlink($oldImg)) {
+			if(file_exists($imgNewPath)) {
+				if(!unlink($imgNewPath)) {
 					$response['status'] = 'DELETE_OLD_IMG_FAIL';
 					echo json_encode($response);
 					exit();
 				}
 			}
-		
-			$type		= str_replace(".", "", strrchr($formData['spa_logo'],"."));
-			$spa_logo	= $code.".$type";
-			if(rename('../img/temp/'.$formData['spa_logo'], '../img/spa/'.$spa_logo)) {
-				$formData['spa_logo'] = $spa_logo;
-			} else {
-				$response['status'] = 'RENAME_FAIL';
-				echo json_encode($response);
-				exit();
+			// Rename temp to new image
+			if(file_exists($imgTmpPath)) {
+				if(rename($imgTmpPath, $imgNewPath)) {
+					$formData['spa_logo'] = $spa_logo;
+				} else {
+					$response['status'] = 'RENAME_FAIL';
+					echo json_encode($response);
+					exit();
+				}
 			}
+			
 		}
 
 		// Set all field value

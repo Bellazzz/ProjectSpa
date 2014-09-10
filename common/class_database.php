@@ -159,7 +159,9 @@ class DBRecord {
 		if(isset($this->data)) {
 			 $fieldList = array();
 			 foreach($this->data as $fieldName => $fieldValue) {
-			 	if($fieldValue != 'NULL') {
+			 	if($fieldValue == null) {
+			 		$fieldValue = "NULL";
+			 	} else if($fieldValue != 'NULL') {
 			 		$fieldValue = (gettype($fieldValue) == 'string' ? "'$fieldValue'" : $fieldValue);
 			 	}
 			 	array_push($fieldList, "$fieldName = $fieldValue");

@@ -185,7 +185,61 @@
 <body>
 
 {include file="form_table_header.html"}
-<div class="ftb-body">    
+<div class="ftb-body">
+    {if $action == 'VIEW_DETAIL'}
+    <!-- VIEW_DETAIL -->
+    <!--Orders Data-->
+    <label class="article-title">ข้อมูลการสั่งซื้อ</label>
+    <table class="table-view-detail">
+        <tbody>
+            <tr>
+                <td>รหัสการสั่งซื้อ :</td>
+                <td>{$code}</td>
+            </tr>
+            <tr>
+                <td>ชื่อ-นามสกุลพนักงาน :</td>
+                <td><div id="emp_id" class="select-reference text"></td>
+            </tr>
+            <tr>
+                <td>บริษัทจำหน่ายผลิตภัณฑ์ :</td>
+                <td><div id="comp_id" class="select-reference text"></td>
+            </tr>
+            <tr>
+                <td>ประเภทการสั่งซื้อ :</td>
+                <td><div id="ordtyp_id" class="select-reference text"></td>
+            </tr>
+            <tr>
+                <td>วันที่สั่งซื้อ :</td>
+                <td>{if $values.ord_date}{$values.ord_date}{else}-{/if}</td>
+            </tr>
+            <tr>
+                <td>วันที่จัดส่ง :</td>
+                <td>{if $values.ord_snd_date}{$values.ord_snd_date}{else}-{/if}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!--Order Details Data-->
+    <label class="article-title">รายการผลิตภัณฑ์ที่สั่งซื้อ</label>
+    <table class="view-detail-reference">
+        <thead>
+            <tr>
+                <th>ผลิตภัณฑ์</th>
+                <th>ราคา/หน่วย</th>
+                <th>จำนวน</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach from=$orderDetailList key=i item=orddlt}
+            <tr>
+                <td>{$orddlt.prd_name}</td>
+                <td align="right">{$orddlt.prd_price}</td>
+                <td align="right">{$orddlt.orddtl_amount} {$orddlt.unit_name}</td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+    {else}      
+    <!-- ADD, EDIT -->       
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="ordtyp_id,emp_id,comp_id,ord_date">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
@@ -207,7 +261,7 @@
 				    <div id="comp_id" class="select-reference form-input half" ></div>
 			    </td>
                 <td>
-                    <label class="input-required">ประเภทการสั่งซื้อผลิตภัณฑ์</label>
+                    <label class="input-required">ประเภทการสั่งซื้อ</label>
                     <div id="ordtyp_id" class="select-reference form-input half" ></div>
                 </td>
 		    </tr>
@@ -244,6 +298,7 @@
     </table>
     <button id="addProjectBtn" class="button button-icon button-icon-add">เพิ่มผลิตภัณฑ์</button>
     </form>
+    {/if}
 </div>
 </body>
 </html>

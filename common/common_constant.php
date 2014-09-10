@@ -737,6 +737,7 @@ function dbClose() {
 						'ord_date'	  	      => 'วันที่สั่งซื้อ',
 						'ord_snd_date'        => 'วันที่จัดส่ง'
 				),
+				'hiddenFields' 	=> array(),
 				'defaultNull'	=> array('ord_snd_date')
 			);
 			break;

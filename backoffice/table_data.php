@@ -559,6 +559,12 @@ if($rows > 0){
 								<i class="fa fa-credit-card" onclick="openPrintEmpCard('<?=$code?>')"></i>
 							</a>
 							<?
+						} else if($tableName == 'orders') {
+							?>
+							<a title="พิมพ์ใบสั่งซื้อ">
+								<i class="fa fa-file-text-o" onclick="openPrintPurchaseOrder('<?=$code?>')"></i>
+							</a>
+							<?
 						}
 					?>
 					<a title="แก้ไข">

@@ -128,24 +128,28 @@ if(!$_REQUEST['ajaxCall']) {
 
 		// Rename Image
 		if(strpos($formData['bkg_transfer_evidence'], 'temp_') !== FALSE) {
+			$type		= str_replace(".", "", strrchr($formData['bkg_transfer_evidence'],"."));
+			$bkg_transfer_evidence = $code.".$type";
+			$imgTmpPath = '../img/temp/'.$formData['bkg_transfer_evidence'];
+			$imgNewPath = '../img/booking/'.$bkg_transfer_evidence;
+
 			// Delete Old Image
-			$oldImg = '../img/booking/'.$tableRecord->getFieldValue('bkg_transfer_evidence');
-			if(file_exists($oldImg)) {
-				if(!unlink($oldImg)) {
+			if(file_exists($imgNewPath)) {
+				if(!unlink($imgNewPath)) {
 					$response['status'] = 'DELETE_OLD_IMG_FAIL';
 					echo json_encode($response);
 					exit();
 				}
 			}
-		
-			$type		= str_replace(".", "", strrchr($formData['bkg_transfer_evidence'],"."));
-			$pkg_picture	= $code.".$type";
-			if(rename('../img/temp/'.$formData['bkg_transfer_evidence'], '../img/booking/'.$bkg_transfer_evidence)) {
-				$formData['bkg_transfer_evidence'] = $bkg_transfer_evidence;
-			} else {
-				$response['status'] = 'RENAME_FAIL';
-				echo json_encode($response);
-				exit();
+			// Rename temp to new image
+			if(file_exists($imgTmpPath)) {
+				if(rename($imgTmpPath, $imgNewPath)) {
+					$formData['bkg_transfer_evidence'] = $bkg_transfer_evidence;
+				} else {
+					$response['status'] = 'RENAME_FAIL';
+					echo json_encode($response);
+					exit();
+				}
 			}
 		}
 
