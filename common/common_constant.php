@@ -354,7 +354,7 @@ function dbClose() {
 						'svl_desc'			=> 'คำอธิบาย',
 						'svl_picture'		=> 'รูปภาพ'	
 				),
-				'hiddenFields'	=> array('svl_desc','svl_picture','svl_commission')
+				'hiddenFields'	=> array('svl_desc','svl_picture','svl_commission','svl_price')
 			);
 			break;
 
@@ -387,8 +387,8 @@ function dbClose() {
 				'keyLength'		=> 8,
 				'fieldNameList'	=> array(
 						'pkgsvl_id'	    => 'รหัสรายการบริการที่จัดแพ็คเกจ',
-						'svl_id'	    => 'รายการบริการ',
-						'pkg_id'        => 'แพ็คเกจ'
+						'pkg_id'        => 'แพ็คเกจ',
+						'svl_id'	    => 'รายการบริการ'
 				)
 			);
 			break;
@@ -435,19 +435,20 @@ function dbClose() {
 
 		case 'companies':
 			 return array(
-				'tableNameTH'	=> 'บริษัทจำหน่ายผลิตภัณฑ์',
+				'tableNameTH'	=> 'บริษัทจำหน่าย',
 				'keyFieldName'  => 'comp_id',
 				'keyFieldType'	=> 2, 
 				'keyChar'		=> 'CP',
 				'keyLength'		=> 4,
 				'fieldNameList'	=> array(
-						'comp_id'	      => 'รหัสบริษัทจำหน่ายผลิตภัณฑ์',
+						'comp_id'	      => 'รหัสบริษัทจำหน่าย',
 						'comp_name'	      => 'ชื่อบริษัท',
 						'fax'             => 'แฟ็กซ์',
 						'comp_tel'	      => 'เบอร์โทรศัพท์',
 						'comp_addr'	      => 'ที่อยู่',
 						'comp_contact'    => 'ผู้ติดต่อ'
-				)
+				),
+				'hiddenFields'	=> array('fax','comp_tel','comp_addr','comp_contact')
 			);
 			break;
 
@@ -730,10 +731,10 @@ function dbClose() {
 				'keyChar'		=> 'OR',
 				'keyLength'		=> 7,
 				'fieldNameList'	=> array(
-						'ord_id'	  		  => 'รหัสการสั่งซื้อผลิตภัณฑ์',
-						'ordtyp_id' 		  => 'ประเภทการสั่งซื้อผลิตภัณฑ์',
+						'ord_id'	  		  => 'รหัสการสั่งซื้อ',
+						'ordtyp_id' 		  => 'ประเภทการสั่งซื้อ',
 						'emp_id' 			  => 'ชื่อ-สกุลพนักงาน',
-						'comp_id'	  		  => 'บริษัทจำหน่ายผลิตภัณฑ์',
+						'comp_id'	  		  => 'บริษัทจำหน่าย',
 						'ord_date'	  	      => 'วันที่สั่งซื้อ',
 						'ord_snd_date'        => 'วันที่จัดส่ง'
 				),
@@ -750,8 +751,8 @@ function dbClose() {
 				'keyChar'		=> 'OD',
 				'keyLength'		=> 9,
 				'fieldNameList'	=> array(
-						'orddtl_id'	  		  => 'รหัสรายละเอียดการสั่งซื้อผลิตภัณฑ์',
-						'ord_id' 		      => 'รหัสการสั่งซื้อผลิตภัณฑ์',
+						'orddtl_id'	  		  => 'รหัสรายละเอียดการสั่งซื้อ',
+						'ord_id' 		      => 'รหัสการสั่งซื้อ',
 						'prd_id' 			  => 'ผลิตภัณฑ์',
 						'orddtl_amount'	  	  => 'จำนวนที่สั่งซื้อ'
 				)
@@ -766,10 +767,10 @@ function dbClose() {
 				'keyChar'		=> 'RE',
 				'keyLength'		=> 7,
 				'fieldNameList'	=> array(
-						'rec_id'	  		  => 'รหัสการรับผลิตภัณฑ์',
-						'ord_id' 		      => 'รหัสการสั่งซื้อผลิตภัณฑ์',
+						'rec_id'	  		  => 'รหัสการรับ',
+						'ord_id' 		      => 'รหัสการสั่งซื้อ',
 						'emp_id' 			  => 'ชื่อ-นามสกุลพนักงาน',
-						'rec_date'	  	      => 'วันที่รับผลิตภัณฑ์',
+						'rec_date'	  	      => 'วันที่รับ',
 						'rec_total_price'	  => 'ราคา(บาท)'
 				)
 			);
@@ -783,8 +784,8 @@ function dbClose() {
 				'keyChar'		=> 'RD',
 				'keyLength'		=> 9,
 				'fieldNameList'	=> array(
-						'recdtl_id'	  		  => 'รหัสรายละเอียดการรับผลิตภัณฑ์',
-						'rec_id'	  		  => 'รหัสการรับผลิตภัณฑ์',
+						'recdtl_id'	  		  => 'รหัสรายละเอียดการรับ',
+						'rec_id'	  		  => 'รหัสการรับ',
 						'prd_id' 		      => 'ผลิตภัณฑ์',
 						'recdtl_amount' 	  => 'จำนวนที่รับ',
 						'recdtl_price'	  	  => 'ราคาต่อหน่วย(บาท)'
@@ -800,7 +801,7 @@ function dbClose() {
 				'keyChar'		=> 'W',
 				'keyLength'		=> 8,
 				'fieldNameList'	=> array(
-						'wdw_id'	  		  => 'รหัสการเบิกผลิตภัณฑ์',
+						'wdw_id'	  		  => 'รหัสการเบิก',
 						'emp_id'	  		  => 'ชื่อ-นามสกุลพนักงานที่ให้เบิก',
 						'emp_give_id' 		  => 'ชื่อ-นามสกุลพนักงานที่เบิก',
 						'ser_id' 	 		  => 'รหัสการใช้บริการ',
@@ -817,8 +818,8 @@ function dbClose() {
 				'keyChar'		=> 'WD',
 				'keyLength'		=> 10,
 				'fieldNameList'	=> array(
-						'wdwdtl_id'	  		  => 'รหัสรายละเอียดการเบิกผลิตภัณฑ์',
-						'wdw_id'	  		  => 'รหัสการเบิกผลิตภัณฑ์',
+						'wdwdtl_id'	  		  => 'รหัสรายละเอียดการเบิก',
+						'wdw_id'	  		  => 'รหัสการเบิก',
 						'prd_id'	  		  => 'ผลิตภัณฑ์',
 						'wdwdtl_amount' 	  => 'จำนวนที่เบิก'
 						
