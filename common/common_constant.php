@@ -332,7 +332,8 @@ function dbClose() {
 						'cus_email'     		=> 'E-mail' 
 				),
 				'hiddenFields'	=> array('cus_tel','cus_addr','cus_user','cus_pass','cus_birthdate','cus_registered_date',
-					'cus_facebook','cus_line_id','cus_email')
+					'cus_facebook','cus_line_id','cus_email'),
+				'defaultNull' 	=> array('cus_user','cus_pass','cus_birthdate','cus_facebook','cus_line_id','cus_email')
 			);
 			break;
 
