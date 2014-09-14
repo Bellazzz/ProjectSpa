@@ -20,11 +20,11 @@
         var tableName   = '{/literal}{$tableName}{literal}';
 		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
         var code        = '{/literal}{$code}{literal}';
-        var ajaxUrl     = 'form_table.php';
+        var ajaxUrl     = 'form_customers.php';
 
         $(document).ready(function () {
             $("#bk_date").datepicker();
-            $("#bt_date").datepicker();
+            $("#cus_registered_date").datepicker();
 
             selectReference({
                 elem            : $('#sex_id'),
@@ -182,8 +182,8 @@
     <!-- ADD, EDIT -->                      
 
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="custype_id,sex_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date,sex_id">
-    <input type="hidden" name="uniqueFields" value="cus_user{if $action=='ADD'},cus_pass,cus_re_pass{/if}">
+	<input type="hidden" name="requiredFields" value="custype_id,sex_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date,sex_id,cus_registered_date">
+    <input type="hidden" name="uniqueFields" value="cus_user">
     <table id="tableforAddPass" class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 		    <tr>
@@ -251,8 +251,8 @@
             </tr>
             <tr>
                 <td>
-                    <label>วันที่สมัคร</label>
-                    <input id="bt_date" name="cus_registered_date" type="text" class="form-input half" value="{$values.cus_registered_date}">
+                    <label class="input-required">วันที่สมัคร</label>
+                    <input id="cus_registered_date" name="cus_registered_date" type="text" class="form-input half" value="{$values.cus_registered_date}">
                 </td>
             </tr>
              <tr>

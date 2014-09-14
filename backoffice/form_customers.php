@@ -1,14 +1,7 @@
 <?php
 $action			= isset($_REQUEST['action']) ? $_REQUEST['action'] : 'ADD';
-$tableName		= $_REQUEST['tableName'];
+$tableName		= 'customers';
 $code			= $_REQUEST['code'];
-
-// Check table
-switch ($tableName) {
-	case 'orders':
-		header("location:form_orders.php?action=$action&code=$code");
-		break;
-}
 
 include('../config/config.php');
 $tplName = "form_$tableName.html";
@@ -16,23 +9,7 @@ $subDir	 = WEB_ROOTDIR.'/backoffice/';
 include('../common/common_header.php');
 $tableInfo = getTableInfo($tableName);
 
-if(!$_REQUEST['ajaxCall']) {
-	//1. Display form
-	if($action == 'EDIT' || $action == 'VIEW_DETAIL') {
-		$tableRecord = new TableSpa($tableName, $code);
-		$values      = array();
-		foreach($tableInfo['fieldNameList'] as $field => $value) {
-			$values[$field] = $tableRecord->getFieldValue($field);
-		}
-		$smarty->assign('values', $values);
-	}
-
-	$smarty->assign('action', $action);
-	$smarty->assign('tableName', $tableName);
-	$smarty->assign('tableNameTH', $tableInfo['tableNameTH']);
-	$smarty->assign('code', $code);
-	include('../common/common_footer.php');
-} else {
+if($_REQUEST['ajaxCall']) {
 	//2. Process record
 	$formData		= array();
 	$values			= array();
@@ -89,14 +66,18 @@ if(!$_REQUEST['ajaxCall']) {
 		$values['fieldName']  = array();
 		$values['fieldValue'] = array();
 
+		// Encryption password
+		$formData['cus_pass'] = md5($formData['cus_pass']);
+		
+
 		// Push values to array
 		foreach($formData as $fieldName => $value) {
 			if(in_array($fieldName, $fieldListEn)) {
 				// Skip if value is empty and default this field is null
-				if($value == '' && is_array($tableInfo['defaultNull']) && in_array($fieldName, $tableInfo['defaultNull'])) {
+				if($value == '' && in_array($fieldName, $tableInfo['defaultNull'])) {
 					continue;
 				}
-				
+
 				$value = str_replace("\\\'", "'", $value);
 				$value = str_replace('\\\"', '"', $value);
 				$value = str_replace('\\\\"', '\\', $value);
@@ -122,10 +103,13 @@ if(!$_REQUEST['ajaxCall']) {
 		foreach($formData as $fieldName => $value) {
 			if(in_array($fieldName, $fieldListEn)) {
 				// value is empty will set default is null
-				if($value == '' && is_array($tableInfo['defaultNull']) && in_array($fieldName, $tableInfo['defaultNull'])) {
+				if($value == '' && in_array($fieldName, $tableInfo['defaultNull'])) {
 					$value = 'NULL';
+				} else if($fieldName == 'cus_pass') {
+					// Encryption password
+					$value = md5($formData['cus_pass']);
 				}
-				
+
 				$tableRecord->setFieldValue($fieldName, $value);
 			}
 		}
