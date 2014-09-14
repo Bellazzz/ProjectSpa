@@ -910,6 +910,14 @@ table.mbk .icon {
     min-width: 600px;
     background: white;
 }
+#manage-box.large {
+    min-width: 1050px;
+    max-width: 1050px;
+}
+#manage-box.full {
+    min-width: 100%;
+    max-width: 100%;
+}
 .manage-box-loading{
     position: absolute;
     top: 20px;

@@ -361,8 +361,14 @@ function refreshSearchRecord() {
 /*
  * Dialog Box
  */
-function openManageBox(src) {
+function openManageBox(data) {
 	showOverlayInner();
+    // Init
+    $('#manage-box').removeClass('large');
+    $('#manage-box').removeClass('full');
+    if(typeof(data.widthSize) != 'undefinded') {
+        $('#manage-box').addClass(data.widthSize);
+    }
     $('#manage-box').css('display', 'block');
     $('.manage-box-loading').css('display', 'block');
     
@@ -382,7 +388,7 @@ function openManageBox(src) {
         tableForm.onload = endload;
     }
 
-    tableForm.src = src;
+    tableForm.src = data.formSrc;
 }
 
 function closeManageBox() {
@@ -396,7 +402,9 @@ function openFormTable(action, code) {
         src += '&code=' + code;
     }
 
-    openManageBox(src);
+    openManageBox({
+        formSrc: src
+    });
 }
 
 function confirmCloseFormTable(action) {
@@ -461,7 +469,18 @@ function closeFormTable() {
 
 function openPrintEmpCard(empId) {
 	var src = 'printEmployeeCard.php?empId=' + empId;
-	openManageBox(src);
+	openManageBox({
+        formSrc: src
+    });
+}
+
+function openPrintPurchaseOrder(ordId) {
+    var src = 'printPurchaseOrder.php?ordId=' + ordId;
+    openManageBox({
+        formSrc     : src,
+        widthSize   : 'large'
+    });
+    $('#manage-box').addClass('large');
 }
 
 function showTableTooltip(top, left, text) {
