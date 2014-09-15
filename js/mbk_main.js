@@ -121,6 +121,8 @@ function selectReference(select) {
     var searchTool      = true;
     var defaultValue    = '';
 	var pattern			= '';
+    var ajaxUrl         = '../common/select_reference.php';
+    var condition       = '';
     var limit           = 15; //Option item limit
     var selectRefCon;
     var optionCon;
@@ -165,6 +167,16 @@ function selectReference(select) {
             });
         }
 
+        // Use ajax url if has parameter
+        if(typeof(select.ajaxUrl) != 'undefined') {
+            ajaxUrl = select.ajaxUrl;
+        }
+
+        // Add condition for query
+        if(typeof(select.condition) != 'undefined') {
+            condition = select.condition;
+        }
+
         // Prepare variable
         inputHidden = select.elem.find('.select-reference-input');
         textShow = select.elem.find('.select-reference-text');
@@ -183,7 +195,7 @@ function selectReference(select) {
         }
 
         $.ajax({
-            url: '../common/select_reference.php',
+            url: ajaxUrl,
             type: 'POST',
             async:false, 
             cache: false,
@@ -197,7 +209,8 @@ function selectReference(select) {
 				'pattern'		: pattern,
                 'searchText'    : $(searchInput).val(),
                 'begin'         : select.elem.attr('begin'),
-                'limit'         : limit
+                'limit'         : limit,
+                'condition'     : condition
             },
             success:
             function (response) {
@@ -232,6 +245,9 @@ function selectReference(select) {
             selectRefCon.siblings('.select-reference-text').text($(this).children('.text').text());
             selectRefCon.siblings('.select-reference-input').val($(this).children('.value').text());
             hideAllPopup();
+            if(typeof(select.onOptionSelect) == 'function') {
+                select.onOptionSelect();
+            }
         });
 
         $(searchCon).off();

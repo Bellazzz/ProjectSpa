@@ -1,0 +1,13 @@
+{foreach from=$ordPrdList key=i item=ordPrd}
+<tr id="ordPrd_{$ordPrd.prd_id}">
+    <td>
+    	<span class="prd_id" style="display: none;">{$ordPrd.prd_id}</span>
+    	<span class="prd_name">{$ordPrd.prd_name}</span>
+    </td>
+    <td align="right"><span class="prd_amount">{$ordPrd.amount}</span></td>
+    <td align="center"><span class="unit_name">{$ordPrd.unit_name}</span></td>
+    <td>
+    	<button onclick="receivesProduct('ordPrd_{$ordPrd.prd_id}')">รับสินค้า</button>
+    </td>
+</tr>
+{/foreach}

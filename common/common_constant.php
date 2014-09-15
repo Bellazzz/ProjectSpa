@@ -724,6 +724,20 @@ function dbClose() {
 			);
 			break;
 
+		case 'order_status':
+			 return array(
+				'tableNameTH'	=> 'สถานะการสั่งซื้อ',
+				'keyFieldName'  => 'ordstat_id',
+				'keyFieldType'	=> 2, 
+				'keyChar'		=> 'OS',
+				'keyLength'		=> 4,
+				'fieldNameList'	=> array(
+						'ordstat_id'	  	  => 'รหัสสถานะการสั่งซื้อ',
+						'ordstat_name' 		  => 'ชื่อสถานะการสั่งซื้อ'
+				)
+			);
+			break;
+
 		case 'orders':
 			 return array(
 				'tableNameTH'	=> 'การสั่งซื้อ',
@@ -737,7 +751,8 @@ function dbClose() {
 						'emp_id' 			  => 'ชื่อ-สกุลพนักงาน',
 						'comp_id'	  		  => 'บริษัทจำหน่าย',
 						'ord_date'	  	      => 'วันที่สั่งซื้อ',
-						'ord_snd_date'        => 'วันที่จัดส่ง'
+						'ord_snd_date'        => 'วันที่จัดส่ง',
+						'ordstat_id'	  	  => 'สถานะการสั่งซื้อ'
 				),
 				'hiddenFields' 	=> array(),
 				'defaultNull'	=> array('ord_snd_date')

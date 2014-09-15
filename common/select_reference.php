@@ -11,6 +11,7 @@ $searchText		= $_REQUEST['searchText'];
 $begin			= $_REQUEST['begin'];
 $limit			= $_REQUEST['limit'];
 $pattern		= $_REQUEST['pattern'];
+$condition 		= $_REQUEST['condition'];
 $where			= '';
 $order			= '';
 
@@ -36,11 +37,23 @@ if(hasValue($searchText)) {
 		foreach($textFieldList as $key => $textField) {
 			array_push($like, $textField." like '%$searchText%'");
 		}
-		$where = 'WHERE '.implode(' OR ', $like);
+		$where = 'WHERE ('.implode(' OR ', $like).')';
 	} else if(count($textFieldList) == 1) {
 		// has one field
 		$where = "WHERE $textFieldName like '%$searchText%'";
 		
+	}
+}
+
+// Add condition for query
+if(hasValue($condition)) {
+	$condition = str_replace("\'", "'", $condition);
+	$condition = str_replace('\\"', '"', $condition);
+	$condition = str_replace('\"', '\\', $condition);
+	if(hasValue($where)) {
+		$where .= " AND $condition";
+	} else {
+		$where = "WHERE $condition ";
 	}
 }
 
@@ -61,7 +74,6 @@ if(count($textFieldList) > 1) {
 }
 
 $sql = "SELECT $keyFieldName, $pattern pattern FROM $tableName $where $order LIMIT $begin,$limit";
-
 $result = mysql_query($sql, $dbConn);
 $rows	= mysql_num_rows($result);
 

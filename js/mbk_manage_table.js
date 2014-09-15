@@ -402,9 +402,16 @@ function openFormTable(action, code) {
         src += '&code=' + code;
     }
 
-    openManageBox({
-        formSrc: src
-    });
+    if(table.name == 'receives') {
+        openManageBox({
+            formSrc     : src,
+            widthSize   : 'full'
+        });
+    } else {
+        openManageBox({
+            formSrc: src
+        });
+    }
 }
 
 function confirmCloseFormTable(action) {

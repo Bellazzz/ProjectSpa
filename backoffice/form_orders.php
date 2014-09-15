@@ -48,7 +48,6 @@ if(!$_REQUEST['ajaxCall']) {
 					FROM order_details o, products p, units u 
 					WHERE o.prd_id = p.prd_id AND p.unit_id = u.unit_id 
 					AND o.ord_id = '$code'";
-		echo $sql;
 		$result = mysql_query($sql, $dbConn);
 		$rows 	= mysql_num_rows($result);
 		for($i=0; $i<$rows; $i++) {
@@ -121,7 +120,7 @@ if(!$_REQUEST['ajaxCall']) {
 
 		// Push values to array
 		foreach($formData as $fieldName => $value) {
-			if($fieldName != 'requiredFields' && $fieldName != 'uniqueFields' && $fieldName != 'prd_id' && $fieldName != 'prd_qty') {
+			if(in_array($fieldName, $fieldListEn)) {
 				// Skip if value is empty and default this field is null
 				if($value == '' && is_array($tableInfo['defaultNull']) && in_array($fieldName, $tableInfo['defaultNull'])) {
 					continue;
@@ -134,6 +133,9 @@ if(!$_REQUEST['ajaxCall']) {
 				array_push($values['fieldValue'], $value);
 			}
 		}
+		// order status default is wait for transport
+		array_push($values['fieldName'], 'ordstat_id');
+		array_push($values['fieldValue'], 'OS01');
 
 		// Insert Orders
 		$tableRecord = new TableSpa($tableName, $values['fieldName'], $values['fieldValue']);

@@ -47,8 +47,7 @@
                 defaultValue	: '{/literal}{$values.ordtyp_id}{literal}',
 				
             });
-             
-             selectReference({
+            selectReference({
                 elem            : $('#emp_id'),
                 tableName       : 'employees',
                 keyFieldName    : 'emp_id',
@@ -57,13 +56,22 @@
                 defaultValue    : '{/literal}{$values.emp_id}{literal}',
                 pattern         : 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
-               selectReference({
+            selectReference({
                 elem            : $('#comp_id'),
                 tableName       : 'companies',
                 keyFieldName    : 'comp_id',
                 textFieldName   : 'comp_name',
                 searchTool      : true,
                 defaultValue    : '{/literal}{$values.comp_id}{literal}',
+                
+            });
+            selectReference({
+                elem            : $('#ordstat_id'),
+                tableName       : 'order_status',
+                keyFieldName    : 'ordstat_id',
+                textFieldName   : 'ordstat_name',
+                searchTool      : true,
+                defaultValue    : '{/literal}{$values.ordstat_id}{literal}',
                 
             });
 
@@ -215,6 +223,10 @@
             <tr>
                 <td>วันที่จัดส่ง :</td>
                 <td>{if $values.ord_snd_date}{$values.ord_snd_date}{else}-{/if}</td>
+            </tr>
+            <tr>
+                <td>สถานะการสั่งซื้อ :</td>
+                <td><div id="ordstat_id" class="select-reference text"></td>
             </tr>
         </tbody>
     </table>

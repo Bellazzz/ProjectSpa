@@ -1057,7 +1057,7 @@ table.mbk .icon {
     color: #888;
     margin-bottom: 20px;
 }
-.mbk-form-input-normal tr td:nth-child(2) {
+.mbk-form-input-normal tr td:nth-child(2), .mbk-form-input-normal tr td.samerow {
     padding-left: 20px;
 }
 .mbk-form-input-normal label{
