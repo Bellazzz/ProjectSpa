@@ -4,6 +4,12 @@ var recPrdItem 	= Array();
 $(document).ready(function(){
 });
 
+function isInt(value) {
+  return !isNaN(value) && 
+         parseInt(Number(value)) == value && 
+         !isNaN(parseInt(value, 10));
+}
+
 function changeOrderId() {
 	var orderId = $('input[name="ord_id"]').val();
 	$.ajax({
@@ -14,7 +20,30 @@ function changeOrderId() {
 		success:
 		function(response) {
 			if(response != '') {
-				$('#orders-product-list').html(response);
+				$('#receives-product-list-container').html(response);
+
+				// Add event
+				$('input[name="recdtl_amount[]"]').change(function(){
+					var value = parseInt($(this).val());
+					var max   = parseInt($(this).attr('max'));
+
+					// set max if value is not number or value > max
+					if(!isInt($(this).val()) || (value > max)) {
+						$(this).val($(this).attr('max'));
+					} else {
+						$(this).val(parseInt($(this).val()));
+					}
+					calculate();
+				});
+				$('input[name="recdtl_price[]"]').change(function(){
+					// set 0 if wrong value
+					if(!isInt($(this).val())) {
+						$(this).val(0);
+					} else {
+						$(this).val(parseInt($(this).val()));
+					}
+					calculate();
+				});
 			} else {
 				alert('no return data.');
 			}
@@ -22,45 +51,28 @@ function changeOrderId() {
 	})
 }
 
-function receivesProduct(trId) {
-	var ordPrd = $('#' + trId);
-	recPrdItem = {
-		prd_id		: ordPrd.find('.prd_id').text(),
-		prd_name	: ordPrd.find('.prd_name').text(),
-		prd_amount	: parseInt(ordPrd.find('.prd_amount').text()),
-		unit_name 	: ordPrd.find('.unit_name').text()
-	};
-	addPrdItemToRec();
-}
+function calculate() {
+	var totalPrice = 0;
+	var totalRemain = 0;
+	$('input[name="recdtl_amount[]"]').each(function() {
+		var tr 			= $(this).parent().parent();
+		var recAmount 	= parseInt($(this).val());
 
-function addPrdItemToRec() {
-	
-	if($('#recPrd_' + recPrdItem.prd_id).length > 0) {
-		// Update amount if has product item in receives table
-		var recPrd   	= $('#recPrd_' + recPrdItem.prd_id);
-		var ordAmount 	= recPrdItem.prd_amount;
-		var recAmount 	= parseInt(recPrd.find('.prd_amount').text())
-		recPrdItem.prd_id = recAmount + ordAmount;
-		recPrd.find('.prd_amount').text(recPrdItem.prd_id);
-	} else {
-		// Append product in receives table
-		var recPrdHtml 	= '<tr id="recPrd_' + recPrdItem.prd_id + '">'
-				   		+ '	<td>'
-				   		+ '		<input type="hidden" name="prd_id" value="' + recPrdItem.prd_id + '">'
-				   		+ '		<span class="prd_name">' + recPrdItem.prd_name + '</span>'
-				   		+ '	</td>'
-				   		+ ' <td align="right">'
-				   		+ '		<span class="prd_amount">' + recPrdItem.prd_amount + '</span>'
-				   		+ '	</td>'
-				   		+ '	<td align="center">'
-				   		+ '		<span class="unit_name">' + recPrdItem.unit_name + '</span></td>'
-				   		+ '	</td>'
-				   		+ '	<td>'
-				   		+ '		<button onclick="removeReceivesProduct(\'' + recPrdItem.prd_id + '\')">คืนสินค้า</button>'
-				   		+ '	</td>'
-				   		+ '</tr>'
-		$('#receives-product-list').append(recPrdHtml);
-	}
+		// sum price
+		var unitPrice 	= parseInt(tr.find('input[name="recdtl_price[]"]').val());
+		var sumPrice 	= unitPrice * recAmount;
+		tr.find('.sum_price').text(sumPrice);
 
-	
+		// remain
+		var ordAmount 	= parseInt(tr.find('.ordPrd_amount').text());
+		var remain 		= ordAmount - recAmount;
+		tr.find('.remain').text(remain);
+
+		totalPrice +=  sumPrice;
+		totalRemain += remain;
+	});
+
+	$('input[name="rec_total_price"]').val(totalPrice);
+	$('#total_price').text(totalPrice);
+	$('#total_amount').text(totalRemain);
 }

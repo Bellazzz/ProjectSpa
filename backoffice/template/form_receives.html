@@ -16,13 +16,22 @@
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
     <script type="text/javascript" src="../js/form_receives.js"></script>
     <style type="text/css">
-        .transpot-item {
-            width :49.33%;
-            border : 1px solid #ddd;
-            border-collapse:  collapse;
+        #receives-product-list {
+            border-collapse: collapse;
+            width: 100%;
         }
-        .transpot-item td {
-            border-bottom: 1px solid #ddd;
+        #receives-product-list th {
+            color: #ffffff;
+            background-color: #555555;
+            border: 1px solid #555555;
+            padding: 5px;
+            vertical-align: top;
+            text-align: center;
+            white-space: nowrap;
+        }
+        #receives-product-list td {
+            border:1px solid #ddd;
+            padding: 5px;
         }
     </style>
     <script type="text/javascript">
@@ -31,7 +40,7 @@
         var tableName   = '{/literal}{$tableName}{literal}';
 		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
         var code        = '{/literal}{$code}{literal}';
-        var ajaxUrl     = 'form_table.php';
+        var ajaxUrl     = 'form_receives.php';
 
         $(document).ready(function () {
             selectReference({
@@ -89,34 +98,20 @@
                       <input id="rec_date" name="rec_date" type="text" class="form-input half" value="{$values.rec_date}">
                 </td>
             </tr>
-            <tr>
+            <!--<tr>
                 
                 <td>
 				    <label class="input-required">ราคารวม(บาท)</label>
 				    <input id="rec_total_price" name="rec_total_price" type="text" class="form-input half" value="{$values.rec_total_price}">
 			    </td>
                  
-		    </tr>
+		    </tr>-->
 			
             
 	    </tbody>
     </table>
-    <table id="orders-product-list" class="transpot-item" style="float: left;">
-        <tr>
-            <td>test</td>
-        </tr>
-        <tr>
-            <td>test</td>
-        </tr>
-    </table>
-    <table id="receives-product-list" class="transpot-item" style="float: right;">
-        <tr>
-            <td>test</td>
-        </tr>
-        <tr>
-            <td>test</td>
-        </tr>
-    </table>
+    <div id="receives-product-list-container">
+    </div>
     </form>
 </div>
 </body>

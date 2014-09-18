@@ -405,7 +405,7 @@ function openFormTable(action, code) {
     if(table.name == 'receives') {
         openManageBox({
             formSrc     : src,
-            widthSize   : 'full'
+            widthSize   : 'large'
         });
     } else {
         openManageBox({

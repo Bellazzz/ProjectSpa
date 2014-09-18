@@ -11,15 +11,10 @@ $tableInfo	= getTableInfo($tableName);
 $keyName	= $tableInfo['keyFieldName'];
 $keyType	= $tableInfo['keyFieldType'];
 
-// Add single quote
-foreach($keySelected as $index => $value) {
-	$keySelected[$index] = "'$value'";
-}
-
 // Delete detail
 if($tableName == 'orders') {
 	foreach($keySelected as $index => $ord_id) {
-		$sql = "SELECT orddtl_id FROM order_details WHERE ord_id = $ord_id";
+		$sql = "SELECT orddtl_id FROM order_details WHERE ord_id = '$ord_id'";
 		$result = mysql_query($sql, $dbConn);
 		$rows 	= mysql_num_rows($result);
 		for($i=0; $i<$rows; $i++) {
@@ -32,6 +27,56 @@ if($tableName == 'orders') {
 			}
 		}
 	}
+} else if($tableName == 'receives') {
+	foreach($keySelected as $index => $rec_id) {
+		$sql = "SELECT recdtl_id, prd_id, recdtl_amount FROM receive_details WHERE rec_id = '$rec_id'";
+		$result = mysql_query($sql, $dbConn);
+		$rows 	= mysql_num_rows($result);
+		for($i=0; $i<$rows; $i++) {
+			$resultRow = mysql_fetch_assoc($result);
+			$recdtl_id = $resultRow['recdtl_id'];
+			$receiveDetailRecord = new TableSpa('receive_details', $recdtl_id);
+			if($receiveDetailRecord->delete()) {
+				// Remove product amount
+				$rmPrd_id = $resultRow['prd_id'];
+				$rmAmount = (int)$resultRow['recdtl_amount'];
+				$prdRecord = new TableSpa('products', $rmPrd_id);
+				$prdAmount = (int)$prdRecord->getFieldValue('prd_amount');
+				$newAmount = (int)$prdAmount - $rmAmount;
+				$prdRecord->setFieldValue('prd_amount', "$newAmount");
+				if(!$prdRecord->commit()) {
+					echo "REMOVE_PRODUCT_AMOUNT_FAIL";
+					exit();
+				}
+			} else {
+				echo "DELETE_RECEIVE_DETAIL_FAIL";
+				exit();
+			}
+		}
+
+		// Update status of orders
+		$receivesRecord 		= new TableSpa('receives', $rec_id);
+		$ord_id 				= $receivesRecord->getFieldValue('ord_id');
+		$sql 					= "SELECT rec_id FROM receives WHERE ord_id = '$ord_id' AND rec_id != '$rec_id'";
+		$updateStatOrdResult 	= mysql_query($sql, $dbConn);
+		$updateStatOrdRows 	 	= mysql_num_rows($updateStatOrdResult);
+		if($updateStatOrdRows > 0) {
+			$ordstat_id = 'OS02';
+		} else {
+			$ordstat_id = 'OS01';
+		}
+		$ordersRecord 			= new TableSpa('orders', $ord_id);
+		$ordersRecord->setFieldValue('ordstat_id', $ordstat_id);
+		if(!$ordersRecord->commit()) {
+			echo "UPDATE_STATUS_ORDERS_FAIL";
+			exit();
+		}
+	}
+}
+
+// Add single quote
+foreach($keySelected as $index => $value) {
+	$keySelected[$index] = "'$value'";
 }
 
 // Delete record

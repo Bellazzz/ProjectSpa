@@ -29,6 +29,7 @@ $err 	= mysql_error($dbConn);
 for($i=0; $i<$rows; $i++) {
 	$orddtlRecord = mysql_fetch_assoc($result);
 	$prdList[$orddtlRecord['prd_id']] = array(
+		'no' 				=> $i+1,
 		'orddtl_id' 		=> $orddtlRecord['orddtl_id'],
 		'prd_id' 			=> $orddtlRecord['prd_id'],
 		'prd_name' 			=> $orddtlRecord['prd_name'],
