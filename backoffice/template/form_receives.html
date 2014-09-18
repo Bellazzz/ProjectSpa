@@ -33,6 +33,12 @@
             border:1px solid #ddd;
             padding: 5px;
         }
+        tr.tfootSummary {
+            background: none;
+        }
+        tr.tfootSummary td {
+            background: white;
+        }
     </style>
     <script type="text/javascript">
         // Global variables
@@ -79,7 +85,66 @@
 <body>
 
 {include file="form_table_header.html"}
-<div class="ftb-body">    
+<div class="ftb-body">  
+    {if $action == 'VIEW_DETAIL'}
+    <!-- VIEW_DETAIL -->
+    <!--Orders Data-->
+    <label class="article-title">ข้อมูลการสั่งรับ</label>
+    <table class="table-view-detail">
+        <tbody>
+            <tr>
+                <td>รหัสการรับ :</td>
+                <td>{$code}</td>
+            </tr>
+             <tr>
+                <td>รหัสการสั่งซื้อ :</td>
+                <td>
+                    <a class="normal-link" href="form_orders.php?action=VIEW_DETAIL&code={$values.ord_id}" title="คลิกเพื่อดูรายละเอียด">{$values.ord_id}</a>
+                </td>
+            </tr>
+            <tr>
+                <td>ชื่อ-นามสกุลพนักงาน :</td>
+                <td><div id="emp_id" class="select-reference text"></td>
+            </tr>
+             <tr>
+                <td>วันที่รับผลิตภัณฑ์ :</td>
+                <td>{$values.rec_date}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!--Receives Details Data-->
+    <label class="article-title">รายการผลิตภัณฑ์ที่รับ</label>
+    <table class="view-detail-reference">
+        <thead>
+            <tr>
+                <th>ผลิตภัณฑ์</th>
+                <th>หน่วบนับ</th>
+                <th>ราคา/หน่วย</th>
+                <th>จำนวนที่รับ</th>
+                <th>ราคารวม</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach from=$receiveDetailList key=i item=recdlt}
+            <tr>
+                <td>{$recdlt.prd_name}</td>
+                <td align="center">{$recdlt.unit_name}</td>
+                <td align="right">{$recdlt.recdtl_price}</td>
+                <td align="right">{$recdlt.recdtl_amount}</td>
+                <td align="right">{$recdlt.sum_price}</td>
+            </tr>
+            {/foreach}
+        </tbody>
+        <tfoot>
+            <tr class="tfootSummary">
+                <td align="right" colspan="3">รวมทั้งหมด</td>
+                <td align="right"><b>{$sum_amount}</b></td>
+                <td align="right"><b>{$values.rec_total_price}</b></td>
+            </tr>
+        </tfoot>
+    </table>
+    {else}      
+    <!-- ADD, EDIT -->    
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="ord_id,emp_id,rec_date,rec_total_price">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
@@ -113,6 +178,7 @@
     <div id="receives-product-list-container">
     </div>
     </form>
+    {/if}
 </div>
 </body>
 </html>

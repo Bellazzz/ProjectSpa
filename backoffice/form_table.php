@@ -8,6 +8,10 @@ switch ($tableName) {
 	case 'orders':
 		header("location:form_orders.php?action=$action&code=$code");
 		break;
+
+	case 'receives':
+		header("location:form_receives.php?action=$action&code=$code");
+		break;
 }
 
 include('../config/config.php');

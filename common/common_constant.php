@@ -788,7 +788,8 @@ function dbClose() {
 						'emp_id' 			  => 'ชื่อ-นามสกุลพนักงาน',
 						'rec_date'	  	      => 'วันที่รับ',
 						'rec_total_price'	  => 'ราคา(บาท)'
-				)
+				),
+				'hiddenFields' 	=> array()
 			);
 			break;
 

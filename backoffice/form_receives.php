@@ -31,29 +31,33 @@ if(!$_REQUEST['ajaxCall']) {
 		$smarty->assign('valuesDetail', $valuesDetail);*/
 
 	} else if($action == 'VIEW_DETAIL') {
-		// Get table orders data
-		/*$tableRecord = new TableSpa($tableName, $code);
+		// Get table receives data
+		$tableRecord = new TableSpa($tableName, $code);
 		$values      = array();
 		foreach($tableInfo['fieldNameList'] as $field => $value) {
 			$values[$field] = $tableRecord->getFieldValue($field);
 		}
 		$smarty->assign('values', $values);
-
-		// Get detail of orders
-		$orderDetailList = array();
-		$sql 	= "	SELECT FORMAT(o.orddtl_amount, 0) orddtl_amount,
+						
+		// Get detail of receives
+		$receiveDetailList = array();
+		$sum_amount = 0;
+		$sql 	= "	SELECT FORMAT(r.recdtl_amount, 0) recdtl_amount,
+					r.recdtl_price,
 					p.prd_name,
-					p.prd_price,
-					u.unit_name 
-					FROM order_details o, products p, units u 
-					WHERE o.prd_id = p.prd_id AND p.unit_id = u.unit_id 
-					AND o.ord_id = '$code'";
+					u.unit_name,
+					FORMAT(r.recdtl_amount * r.recdtl_price, 2) sum_price  
+					FROM receive_details r, products p, units u 
+					WHERE r.prd_id = p.prd_id AND p.unit_id = u.unit_id 
+					AND r.rec_id = '$code'";
 		$result = mysql_query($sql, $dbConn);
 		$rows 	= mysql_num_rows($result);
 		for($i=0; $i<$rows; $i++) {
-			array_push($orderDetailList, mysql_fetch_assoc($result));
+			array_push($receiveDetailList, mysql_fetch_assoc($result));
+			$sum_amount += $receiveDetailList[$i]['recdtl_amount'];
 		}
-		$smarty->assign('orderDetailList', $orderDetailList);*/
+		$smarty->assign('sum_amount', $sum_amount);
+		$smarty->assign('receiveDetailList', $receiveDetailList);
 	}
 
 	$smarty->assign('action', $action);
