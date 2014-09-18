@@ -92,35 +92,35 @@
 	<!-- ADD, EDIT -->		 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="svltyp_id,svl_name,svl_price,svl_commission">
-    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
-	    <tbody>
-			<tr>
-				<td>
-					<div id="svl_picture" class="uploadImageArea"></div>
-					<input type="hidden" name="svl_picture" value="{$values.svl_picture}">
-				</td>
-				<td style="vertical-align:top">
-					<label class="input-required">ชื่อรายการบริการ</label>
-					<input id="svl_name" name="svl_name" type="text" class="form-input half" value="{$values.svl_name}">
-
-					<label class="input-required">ประเภทรายการบริการ</label>
-					<div id="svltyp_id" class="select-reference form-input half"></div>
-			
-					<label>เวลาที่ใช้(ชั่วโมง)</label>
-					<input id="svl_hr" name="svl_hr" type="text" class="form-input half" value="{$values.svl_hr}">
-					
-					<label>เวลาที่ใช้(นาที)</label>
-					<input id="svl_min" name="svl_min" type="text" class="form-input half" value="{$values.svl_min}">
-
-					<label class="input-required">ราคา</label>
-					<input id="svl_price" name="svl_price" type="text" class="form-input half" value="{$values.svl_price}">
-				</td>
-			</tr>
-		</tbody>
-    </table>
 	<table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 		<tbody>
 			<tr>
+				<td colspan=2>
+					<label class="input-required">ชื่อรายการบริการ</label>
+					<input id="svl_name" name="svl_name" type="text" class="form-input full" value="{$values.svl_name}">
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2>
+					<label class="input-required">ประเภทรายการบริการ</label>
+					<div id="svltyp_id" class="select-reference form-input full"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label>เวลาที่ใช้(ชั่วโมง)</label>
+					<input id="svl_hr" name="svl_hr" type="text" class="form-input half" value="{$values.svl_hr}">
+				</td>
+				<td>
+					<label>เวลาที่ใช้(นาที)</label>
+					<input id="svl_min" name="svl_min" type="text" class="form-input half" value="{$values.svl_min}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="input-required">ราคา</label>
+					<input id="svl_price" name="svl_price" type="text" class="form-input half" value="{$values.svl_price}">
+				</td>
 				<td>
 					<label class="input-required">ค่าคอมมิชชั่น</label>
 					<input id="svl_commission" name="svl_commission" type="text" class="form-input half" value="{$values.svl_commission}">
@@ -128,8 +128,14 @@
 			</tr>
 			<tr>
 				<td colspan=2>
-					<label class="input-required">คำอธิบาย</label>
+					<label>คำอธิบาย</label>
 					<textarea id="svl_desc" name="svl_desc" class="form-input full" value="{$values.svl_desc}"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2>
+					<div id="svl_picture" class="uploadImageArea full"></div>
+					<input type="hidden" name="svl_picture" value="{$values.svl_picture}">
 				</td>
 			</tr>
 	    </tbody>

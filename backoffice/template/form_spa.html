@@ -72,16 +72,6 @@
 	<!-- ADD, EDIT -->	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="spa_name,spa_addr,spa_tel">
-    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
-	    <tbody>
-			<tr>
-				<td>
-					<div id="spa_logo" class="uploadImageArea full"></div>
-					<input type="hidden" name="spa_logo" value="{$values.spa_logo}">
-				</td>
-			</tr>
-		</tbody>
-	</table>
 	<table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 			<tr>
@@ -108,6 +98,18 @@
 			</tr>
 		</tbody>
     </table>
+
+    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+	    <tbody>
+			<tr>
+				<td>
+					<div id="spa_logo" class="uploadImageArea full"></div>
+					<input type="hidden" name="spa_logo" value="{$values.spa_logo}">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
     </form>
 	<form method="post" enctype="multipart/form-data">
 		<input id="spa_logo_file" type="file" name="imageFile" class="uploadImageSelector" multiple="multiple">
