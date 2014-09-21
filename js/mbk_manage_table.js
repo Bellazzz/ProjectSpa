@@ -199,43 +199,44 @@ function delteCurrentRecord(code) {
             {
                 id: 'delete',
                 name: 'ลบ',
-                desc: 'ลบข้อมูลที่เลือก'
+                desc: 'ลบข้อมูลที่เลือก',
+                func:
+                function() {
+                    var codeArr = [code];
+                    $.ajax({
+                        url: 'delete_record.php',
+                        type: 'POST',
+                        data: {
+                            'keySelected': codeArr,
+                            'tableName': table.name
+                        },
+                        success:
+                        function (response) {
+                            var htmlResponse;
+                            if (response == 'PASS') {
+                                // Delete Success
+                                hideActionDialog();
+                                pullTable(false);
+                            } else if(response == 'DELETE_REFERENCE') {
+                                alert('ไม่สามารถลบข้อมูลได้ เนื่องจากมีตารางอื่นอ้างอิงข้อมูลนี้อยู่');
+                                hideActionDialog();
+                            } else {
+                                alert(response);
+                            }
+                        }
+                    });
+                }
             },
             {
                 id: 'cancel',
                 name: 'ยกเลิก',
-                desc: 'ยกเลิกการลบ'
-            }
-        ]
-    });
-    $('#action-btn-delete').click(function () {
-        var codeArr = [code];
-        $.ajax({
-            url: 'delete_record.php',
-            type: 'POST',
-            data: {
-                'keySelected': codeArr,
-                'tableName': table.name
-            },
-            success:
-            function (response) {
-                var htmlResponse;
-                if (response == 'PASS') {
-                    // Delete Success
+                desc: 'ยกเลิกการลบ',
+                func:
+                function() {
                     hideActionDialog();
-                    pullTable(false);
-                } else if(response == 'DELETE_REFERENCE') {
-					alert('ไม่สามารถลบข้อมูลได้ เนื่องจากมีตารางอื่นอ้างอิงข้อมูลนี้อยู่');
-					hideActionDialog();
-				} else {
-                    alert(response);
                 }
             }
-        });
-    });
-
-    $('#action-btn-cancel').click(function () {
-        hideActionDialog();
+        ]
     });
 }
 function deleteRecordSelected() {
@@ -405,7 +406,7 @@ function openFormTable(action, code) {
     if(table.name == 'receives') {
         openManageBox({
             formSrc     : src,
-            widthSize   : 'large'
+            widthSize   : 'full'
         });
     } else {
         openManageBox({
@@ -422,24 +423,25 @@ function confirmCloseFormTable(action) {
                 {
                     id: 'close',
                     name: 'ปิด',
-                    desc: 'ข้อมูลที่กรอกจะถูกลบ'
+                    desc: 'ข้อมูลที่กรอกจะถูกลบ',
+                    func:
+                    function() {
+                        hideOverlayInner();
+                        $('#manage-box').css('display', 'none');
+                        hideActionDialog();
+                    }
                 },
                 {
                     id: 'cancel',
                     name: 'ยกเลิก',
-                    desc: 'กลับสู่ฟอร์มเพิ่มข้อมุล'
+                    desc: 'กลับสู่ฟอร์มเพิ่มข้อมุล',
+                    func:
+                    function() {
+                        hideActionDialog();
+                    }
                 }
             ]
         });
-        $('#action-btn-close').click(function () {
-            hideOverlayInner();
-            $('#manage-box').css('display', 'none');
-            hideActionDialog();
-        });
-        $('#action-btn-cancel').click(function () {
-            hideActionDialog();
-        });
-
     } else if (action == 'EDIT') {
         parent.showActionDialog({
             title: 'ปิดฟอร์มแก้ไขข้อมูล',
@@ -447,22 +449,24 @@ function confirmCloseFormTable(action) {
                 {
                     id: 'close',
                     name: 'ปิด',
-                    desc: 'ข้อมูลที่เปลี่ยนแปลงจะไม่ถูกบันทึก'
+                    desc: 'ข้อมูลที่เปลี่ยนแปลงจะไม่ถูกบันทึก',
+                    func:
+                    function() {
+                        hideOverlayInner();
+                        $('#manage-box').css('display', 'none');
+                        hideActionDialog();
+                    }
                 },
                 {
                     id: 'cancel',
                     name: 'ยกเลิก',
-                    desc: 'กลับสู่ฟอร์มแก้ไขข้อมุล'
+                    desc: 'กลับสู่ฟอร์มแก้ไขข้อมุล',
+                    func:
+                    function() {
+                        hideActionDialog();
+                    }
                 }
             ]
-        });
-        $('#action-btn-close').click(function () {
-            hideOverlayInner();
-            $('#manage-box').css('display', 'none');
-            hideActionDialog();
-        });
-        $('#action-btn-cancel').click(function () {
-            hideActionDialog();
         });
     } else {
         hideOverlayInner();

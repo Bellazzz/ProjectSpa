@@ -31,35 +31,59 @@ function hideOverlayFull() {
 }
 
 function showActionDialog(dialog) {
-    // Create action dialog ถ้าหาวิธี remove tag เจอค่อยใช้แบบนี้ ตอนนี้ใช้แบบล่างไปก่อน
-    /*var actionDialog    = '<div class="action-dialog">'
-                        + '<h2>' + obj.title + '</h2>'
-                        + '</div>';
-    $('body').append(actionDialog);*/
+    // Prepare variable
+    var title   = '';
+    var message = '';
+    if(typeof(dialog.title) != 'undefined') {
+        title = dialog.title;
+    }
+    if(typeof(dialog.message) != 'undefined') {
+        message = dialog.message;
+    }
 
-    $('.action-dialog').html('<h2>' + dialog.title + '</h2>');
+    var actionDialogHTML    = '<div class="action-dialog-container">'
+                            + '     <div class="action-dialog">'
+                            + '         <h2>' + title + '</h2>'
+                            + '         <span class="message">' + message + '</span>'
+                            + '     </div>'
+                            + '</div>';
+    $('body').prepend(actionDialogHTML);
+    $('.action-dialog-container').css('visibility', 'hidden');
+
+    // Set width
+    if(typeof(dialog.boxWidth) != 'undefined') {
+        $('.action-dialog').css('width', dialog.boxWidth + 'px');
+    }
 
     for (i in dialog.actionList) {
         // Create action button
+
         var actionItem = dialog.actionList[i];
+        var desc = '';
+        if(typeof(actionItem.desc) != 'undefined') {
+            desc = actionItem.desc;
+        }
+
         var actionBtn = '<div id="action-btn-' + actionItem.id + '" class="action-btn">'
                       + '<h1>' + actionItem.name + '</h1>'
-                      + actionItem.desc
+                      + desc
                       + '</div>';
         $('.action-dialog').append(actionBtn);
+
+        // Add event when click button
+        $('#action-btn-' + actionItem.id).click(actionItem.func);
     }
 
     // Set position
-    $('.action-dialog').css('margin-top', -Math.abs($('.action-dialog').height() / 2));
-    $('.action-dialog').css('margin-left', -Math.abs($('.action-dialog').width() / 2));
-
-    showOverlayFull();
-    $('.action-dialog').css('display', 'block');
+    $('.action-dialog').css('margin-top', -Math.abs($('.action-dialog').outerHeight() / 2));
+    $('.action-dialog').css('margin-left', -Math.abs($('.action-dialog').outerWidth() / 2));
+    
+    // Display
+    $('.action-dialog-container').css('visibility', 'visible');
 }
 
 function hideActionDialog() {
-    $('.action-dialog').css('display', 'none');
-    hideOverlayFull();
+    $('.action-dialog-container').remove();
 }
 
 function hideAllPopup() {
@@ -241,6 +265,12 @@ function selectReference(select) {
         $(li).off();
         $(li).on('click', function (e) {
             e.stopPropagation();
+            if(typeof(select.allowChangeOption) == 'function') {
+                if(!select.allowChangeOption()) {
+                    hideAllPopup();
+                    return;
+                }
+            }
             $(this).parent().parent().parent().removeClass('required');
             selectRefCon.siblings('.select-reference-text').text($(this).children('.text').text());
             selectRefCon.siblings('.select-reference-input').val($(this).children('.value').text());
@@ -421,3 +451,14 @@ function selectReference(select) {
 		 });
 	 }
  }
+
+Number.prototype.formatMoney = function(c, d, t){
+    var n = this, 
+        c = isNaN(c = Math.abs(c)) ? 2 : c, 
+        d = d == undefined ? "." : d, 
+        t = t == undefined ? "," : t, 
+        s = n < 0 ? "-" : "", 
+        i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
+        j = (j = i.length) > 3 ? j % 3 : 0;
+       return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+ };
