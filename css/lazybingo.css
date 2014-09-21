@@ -241,10 +241,15 @@ body {
     height: 50px;
 	display: table;
 	margin-top: 20px;
+    width: 100%;
 }
-.table-toolbar-inner {
+.table-toolbar-inner, .table-toolbar-filter {
 	display: table-cell;
 	vertical-align: middle;
+    width: 50%;
+}
+.table-toolbar-filter {
+    text-align: right;
 }
 #table-toolbar #edit-record-btn, #table-toolbar #delete-record-btn, #table-toolbar #cancel-select-btn {
 	margin-right: 15px;
@@ -490,6 +495,9 @@ table.mbk .action-col > a > i {
 }
 table.mbk .action-col > a > i:first-child {
 	margin-right: 8px;
+}
+table.mbk .action-col > a > i:last-child {
+    margin-right: 0px !important;
 }
 table.mbk .action-col > a > i:hover {
 	color: #333;

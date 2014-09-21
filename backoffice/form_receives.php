@@ -82,13 +82,12 @@ if(!$_REQUEST['ajaxCall']) {
 			$recPrdList[$i]['no'] = $i+1;
 		}
 		
-		// Get order send date
+		// Get order date
 		$orderRecord 	= new TableSpa('orders', $ord_id);
-		$ord_snd_date 	= $orderRecord->getFieldValue('ord_snd_date');
-
+		$ord_date 	= $orderRecord->getFieldValue('ord_date');
 		$smarty->assign('ordPrdList', $ordPrdList);
 		$smarty->assign('recPrdList', $recPrdList);
-		$smarty->assign('ord_snd_date', date('Y/m/d', strtotime($ord_snd_date)));
+		$smarty->assign('ord_date', date('Y/m/d', strtotime($ord_date)));
 
 	} else if($action == 'VIEW_DETAIL') {
 		// Get table receives data
@@ -97,12 +96,14 @@ if(!$_REQUEST['ajaxCall']) {
 		foreach($tableInfo['fieldNameList'] as $field => $value) {
 			$values[$field] = $tableRecord->getFieldValue($field);
 		}
+		// Get receives date thai
+		$values['rec_date_th'] = dateThaiFormat($values['rec_date']);
 		$smarty->assign('values', $values);
 						
 		// Get detail of receives
 		$receiveDetailList = array();
 		$sum_amount = 0;
-		$sql 	= "	SELECT FORMAT(r.recdtl_amount, 0) recdtl_amount,
+		$sql 	= "	SELECT r.recdtl_amount,
 					r.recdtl_price,
 					p.prd_name,
 					u.unit_name,

@@ -44,6 +44,7 @@
             outline: none;
             border: 1px solid #ccc;
             padding: 5px;
+            width: 100%;
         }
         #receives-product-list input[type="text"]:hover, #receives-product-list input[type="text"]:focus {
             border: 1px solid #666;
@@ -63,7 +64,7 @@
         var code        = '{/literal}{$code}{literal}';
         var ajaxUrl     = 'form_receives.php';
         var nowDate     = '{/literal}{$nowDate}{literal}';
-        var ordSndDate  = '{/literal}{$ord_snd_date}{literal}';
+        var ordDate     = '{/literal}{$ord_date}{literal}';
 
         $(document).ready(function () {
             selectReference({
@@ -109,9 +110,9 @@
         });
 
         function setMinDate(datepicker) {
-            if(ordSndDate != '') {
+            if(ordDate != '') {
                 datepicker.setOptions({
-                    minDate: ordSndDate
+                    minDate: ordDate
                 });
             } else {
                 datepicker.setOptions({
@@ -120,8 +121,8 @@
             }
         }
 
-        function setOrdSndDate(date) {
-            ordSndDate = date;
+        function setOrdDate(date) {
+            ordDate = date;
         }
     </script>
     {/literal}
@@ -152,7 +153,7 @@
             </tr>
              <tr>
                 <td>วันที่รับผลิตภัณฑ์ :</td>
-                <td>{$values.rec_date}</td>
+                <td>{$values.rec_date_th}</td>
             </tr>
         </tbody>
     </table>
@@ -172,9 +173,9 @@
             {foreach from=$receiveDetailList key=i item=recdlt}
             <tr>
                 <td>{$recdlt.prd_name}</td>
-                <td align="center">{$recdlt.unit_name}</td>
-                <td align="right">{$recdlt.recdtl_price}</td>
-                <td align="right">{$recdlt.recdtl_amount}</td>
+                <td align="left">{$recdlt.unit_name}</td>
+                <td align="right">{$recdlt.recdtl_price|number_format:2:".":","}</td>
+                <td align="right">{$recdlt.recdtl_amount|number_format:0:"":","}</td>
                 <td align="right">{$recdlt.sum_price}</td>
             </tr>
             {/foreach}
@@ -182,8 +183,8 @@
         <tfoot>
             <tr class="tfootSummary">
                 <td align="right" colspan="3">รวมทั้งหมด</td>
-                <td align="right"><b>{$sum_amount}</b></td>
-                <td align="right"><b>{$values.rec_total_price}</b></td>
+                <td align="right"><b>{$sum_amount|number_format:0:"":","}</b></td>
+                <td align="right"><b>{$values.rec_total_price|number_format:2:".":","}</b></td>
             </tr>
         </tfoot>
     </table>

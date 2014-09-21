@@ -87,25 +87,28 @@ if($tableName == 'orders') {
 	}
 
 	echo "PASS";
-} else {
-	// Add single quote
-	foreach($keySelected as $index => $value) {
-		$keySelected[$index] = "'$value'";
-	}
-
-	// Delete record
-	$sql = "DELETE FROM $tableName WHERE $keyName in (" . implode($keySelected, ',') . ')';
-
-	try {
-		if(mysql_query($sql, $dbConn)) {
-			echo "PASS";
-		} else {
-			throw new Exception(mysql_error(), mysql_errno());
-		}
-	} catch (Exception $e) {
-	    if ($e->getCode() == 1451) {
-	        echo "DELETE_REFERENCE";
-	    }
-	}
+	exit();
 }
+
+
+// Add single quote
+foreach($keySelected as $index => $value) {
+	$keySelected[$index] = "'$value'";
+}
+
+// Delete record
+$sql = "DELETE FROM $tableName WHERE $keyName in (" . implode($keySelected, ',') . ')';
+
+try {
+	if(mysql_query($sql, $dbConn)) {
+		echo "PASS";
+	} else {
+		throw new Exception(mysql_error(), mysql_errno());
+	}
+} catch (Exception $e) {
+    if ($e->getCode() == 1451) {
+        echo "DELETE_REFERENCE";
+    }
+}
+
 ?>

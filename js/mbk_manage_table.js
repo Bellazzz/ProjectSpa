@@ -129,6 +129,7 @@ function clearTable() {
 function changeTable(tableName) {
     clearTable();
     this.table.name = tableName;
+    refreshFilterQuery();
     pullTable(true);
 }
 
@@ -144,11 +145,14 @@ function pullTable(reFilter) {
     // Prepare variables
     var searchCol   = $('#search-record-filter').val();
     var searchInput = $('#search-record-input').val();
+    var queryFilter = $('#query-record-filter').val();
  
     $.ajax({
         url: 'table_data.php',
         type: 'POST',
-        data: 'tableName=' + this.table.name + '&sortCol=' + this.table.sortCol + '&sortBy=' + this.table.sortBy + '&searchCol=' + searchCol + '&searchInput=' + searchInput,
+        data: 'tableName=' + this.table.name + '&sortCol=' + this.table.sortCol + 
+              '&sortBy=' + this.table.sortBy + '&searchCol=' + searchCol + 
+              '&searchInput=' + searchInput + '&filter=' + queryFilter,
         success:
         function (response) {
             var htmlResponse;
@@ -346,6 +350,32 @@ function cancelSelectRecord() {
         }
     }
     refreshToolbarMenu();
+}
+
+function refreshFilterQuery() {
+    var filterRecordQueryHTML = '';
+    if(this.table.name == 'orders') {
+        filterRecordQueryHTML   = 'ดูการสั่งซื้อจาก '
+                                + '<select id="query-record-filter">'
+                                + '     <option value="WAIT">รอรับสินค้า</option>'
+                                + '     <option value="REMAIN">ค้างรับ</option>'
+                                + '     <option value="COMPLETED">รับเรียบร้อยแล้ว</option>'
+                                + '</select>';
+    } else if(this.table.name == 'receives') {
+        filterRecordQueryHTML   = 'ดูการรับจาก '
+                                + '<select id="query-record-filter">'
+                                + '     <option value="REMAIN">ค้างรับ</option>'
+                                + '     <option value="COMPLETED">เรียบร้อยแล้ว</option>'
+                                + '</select>';
+    }
+    $('.table-toolbar-filter').html(filterRecordQueryHTML);
+
+    // Add event
+    if($('#query-record-filter').length > 0) {
+        $('#query-record-filter').change(function() {
+            pullTable(false);
+        });
+    }
 }
 
 function refreshSearchRecord() {

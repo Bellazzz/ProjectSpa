@@ -13,7 +13,7 @@ if(!hasValue($ord_id)) {
 
 $prdList = Array();
 // Get orders data
-$sql 	=  "SELECT 	DATE_FORMAT(o.ord_snd_date,'%Y/%m/%d') ord_snd_date,
+$sql 	=  "SELECT 	DATE_FORMAT(o.ord_date,'%Y/%m/%d') ord_date,
 					od.orddtl_id,
 					od.prd_id,
 					p.prd_name,
@@ -41,8 +41,8 @@ for($i=0; $i<$rows; $i++) {
 	);
 
 	//get ord_snd date
-	if(!isset($ord_snd_date)) {
-		$ord_snd_date = $orddtlRecord['ord_snd_date'];
+	if(!isset($ord_date)) {
+		$ord_date = $orddtlRecord['ord_date'];
 	}
 }
 
@@ -74,7 +74,7 @@ foreach ($prdList as $key => $value) {
 	array_push($ordPrdList, $value);
 }
 $smarty->assign('ordPrdList', $ordPrdList);
-$smarty->assign('ord_snd_date', $ord_snd_date);
+$smarty->assign('ord_date', $ord_date);
 
 include('../common/common_footer.php');
 ?>

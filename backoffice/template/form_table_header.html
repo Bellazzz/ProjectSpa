@@ -14,9 +14,11 @@
 				    <i class="fa fa-floppy-o"></i> บันทึก
 			    </a>
 			    {elseif $action == 'VIEW_DETAIL'}
-			    <a id="edit-btn">
-				    <i class="fa fa-pencil"></i> แก้ไขข้อมูล
-			    </a>
+				    {if !$hideEditButton}
+				    <a id="edit-btn">
+					    <i class="fa fa-pencil"></i> แก้ไขข้อมูล
+				    </a>
+				    {/if}
 			    {/if}
 		    </li>
 		    <li>

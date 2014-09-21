@@ -266,7 +266,7 @@ function selectReference(select) {
         $(li).on('click', function (e) {
             e.stopPropagation();
             if(typeof(select.allowChangeOption) == 'function') {
-                if(!select.allowChangeOption()) {
+                if(!select.allowChangeOption($(this).children('.value').text())) {
                     hideAllPopup();
                     return;
                 }

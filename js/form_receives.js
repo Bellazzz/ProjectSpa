@@ -5,26 +5,28 @@ $(document).ready(function(){
 	// Check date
     $('#rec_date').change(function() {
         var selectedDate = new Date($('#rec_date').val());
-        var sendDate     = new Date(ordSndDate);
-        if(selectedDate.getTime() < sendDate.getTime()) {
-            parent.showActionDialog({
-				title: 'วันที่รับไม่ถูกต้อง',
-		        message: 'วันที่รับไม่สามารถเป็นวันก่อนหน้าวันที่สั่งซื้อได้ค่ะ',
-		        actionList: [
-		            {
-		                id: 'ok',
-		                name: 'ตกลง',
-		                desc: 'ป้อนวันที่รับใหม่',
-		                func:
-		                function() {
-		                	parent.hideActionDialog();
-							$('#rec_date').val('');
-							$('#rec_date').focus();
-		                }
-		            }
-		        ],
-		        boxWidth: 400
-		    });
+        var orderDate    = new Date(ordDate);
+        if(selectedDate.getTime() < orderDate.getTime()) {
+        	if(parent.$('.action-dialog-container').length <= 0) {
+        		parent.showActionDialog({
+					title: 'วันที่รับไม่ถูกต้อง',
+			        message: 'วันที่รับไม่สามารถเป็นวันก่อนหน้าวันที่สั่งซื้อได้ค่ะ',
+			        actionList: [
+			            {
+			                id: 'ok',
+			                name: 'ตกลง',
+			                desc: 'ป้อนวันที่รับใหม่',
+			                func:
+			                function() {
+			                	parent.hideActionDialog();
+								$('#rec_date').val('');
+								$('#rec_date').focus();
+			                }
+			            }
+			        ],
+			        boxWidth: 400
+			    });
+        	}
         }
     });
 });
@@ -222,7 +224,7 @@ function calculate() {
 
 	$('input[name="rec_total_price"]').val(totalPrice);
 	$('#total_price').text(totalPrice.formatMoney(2, '.', ','));
-	$('#total_amount').text(totalRemain);
+	$('#total_amount').text(totalRemain.formatMoney(0, '.', ','));
 }
 
 function beforeSaveRecord() {

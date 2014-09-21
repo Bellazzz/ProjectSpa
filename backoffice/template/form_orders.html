@@ -81,6 +81,7 @@
                 closeOnDateSelect:true,
                 onShow:function( ct ){
                     this.setOptions({
+                        minDate: '{/literal}{$nowDate}{literal}',
                         maxDate:$('#ord_snd_date').val()?$('#ord_snd_date').val():false
                     })
                 },
@@ -93,7 +94,7 @@
                 closeOnDateSelect:true,
                 onShow:function( ct ){
                     this.setOptions({
-                        minDate:$('#ord_date').val()?$('#ord_date').val():false
+                        minDate:$('#ord_date').val()?$('#ord_date').val():'{/literal}{$nowDate}{literal}'
                     })
                 },
                 timepicker:false
@@ -111,6 +112,81 @@
                         orddtl_id   : valuesDetail[i].orddtl_id,
                         prd_id      : valuesDetail[i].prd_id,
                         prd_qty     : valuesDetail[i].orddtl_amount
+                    });
+                }
+            }
+
+            // Check date
+            $('#ord_date').change(function(){
+                checkDate($(this), $('#ord_snd_date'));
+            });
+            $('#ord_snd_date').change(function() {
+                checkDate($(this), $('#ord_date'));
+            });
+
+            function checkDate(self, sibling) {
+                var selfDate        = new Date(self.val());
+                var siblingDate     = new Date(sibling.val());
+                var nowDate         = new Date('{/literal}{$nowDate}{literal}');
+                var selfId          = self.attr('id');
+                
+
+                if(selfId == 'ord_date') {
+                    if(selfDate.getTime() > siblingDate.getTime()) {
+                        showAlertInvalidDate(self, 'overSibling');
+                    } else if(selfDate.getTime() < nowDate.getTime()) {
+                        showAlertInvalidDate(self, 'lessThanNow')
+                    }
+                } else if(selfId == 'ord_snd_date') {
+                    if(selfDate.getTime() < siblingDate.getTime()) {
+                        showAlertInvalidDate(self, 'overSibling');
+                    } else if(selfDate.getTime() < nowDate.getTime()) {
+                        showAlertInvalidDate(self, 'lessThanNow')
+                    }
+                }
+            }
+            function showAlertInvalidDate(self, errType) {
+                var titleTxt    = '';
+                var messageTxt  = '';
+                var descTxt     = '';
+                var selfId      = self.attr('id');
+
+                if(selfId == 'ord_date') {
+                    titleTxt    = 'วันที่สั่งซื้อไม่ถูกต้อง';
+                    descTxt     = 'ป้อนวันที่สั่งซื้อใหม่';
+                    if(errType == 'overSibling') {
+                        messageTxt  = 'วันที่สั่งซื้อไม่สามารถอยู่หลังวันที่จัดส่งได้ค่ะ';
+                    } else if(errType == 'lessThanNow') {
+                        messageTxt  = 'ไม่สามารถป้อนวันที่สั่งซื้อย้อนหลังได้ค่ะ';
+                    }
+                } else if(selfId == 'ord_snd_date') {
+                    titleTxt    = 'วันที่จัดส่งไม่ถูกต้อง';
+                    descTxt     = 'ป้อนวันที่จัดส่งใหม่';
+                    if(errType == 'overSibling') {
+                        messageTxt  = 'วันที่จัดส่งไม่สามารถอยู่ก่อนหน้าวันที่สั่งซื้อได้ค่ะ';
+                    } else if(errType == 'lessThanNow') {
+                        messageTxt  = 'ไม่สามารถป้อนวันที่จัดส่งย้อนหลังได้ค่ะ';
+                    }
+                }
+
+                if(parent.$('.action-dialog-container').length <= 0) {
+                    parent.showActionDialog({
+                        title: titleTxt,
+                        message: messageTxt,
+                        actionList: [
+                            {
+                                id: 'ok',
+                                name: 'ตกลง',
+                                desc: descTxt,
+                                func:
+                                function() {
+                                    parent.hideActionDialog();
+                                    self.val('');
+                                    self.focus();
+                                }
+                            }
+                        ],
+                        boxWidth: 400
                     });
                 }
             }
@@ -158,6 +234,7 @@
                 textFieldName   : 'prd_name',
                 searchTool      : true,
                 defaultValue    : selectRefDefault,
+                allowChangeOption : allowSelectPrdId,
                 success         : 
                 function() {
                     $('input[name="' + inputKeyId + '"]').attr('name', 'prd_id[]');
@@ -186,6 +263,31 @@
                 }
             });
             return returnVal;
+        }
+
+        function allowSelectPrdId(selected) {
+            var notDuplicate = true;
+            $('input[name="prd_id[]"]').each(function() {
+                if($(this).val() == selected) {
+                     parent.showActionDialog({
+                        title: 'ท่านเลือกผลิตภัณฑ์นี้แล้ว',
+                        message: 'รายการผลิตภัณฑ์ไม่สามารถซ้ำกันได้ค่ะ',
+                        actionList: [
+                            {
+                                id: 'ok',
+                                name: 'ตกลง',
+                                func:
+                                function() {
+                                    parent.hideActionDialog();
+                                }
+                            }
+                        ],
+                        boxWidth: 400
+                    });
+                    notDuplicate = false;
+                }
+            });
+            return notDuplicate;
         }
     </script>
     {/literal}
@@ -218,11 +320,11 @@
             </tr>
             <tr>
                 <td>วันที่สั่งซื้อ :</td>
-                <td>{if $values.ord_date}{$values.ord_date}{else}-{/if}</td>
+                <td>{if $values.ord_date}{$values.ord_date_th}{else}-{/if}</td>
             </tr>
             <tr>
                 <td>วันที่จัดส่ง :</td>
-                <td>{if $values.ord_snd_date}{$values.ord_snd_date}{else}-{/if}</td>
+                <td>{if $values.ord_snd_date}{$values.ord_snd_date_th}{else}-{/if}</td>
             </tr>
             <tr>
                 <td>สถานะการสั่งซื้อ :</td>
@@ -236,16 +338,18 @@
         <thead>
             <tr>
                 <th>ผลิตภัณฑ์</th>
-                <th>ราคา/หน่วย</th>
+                <th>ราคา/หน่วย (บาท)</th>
                 <th>จำนวน</th>
+                <th>หน่วยนับ</th>
             </tr>
         </thead>
         <tbody>
             {foreach from=$orderDetailList key=i item=orddlt}
             <tr>
                 <td>{$orddlt.prd_name}</td>
-                <td align="right">{$orddlt.prd_price}</td>
-                <td align="right">{$orddlt.orddtl_amount} {$orddlt.unit_name}</td>
+                <td align="right">{$orddlt.prd_price|number_format:2:".":","}</td>
+                <td align="right">{$orddlt.orddtl_amount|number_format:0:"":","}</td>
+                <td align="left">{$orddlt.unit_name}</td>
             </tr>
             {/foreach}
         </tbody>
@@ -281,7 +385,7 @@
                 
 			    <td>
                     <label class="input-required">วันที่สั่งซื้อ</label>
-                    <input id="ord_date" name="ord_date" type="text" class="form-input half" value="{$values.ord_date}">
+                    <input id="ord_date" name="ord_date" type="text" class="form-input half" value="{if $values.ord_date}{$values.ord_date}{else}{$nowDate}{/if}">
                 </td>
                  <td>
                     <label>วันที่จัดส่ง</label>
