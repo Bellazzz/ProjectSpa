@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-19 09:02:42
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-22 18:32:33
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_orders.html" */ ?>
-<?php /*%%SmartyHeaderCode:11265541b80b278ead9-17639696%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:17339541ffac1ebac78-47944668%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '162b5a1559ed76f7da3b10d56ea4271e32e1a227' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_orders.html',
-      1 => 1410697696,
+      1 => 1411381717,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '11265541b80b278ead9-17639696',
+  'nocache_hash' => '17339541ffac1ebac78-47944668',
   'function' => 
   array (
   ),
@@ -23,14 +23,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'code' => 0,
     'valuesDetail' => 0,
     'values' => 0,
+    'nowDate' => 0,
     'orderDetailList' => 0,
     'orddlt' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_541b80b2a63e60_50723282',
+  'unifunc' => 'content_541ffac2180dd7_05018022',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_541b80b2a63e60_50723282')) {function content_541b80b2a63e60_50723282($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_541ffac2180dd7_05018022')) {function content_541ffac2180dd7_05018022($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -122,6 +123,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 closeOnDateSelect:true,
                 onShow:function( ct ){
                     this.setOptions({
+                        minDate: '<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+',
                         maxDate:$('#ord_snd_date').val()?$('#ord_snd_date').val():false
                     })
                 },
@@ -134,7 +137,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 closeOnDateSelect:true,
                 onShow:function( ct ){
                     this.setOptions({
-                        minDate:$('#ord_date').val()?$('#ord_date').val():false
+                        minDate:$('#ord_date').val()?$('#ord_date').val():'<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+'
                     })
                 },
                 timepicker:false
@@ -152,6 +156,82 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                         orddtl_id   : valuesDetail[i].orddtl_id,
                         prd_id      : valuesDetail[i].prd_id,
                         prd_qty     : valuesDetail[i].orddtl_amount
+                    });
+                }
+            }
+
+            // Check date
+            $('#ord_date').change(function(){
+                checkDate($(this), $('#ord_snd_date'));
+            });
+            $('#ord_snd_date').change(function() {
+                checkDate($(this), $('#ord_date'));
+            });
+
+            function checkDate(self, sibling) {
+                var selfDate        = new Date(self.val());
+                var siblingDate     = new Date(sibling.val());
+                var nowDate         = new Date('<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+');
+                var selfId          = self.attr('id');
+                
+
+                if(selfId == 'ord_date') {
+                    if(selfDate.getTime() > siblingDate.getTime()) {
+                        showAlertInvalidDate(self, 'overSibling');
+                    } else if(selfDate.getTime() < nowDate.getTime()) {
+                        showAlertInvalidDate(self, 'lessThanNow')
+                    }
+                } else if(selfId == 'ord_snd_date') {
+                    if(selfDate.getTime() < siblingDate.getTime()) {
+                        showAlertInvalidDate(self, 'overSibling');
+                    } else if(selfDate.getTime() < nowDate.getTime()) {
+                        showAlertInvalidDate(self, 'lessThanNow')
+                    }
+                }
+            }
+            function showAlertInvalidDate(self, errType) {
+                var titleTxt    = '';
+                var messageTxt  = '';
+                var descTxt     = '';
+                var selfId      = self.attr('id');
+
+                if(selfId == 'ord_date') {
+                    titleTxt    = 'วันที่สั่งซื้อไม่ถูกต้อง';
+                    descTxt     = 'ป้อนวันที่สั่งซื้อใหม่';
+                    if(errType == 'overSibling') {
+                        messageTxt  = 'วันที่สั่งซื้อไม่สามารถอยู่หลังวันที่จัดส่งได้ค่ะ';
+                    } else if(errType == 'lessThanNow') {
+                        messageTxt  = 'ไม่สามารถป้อนวันที่สั่งซื้อย้อนหลังได้ค่ะ';
+                    }
+                } else if(selfId == 'ord_snd_date') {
+                    titleTxt    = 'วันที่จัดส่งไม่ถูกต้อง';
+                    descTxt     = 'ป้อนวันที่จัดส่งใหม่';
+                    if(errType == 'overSibling') {
+                        messageTxt  = 'วันที่จัดส่งไม่สามารถอยู่ก่อนหน้าวันที่สั่งซื้อได้ค่ะ';
+                    } else if(errType == 'lessThanNow') {
+                        messageTxt  = 'ไม่สามารถป้อนวันที่จัดส่งย้อนหลังได้ค่ะ';
+                    }
+                }
+
+                if(parent.$('.action-dialog-container').length <= 0) {
+                    parent.showActionDialog({
+                        title: titleTxt,
+                        message: messageTxt,
+                        actionList: [
+                            {
+                                id: 'ok',
+                                name: 'ตกลง',
+                                desc: descTxt,
+                                func:
+                                function() {
+                                    parent.hideActionDialog();
+                                    self.val('');
+                                    self.focus();
+                                }
+                            }
+                        ],
+                        boxWidth: 400
                     });
                 }
             }
@@ -199,6 +279,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 textFieldName   : 'prd_name',
                 searchTool      : true,
                 defaultValue    : selectRefDefault,
+                allowChangeOption : allowSelectPrdId,
                 success         : 
                 function() {
                     $('input[name="' + inputKeyId + '"]').attr('name', 'prd_id[]');
@@ -227,6 +308,31 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 }
             });
             return returnVal;
+        }
+
+        function allowSelectPrdId(selected) {
+            var notDuplicate = true;
+            $('input[name="prd_id[]"]').each(function() {
+                if($(this).val() == selected) {
+                     parent.showActionDialog({
+                        title: 'ท่านเลือกผลิตภัณฑ์นี้แล้ว',
+                        message: 'รายการผลิตภัณฑ์ไม่สามารถซ้ำกันได้ค่ะ',
+                        actionList: [
+                            {
+                                id: 'ok',
+                                name: 'ตกลง',
+                                func:
+                                function() {
+                                    parent.hideActionDialog();
+                                }
+                            }
+                        ],
+                        boxWidth: 400
+                    });
+                    notDuplicate = false;
+                }
+            });
+            return notDuplicate;
         }
     </script>
     
@@ -261,12 +367,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             </tr>
             <tr>
                 <td>วันที่สั่งซื้อ :</td>
-                <td><?php if ($_smarty_tpl->tpl_vars['values']->value['ord_date']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['ord_date'];?>
+                <td><?php if ($_smarty_tpl->tpl_vars['values']->value['ord_date']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['ord_date_th'];?>
 <?php } else { ?>-<?php }?></td>
             </tr>
             <tr>
                 <td>วันที่จัดส่ง :</td>
-                <td><?php if ($_smarty_tpl->tpl_vars['values']->value['ord_snd_date']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['ord_snd_date'];?>
+                <td><?php if ($_smarty_tpl->tpl_vars['values']->value['ord_snd_date']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['ord_snd_date_th'];?>
 <?php } else { ?>-<?php }?></td>
             </tr>
             <tr>
@@ -281,8 +387,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <thead>
             <tr>
                 <th>ผลิตภัณฑ์</th>
-                <th>ราคา/หน่วย</th>
+                <th>ราคา/หน่วย (บาท)</th>
                 <th>จำนวน</th>
+                <th>หน่วยนับ</th>
             </tr>
         </thead>
         <tbody>
@@ -296,10 +403,11 @@ $_smarty_tpl->tpl_vars['orddlt']->_loop = true;
             <tr>
                 <td><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['prd_name'];?>
 </td>
-                <td align="right"><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['prd_price'];?>
+                <td align="right"><?php echo number_format($_smarty_tpl->tpl_vars['orddlt']->value['prd_price'],2,".",",");?>
 </td>
-                <td align="right"><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['orddtl_amount'];?>
- <?php echo $_smarty_tpl->tpl_vars['orddlt']->value['unit_name'];?>
+                <td align="right"><?php echo number_format($_smarty_tpl->tpl_vars['orddlt']->value['orddtl_amount'],0,'',",");?>
+</td>
+                <td align="left"><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['unit_name'];?>
 </td>
             </tr>
             <?php } ?>
@@ -336,8 +444,9 @@ $_smarty_tpl->tpl_vars['orddlt']->_loop = true;
                 
 			    <td>
                     <label class="input-required">วันที่สั่งซื้อ</label>
-                    <input id="ord_date" name="ord_date" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['ord_date'];?>
-">
+                    <input id="ord_date" name="ord_date" type="text" class="form-input half" value="<?php if ($_smarty_tpl->tpl_vars['values']->value['ord_date']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['ord_date'];?>
+<?php } else { ?><?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+<?php }?>">
                 </td>
                  <td>
                     <label>วันที่จัดส่ง</label>

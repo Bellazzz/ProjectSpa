@@ -1,31 +1,17 @@
-<<<<<<< HEAD
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-19 08:57:14
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-22 18:32:28
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_receives.html" */ ?>
-<?php /*%%SmartyHeaderCode:14529541b7f6a366492-17109320%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-=======
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-19 09:02:16
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_receives.html" */ ?>
-<?php /*%%SmartyHeaderCode:18392541b80983142f3-58780432%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
->>>>>>> 801cc94812cfbecf1836a57c74f7dae81c04d171
+<?php /*%%SmartyHeaderCode:19385541ffabccd9d20-79239087%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'a4b0372ea48b9eb81ac0e87d0244d72c11fc23ba' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_receives.html',
-<<<<<<< HEAD
-      1 => 1411088007,
+      1 => 1411381717,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '14529541b7f6a366492-17109320',
-=======
-      1 => 1411088063,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '18392541b80983142f3-58780432',
->>>>>>> 801cc94812cfbecf1836a57c74f7dae81c04d171
+  'nocache_hash' => '19385541ffabccd9d20-79239087',
   'function' => 
   array (
   ),
@@ -35,22 +21,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'tableName' => 0,
     'tableNameTH' => 0,
     'code' => 0,
+    'nowDate' => 0,
+    'ord_date' => 0,
     'values' => 0,
     'receiveDetailList' => 0,
     'recdlt' => 0,
     'sum_amount' => 0,
+    'recPrdList' => 0,
+    'recPrd' => 0,
+    'ordPrdList' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-<<<<<<< HEAD
-  'unifunc' => 'content_541b7f6abd9535_51964386',
+  'unifunc' => 'content_541ffabd2561e7_54172521',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_541b7f6abd9535_51964386')) {function content_541b7f6abd9535_51964386($_smarty_tpl) {?><!DOCTYPE html>
-=======
-  'unifunc' => 'content_541b8098618849_20921206',
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_541b8098618849_20921206')) {function content_541b8098618849_20921206($_smarty_tpl) {?><!DOCTYPE html>
->>>>>>> 801cc94812cfbecf1836a57c74f7dae81c04d171
+<?php if ($_valid && !is_callable('content_541ffabd2561e7_54172521')) {function content_541ffabd2561e7_54172521($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -91,6 +76,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         tr.tfootSummary td {
             background: white;
         }
+        #receives-product-list input[type="text"] {
+            text-align: right;
+            outline: none;
+            border: 1px solid #ccc;
+            padding: 5px;
+            width: 100%;
+        }
+        #receives-product-list input[type="text"]:hover, #receives-product-list input[type="text"]:focus {
+            border: 1px solid #666;
+        }
+        #receives-product-list input[type="text"].required, #receives-product-list input[type="text"].required:hover {
+            border-color: rgb(216, 0, 0);
+        }
+        #receives-product-list #total_price, #receives-product-list #total_amount {
+            font-weight: bold;
+        }
     </style>
     <script type="text/javascript">
         // Global variables
@@ -103,6 +104,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
 ';
         var ajaxUrl     = 'form_receives.php';
+        var nowDate     = '<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+';
+        var ordDate     = '<?php echo $_smarty_tpl->tpl_vars['ord_date']->value;?>
+';
 
         $(document).ready(function () {
             selectReference({
@@ -114,7 +119,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['ord_id'];?>
 ',
                 condition       : "ordstat_id != 'OS03'",
-                onOptionSelect  : changeOrderId
+                onOptionSelect  : changeOrderId,
+                allowChangeOption : allowChangeOrderId
             });
              
              selectReference({
@@ -130,13 +136,39 @@ $_valid = $_smarty_tpl->decodeProperties(array (
              
 
             $('#rec_date').datetimepicker({
-                lang:'th',
-                timepicker:false,
-                format:'Y-m-d',
-                closeOnDateSelect:true
+                lang                :'th',
+                timepicker          :false,
+                format              :'Y/m/d',
+                closeOnDateSelect   :true,
+                defaultSelect       : false,
+                onShow:function( ct ){
+                    setMinDate(this);
+                }
             });
+
+            // Calculate auto
+            if(action == 'EDIT') {
+                calculate();
+                addEventRecPrdTable();
+            }
        
         });
+
+        function setMinDate(datepicker) {
+            if(ordDate != '') {
+                datepicker.setOptions({
+                    minDate: ordDate
+                });
+            } else {
+                datepicker.setOptions({
+                    minDate: nowDate
+                });
+            }
+        }
+
+        function setOrdDate(date) {
+            ordDate = date;
+        }
     </script>
     
 </head>
@@ -148,7 +180,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
     <!-- VIEW_DETAIL -->
     <!--Orders Data-->
-    <label class="article-title">ข้อมูลการสั่งรับ</label>
+    <label class="article-title">ข้อมูลการรับ</label>
     <table class="table-view-detail">
         <tbody>
             <tr>
@@ -170,7 +202,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             </tr>
              <tr>
                 <td>วันที่รับผลิตภัณฑ์ :</td>
-                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['rec_date'];?>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['rec_date_th'];?>
 </td>
             </tr>
         </tbody>
@@ -182,9 +214,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <tr>
                 <th>ผลิตภัณฑ์</th>
                 <th>หน่วบนับ</th>
-                <th>ราคา/หน่วย</th>
+                <th>ราคา/หน่วย (บาท)</th>
                 <th>จำนวนที่รับ</th>
-                <th>ราคารวม</th>
+                <th>ราคารวม (บาท)</th>
             </tr>
         </thead>
         <tbody>
@@ -198,11 +230,11 @@ $_smarty_tpl->tpl_vars['recdlt']->_loop = true;
             <tr>
                 <td><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['prd_name'];?>
 </td>
-                <td align="center"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['unit_name'];?>
+                <td align="left"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['unit_name'];?>
 </td>
-                <td align="right"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['recdtl_price'];?>
+                <td align="right"><?php echo number_format($_smarty_tpl->tpl_vars['recdlt']->value['recdtl_price'],2,".",",");?>
 </td>
-                <td align="right"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['recdtl_amount'];?>
+                <td align="right"><?php echo number_format($_smarty_tpl->tpl_vars['recdlt']->value['recdtl_amount'],0,'',",");?>
 </td>
                 <td align="right"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['sum_price'];?>
 </td>
@@ -212,9 +244,9 @@ $_smarty_tpl->tpl_vars['recdlt']->_loop = true;
         <tfoot>
             <tr class="tfootSummary">
                 <td align="right" colspan="3">รวมทั้งหมด</td>
-                <td align="right"><b><?php echo $_smarty_tpl->tpl_vars['sum_amount']->value;?>
+                <td align="right"><b><?php echo number_format($_smarty_tpl->tpl_vars['sum_amount']->value,0,'',",");?>
 </b></td>
-                <td align="right"><b><?php echo $_smarty_tpl->tpl_vars['values']->value['rec_total_price'];?>
+                <td align="right"><b><?php echo number_format($_smarty_tpl->tpl_vars['values']->value['rec_total_price'],2,".",",");?>
 </b></td>
             </tr>
         </tfoot>
@@ -240,20 +272,80 @@ $_smarty_tpl->tpl_vars['recdlt']->_loop = true;
 ">
                 </td>
             </tr>
-            <!--<tr>
-                
-                <td>
-				    <label class="input-required">ราคารวม(บาท)</label>
-				    <input id="rec_total_price" name="rec_total_price" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['rec_total_price'];?>
-">
-			    </td>
-                 
-		    </tr>-->
-			
-            
 	    </tbody>
     </table>
     <div id="receives-product-list-container">
+    <?php if ($_smarty_tpl->tpl_vars['action']->value=='EDIT') {?>
+        <table id="receives-product-list">
+            <tr>
+                <th>ลำดับ</th>
+                <th>ผลิตภัณฑ์</th>
+                <th>จำนวนที่สั่ง</th>
+                <th>หน่วยนับ</th>
+                <th>จำนวนที่รับ</th>
+                <th>ราคาต่อหน่วย (บาท)</th>
+                <th>ราคารวม</th>
+                <th>คงเหลือ</th>
+            </tr>
+            <?php  $_smarty_tpl->tpl_vars['recPrd'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['recPrd']->_loop = false;
+ $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['recPrdList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['recPrd']->key => $_smarty_tpl->tpl_vars['recPrd']->value) {
+$_smarty_tpl->tpl_vars['recPrd']->_loop = true;
+ $_smarty_tpl->tpl_vars['i']->value = $_smarty_tpl->tpl_vars['recPrd']->key;
+?>
+            <tr>
+                <td align="center">
+                    <?php echo $_smarty_tpl->tpl_vars['recPrd']->value['no'];?>
+
+                    <input type="hidden" name="prd_id[]" value="<?php echo $_smarty_tpl->tpl_vars['recPrd']->value['prd_id'];?>
+">
+                    <input type="hidden" name="recdtl_id[]" value="<?php echo $_smarty_tpl->tpl_vars['recPrd']->value['recdtl_id'];?>
+">
+                </td>
+                <td>
+                    <span class="prd_name"><?php echo $_smarty_tpl->tpl_vars['recPrd']->value['prd_name'];?>
+</span>
+                </td>
+                <td align="right">
+                    <span class="ordPrd_amount"><?php echo $_smarty_tpl->tpl_vars['ordPrdList']->value[$_smarty_tpl->tpl_vars['recPrd']->value['prd_id']]['amount'];?>
+</span>
+                </td>
+                <td align="center">
+                    <span class="unit_name"><?php echo $_smarty_tpl->tpl_vars['recPrd']->value['unit_name'];?>
+</span>
+                </td>
+                <td>
+                    <input type="text" name="recdtl_amount[]" value="<?php echo $_smarty_tpl->tpl_vars['recPrd']->value['recdtl_amount'];?>
+" min="0" max="<?php echo $_smarty_tpl->tpl_vars['ordPrdList']->value[$_smarty_tpl->tpl_vars['recPrd']->value['prd_id']]['amount'];?>
+">
+                </td>
+                <td>
+                    <input type="text" name="recdtl_price[]" value="<?php echo $_smarty_tpl->tpl_vars['recPrd']->value['recdtl_price'];?>
+">
+                </td>
+                <td align="right">
+                    <span class="sum_price"></span>
+                </td>
+                <td align="right">
+                    <span class="remain"></span>
+                </td>
+            </tr>
+            <?php } ?>
+            <tr>
+                <td colspan="6" align="right">
+                    รวม
+                </td>
+                <td align="right">
+                    <span id="total_price"></span>
+                    <input type="hidden" name="rec_total_price" value="0">
+                </td>
+                <td align="right">
+                    <span id="total_amount"></span>
+                </td>
+            </tr>
+        </table>
+    <?php }?>
     </div>
     </form>
     <?php }?>
