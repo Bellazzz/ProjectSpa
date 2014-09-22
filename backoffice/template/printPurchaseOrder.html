@@ -149,10 +149,12 @@
 <body>
 <div class="ftb-header">
 	<div class="title-container">
-		<h1 id="ftb-title">พิมพ์ใบสั่งซื้อ</h1>
+		<h1 id="ftb-title">ใบสั่งซื้อ (เลขที่ {$ordData.ord_id})</h1>
 	</div>
     <div class="toolbar-container clearfix">
+    	{if $ordData.ordstat_id == 'OS01'}
 		<button id="print-btn" class="button button-icon button-icon-print">พิมพ์</button>
+		{/if}
 		<button id="cancel-btn" class="button button-icon button-icon-delete">ยกเลิก</button>
     </div>
 </div>
@@ -219,9 +221,9 @@
 	            {foreach from=$orddtlData key=i item=orddlt}
 	            <tr>
 	            	<td align="center">{$orddlt.no}</td>
-	                <td align="center">{$orddlt.prd_name}</td>
+	                <td align="left">{$orddlt.prd_name}</td>
 	                <td align="right">{$orddlt.orddtl_amount}</td>
-	                <td align="center">{$orddlt.unit_name}</td>
+	                <td align="left">{$orddlt.unit_name}</td>
 	                <td align="right">{$orddlt.prd_price}</td>
 	                <td align="right">{$orddlt.sum_price}</td>
 	            </tr>
@@ -250,7 +252,7 @@
     <div style="text-align: center;">
     	<div class="signature">
     		<div class="space-for-signature"></div>
-    		<p align="center">({$ordData.emp_fullname})</p>
+    		<p align="center">(<span style="width: 160px; display:inline-block;"></span>)</p>
     		<p align="center">ผู้สั่งซื้อ</p>
     		<p align="center">วันที่ {$nowDateThai}</p>
     	</div>

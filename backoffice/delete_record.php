@@ -22,7 +22,8 @@ if($tableName == 'orders') {
 			$orddtl_id = $resultRow['orddtl_id'];
 			$orderDetailRecord = new TableSpa('order_details', $orddtl_id);
 			if(!$orderDetailRecord->delete()) {
-				echo "DELETE_ORDER_DETAIL_FAIL";
+				$err = mysql_error($dbConn);
+				echo "DELETE_ORDER_DETAIL_FAIL : $err";
 				exit();
 			}
 		}
@@ -33,6 +34,7 @@ if($tableName == 'orders') {
 		$result = mysql_query($sql, $dbConn);
 		$rows 	= mysql_num_rows($result);
 		for($i=0; $i<$rows; $i++) {
+			// Delete receive_details
 			$resultRow = mysql_fetch_assoc($result);
 			$recdtl_id = $resultRow['recdtl_id'];
 			$receiveDetailRecord = new TableSpa('receive_details', $recdtl_id);
@@ -45,34 +47,49 @@ if($tableName == 'orders') {
 				$newAmount = (int)$prdAmount - $rmAmount;
 				$prdRecord->setFieldValue('prd_amount', "$newAmount");
 				if(!$prdRecord->commit()) {
-					echo "REMOVE_PRODUCT_AMOUNT_FAIL";
+					$err = mysql_error($dbConn);
+					echo "REMOVE_PRODUCT_AMOUNT_FAIL : $err";
 					exit();
 				}
 			} else {
-				echo "DELETE_RECEIVE_DETAIL_FAIL";
+				$err = mysql_error($dbConn);
+				echo "DELETE_RECEIVE_DETAIL_FAIL : $err";
 				exit();
 			}
 		}
 
-		// Update status of orders
-		$receivesRecord 		= new TableSpa('receives', $rec_id);
-		$ord_id 				= $receivesRecord->getFieldValue('ord_id');
-		$sql 					= "SELECT rec_id FROM receives WHERE ord_id = '$ord_id' AND rec_id != '$rec_id'";
-		$updateStatOrdResult 	= mysql_query($sql, $dbConn);
-		$updateStatOrdRows 	 	= mysql_num_rows($updateStatOrdResult);
-		if($updateStatOrdRows > 0) {
-			$ordstat_id = 'OS02';
-		} else {
-			$ordstat_id = 'OS01';
-		}
-		$ordersRecord 			= new TableSpa('orders', $ord_id);
-		$ordersRecord->setFieldValue('ordstat_id', $ordstat_id);
-		if(!$ordersRecord->commit()) {
-			echo "UPDATE_STATUS_ORDERS_FAIL";
-			exit();
+		// Delete receive
+		$receivesRecord = new TableSpa('receives', $rec_id);
+		$ord_id 		= $receivesRecord->getFieldValue('ord_id');
+		if(!$receivesRecord->delete()) {
+			$err = mysql_error($dbConn);
+			echo "DELETE_RECEIVES_FAIL : $err";
 		}
 	}
+
+	
+
+	// Update status of orders
+	$sql 					= "SELECT rec_id FROM receives WHERE ord_id = '$ord_id'";
+	$updateStatOrdResult 	= mysql_query($sql, $dbConn);
+	$updateStatOrdRows 	 	= mysql_num_rows($updateStatOrdResult);
+	if($updateStatOrdRows > 0) {
+		$ordstat_id = 'OS02';
+	} else {
+		$ordstat_id = 'OS01';
+	}
+	$ordersRecord 			= new TableSpa('orders', $ord_id);
+	$ordersRecord->setFieldValue('ordstat_id', $ordstat_id);
+	if(!$ordersRecord->commit()) {
+		$err = mysql_error($dbConn);
+		echo "UPDATE_STATUS_ORDERS_FAIL : $err";
+		exit();
+	}
+
+	echo "PASS";
+	exit();
 }
+
 
 // Add single quote
 foreach($keySelected as $index => $value) {
@@ -93,4 +110,5 @@ try {
         echo "DELETE_REFERENCE";
     }
 }
+
 ?>

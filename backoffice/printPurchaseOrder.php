@@ -72,6 +72,7 @@ if(hasValue($ordId)) {
 	$ordData = array();
 	$sql = "SELECT 	o.ord_date,
 	 				o.ord_snd_date,
+	 				o.ordstat_id,
 	 				ot.ordtyp_name,
 	 				CONCAT(t.title_name, e.emp_name, ' ', e.emp_surname) emp_fullname,
 	 				c.comp_name,
@@ -89,6 +90,7 @@ if(hasValue($ordId)) {
 		$ordRecord = mysql_fetch_assoc($result);
 		$ordData = array(
 			'ord_id' 		=> $ordId,
+			'ordstat_id' 	=> $ordRecord['ordstat_id'],
 			'ordtyp_name' 	=> $ordRecord['ordtyp_name'],
 			'emp_fullname' 	=> $ordRecord['emp_fullname'],
 			'comp_name' 	=> $ordRecord['comp_name'],

@@ -13,6 +13,7 @@ if(hasValue($_REQUEST['tableName'])) {
 $tableInfo	= getTableInfo($tableName);
 $sortCol	= $tableInfo['keyFieldName'];
 $sortBy		= 'asc';
+$filter 	= '';
 $where		= '';
 $like		= '';
 $order		= '';
@@ -22,6 +23,9 @@ if(hasValue($_REQUEST['sortBy'])) {
 }
 if(hasValue($_REQUEST['sortCol'])) {
 	$sortCol = $_REQUEST['sortCol'];
+}
+if(hasValue($_REQUEST['filter'])) {
+	$filter = $_REQUEST['filter'];
 }
 $order	 = "ORDER BY $sortCol $sortBy";
 
@@ -33,14 +37,14 @@ if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 }
 
 // check for table that display special
-/*switch ($tableName) {
-	case 'employees':
-		header("location:table_data_employees.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
+switch ($tableName) {
+	case 'orders':
+		header("location:table_data_orders.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
 		break;
-	case 'service_lists':
-		header("location:table_data_service_lists.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
+	case 'receives':
+		header("location:table_data_receives.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
 		break;
-	case 'packages':
+	/*case 'packages':
 		header("location:table_data_packages.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
 		break;
 	case 'spa':
@@ -51,8 +55,8 @@ if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 		break;
 	case 'booking':
 		header("location:table_data_booking.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
-		break;
-}*/
+		break;*/
+}
 
 // Query table data
 switch ($tableName) {
@@ -628,6 +632,18 @@ if($rows > 0){
 		?>
 	</tbody>
 </table>
+<?
+} else{
+?>
+	<!-- No record will display notification-->
+	<div id="table-data-empty">
+		<img src="../img/backoffice/test.png"><br>
+		ไม่พบข้อมูล
+	</div>
+<?
+}
+?>
+
 <script id="tmpScriptTableData1" type="text/javascript" src="../js/table_data.js"></script>
 <script id="tmpScriptTableData2" type="text/javascript">
 	// Set table data
@@ -646,13 +662,3 @@ if($rows > 0){
 	$('#tmpScriptTableData1').remove();
 	$('#tmpScriptTableData2').remove();
 </script>
-<?
-}
-else{
-// No record will display notification
-?>
-<div id="table-data-empty">
-	<img src="../img/backoffice/test.png"><br>
-	ไม่พบข้อมูล
-</div>
-<?}?>
