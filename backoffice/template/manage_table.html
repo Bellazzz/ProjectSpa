@@ -33,7 +33,16 @@
 				<li><a href="#">จัดการเว็บไซต์</a></li>
 			</ul>
 			<ul id="header-tool">
-				<li><div id="account-box"></div></li>
+				<li>
+                    <div id="account-box">
+                        {if $session_loggedin}
+                        <b>{$session_emp_user}</b>
+                        <a href="logout.php">ออกจากระบบ</a>
+                        {else}
+                        <a href="login.php">เข้าสู่ระบบ</a>
+                        {/if}
+                    </div>
+                </li>
 			</ul>
 		</div>
 		<div class="sidebar" aria-expanded="true">

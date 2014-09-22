@@ -19,12 +19,12 @@
     </style>
     <script type="text/javascript">
         // Global variables
-        var action      = '{/literal}{$action}{literal}';
-        var tableName   = '{/literal}{$tableName}{literal}';
-		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
-        var code        = '{/literal}{$code}{literal}';
-        var ajaxUrl     = 'form_orders.php';
-        var valuesDetail= '';
+        var action          = '{/literal}{$action}{literal}';
+        var tableName       = '{/literal}{$tableName}{literal}';
+		var tableNameTH     = '{/literal}{$tableNameTH}{literal}';
+        var code            = '{/literal}{$code}{literal}';
+        var ajaxUrl         = 'form_orders.php';
+        var valuesDetail    = '';
 
         // Set valuesDetail
         {/literal}
@@ -53,7 +53,7 @@
                 keyFieldName    : 'emp_id',
                 textFieldName   : 'emp_id,emp_name,emp_surname',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.emp_id}{literal}',
+                defaultValue    : '{/literal}{if $values.emp_id}{$values.emp_id}{else}{$session_emp_id}{/if}{literal}',
                 pattern         : 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
             selectReference({
