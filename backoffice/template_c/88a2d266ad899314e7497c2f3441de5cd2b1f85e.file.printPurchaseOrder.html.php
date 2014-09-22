@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-18 11:36:07
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-19 09:49:50
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\printPurchaseOrder.html" */ ?>
-<?php /*%%SmartyHeaderCode:30211541a5327dbf7f7-84871713%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:15014541b8bbeb2aa08-22448394%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '88a2d266ad899314e7497c2f3441de5cd2b1f85e' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\printPurchaseOrder.html',
-      1 => 1410791002,
+      1 => 1411012132,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '30211541a5327dbf7f7-84871713',
+  'nocache_hash' => '15014541b8bbeb2aa08-22448394',
   'function' => 
   array (
   ),
@@ -28,9 +28,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_541a532804d285_42676472',
+  'unifunc' => 'content_541b8bbee73fb7_33951651',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_541a532804d285_42676472')) {function content_541a532804d285_42676472($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_541b8bbee73fb7_33951651')) {function content_541b8bbee73fb7_33951651($_smarty_tpl) {?><!DOCTYPE html>
 <html>
 <head>
 	<title>Spa - Backoffice</title>
@@ -218,7 +218,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </td>
 				</tr>
 				<tr>
-					<td><b>โทรศัทพ์</b></td>
+					<td><b>โทรศัพท์</b></td>
 					<td><?php echo $_smarty_tpl->tpl_vars['ordData']->value['comp_tel'];?>
  &nbsp;&nbsp;&nbsp;&nbsp; <b>โทรสาร</b>&nbsp; <?php echo $_smarty_tpl->tpl_vars['ordData']->value['fax'];?>
 </td>

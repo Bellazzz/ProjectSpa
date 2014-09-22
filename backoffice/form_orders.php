@@ -37,11 +37,14 @@ if(!$_REQUEST['ajaxCall']) {
 		foreach($tableInfo['fieldNameList'] as $field => $value) {
 			$values[$field] = $tableRecord->getFieldValue($field);
 		}
+		// Date thai format
+		$values['ord_date_th']  	= dateThaiFormat($values['ord_date']);
+		$values['ord_snd_date_th'] 	= dateThaiFormat($values['ord_snd_date']);
 		$smarty->assign('values', $values);
-
+		
 		// Get detail of orders
 		$orderDetailList = array();
-		$sql 	= "	SELECT FORMAT(o.orddtl_amount, 0) orddtl_amount,
+		$sql 	= "	SELECT o.orddtl_amount,
 					p.prd_name,
 					p.prd_price,
 					u.unit_name 
@@ -60,6 +63,10 @@ if(!$_REQUEST['ajaxCall']) {
 	$smarty->assign('tableName', $tableName);
 	$smarty->assign('tableNameTH', $tableInfo['tableNameTH']);
 	$smarty->assign('code', $code);
+	// Hide edit button
+	if($values['ordstat_id'] != 'OS01') {
+		$smarty->assign('hideEditButton', true);
+	}
 	include('../common/common_footer.php');
 } else {
 	//2. Process record

@@ -6,4 +6,7 @@
 	$smarty = new Smarty();
 	$smarty->setTemplateDir($subDir.'template');
 	$smarty->setCompileDir($subDir.'template_c');
+
+	$nowDate = date('Y/m/d');
+	$smarty->assign('nowDate', date('Y/m/d'));
 ?>
