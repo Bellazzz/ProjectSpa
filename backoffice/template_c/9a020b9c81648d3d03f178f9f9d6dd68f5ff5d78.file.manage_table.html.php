@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-23 14:46:24
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-23 21:41:13
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
 <?php /*%%SmartyHeaderCode:76405420e9476ef218-79560172%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9a020b9c81648d3d03f178f9f9d6dd68f5ff5d78' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\manage_table.html',
-      1 => 1411454568,
+      1 => 1411479665,
       2 => 'file',
     ),
   ),
@@ -125,7 +125,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                     <span class="item-label">เตียงนวด</span>
                                 </a>
                             </li>
-                            <li id="tn-order_status ">
+                            <li id="tn-order_status">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-order_status "></span>
                                     <span class="item-label">สถานะการสั่งซื้อ</span>
