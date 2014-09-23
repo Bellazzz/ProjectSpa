@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-23 21:41:13
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-23 22:40:11
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
 <?php /*%%SmartyHeaderCode:76405420e9476ef218-79560172%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9a020b9c81648d3d03f178f9f9d6dd68f5ff5d78' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\manage_table.html',
-      1 => 1411479665,
+      1 => 1411482310,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'session_loggedin' => 0,
-    'session_emp_user' => 0,
+    'session_emp_name' => 0,
+    'session_emp_surname' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -62,7 +63,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<li>
                     <div id="account-box">
                         <?php if ($_smarty_tpl->tpl_vars['session_loggedin']->value) {?>
-                        <b><?php echo $_smarty_tpl->tpl_vars['session_emp_user']->value;?>
+                        <b>คุณ<?php echo $_smarty_tpl->tpl_vars['session_emp_name']->value;?>
+ <?php echo $_smarty_tpl->tpl_vars['session_emp_surname']->value;?>
 </b>
                         <a href="logout.php">ออกจากระบบ</a>
                         <?php } else { ?>

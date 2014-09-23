@@ -30,6 +30,8 @@ if($row > 0) {
 	$_SESSION['loggedin'] 		= true;
 	$_SESSION['emp_id'] 		= $empRow['emp_id'];
 	$_SESSION['emp_user'] 		= $empRow['emp_user'];
+	$_SESSION['emp_name'] 		= $empRow['emp_name'];
+	$_SESSION['emp_surname'] 	= $empRow['emp_surname'];
 	echo "PASS";
 } else {
 	echo "NOT_PASS";
