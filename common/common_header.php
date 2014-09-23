@@ -20,5 +20,10 @@
 	if(isset($_SESSION['emp_user'])) {
 		$smarty->assign('session_emp_user', $_SESSION['emp_user']);
 	}
-
+	if(isset($_SESSION['emp_name'])) {
+		$smarty->assign('session_emp_name', $_SESSION['emp_name']);
+	}
+	if(isset($_SESSION['emp_surname'])) {
+		$smarty->assign('session_emp_surname', $_SESSION['emp_surname']);
+	}
 ?>
