@@ -299,6 +299,10 @@ body {
 #clear-search-record-input:hover {
     background-color: #45A858;
 }
+#search-record-filter {
+    padding: 0 5px;
+    height: 27px;
+}
 
 /*
  * No select table

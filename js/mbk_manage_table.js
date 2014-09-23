@@ -380,13 +380,29 @@ function refreshFilterQuery() {
 
 function refreshSearchRecord() {
     var options = '';
-    for(fieldEn in this.table.fieldNameList) {
-        var fieldTh = this.table.fieldNameList[fieldEn];
-        options += '<option value="' + fieldEn + '">' + fieldTh + '</option>';
-        
+
+    if(this.table.searchFields.length > 0) {
+        for(i in this.table.searchFields) {
+            var fieldEn = this.table.searchFields[i];
+            var fieldTh = this.table.fieldNameList[fieldEn];
+            options += '<option value="' + fieldEn + '">' + fieldTh + '</option>';
+        }
+    } else {
+        for(fieldEn in this.table.fieldNameList) {
+            var fieldTh = this.table.fieldNameList[fieldEn];
+            options += '<option value="' + fieldEn + '">' + fieldTh + '</option>';
+        }
     }
+
     $('#search-record-input').val('');
     $('#search-record-filter').html(options);
+
+    // Hide search filter if has one field
+    if(this.table.searchFields.length == 1) {
+        $('#search-record-filter').css('visibility', 'hidden');
+    } else {
+        $('#search-record-filter').css('visibility', 'visible');
+    }
 }
 
 /*
