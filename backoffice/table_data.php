@@ -534,6 +534,7 @@ $tableData	= array();
 for($i = 0; $i < $rows; $i++) {
 	array_push($tableData, mysql_fetch_assoc($result));
 }
+
 ?>
 
 <?

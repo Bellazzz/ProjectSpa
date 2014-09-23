@@ -69,12 +69,26 @@ function dbClose() {
 				'keyChar'		=> 'X',
 				'keyLength'		=> 2,
 				'fieldNameList'	=> array(
-					'sex_id'		=> 'รหัสเพศ',
+					'sex_id'	=> 'รหัสเพศ',
 					'sex_name'	=> 'ชื่อเพศ'
 				)
 			);
 			break;
 
+		case 'order_status':
+			return array(
+				'tableNameTH'	=> 'สถานะการสั่งซื้อ',
+				'keyFieldName'  => 'ordstat_id',
+				'keyFieldType'	=> 2,
+				'keyChar'		=> 'OS',
+				'keyLength'		=> 4,
+				'fieldNameList'	=> array(
+					'ordstat_id'		=> 'รหัสสถานะการสั่งซื้อ',
+					'ordstat_name'		=> 'ชื่อสถานะการสั่งซื้อ'
+				)
+			);
+			break;
+				
 		case 'positions':
 			 return array(
 				'tableNameTH'	=> 'ตำแหน่ง',
@@ -467,8 +481,10 @@ function dbClose() {
 						'brand_id'	      => 'ยี่ห้อ',
 						'prd_name'	      => 'ผลิตภัณฑ์',
 						'prd_price'       => 'ราคา(บาท)',
-						'prd_amount'      => 'จำนวน'
-				)
+						'prd_amount'      => 'จำนวน',
+						'prd_pic'      	  => 'รูปภาพ'
+				),
+				'hiddenFields'	=> array('prd_pic','prd_amount','unit_id')
 			);
 			break;
 

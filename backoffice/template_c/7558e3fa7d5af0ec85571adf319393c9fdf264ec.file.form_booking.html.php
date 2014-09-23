@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-22 20:06:00
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-23 15:50:41
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_booking.html" */ ?>
 <?php /*%%SmartyHeaderCode:216542010a8d45eb3-14555224%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7558e3fa7d5af0ec85571adf319393c9fdf264ec' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_booking.html',
-      1 => 1410277700,
+      1 => 1411442280,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_542010a8f1d835_06907685',
   'variables' => 
   array (
     'action' => 0,
@@ -22,10 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'tableNameTH' => 0,
     'code' => 0,
     'values' => 0,
+    'session_emp_id' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_542010a8f1d835_06907685',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_542010a8f1d835_06907685')) {function content_542010a8f1d835_06907685($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -60,8 +61,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 keyFieldName    : 'emp_id',
                 textFieldName   : 'emp_id,emp_name,emp_surname',
                 searchTool      : true,
-                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_id'];?>
-',
+                defaultValue    : '<?php if ($_smarty_tpl->tpl_vars['values']->value['emp_id']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_id'];?>
+<?php } else { ?><?php echo $_smarty_tpl->tpl_vars['session_emp_id']->value;?>
+<?php }?>',
                 pattern         : 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
 			  selectReference({

@@ -1,6 +1,6 @@
 <?php
 $action			= isset($_REQUEST['action']) ? $_REQUEST['action'] : 'ADD';
-$tableName		= 'employees';
+$tableName		= 'packages';
 $code			= $_REQUEST['code'];
 
 include('../config/config.php');
@@ -9,7 +9,23 @@ $subDir	 = WEB_ROOTDIR.'/backoffice/';
 include('../common/common_header.php');
 $tableInfo = getTableInfo($tableName);
 
-if($_REQUEST['ajaxCall']) {
+if(!$_REQUEST['ajaxCall']) {
+	//1. Display form
+	if($action == 'EDIT') {
+		$tableRecord = new TableSpa($tableName, $code);
+		$values      = array();
+		foreach($tableInfo['fieldNameList'] as $field => $value) {
+			$values[$field] = $tableRecord->getFieldValue($field);
+		}
+		$smarty->assign('values', $values);
+	}
+
+	$smarty->assign('action', $action);
+	$smarty->assign('tableName', $tableName);
+	$smarty->assign('tableNameTH', $tableInfo['tableNameTH']);
+	$smarty->assign('code', $code);
+	include('../common/common_footer.php');
+} else {
 	//2. Process record
 	$formData		= array();
 	$values			= array();
@@ -33,11 +49,6 @@ if($_REQUEST['ajaxCall']) {
 	if(hasValue($formData['uniqueFields'])) {
 		$uniqueFields = explode(',', $formData['uniqueFields']);
 		foreach($uniqueFields as $key => $fieldName) {
-			// Skip if value is empty
-			if($formData[$fieldName] == '') {
-				continue;
-			}
-
 			$value = $formData[$fieldName];
 			$value = str_replace("\\\'", "'", $value);
 			$value = str_replace('\\\"', '"', $value);
@@ -67,23 +78,23 @@ if($_REQUEST['ajaxCall']) {
 		$values['fieldValue'] = array();
 
 		// Rename Image
-		if(strpos($formData['emp_pic'], 'temp_') !== FALSE) {
-			$type		= str_replace(".", "", strrchr($formData['emp_pic'],"."));
-			$tmpRecord	= new TableSpa('employees', null);
-			$emp_pic	= $tmpRecord->genKeyCharRunning().".$type";
-			$emp_pic_path = '../img/employees/'.$emp_pic;
+		if(strpos($formData['prd_pic'], 'temp_') !== FALSE) {
+			$type		= str_replace(".", "", strrchr($formData['prd_pic'],"."));
+			$tmpRecord	= new TableSpa('products', null);
+			$prd_pic	= $tmpRecord->genKeyCharRunning().".$type";
+			$prd_pic_path = '../img/products/'.$prd_pic;
 
 			// Delete Old Image
-			if(file_exists($emp_pic_path)) {
-				if(!unlink($emp_pic_path)) {
+			if(file_exists($pkg_picture_path)) {
+				if(!unlink($pkg_picture_path)) {
 					$response['status'] = 'DELETE_OLD_IMG_FAIL';
 					echo json_encode($response);
 					exit();
 				}
 			}
 
-			if(rename('../img/temp/'.$formData['emp_pic'], $emp_pic_path)) {
-				$formData['emp_pic'] = $emp_pic;
+			if(rename('../img/temp/'.$formData['prd_pic'], $prd_pic_path)) {
+				$formData['prd_pic'] = $prd_pic;
 			} else {
 				$response['status'] = 'RENAME_FAIL';
 				echo json_encode($response);
@@ -91,18 +102,9 @@ if($_REQUEST['ajaxCall']) {
 			}
 		}
 
-		// Encryption password
-		$formData['emp_pass'] = md5($formData['emp_pass']);
-		
-
 		// Push values to array
 		foreach($formData as $fieldName => $value) {
-			if($fieldName != 'requiredFields' && $fieldName != 'uniqueFields' && $fieldName != 'emp_re_pass') {
-				// Skip if value is empty and default this field is null
-				if($value == '' && in_array($fieldName, $tableInfo['defaultNull'])) {
-					continue;
-				}
-
+			if($fieldName != 'requiredFields' && $fieldName != 'uniqueFields') {
 				$value = str_replace("\\\'", "'", $value);
 				$value = str_replace('\\\"', '"', $value);
 				$value = str_replace('\\\\"', '\\', $value);
@@ -120,16 +122,17 @@ if($_REQUEST['ajaxCall']) {
 			$response['status'] = 'ADD_FAIL';
 			echo json_encode($response);
 		}
+		
 	} else if($action == 'EDIT') {
 		//2.2 Update record
 		$tableRecord = new TableSpa($tableName, $code);
 
 		// Rename Image
-		if(strpos($formData['emp_pic'], 'temp_') !== FALSE) {
-			$type		= str_replace(".", "", strrchr($formData['emp_pic'],"."));
-			$emp_pic	= $code.".$type";
-			$imgTmpPath = '../img/temp/'.$formData['emp_pic'];
-			$imgNewPath = '../img/employees/'.$emp_pic;
+		if(strpos($formData['prd_pic'], 'temp_') !== FALSE) {
+			$type		= str_replace(".", "", strrchr($formData['prd_pic'],"."));
+			$prd_pic = $code.".$type";
+			$imgTmpPath = '../img/temp/'.$formData['prd_pic'];
+			$imgNewPath = '../img/products/'.$prd_pic;
 
 			// Delete Old Image
 			if(file_exists($imgNewPath)) {
@@ -142,7 +145,7 @@ if($_REQUEST['ajaxCall']) {
 			// Rename temp to new image
 			if(file_exists($imgTmpPath)) {
 				if(rename($imgTmpPath, $imgNewPath)) {
-					$formData['emp_pic'] = $emp_pic;
+					$formData['prd_pic'] = $prd_pic;
 				} else {
 					$response['status'] = 'RENAME_FAIL';
 					echo json_encode($response);
@@ -151,18 +154,9 @@ if($_REQUEST['ajaxCall']) {
 			}
 		}
 
-
 		// Set all field value
 		foreach($formData as $fieldName => $value) {
 			if(in_array($fieldName, $fieldListEn)) {
-				// value is empty will set default is null
-				if($value == '' && in_array($fieldName, $tableInfo['defaultNull'])) {
-					$value = 'NULL';
-				} else if($fieldName == 'emp_pass') {
-					// Encryption password
-					$value = md5($formData['emp_pass']);
-				}
-
 				$tableRecord->setFieldValue($fieldName, $value);
 			}
 		}

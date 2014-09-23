@@ -862,6 +862,10 @@ table.mbk .icon {
     background: url('../img/backoffice/mbk-icon-table.png') no-repeat;
     background-position: -100px -20px;
 }
+.mbk-icon.icon-order_status {
+    background: url('../img/backoffice/mbk-icon-table.png') no-repeat;
+    background-position: -120px 0px;
+}
 
 .mbk-icon-16 {
     width: 16px;
