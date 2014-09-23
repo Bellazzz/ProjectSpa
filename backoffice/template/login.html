@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Back Office - Spa</title>
+	<meta charset="utf-8"/>
+    {literal}
+	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	{/literal}
+</head>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#login-btn').click(function() {
+		$.ajax({
+			url: '../common/ajaxCheckEmployeesLogin.php',
+			type: 'POST',
+			data: {
+				'formData' : $('#form-login').serialize()
+			},
+			success:
+			function(response) {
+				if(response == 'PASS') {
+					window.location ='http://localhost/projectSpa/backoffice/manage_table.php';
+				} else if(response == 'NOT_PASS') {
+					$('#error-message-username').text("ไม่พบบัญชีผู้ใช้นี้ หรือท่านกรอกชื่อผู้ใช้ และรหัสผ่านผิดพลาด โปรดลองอีกครั้ง");
+				}  else {
+					alert(response);
+				}
+			}
+		})
+	});
+});
+</script>
+<body>
+<div style="height: 40px;"></div>
+emp_id : {$session_emp_id}<br>
+emp_user : {$session_emp_user}<br>
+<form id="form-login" name="form-login" onsubmit="return false;">
+	<div id="error-message-username"></div>
+	<input type="text" name="username">
+	<div id="error-message-password"></div>
+	<input type="password" name="password">
+	<button id="login-btn">Login</button>
+</form>
+
+<div class="loginPage-footer"></div>
+</body>
+</html>

@@ -37,7 +37,7 @@
                 keyFieldName    : 'emp_id',
                 textFieldName   : 'emp_id,emp_name,emp_surname',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.emp_id}{literal}',
+                defaultValue    : '{/literal}{if $values.emp_id}{$values.emp_id}{else}{$session_emp_id}{/if}{literal}',
                 pattern         : 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
                selectReference({

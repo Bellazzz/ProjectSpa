@@ -1,4 +1,5 @@
 <?php
+session_start();
 $action			= isset($_REQUEST['action']) ? $_REQUEST['action'] : 'ADD';
 $tableName		= 'orders';
 $code			= $_REQUEST['code'];
@@ -59,14 +60,15 @@ if(!$_REQUEST['ajaxCall']) {
 		$smarty->assign('orderDetailList', $orderDetailList);
 	}
 
-	$smarty->assign('action', $action);
-	$smarty->assign('tableName', $tableName);
-	$smarty->assign('tableNameTH', $tableInfo['tableNameTH']);
-	$smarty->assign('code', $code);
 	// Hide edit button
 	if($values['ordstat_id'] != 'OS01') {
 		$smarty->assign('hideEditButton', true);
 	}
+
+	$smarty->assign('action', $action);
+	$smarty->assign('tableName', $tableName);
+	$smarty->assign('tableNameTH', $tableInfo['tableNameTH']);
+	$smarty->assign('code', $code);
 	include('../common/common_footer.php');
 } else {
 	//2. Process record
