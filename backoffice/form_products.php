@@ -1,6 +1,6 @@
 <?php
 $action			= isset($_REQUEST['action']) ? $_REQUEST['action'] : 'ADD';
-$tableName		= 'packages';
+$tableName		= 'products';
 $code			= $_REQUEST['code'];
 
 include('../config/config.php');
