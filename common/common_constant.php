@@ -369,7 +369,9 @@ function dbClose() {
 						'svl_desc'			=> 'คำอธิบาย',
 						'svl_picture'		=> 'รูปภาพ'	
 				),
-				'hiddenFields'	=> array('svl_desc','svl_picture','svl_commission','svl_price')
+				'hiddenFields'	=> array('svl_desc','svl_picture','svl_commission','svl_price'),
+				'defaultNull' 	=> array('svl_min','svl_hr','svl_desc','svl_picture')
+			
 			);
 			break;
 
@@ -389,7 +391,8 @@ function dbClose() {
 						'pkg_price'     => 'ราคา(บาท)',
 						'pkg_picture'   => 'รูปภาพ'			
 				),
-				'hiddenFields'	=> array('pkg_desc','pkg_picture')
+				'hiddenFields'	=> array('pkg_desc','pkg_picture'),
+				'defaultNull' 	=> array('pkg_stop','pkg_desc','pkg_picture')
 			);
 			break;
 
@@ -424,7 +427,8 @@ function dbClose() {
 						'prm_enddate'		=> 'วันที่สิ้นสุด',
 						'prm_picture'		=> 'รูปภาพ'
 				),
-				'hiddenFields'	=> array('prm_picture')
+				'hiddenFields'	=> array('prm_picture'),
+				'defaultNull' 	=> array('prm_use_amount','prm_free_amount','prm_enddate','prm_picture')
 			);
 			break;
 
@@ -444,7 +448,8 @@ function dbClose() {
 						'prmsvl_desc'     => 'คำอธิบาย',
 						'prmsvl_price'    => 'ราคา(บาท)'
 				),
-				'hiddenFields'	=> array('prmsvl_desc')
+				'hiddenFields'	=> array('prmsvl_desc'),
+				'defaultNull' 	=> array('prmsvl_start','prmsvl_end')
 			);
 			break;
 
@@ -463,7 +468,8 @@ function dbClose() {
 						'comp_addr'	      => 'ที่อยู่',
 						'comp_contact'    => 'ผู้ติดต่อ'
 				),
-				'hiddenFields'	=> array('fax','comp_tel','comp_addr','comp_contact')
+				'hiddenFields'	=> array('fax','comp_tel','comp_addr','comp_contact'),
+				'defaultNull' 	=> array('fax','comp_contact')
 			);
 			break;
 
@@ -484,7 +490,8 @@ function dbClose() {
 						'prd_amount'      => 'จำนวน',
 						'prd_pic'      	  => 'รูปภาพ'
 				),
-				'hiddenFields'	=> array('prd_pic','prd_amount','unit_id')
+				'hiddenFields'	=> array('prd_pic','prd_amount','unit_id'),
+				'defaultNull' 	=> array('prd_amount')
 			);
 			break;
 
@@ -545,7 +552,8 @@ function dbClose() {
 						'bkg_time'    			  => 'เวลาที่จอง',
 						'bkg_transfer_money'      => 'จำนวนเงินที่โอน(บาท)'
 				),
-				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time')
+				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time'),
+				'defaultNull' 	=> array('bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_transfer_money')
 			);
 			break;
 
@@ -622,7 +630,9 @@ function dbClose() {
 						'ser_time'	          => 'เวลาที่ใช้บริการ',
 						'ser_total_price' 	  => 'ราคารวมทั้งหมด(บาท)'
 				),
-				'hiddenFields'	=> array('emp_id','bed_id','bkg_id','ser_date','ser_time','ser_total_price')
+				'hiddenFields'	=> array('emp_id','bed_id','bkg_id','ser_date','ser_time','ser_total_price'),
+				'defaultNull' 	=> array('bkg_id')
+
 			);
 			break;
 
