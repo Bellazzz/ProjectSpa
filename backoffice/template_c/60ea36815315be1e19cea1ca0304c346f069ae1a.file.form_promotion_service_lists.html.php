@@ -1,17 +1,31 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-09-23 22:10:16
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_promotion_service_lists.html" */ ?>
 <?php /*%%SmartyHeaderCode:2376654217f48e4c905-50812105%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-23 22:26:45
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_promotion_service_lists.html" */ ?>
+<?php /*%%SmartyHeaderCode:17472542183255352d0-01183219%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> 98b87d80794d7d3874680374d25c43398a77c817
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '60ea36815315be1e19cea1ca0304c346f069ae1a' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_promotion_service_lists.html',
+<<<<<<< HEAD
       1 => 1410276224,
       2 => 'file',
     ),
   ),
   'nocache_hash' => '2376654217f48e4c905-50812105',
+=======
+      1 => 1410277944,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '17472542183255352d0-01183219',
+>>>>>>> 98b87d80794d7d3874680374d25c43398a77c817
   'function' => 
   array (
   ),
@@ -25,9 +39,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
+<<<<<<< HEAD
   'unifunc' => 'content_54217f4911e042_09642106',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_54217f4911e042_09642106')) {function content_54217f4911e042_09642106($_smarty_tpl) {?><!DOCTYPE html>
+=======
+  'unifunc' => 'content_5421832572d342_22899697',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5421832572d342_22899697')) {function content_5421832572d342_22899697($_smarty_tpl) {?><!DOCTYPE html>
+>>>>>>> 98b87d80794d7d3874680374d25c43398a77c817
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
