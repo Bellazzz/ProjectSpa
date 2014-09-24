@@ -57,7 +57,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 					'title_id'		=> 'รหัสคำนำหน้าชื่อ',
 					'title_name'	=> 'คำนำหน้าชื่อ'
-				)
+				),
+				'searchFields'	=> array('title_name')
 			);
 			break;
 
@@ -71,7 +72,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 					'sex_id'	=> 'รหัสเพศ',
 					'sex_name'	=> 'ชื่อเพศ'
-				)
+				),
+				'searchFields'	=> array('sex_name')
 			);
 			break;
 
@@ -85,7 +87,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 					'ordstat_id'		=> 'รหัสสถานะการสั่งซื้อ',
 					'ordstat_name'		=> 'ชื่อสถานะการสั่งซื้อ'
-				)
+				),
+				'searchFields'	=> array('ordstat_name')
 			);
 			break;
 				
@@ -99,7 +102,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'pos_id'		=> 'รหัสตำแหน่ง',
 						'pos_name'		=> 'ตำแหน่ง'
-				)
+				),
+				'searchFields'	=> array('pos_name')
 			);
 			break;
 
@@ -126,7 +130,8 @@ function dbClose() {
 						'emp_pic'		=> 'รูปภาพ'
 				),
 				'hiddenFields'	=> array('emp_indate','emp_birthdate','emp_addr','emp_tel','emp_user','emp_pass','emp_pic'),
-				'defaultNull' 	=> array('emp_pic','emp_birthdate','emp_user','emp_pass')
+				'defaultNull' 	=> array('emp_pic','emp_birthdate','emp_user','emp_pass'),
+				'searchFields'	=> array('emp_id','sex_id','title_id','emp_name','emp_surname','pos_id')
 			);
 			break;
 		
@@ -140,7 +145,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'unit_id'		=> 'รหัสหน่วยนับ',
 						'unit_name'		=> 'หน่วยนับ'
-				)
+				),
+				'searchFields'	=> array('unit_name')
 			);
 			break;
 
@@ -155,7 +161,7 @@ function dbClose() {
 						'bed_id'		=> 'รหัสเตียงนวด',
 						'room_id'		=> 'ห้องนวด',
 						'bed_name'		=> 'เตียงนวด'
-				)
+				),
 			);
 			break;
 
@@ -172,7 +178,8 @@ function dbClose() {
 						'bnkacc_name'	=> 'ชื่อบัญชี',
 						'bnkacc_branch' => 'สาขา',
 						'bnkacc_type'	=> 'ประเภทบัญชี'
-				)
+				),
+				'searchFields'	=> array('bnkacc_no','bnkacc_name')
 			);
 			break;
 
@@ -186,7 +193,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'room_id'		=> 'รหัสห้องนวด',
 						'room_name'		=> 'ห้องนวด'	
-				)
+				),
+				'searchFields'	=> array('room_name')
 			);
 			break;
 
@@ -200,7 +208,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'bkgstat_id'		=> 'รหัสสถานะการจอง',
 						'bkgstat_name'		=> 'สถานะการจอง'
-				)
+				),
+				'searchFields'	=> array('bkgstat_name')
 			);
 			break;
 
@@ -317,7 +326,8 @@ function dbClose() {
 						'spa_fax'		=> 'แฟ็กซ์',
 						'spa_logo'		=> 'รูปภาพ'
 				),
-				'hiddenFields'	=> array('spa_addr','spa_logo')
+				'hiddenFields'	=> array('spa_addr','spa_logo'),
+				'searchFields'	=> array('spa_name','spa_addr')
 			);
 			break;
 
@@ -369,7 +379,9 @@ function dbClose() {
 						'svl_desc'			=> 'คำอธิบาย',
 						'svl_picture'		=> 'รูปภาพ'	
 				),
-				'hiddenFields'	=> array('svl_desc','svl_picture','svl_commission','svl_price')
+				'hiddenFields'	=> array('svl_desc','svl_picture','svl_commission','svl_price'),
+				'defaultNull' 	=> array('svl_min','svl_hr','svl_desc','svl_picture')
+			
 			);
 			break;
 
@@ -389,7 +401,8 @@ function dbClose() {
 						'pkg_price'     => 'ราคา(บาท)',
 						'pkg_picture'   => 'รูปภาพ'			
 				),
-				'hiddenFields'	=> array('pkg_desc','pkg_picture')
+				'hiddenFields'	=> array('pkg_desc','pkg_picture'),
+				'defaultNull' 	=> array('pkg_stop','pkg_desc','pkg_picture')
 			);
 			break;
 
@@ -424,7 +437,8 @@ function dbClose() {
 						'prm_enddate'		=> 'วันที่สิ้นสุด',
 						'prm_picture'		=> 'รูปภาพ'
 				),
-				'hiddenFields'	=> array('prm_picture')
+				'hiddenFields'	=> array('prm_picture'),
+				'defaultNull' 	=> array('prm_use_amount','prm_free_amount','prm_enddate','prm_picture')
 			);
 			break;
 
@@ -444,7 +458,8 @@ function dbClose() {
 						'prmsvl_desc'     => 'คำอธิบาย',
 						'prmsvl_price'    => 'ราคา(บาท)'
 				),
-				'hiddenFields'	=> array('prmsvl_desc')
+				'hiddenFields'	=> array('prmsvl_desc'),
+				'defaultNull' 	=> array('prmsvl_start','prmsvl_end')
 			);
 			break;
 
@@ -463,7 +478,8 @@ function dbClose() {
 						'comp_addr'	      => 'ที่อยู่',
 						'comp_contact'    => 'ผู้ติดต่อ'
 				),
-				'hiddenFields'	=> array('fax','comp_tel','comp_addr','comp_contact')
+				'hiddenFields'	=> array('fax','comp_tel','comp_addr','comp_contact'),
+				'defaultNull' 	=> array('fax','comp_contact')
 			);
 			break;
 
@@ -484,7 +500,8 @@ function dbClose() {
 						'prd_amount'      => 'จำนวน',
 						'prd_pic'      	  => 'รูปภาพ'
 				),
-				'hiddenFields'	=> array('prd_pic','prd_amount','unit_id')
+				'hiddenFields'	=> array('prd_pic','prd_amount','unit_id'),
+				'defaultNull' 	=> array('prd_amount')
 			);
 			break;
 
@@ -545,7 +562,8 @@ function dbClose() {
 						'bkg_time'    			  => 'เวลาที่จอง',
 						'bkg_transfer_money'      => 'จำนวนเงินที่โอน(บาท)'
 				),
-				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time')
+				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time'),
+				'defaultNull' 	=> array('bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_transfer_money')
 			);
 			break;
 
@@ -622,7 +640,9 @@ function dbClose() {
 						'ser_time'	          => 'เวลาที่ใช้บริการ',
 						'ser_total_price' 	  => 'ราคารวมทั้งหมด(บาท)'
 				),
-				'hiddenFields'	=> array('emp_id','bed_id','bkg_id','ser_date','ser_time','ser_total_price')
+				'hiddenFields'	=> array('emp_id','bed_id','bkg_id','ser_date','ser_time','ser_total_price'),
+				'defaultNull' 	=> array('bkg_id')
+
 			);
 			break;
 

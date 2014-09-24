@@ -181,7 +181,15 @@ if($rows > 0){
 		'nameTH'		: '<?=$tableInfo["tableNameTH"]?>',
 		'sortCol'		: '<?=$sortCol?>',
 		'sortBy'		: '<?=$sortBy?>',
-		'fieldNameList'	: <? echo json_encode($tableInfo['fieldNameList']); ?>
+		'fieldNameList'	: <? echo json_encode($tableInfo['fieldNameList']); ?>,
+		'searchFields' 	: 
+		<? 
+			if(hasValue($tableInfo['searchFields'])) {
+				echo json_encode($tableInfo['searchFields']); 
+			} else {
+				echo "[]"; // empty array
+			}
+		?>
 	};
 	setTable(table);
 

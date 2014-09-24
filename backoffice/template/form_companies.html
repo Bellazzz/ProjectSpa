@@ -6,9 +6,11 @@
     {literal}
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-    <link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
+    <!--<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css">-->
+    <link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> 
+    <!--<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script>-->
+    <script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -29,6 +31,40 @@
  	 	 	 	 
 {include file="form_table_header.html"}
 <div class="ftb-body">
+    <div class="ftb-body">
+
+     {if $action == 'VIEW_DETAIL'}
+    <!-- VIEW_DETAIL -->
+    <table class="table-view-detail">
+        <tbody>
+            <tr>
+                <td>รหัสบริษัทจำหน่ายผลิตภัณฑ์ :</td>
+                <td>{$code}</td>
+            </tr>
+            <tr>
+                <td>ชื่อบริษัท :</td>
+                <td>{$values.comp_name}</td>
+            </tr>
+            <tr>
+                <td>ที่อยู่ :</td>
+                <td>{$values.comp_addr}</td>
+            </tr>
+            <tr>
+                <td>เบอร์โทร :</td>
+                <td>{$values.comp_tel}</td>
+            </tr>
+            <tr>
+                <td>แฟ็กซ์ :</td>
+                <td>{$values.fax}</td>
+            </tr>
+            <tr>
+                <td>ชื่อผู้ติดต่อ :</td>
+                <td>{$values.comp_contact}</td>
+            </tr>
+            
+        </tbody> 
+    </table> 
+    {else}      
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="comp_name,comp_tel,comp_addr">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
@@ -51,7 +87,7 @@
                     <input id="comp_tel" name="comp_tel" type="text" class="form-input half" value="{$values.comp_tel}">
                 </td>
                 <td>
-                    <label>แฟ็ก</label>
+                    <label>แฟ็กซ์</label>
                     <input id="fax" name="fax" type="text" class="form-input half" value="{$values.fax}">
                 </td>
             </tr>
@@ -64,6 +100,7 @@
 	    </tbody>
     </table>
     </form>
+    {/if}
 </div>
 </body>
 </html>
