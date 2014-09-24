@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <!--<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script>-->
     <script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
+    <script type="text/javascript" src="../inc/datetimepicker/mbk.datetimepickerThai.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -91,12 +92,17 @@
              
 
             $('#rec_date').datetimepicker({
-                lang                :'th',
+                lang                : 'th',
+                format              : 'Y/m/d',
                 timepicker          :false,
-                format              :'Y/m/d',
                 closeOnDateSelect   :true,
-                defaultSelect       : false,
-                onShow:function( ct ){
+                scrollInput         :false,
+                yearOffset          :543,
+                onSelectDate: 
+                function(){
+                  $('#rec_date').blur();
+                },
+                 onShow:function( ct ){
                     setMinDate(this);
                 }
             });
@@ -112,11 +118,11 @@
         function setMinDate(datepicker) {
             if(ordDate != '') {
                 datepicker.setOptions({
-                    minDate: ordDate
+                    minDate: realDateToTmpDate(ordDate)
                 });
             } else {
                 datepicker.setOptions({
-                    minDate: nowDate
+                    minDate: realDateToTmpDate(nowDate)
                 });
             }
         }
@@ -205,7 +211,7 @@
                 </td>
                 <td class="samerow">
                     <label class="input-required">วันที่รับผลิตภัณฑ์</label>
-                      <input id="rec_date" name="rec_date" type="text" class="form-input half" value="{$values.rec_date}">
+                      <input id="rec_date" name="rec_date" type="text" class="mbk-dtp-th form-input half" value="{$values.rec_date}">
                 </td>
             </tr>
 	    </tbody>

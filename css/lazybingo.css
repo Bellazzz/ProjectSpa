@@ -1340,3 +1340,10 @@ label.article-title {
 	height: 0;
 	overflow: hidden;
 }
+
+/*
+datetimepicker
+*/
+.xdsoft_calendar thead {
+    display: none !important;
+}

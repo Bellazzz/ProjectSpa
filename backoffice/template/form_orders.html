@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
+    <script type="text/javascript" src="../inc/datetimepicker/mbk.datetimepickerThai.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -76,25 +77,39 @@
             });
 
 			$('#ord_date').datetimepicker({
-                lang:'th',
-                format:'Y/m/d',
-                closeOnDateSelect:true,
+                lang                : 'th',
+                format              : 'Y/m/d',
+                timepicker          :false,
+                closeOnDateSelect   :true,
+                scrollInput         :false,
+                yearOffset          :543,
+                onSelectDate: 
+                function(){
+                  $('#ord_date').blur();
+                },
                 onShow:function( ct ){
                     this.setOptions({
-                        minDate: '{/literal}{$nowDate}{literal}',
-                        maxDate:$('#ord_snd_date').val()?$('#ord_snd_date').val():false
+                        minDate: realDateToTmpDate('{/literal}{$nowDate}{literal}'),
+                        maxDate:$('#ord_snd_date').val()?unconvertThaiDate($('#ord_snd_date').val()):false
                     })
                 },
                 timepicker:false
             });
 
             $('#ord_snd_date').datetimepicker({
-                lang:'th',
-                format:'Y/m/d',
-                closeOnDateSelect:true,
+                lang                : 'th',
+                format              : 'Y/m/d',
+                timepicker          :false,
+                closeOnDateSelect   :true,
+                scrollInput         :false,
+                yearOffset          :543,
+                onSelectDate: 
+                function(){
+                  $('#ord_snd_date').blur();
+                },
                 onShow:function( ct ){
                     this.setOptions({
-                        minDate:$('#ord_date').val()?$('#ord_date').val():'{/literal}{$nowDate}{literal}'
+                        minDate:$('#ord_date').val()?unconvertThaiDate($('#ord_date').val()):realDateToTmpDate('{/literal}{$nowDate}{literal}')
                     })
                 },
                 timepicker:false
@@ -125,22 +140,38 @@
             });
 
             function checkDate(self, sibling) {
-                var selfDate        = new Date(self.val());
-                var siblingDate     = new Date(sibling.val());
-                var nowDate         = new Date('{/literal}{$nowDate}{literal}');
-                var selfId          = self.attr('id');
-                
+                // Skip check
+                if(self.val() == '' || isDateThaiFormat(self.val())) {
+                    return;
+                }
 
+                var selfDate        = new Date(self.val());
+                var siblingDate     = new Date(unconvertThaiDate(sibling.val()));
+                var nowDate         = new Date(realDateToTmpDate('{/literal}{$nowDate}{literal}'));
+                var selfId          = self.attr('id');
+
+                // Check sibling
+                if(sibling.val() != '') {
+                    if(selfId == 'ord_date') {
+                        if(selfDate.getTime() > siblingDate.getTime()) {
+                            showAlertInvalidDate(self, 'overSibling');
+                            return;
+                        }
+                    } else if(selfId == 'ord_snd_date') {
+                        if(selfDate.getTime() < siblingDate.getTime()) {
+                            showAlertInvalidDate(self, 'overSibling');
+                            return;
+                        }
+                    }
+                }
+
+                // Check now date
                 if(selfId == 'ord_date') {
-                    if(selfDate.getTime() > siblingDate.getTime()) {
-                        showAlertInvalidDate(self, 'overSibling');
-                    } else if(selfDate.getTime() < nowDate.getTime()) {
+                    if(selfDate.getTime() < nowDate.getTime()) {
                         showAlertInvalidDate(self, 'lessThanNow')
                     }
                 } else if(selfId == 'ord_snd_date') {
-                    if(selfDate.getTime() < siblingDate.getTime()) {
-                        showAlertInvalidDate(self, 'overSibling');
-                    } else if(selfDate.getTime() < nowDate.getTime()) {
+                    if(selfDate.getTime() < nowDate.getTime()) {
                         showAlertInvalidDate(self, 'lessThanNow')
                     }
                 }
@@ -385,11 +416,11 @@
                 
 			    <td>
                     <label class="input-required">วันที่สั่งซื้อ</label>
-                    <input id="ord_date" name="ord_date" type="text" class="form-input half" value="{if $values.ord_date}{$values.ord_date}{else}{$nowDate}{/if}">
+                    <input id="ord_date" name="ord_date" type="text" class="mbk-dtp-th form-input half" value="{if $values.ord_date}{$values.ord_date}{else}{$nowDate}{/if}">
                 </td>
                  <td>
                     <label>วันที่จัดส่ง</label>
-                    <input id="ord_snd_date" name="ord_snd_date" type="text" class="form-input half" value="{$values.ord_snd_date}">
+                    <input id="ord_snd_date" name="ord_snd_date" type="text" class="mbk-dtp-th form-input half" value="{$values.ord_snd_date}">
                 </td>
 		    </tr>
              
