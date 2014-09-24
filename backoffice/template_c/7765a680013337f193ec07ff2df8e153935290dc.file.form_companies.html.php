@@ -1,39 +1,20 @@
-<<<<<<< HEAD
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-23 22:39:02
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-24 13:21:18
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_companies.html" */ ?>
-<?php /*%%SmartyHeaderCode:2747954218077c8ad43-32902539%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-=======
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-23 22:26:36
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_companies.html" */ ?>
-<?php /*%%SmartyHeaderCode:214435421831cabb1e4-04834414%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
->>>>>>> 98b87d80794d7d3874680374d25c43398a77c817
+<?php /*%%SmartyHeaderCode:2540542254ce1ea0f6-78125234%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '7765a680013337f193ec07ff2df8e153935290dc' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_companies.html',
-<<<<<<< HEAD
       1 => 1411483114,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2747954218077c8ad43-32902539',
+  'nocache_hash' => '2540542254ce1ea0f6-78125234',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54218077da68d8_01533639',
-=======
-      1 => 1409590850,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '214435421831cabb1e4-04834414',
-  'function' => 
-  array (
-  ),
->>>>>>> 98b87d80794d7d3874680374d25c43398a77c817
   'variables' => 
   array (
     'action' => 0,
@@ -43,15 +24,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-<<<<<<< HEAD
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54218077da68d8_01533639')) {function content_54218077da68d8_01533639($_smarty_tpl) {?><!DOCTYPE html>
-=======
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5421831ccc01c9_99562356',
+  'unifunc' => 'content_542254ce2fe5c9_04047209',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5421831ccc01c9_99562356')) {function content_5421831ccc01c9_99562356($_smarty_tpl) {?><!DOCTYPE html>
->>>>>>> 98b87d80794d7d3874680374d25c43398a77c817
+<?php if ($_valid && !is_callable('content_542254ce2fe5c9_04047209')) {function content_542254ce2fe5c9_04047209($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -59,17 +35,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-<<<<<<< HEAD
     <!--<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css">-->
     <link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <!--<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script>-->
     <script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
-=======
-    <link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> 
->>>>>>> 98b87d80794d7d3874680374d25c43398a77c817
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -96,7 +66,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div class="ftb-body">
-<<<<<<< HEAD
     <div class="ftb-body">
 
      <?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
@@ -137,8 +106,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         </tbody> 
     </table> 
     <?php } else { ?>      
-=======
->>>>>>> 98b87d80794d7d3874680374d25c43398a77c817
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="comp_name,comp_tel,comp_addr">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
@@ -164,11 +131,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ">
                 </td>
                 <td>
-<<<<<<< HEAD
                     <label>แฟ็กซ์</label>
-=======
-                    <label>แฟ็ก</label>
->>>>>>> 98b87d80794d7d3874680374d25c43398a77c817
                     <input id="fax" name="fax" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['fax'];?>
 ">
                 </td>
@@ -183,10 +146,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	    </tbody>
     </table>
     </form>
-<<<<<<< HEAD
     <?php }?>
-=======
->>>>>>> 98b87d80794d7d3874680374d25c43398a77c817
 </div>
 </body>
 </html>
