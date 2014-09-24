@@ -131,7 +131,7 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('emp_indate','emp_birthdate','emp_addr','emp_tel','emp_user','emp_pass','emp_pic'),
 				'defaultNull' 	=> array('emp_pic','emp_birthdate','emp_user','emp_pass'),
-				'searchFields'	=> array('emp_id','sex_id','title_id','emp_name','emp_surname','pos_id')
+				'searchFields'	=> array('sex_id','title_id','emp_name','emp_surname','pos_id')
 			);
 			break;
 		
@@ -162,6 +162,7 @@ function dbClose() {
 						'room_id'		=> 'ห้องนวด',
 						'bed_name'		=> 'เตียงนวด'
 				),
+				'searchFields'	=> array('bed_name')
 			);
 			break;
 
@@ -223,7 +224,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'brand_id'		=> 'รหัสยี่ห้อ',
 						'brand_name'	=> 'ยี่ห้อ'
-				)
+				),
+				'searchFields'	=> array('brand_name')
 			);
 			break;
 
@@ -237,7 +239,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'paytyp_id'		=> 'รหัสประเภทการชำระเงิน',
 						'paytyp_name'	=> 'ประเภทการชำระเงิน'
-				)
+				),
+				'searchFields'	=> array('paytyp_name')
 			);
 			break;
 
@@ -251,7 +254,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'eletyp_id'		=> 'รหัสประเภทธาตุ',
 						'eletyp_name'	=> 'ประเภทธาตุ'
-				)
+				),
+				'searchFields'	=> array('eletyp_name')
 			);
 			break;
 
@@ -265,7 +269,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'prdtyp_id'		=> 'รหัสประเภทผลิตภัณฑ์',
 						'prdtyp_name'	=> 'ประเภทผลิตภัณฑ์'
-				)
+				),
+				'searchFields'	=> array('prdtyp_name')
 			);
 			break;
 
@@ -279,7 +284,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'ordtyp_id'		=> 'รหัสประเภทการสั่งซื้อ',
 						'ordtyp_name'	=> 'ประเภทการสั่งซื้อ'
-				)
+				),
+				'searchFields'	=> array('ordtyp_name')
 			);
 			break;
 
@@ -293,7 +299,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'svltyp_id'		=> 'รหัสประเภทรายการบริการ',
 						'svltyp_name'	=> 'ประเภทรายการบริการ'
-				)
+				),
+				'searchFields'	=> array('svltyp_name')
 			);
 			break;
 
@@ -307,7 +314,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'custype_id'		=> 'รหัสประเภทผู้ใช้บริการ',
 						'custype_name'		=> 'ประเภทผู้ใช้บริการ'
-				)
+				),
+				'searchFields'	=> array('custype_name')
 			);
 			break;
 
@@ -328,6 +336,7 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('spa_addr','spa_logo'),
 				'searchFields'	=> array('spa_name','spa_addr')
+
 			);
 			break;
 
@@ -357,7 +366,8 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('cus_tel','cus_addr','cus_user','cus_pass','cus_birthdate','cus_registered_date',
 					'cus_facebook','cus_line_id','cus_email'),
-				'defaultNull' 	=> array('cus_user','cus_pass','cus_birthdate','cus_facebook','cus_line_id','cus_email')
+				'defaultNull' 	=> array('cus_user','cus_pass','cus_birthdate','cus_facebook','cus_line_id','cus_email'),
+				'searchFields'	=> array('cus_name','sex_id','custype_id')
 			);
 			break;
 
@@ -380,7 +390,8 @@ function dbClose() {
 						'svl_picture'		=> 'รูปภาพ'	
 				),
 				'hiddenFields'	=> array('svl_desc','svl_picture','svl_commission','svl_price'),
-				'defaultNull' 	=> array('svl_min','svl_hr','svl_desc','svl_picture')
+				'defaultNull' 	=> array('svl_min','svl_hr','svl_desc','svl_picture'),
+				'searchFields'	=> array('svl_name','svl_price')
 			
 			);
 			break;
@@ -402,7 +413,8 @@ function dbClose() {
 						'pkg_picture'   => 'รูปภาพ'			
 				),
 				'hiddenFields'	=> array('pkg_desc','pkg_picture'),
-				'defaultNull' 	=> array('pkg_stop','pkg_desc','pkg_picture')
+				'defaultNull' 	=> array('pkg_stop','pkg_desc','pkg_picture'),
+				'searchFields'	=> array('pkg_name','pkg_price')
 			);
 			break;
 
@@ -417,7 +429,9 @@ function dbClose() {
 						'pkgsvl_id'	    => 'รหัสรายการบริการที่จัดแพ็คเกจ',
 						'pkg_id'        => 'แพ็คเกจ',
 						'svl_id'	    => 'รายการบริการ'
-				)
+				),
+				'searchFields'	=> array('pkg_id','svl_id')
+
 			);
 			break;
 
@@ -438,7 +452,8 @@ function dbClose() {
 						'prm_picture'		=> 'รูปภาพ'
 				),
 				'hiddenFields'	=> array('prm_picture'),
-				'defaultNull' 	=> array('prm_use_amount','prm_free_amount','prm_enddate','prm_picture')
+				'defaultNull' 	=> array('prm_use_amount','prm_free_amount','prm_enddate','prm_picture'),
+				'searchFields'	=> array('prm_name','prm_use_amount','prm_free_amount')
 			);
 			break;
 
@@ -460,6 +475,7 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('prmsvl_desc'),
 				'defaultNull' 	=> array('prmsvl_start','prmsvl_end')
+
 			);
 			break;
 
@@ -479,7 +495,8 @@ function dbClose() {
 						'comp_contact'    => 'ผู้ติดต่อ'
 				),
 				'hiddenFields'	=> array('fax','comp_tel','comp_addr','comp_contact'),
-				'defaultNull' 	=> array('fax','comp_contact')
+				'defaultNull' 	=> array('fax','comp_contact'),
+				'searchFields'	=> array('comp_name')
 			);
 			break;
 
@@ -501,7 +518,8 @@ function dbClose() {
 						'prd_pic'      	  => 'รูปภาพ'
 				),
 				'hiddenFields'	=> array('prd_pic','prd_amount','unit_id'),
-				'defaultNull' 	=> array('prd_amount')
+				'defaultNull' 	=> array('prd_amount'),
+				'searchFields'	=> array('prd_name','prd_price')
 			);
 			break;
 
@@ -519,7 +537,8 @@ function dbClose() {
 						'timeatt_in'      => 'เวลาที่เข้า',
 						'dateatt_out'	  => 'วันที่ออก',
 						'timeatt_out'	  => 'เวลาที่ออก'
-				)
+				),
+				'searchFields'	=> array('emp_id','dateatt_id','timeatt_out')
 			);
 			break;
 
@@ -537,7 +556,8 @@ function dbClose() {
 						'payroll_commission'	=> 'ค่าคอมมิชชั่น(บาท)',
 						'payroll_monthly'		=> 'ประจำเดือน-ปี',
 						'payroll_date'			=> 'วันที่จ่ายเงินเดือน'
-				)
+				),
+				'searchFields'	=> array('emp_id','payroll_salary','payroll_monthly')
 			);
 			break;
 
@@ -563,7 +583,8 @@ function dbClose() {
 						'bkg_transfer_money'      => 'จำนวนเงินที่โอน(บาท)'
 				),
 				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time'),
-				'defaultNull' 	=> array('bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_transfer_money')
+				'defaultNull' 	=> array('bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_transfer_money'),
+				'searchFields'	=> array('bkg_id','cus_id','emp_id','status_id','bkg_total_price','bkg_date','bkg_time')
 			);
 			break;
 
@@ -581,7 +602,8 @@ function dbClose() {
 						'bkgsvl_date'        => 'วัน-เวลาที่ใช้บริการ',
 						'bkgsvl_total_price' => 'ราคารวมการจองรายการบริการ(บาท)',
 						'bkgsvl_persons'     => 'จำนวนผู้ใช้บริการ'
-				)
+				),
+				'searchFields'	=> array('bkgsvl_id','svl_id','bkg_id')
 			);
 			break;
 
@@ -599,7 +621,8 @@ function dbClose() {
 						'bkgpkg_date'         => 'วัน-เวลาที่ใช้บริการ',
 						'bkgpkg_total_price'  => 'ราคารวมการจองแพ็คเกจ(บาท)',
 						'bkgpkg_persons'      => 'จำนวนผู้ใช้บริการ'
-				)
+				),
+				'searchFields'	=> array('bkgpkg_id','pkgsvl_id','bkg_id')
 			);
 			break;
 
@@ -618,7 +641,8 @@ function dbClose() {
 						'bkgprm_total_price'  => 'ราคารวมการจองโปรโมชั่น(บาท)',
 						'bkgprm_persons'      => 'จำนวนผู้ใช้บริการ'
 						
-				)
+				),
+				'searchFields'	=> array('bkgprm_id','prmsvl_id','bkg_id')
 			);
 			break;
 
@@ -636,12 +660,13 @@ function dbClose() {
 						'paytyp_id'			  => 'รหัสประเภทการชำระเงิน',
 						'bed_id'      		  => 'รหัสเตียงนวด',
 						'bkg_id'	  		  => 'รหัสการจอง',
-						'ser_date'	          => 'เวลาที่ใช้บริการ',
+						'ser_date'	          => 'วันที่ใช้บริการ',
 						'ser_time'	          => 'เวลาที่ใช้บริการ',
 						'ser_total_price' 	  => 'ราคารวมทั้งหมด(บาท)'
 				),
 				'hiddenFields'	=> array('emp_id','bed_id','bkg_id','ser_date','ser_time','ser_total_price'),
-				'defaultNull' 	=> array('bkg_id')
+				'defaultNull' 	=> array('bkg_id'),
+				'searchFields'	=> array('ser_id','cus_id','ser_date','ser_time')
 
 			);
 			break;
@@ -658,6 +683,7 @@ function dbClose() {
 						'ser_id'	          => 'รหัสการใช้บริการ',
 						'sersvl_total_price'  => 'ราคารวม(บาท)'
 				)
+
 			);
 			break;
 
@@ -674,7 +700,8 @@ function dbClose() {
 						'emp_id' 			  => 'ชื่อ-นามสกุลพนักงาน',
 						'sersvl_id'	  		  => 'รหัสรายละเอียดการใช้บริการรายการบริการ',
 						'svldtl_com'	      => 'ค่าคอมมิชชั่น(บาท)'
-				)
+				),
+				'searchFields'	=> array('svldtl_id','svl_id','emp_id')
 			);
 			break;
 
@@ -689,7 +716,8 @@ function dbClose() {
 						'serpkg_id'	  		  => 'รหัสรายละเอียดการใช้บริการแพ็คเกจ',
 						'ser_id'	          => 'รหัสรายการใช้บริการ',
 						'serpkg_total_price'  => 'ราคารวม(บาท)'
-				)
+				),
+				'searchFields'	=> array('serpkg_id','ser_id')
 			);
 			break;
 
@@ -706,7 +734,8 @@ function dbClose() {
 						'pkgsvl_id'	          => 'รหัสรายการบริการที่จัดแพ็คเกจ',
 						'emp_id' 			  => 'ชื่อ-สกุลพนักงาน',
 						'pkgdtl_comm'		  => 'ค่าคอมมิชชั่น(บาท)'
-				)
+				),
+				'searchFields'	=> array('pkgdtl_id','pkgsvl_id')
 			);
 			break;
 
@@ -721,7 +750,8 @@ function dbClose() {
 						'serprm_id'	  		  => 'รหัสรายละเอียดการใช้บริการโปรโมชั่น',
 						'ser_id'	  		  => 'รหัสการใช้บริการ',
 						'serprm_total_price'  => 'ราคารวม(บาท)'
-				)
+				),
+				'searchFields'	=> array('serprm_id','ser_id')
 			);
 			break;
 
@@ -738,7 +768,8 @@ function dbClose() {
 						'svl_id'	  		  => 'รหัสรายการบริการที่จัดโปรโมชั่น',
 						'serprm_id'	  		  => 'รหัสรายละเอียดการใช้บริการโปรโมชั่น',
 						'prmdtl_comm' 		  => 'ค่าคอมมิชชั่น(บาท)'
-				)
+				),
+				'searchFields'	=> array('prmdtl_id','svl_id')
 			);
 			break;
 
@@ -756,7 +787,8 @@ function dbClose() {
 						'cus_id'	  		  => 'ชื่อ-สกุลผู้ใช้บริการ',
 						'elechk_date'	  	  => 'วันที่ตรวจ',
 						'elechk_time'	  	  => 'เวลาที่ตรวจ'
-				)
+				),
+				'searchFields'	=> array('elechk_id','cus_id','elechk_date')
 			);
 			break;
 
@@ -770,7 +802,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'ordstat_id'	  	  => 'รหัสสถานะการสั่งซื้อ',
 						'ordstat_name' 		  => 'ชื่อสถานะการสั่งซื้อ'
-				)
+				),
+				'searchFields'	=> array('ordstat_name')
 			);
 			break;
 
@@ -791,7 +824,8 @@ function dbClose() {
 						'ordstat_id'	  	  => 'สถานะการสั่งซื้อ'
 				),
 				'hiddenFields' 	=> array(),
-				'defaultNull'	=> array('ord_snd_date')
+				'defaultNull'	=> array('ord_snd_date'),
+				'searchFields'	=> array('ordtyp_id','comp_id','ord_date','ordstat_id')
 			);
 			break;
 
@@ -807,7 +841,8 @@ function dbClose() {
 						'ord_id' 		      => 'รหัสการสั่งซื้อ',
 						'prd_id' 			  => 'ผลิตภัณฑ์',
 						'orddtl_amount'	  	  => 'จำนวนที่สั่งซื้อ'
-				)
+				),
+				'searchFields'	=> array('ord_id','prd_id','orddtl_amount')
 			);
 			break;
 
@@ -825,7 +860,8 @@ function dbClose() {
 						'rec_date'	  	      => 'วันที่รับ',
 						'rec_total_price'	  => 'ราคา(บาท)'
 				),
-				'hiddenFields' 	=> array()
+				'hiddenFields' 	=> array(),
+				'searchFields'	=> array('rec_id','ord_id','rec_date','rec_total_price')
 			);
 			break;
 
@@ -842,7 +878,8 @@ function dbClose() {
 						'prd_id' 		      => 'ผลิตภัณฑ์',
 						'recdtl_amount' 	  => 'จำนวนที่รับ',
 						'recdtl_price'	  	  => 'ราคาต่อหน่วย(บาท)'
-				)
+				),
+				'searchFields'	=> array('rec_id','prd_id')
 			);
 			break;
 
@@ -859,7 +896,8 @@ function dbClose() {
 						'emp_give_id' 		  => 'ชื่อ-นามสกุลพนักงานที่เบิก',
 						'ser_id' 	 		  => 'รหัสการใช้บริการ',
 						'wdw_date'	  	      => 'วันที่เบิก'
-				)
+				),
+				'searchFields'	=> array('emp_id','emp_give_id','wdw_date')
 			);
 			break;
 
@@ -876,7 +914,8 @@ function dbClose() {
 						'prd_id'	  		  => 'ผลิตภัณฑ์',
 						'wdwdtl_amount' 	  => 'จำนวนที่เบิก'
 						
-				)
+				),
+				'searchFields'	=> array('wdw_id','prd_id','wdwdtl_id')
 			);
 			break;
 
@@ -893,7 +932,8 @@ function dbClose() {
 						'sale_date'	  		  => 'วันที่ขาย',
 						'sale_time'	  		  => 'เวลาที่ขาย',
 						'sale_total_price' 	  => 'ราคารวม(บาท)'
-				)
+				),
+				'searchFields'	=> array('emp_id','sale_date')
 			);
 			break;
 
@@ -910,7 +950,8 @@ function dbClose() {
 						'prd_id'	  		  => 'ผลิตภัณฑ์',
 						'saledtl_amount'	  => 'จำนวน',
 						'saledtl_price' 	  => 'ราคาต่อหน่วย(บาท)'
-				)
+				),
+				'searchFields'	=> array('sale_id','prd_id')
 			);
 			break;
 
