@@ -1,9 +1,43 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-25 22:00:30
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_orders.html" */ ?>
+<?php /*%%SmartyHeaderCode:286754241ffe857be1-12447781%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '162b5a1559ed76f7da3b10d56ea4271e32e1a227' => 
+    array (
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_orders.html',
+      1 => 1411612149,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '286754241ffe857be1-12447781',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'action' => 0,
+    'tableName' => 0,
+    'tableNameTH' => 0,
+    'code' => 0,
+    'valuesDetail' => 0,
+    'values' => 0,
+    'session_emp_id' => 0,
+    'nowDate' => 0,
+    'orderDetailList' => 0,
+    'orddlt' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_54241ffec6c0f1_12961246',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_54241ffec6c0f1_12961246')) {function content_54241ffec6c0f1_12961246($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
 	<meta charset="UTF-8"/>
-    {literal}
+    
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
 	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
@@ -20,21 +54,26 @@
     </style>
     <script type="text/javascript">
         // Global variables
-        var action          = '{/literal}{$action}{literal}';
-        var tableName       = '{/literal}{$tableName}{literal}';
-		var tableNameTH     = '{/literal}{$tableNameTH}{literal}';
-        var code            = '{/literal}{$code}{literal}';
+        var action          = '<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
+';
+        var tableName       = '<?php echo $_smarty_tpl->tpl_vars['tableName']->value;?>
+';
+		var tableNameTH     = '<?php echo $_smarty_tpl->tpl_vars['tableNameTH']->value;?>
+';
+        var code            = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+';
         var ajaxUrl         = 'form_orders.php';
         var valuesDetail    = '';
 
         // Set valuesDetail
-        {/literal}
-        {if $valuesDetail}
-        {literal}
-            valuesDetail= {/literal}{$valuesDetail|@json_encode}{literal};
-        {/literal}
-        {/if}
-        {literal}
+        
+        <?php if ($_smarty_tpl->tpl_vars['valuesDetail']->value) {?>
+        
+            valuesDetail= <?php echo json_encode($_smarty_tpl->tpl_vars['valuesDetail']->value);?>
+;
+        
+        <?php }?>
+        
 
         $(document).ready(function () {
             $('#addProjectBtn').click(addProduct);
@@ -45,7 +84,8 @@
                 keyFieldName	: 'ordtyp_id',
                 textFieldName	: 'ordtyp_name',
 				searchTool		: true,
-                defaultValue	: '{/literal}{$values.ordtyp_id}{literal}',
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['ordtyp_id'];?>
+',
 				
             });
             selectReference({
@@ -54,7 +94,9 @@
                 keyFieldName    : 'emp_id',
                 textFieldName   : 'emp_id,emp_name,emp_surname',
                 searchTool      : true,
-                defaultValue    : '{/literal}{if $values.emp_id}{$values.emp_id}{else}{$session_emp_id}{/if}{literal}',
+                defaultValue    : '<?php if ($_smarty_tpl->tpl_vars['values']->value['emp_id']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_id'];?>
+<?php } else { ?><?php echo $_smarty_tpl->tpl_vars['session_emp_id']->value;?>
+<?php }?>',
                 pattern         : 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
             selectReference({
@@ -63,7 +105,8 @@
                 keyFieldName    : 'comp_id',
                 textFieldName   : 'comp_name',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.comp_id}{literal}',
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['comp_id'];?>
+',
                 
             });
             selectReference({
@@ -72,7 +115,8 @@
                 keyFieldName    : 'ordstat_id',
                 textFieldName   : 'ordstat_name',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.ordstat_id}{literal}',
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['ordstat_id'];?>
+',
                 
             });
 
@@ -89,7 +133,8 @@
                 },
                 onShow:function( ct ){
                     this.setOptions({
-                        minDate: realDateToTmpDate('{/literal}{$nowDate}{literal}'),
+                        minDate: realDateToTmpDate('<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+'),
                         maxDate:$('#ord_snd_date').val()?unconvertThaiDate($('#ord_snd_date').val()):false
                     })
                 },
@@ -109,7 +154,8 @@
                 },
                 onShow:function( ct ){
                     this.setOptions({
-                        minDate:$('#ord_date').val()?unconvertThaiDate($('#ord_date').val()):realDateToTmpDate('{/literal}{$nowDate}{literal}')
+                        minDate:$('#ord_date').val()?unconvertThaiDate($('#ord_date').val()):realDateToTmpDate('<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+')
                     })
                 },
                 timepicker:false
@@ -147,7 +193,8 @@
 
                 var selfDate        = new Date(self.val());
                 var siblingDate     = new Date(unconvertThaiDate(sibling.val()));
-                var nowDate         = new Date(realDateToTmpDate('{/literal}{$nowDate}{literal}'));
+                var nowDate         = new Date(realDateToTmpDate('<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+'));
                 var selfId          = self.attr('id');
 
                 // Check sibling
@@ -321,13 +368,14 @@
             return notDuplicate;
         }
     </script>
-    {/literal}
+    
 </head>
 <body>
 
-{include file="form_table_header.html"}
+<?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <div class="ftb-body">
-    {if $action == 'VIEW_DETAIL'}
+    <?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
     <!-- VIEW_DETAIL -->
     <!--Orders Data-->
     <label class="article-title">ข้อมูลการสั่งซื้อ</label>
@@ -335,7 +383,8 @@
         <tbody>
             <tr>
                 <td>รหัสการสั่งซื้อ :</td>
-                <td>{$code}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+</td>
             </tr>
             <tr>
                 <td>ชื่อ-นามสกุลพนักงาน :</td>
@@ -351,11 +400,13 @@
             </tr>
             <tr>
                 <td>วันที่สั่งซื้อ :</td>
-                <td>{if $values.ord_date}{$values.ord_date_th}{else}-{/if}</td>
+                <td><?php if ($_smarty_tpl->tpl_vars['values']->value['ord_date']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['ord_date_th'];?>
+<?php } else { ?>-<?php }?></td>
             </tr>
             <tr>
                 <td>วันที่จัดส่ง :</td>
-                <td>{if $values.ord_snd_date}{$values.ord_snd_date_th}{else}-{/if}</td>
+                <td><?php if ($_smarty_tpl->tpl_vars['values']->value['ord_snd_date']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['ord_snd_date_th'];?>
+<?php } else { ?>-<?php }?></td>
             </tr>
             <tr>
                 <td>สถานะการสั่งซื้อ :</td>
@@ -375,17 +426,27 @@
             </tr>
         </thead>
         <tbody>
-            {foreach from=$orderDetailList key=i item=orddlt}
+            <?php  $_smarty_tpl->tpl_vars['orddlt'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['orddlt']->_loop = false;
+ $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['orderDetailList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['orddlt']->key => $_smarty_tpl->tpl_vars['orddlt']->value) {
+$_smarty_tpl->tpl_vars['orddlt']->_loop = true;
+ $_smarty_tpl->tpl_vars['i']->value = $_smarty_tpl->tpl_vars['orddlt']->key;
+?>
             <tr>
-                <td>{$orddlt.prd_name}</td>
-                <td align="right">{$orddlt.prd_price|number_format:2:".":","}</td>
-                <td align="right">{$orddlt.orddtl_amount|number_format:0:"":","}</td>
-                <td align="left">{$orddlt.unit_name}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['prd_name'];?>
+</td>
+                <td align="right"><?php echo number_format($_smarty_tpl->tpl_vars['orddlt']->value['prd_price'],2,".",",");?>
+</td>
+                <td align="right"><?php echo number_format($_smarty_tpl->tpl_vars['orddlt']->value['orddtl_amount'],0,'',",");?>
+</td>
+                <td align="left"><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['unit_name'];?>
+</td>
             </tr>
-            {/foreach}
+            <?php } ?>
         </tbody>
     </table>
-    {else}      
+    <?php } else { ?>      
     <!-- ADD, EDIT -->       
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="ordtyp_id,emp_id,comp_id,ord_date">
@@ -416,11 +477,14 @@
                 
 			    <td>
                     <label class="input-required">วันที่สั่งซื้อ</label>
-                    <input id="ord_date" name="ord_date" type="text" class="mbk-dtp-th form-input half" value="{if $values.ord_date}{$values.ord_date}{else}{$nowDate}{/if}">
+                    <input id="ord_date" name="ord_date" type="text" class="mbk-dtp-th form-input half" value="<?php if ($_smarty_tpl->tpl_vars['values']->value['ord_date']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['ord_date'];?>
+<?php } else { ?><?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+<?php }?>">
                 </td>
                  <td>
                     <label>วันที่จัดส่ง</label>
-                    <input id="ord_snd_date" name="ord_snd_date" type="text" class="mbk-dtp-th form-input half" value="{$values.ord_snd_date}">
+                    <input id="ord_snd_date" name="ord_snd_date" type="text" class="mbk-dtp-th form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['ord_snd_date'];?>
+">
                 </td>
 		    </tr>
              
@@ -438,14 +502,14 @@
                 <td><label class="input-required">ผลิตภัณฑ์</label></td>
                 <td><label class="input-required">จำนวน</label></td>
             </tr>
-            {if $action == 'ADD'}
-            {elseif $action == 'EDIT'}
-            {/if}
+            <?php if ($_smarty_tpl->tpl_vars['action']->value=='ADD') {?>
+            <?php } elseif ($_smarty_tpl->tpl_vars['action']->value=='EDIT') {?>
+            <?php }?>
         </tbody>
     </table>
     <button id="addProjectBtn" class="button button-icon button-icon-add">เพิ่มผลิตภัณฑ์</button>
     </form>
-    {/if}
+    <?php }?>
 </div>
 </body>
 </html>
@@ -454,4 +518,4 @@
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
 	3.  input[name="uniqueFields"] ใส่ชื่อฟิลด์ที่ต้องการเช็คว่าห้ามซ้ำ
--->
+--><?php }} ?>

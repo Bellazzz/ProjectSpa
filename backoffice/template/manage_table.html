@@ -27,17 +27,37 @@
 				<img src="../img/backoffice/logo-back-office.png">
 			</div>
 			<ul class="nav">
-				<li><a href="#">จัดการข้อมูล</a></li>
-				<li><a href="#">แคชเชียร์</a></li>
-				<li><a href="#">จัดการสิทธิ์</a></li>
-				<li><a href="#">จัดการเว็บไซต์</a></li>
+				<li>
+                    <a href="#" class="selected">
+                        <img src="../img/backoffice/nav-manage-table.png"><br>
+                        จัดการข้อมูล
+                    </a>
+                </li>
+				<li>
+                    <a href="#">
+                        <img src="../img/backoffice/nav-cacher.png"><br>
+                        แคชเชียร์
+                    </a>
+                </li>
+				<li>
+                    <a href="#">
+                        <img src="../img/backoffice/nav-authen.png"><br>
+                        จัดการสิทธิ์
+                    </a>
+                </li>
+				<li>
+                    <a href="#">
+                        <img src="../img/backoffice/nav-web.png"><br>
+                        จัดการเว็บไซต์
+                    </a>
+                </li>
 			</ul>
 			<ul id="header-tool">
 				<li>
                     <div id="account-box">
                         {if $session_loggedin}
                         <b>คุณ{$session_emp_name} {$session_emp_surname}</b>
-                        <a href="logout.php">ออกจากระบบ</a>
+                        <a href="logout.php" class="normal-link" style="color: rgb(60, 60, 60);">ออกจากระบบ</a>
                         {else}
                         <a href="login.php">เข้าสู่ระบบ</a>
                         {/if}

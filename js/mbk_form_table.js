@@ -41,6 +41,11 @@ function saveRecord() {
 			}
 		}
 
+		// Convert thai date to real date
+		$('.mbk-dtp-th').each(function() {
+			getRealDate($(this));
+		});
+
 		$.ajax({
 			url: ajaxUrl,
 			type: 'POST',

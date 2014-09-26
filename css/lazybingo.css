@@ -58,7 +58,8 @@ body {
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 3
+	z-index: 3;
+    overflow: hidden;
 }
 #header-logo {
 	float: left;
@@ -72,21 +73,26 @@ body {
 	padding: 0px;
 	list-style: none;
 	float: left;
+    margin-left: 48px;
 }
 .nav li {
 	float: left;
-	height: 60px;
-	line-height: 35px;
+    height: 60px;
+    text-align: center;
 }
 .nav li a {
 	display: inline-block;
-	height: 100%;
-	color: white;
-	padding: 0 10px;
-	text-decoration: none;
+    height: 100%;
+    color: #eee;
+    padding: 0 15px;
+    text-decoration: none;
 }
-.nav li:hover a {
-	background-color: #2F91D3;
+.nav img {
+    height: 30px;
+}
+.nav li:hover a, .nav li a.selected {
+	background-color: rgba(100, 161, 0, 1);
+    color: white;
 }
 #header-tool {
 	margin: 0px;
@@ -103,8 +109,6 @@ body {
 #account-box {
 	float: right;
 	height: 100%;
-	width: 200px;
-	background: #8AC007;
 }
 
 /**
@@ -1337,76 +1341,9 @@ label.article-title {
 	overflow: hidden;
 }
 
-.myButton {
-    background-color: #21a7d4;
-    -moz-border-radius: 28px;
-    -webkit-border-radius: 28px;
-    border-radius: 5px;
-    border: 1px solid #21a7d4;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: arial;
-    font-size: 14px;
-    padding: 12px 22px;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #21a7d4;
-    outline: none;
-}
-.myButton:hover {
-    background-color:#21B3E4;
-}
-.myButton:active {
-    position:relative;
-    top:1px;
-}
-.control{
-    padding: 8px 12px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    outline: none;
-}
-.wide-control{
-    width: 100%;
-    margin-bottom: 10px;
-}
-.login-content:after{
-    content: "";
-    clear: both;
-    display: block;
-}
-
-.login-content .left{
-    width: 48%;
-    float: left;
-}
-
-.login-content .right{
-    width: 48%;
-    float: right;
-}
-.login-content .right label{
-    font-weight: bold;
-    color:#777;
-}
-.login-content .right a{
-    float: right;
-}
-.container{
-    background: #fff;
-    margin: 20px auto;
-    border: 1px solid #dfdfdf;
-    padding: 20px;
-    border-radius: 5px;
-}
-.container:after{
-    content: "";
-    clear: both;
-    display:block;
-    height: 0px;
+/*
+datetimepicker
+*/
+.xdsoft_calendar thead {
+    display: none !important;
 }

@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-24 13:20:46
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-25 10:31:45
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
-<?php /*%%SmartyHeaderCode:16121542254aeb05ab5-19003857%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:3126854237e911f0b38-56757046%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '9a020b9c81648d3d03f178f9f9d6dd68f5ff5d78' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\manage_table.html',
-      1 => 1411535410,
+      1 => 1411612149,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '16121542254aeb05ab5-19003857',
+  'nocache_hash' => '3126854237e911f0b38-56757046',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_542254aee540a0_73995496',
+  'unifunc' => 'content_54237e913e4224_63231967',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_542254aee540a0_73995496')) {function content_542254aee540a0_73995496($_smarty_tpl) {?>﻿<!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_54237e913e4224_63231967')) {function content_54237e913e4224_63231967($_smarty_tpl) {?>﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Spa - Backoffice</title>
@@ -54,10 +54,30 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<img src="../img/backoffice/logo-back-office.png">
 			</div>
 			<ul class="nav">
-				<li><a href="#">จัดการข้อมูล</a></li>
-				<li><a href="#">แคชเชียร์</a></li>
-				<li><a href="#">จัดการสิทธิ์</a></li>
-				<li><a href="#">จัดการเว็บไซต์</a></li>
+				<li>
+                    <a href="#" class="selected">
+                        <img src="../img/backoffice/nav-manage-table.png"><br>
+                        จัดการข้อมูล
+                    </a>
+                </li>
+				<li>
+                    <a href="#">
+                        <img src="../img/backoffice/nav-cacher.png"><br>
+                        แคชเชียร์
+                    </a>
+                </li>
+				<li>
+                    <a href="#">
+                        <img src="../img/backoffice/nav-authen.png"><br>
+                        จัดการสิทธิ์
+                    </a>
+                </li>
+				<li>
+                    <a href="#">
+                        <img src="../img/backoffice/nav-web.png"><br>
+                        จัดการเว็บไซต์
+                    </a>
+                </li>
 			</ul>
 			<ul id="header-tool">
 				<li>
@@ -66,7 +86,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                         <b>คุณ<?php echo $_smarty_tpl->tpl_vars['session_emp_name']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['session_emp_surname']->value;?>
 </b>
-                        <a href="logout.php">ออกจากระบบ</a>
+                        <a href="logout.php" class="normal-link" style="color: rgb(60, 60, 60);">ออกจากระบบ</a>
                         <?php } else { ?>
                         <a href="login.php">เข้าสู่ระบบ</a>
                         <?php }?>
