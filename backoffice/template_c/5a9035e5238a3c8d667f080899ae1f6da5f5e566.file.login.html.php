@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-25 10:57:20
+=======
 <?php /* Smarty version Smarty-3.1.18, created on 2014-09-25 10:31:45
+>>>>>>> 9de3790547b57ee8f22b97c72882e31be97b2452
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\login.html" */ ?>
 <?php /*%%SmartyHeaderCode:3263154237e91641771-25803894%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +11,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5a9035e5238a3c8d667f080899ae1f6da5f5e566' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\login.html',
+<<<<<<< HEAD
+      1 => 1411567640,
+=======
       1 => 1411612149,
+>>>>>>> 9de3790547b57ee8f22b97c72882e31be97b2452
       2 => 'file',
     ),
   ),
