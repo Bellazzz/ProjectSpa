@@ -17,6 +17,9 @@ $filter 	= '';
 $where		= '';
 $like		= '';
 $order		= '';
+$limit 		= '';
+$page 		= 1;
+$recordDisplay = 20;
 
 if(hasValue($_REQUEST['sortBy'])) {
 	$sortBy	= $_REQUEST['sortBy'];
@@ -27,7 +30,15 @@ if(hasValue($_REQUEST['sortCol'])) {
 if(hasValue($_REQUEST['filter'])) {
 	$filter = $_REQUEST['filter'];
 }
-$order	 = "ORDER BY $sortCol $sortBy";
+if(hasValue($_REQUEST['page'])) {
+	$page = (Int)$_REQUEST['page'];
+}
+if(hasValue($_REQUEST['recordDisplay'])) {
+	$recordDisplay = (Int)$_REQUEST['recordDisplay'];
+}
+// Generate order and limit
+$startPage 	= ($page - 1) * $recordDisplay;
+$order	 	= "ORDER BY $sortCol $sortBy LIMIT $startPage, $recordDisplay";
 
 $searchCol = $tableInfo['keyFieldName'];
 if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
@@ -530,6 +541,21 @@ $result		= mysql_query($sql, $dbConn);
 $rows 		= mysql_num_rows($result);
 $tableData	= array();
 
+// Find all record
+if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
+	$txtSelect = substr($sql, strpos($sql, 'SELECT'), strpos($sql, 'FROM'));
+	$txtLimit  = substr($sql, strpos($sql, 'LIMIT'));
+	$newSelect = "SELECT COUNT(*) allRecords ";
+	$sqlAllRecord = str_replace($txtSelect, $newSelect, $sql);
+	$sqlAllRecord = str_replace($txtLimit, '', $sqlAllRecord);
+} else {
+	$sqlAllRecord 		= "SELECT COUNT(*) allRecords FROM $tableName";
+}
+$resultAllRecord 	= mysql_query($sqlAllRecord, $dbConn);
+$allRecordsRows 	= mysql_fetch_assoc($resultAllRecord);
+$allRecords 		= $allRecordsRows['allRecords'];
+
+
 // Get table data
 for($i = 0; $i < $rows; $i++) {
 	array_push($tableData, mysql_fetch_assoc($result));
@@ -661,7 +687,8 @@ if($rows > 0){
 			} else {
 				echo "[]"; // empty array
 			}
-		?>
+		?>,
+		'allRecords'	: '<?=$allRecords?>'
 	};
 	setTable(table);
 
