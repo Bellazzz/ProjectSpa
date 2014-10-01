@@ -211,7 +211,7 @@
                 </td>
                 <td class="samerow">
                     <label class="input-required">วันที่รับผลิตภัณฑ์</label>
-                      <input id="rec_date" name="rec_date" type="text" class="mbk-dtp-th form-input half" value="{$values.rec_date}">
+                      <input id="rec_date" name="rec_date" type="text" class="mbk-dtp-th form-input half" value="{if $values.rec_date}{$values.rec_date}{else}{$nowDate}{/if}">
                 </td>
             </tr>
 	    </tbody>

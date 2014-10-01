@@ -9,7 +9,6 @@ include('../common/common_function.php');
 $tableName	= 'receives';
 $sortCol	= $_REQUEST['sortCol'];
 $sortBy		= $_REQUEST['sortBy'];
-$order		= $_REQUEST['order'];
 $filter 	= $_REQUEST['filter'];
 $where 		= 'WHERE r.ord_id = o.ord_id AND r.emp_id = e.emp_id ';
 $tableInfo	= getTableInfo($tableName);
@@ -32,7 +31,9 @@ if(hasValue($_REQUEST['filter'])) {
 	if($filter == 'REMAIN') {
 		$where .= "AND o.ordstat_id = 'OS02'";
 	} else if($filter == 'COMPLETED') {
-		$where .= "AND o.ordstat_id = 'OS03'";
+		$retroactDate 	= date('Y-m-d', strtotime('-1 years'));
+		$where 			.= "AND o.ordstat_id = 'OS03'";
+		$where 			.= " AND ord_date >= '$retroactDate'";
 		$hideIconCol 	= true; // hide column icon in thead
 		$hideActionCol 	= true; // hide column action in thead
 	}
@@ -47,7 +48,7 @@ $sql = "SELECT 	r.rec_id,
 				r.rec_total_price 
 		FROM 	receives r, orders o, employees e 
 		$where 
-		$order";
+		ORDER BY r.rec_id DESC";
 $result		= mysql_query($sql, $dbConn);
 $rows 		= mysql_num_rows($result);
 $tableData	= array();

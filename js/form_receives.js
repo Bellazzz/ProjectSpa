@@ -128,7 +128,7 @@ function changeOrderId() {
 			}
 		});
 	}
-	$('#rec_date').val('');
+	//$('#rec_date').val('');
 }
 
 function addEventRecPrdTable() {
