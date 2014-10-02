@@ -955,6 +955,24 @@ function dbClose() {
 			);
 			break;
 
+		case 'print_purchase_orders':
+			 return array(
+				'tableNameTH'	=> 'การพิมพ์ใบสั่งซื้อ',
+				'keyFieldName'  => 'prtord_id',
+				'keyFieldType'	=> 2, 
+				'keyChar'		=> 'PO',
+				'keyLength'		=> 9,
+				'fieldNameList'	=> array(
+						'prtord_id'	  	  => 'รหัสการพิมพ์ใบสั่งซื้อ',
+						'ord_id'	  	  => 'รหัสการสั่งซื้อ',
+						'emp_id'	  	  => 'รหัสพนักงาน',
+						'prtord_date'	  => 'วันที่พิมพ์',
+						'prtord_time' 	  => 'เวลาที่พิมพ์'
+				),
+				'searchFields'	=> array('ord_id','emp_id','prtord_date')
+			);
+			break;
+
 		
 	 }
  }

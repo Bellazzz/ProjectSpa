@@ -1,9 +1,41 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-01 18:02:19
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\printPurchaseOrder.html" */ ?>
+<?php /*%%SmartyHeaderCode:8499542baabdaa1938-19737391%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '88a2d266ad899314e7497c2f3441de5cd2b1f85e' => 
+    array (
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\printPurchaseOrder.html',
+      1 => 1412157459,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '8499542baabdaa1938-19737391',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_542baabde86ad4_29050495',
+  'variables' => 
+  array (
+    'ordData' => 0,
+    'spaData' => 0,
+    'orddtlData' => 0,
+    'orddlt' => 0,
+    'prdWhiteSpaceRows' => 0,
+    'totalPriceText' => 0,
+    'totalPrice' => 0,
+    'nowDateThai' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_542baabde86ad4_29050495')) {function content_542baabde86ad4_29050495($_smarty_tpl) {?><!DOCTYPE html>
 <html>
 <head>
 	<title>Spa - Backoffice</title>
 	<meta charset="utf-8"/>
-    {literal}
+    
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
@@ -175,25 +207,30 @@
 		}
 	</script>
 
-	{/literal}
+	
 </head>
 <body>
 <div class="ftb-header">
 	<div class="title-container">
-		<h1 id="ftb-title">ใบสั่งซื้อ (เลขที่ {$ordData.ord_id})</h1>
+		<h1 id="ftb-title">ใบสั่งซื้อ (เลขที่ <?php echo $_smarty_tpl->tpl_vars['ordData']->value['ord_id'];?>
+)</h1>
 	</div>
     <div class="toolbar-container clearfix">
-    	{if $ordData.ordstat_id == 'OS01'}
+    	<?php if ($_smarty_tpl->tpl_vars['ordData']->value['ordstat_id']=='OS01') {?>
 		<button id="print-btn" class="button button-icon button-icon-print">พิมพ์</button>
-		{/if}
+		<?php }?>
 		<button id="cancel-btn" class="button button-icon button-icon-delete">ยกเลิก</button>
     </div>
 </div>
 <div id="printArea" class="ftb-body">
-	<h2>{$spaData.spa_name}</h2>
+	<h2><?php echo $_smarty_tpl->tpl_vars['spaData']->value['spa_name'];?>
+</h2>
 	<p>
-		{$spaData.spa_addr}<br>
-		โทรศัพท์ : {$spaData.spa_tel} โทรสาร : {$spaData.spa_fax} อีเมล : 
+		<?php echo $_smarty_tpl->tpl_vars['spaData']->value['spa_addr'];?>
+<br>
+		โทรศัพท์ : <?php echo $_smarty_tpl->tpl_vars['spaData']->value['spa_tel'];?>
+ โทรสาร : <?php echo $_smarty_tpl->tpl_vars['spaData']->value['spa_fax'];?>
+ อีเมล : 
 	</p>
 	<h2>ใบสั่งซื้อผลิตภัณฑ์</h2>
 	<div class="order-data-table-container clearfix">
@@ -201,19 +238,24 @@
 			<table>
 				<tr>
 					<td><b>ชื่อผู้ติดต่อ</b></td>
-					<td>{$ordData.comp_contact}</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['ordData']->value['comp_contact'];?>
+</td>
 				</tr>
 				<tr>
 					<td><b>ชื่อบริษัท</b></td>
-					<td>{$ordData.comp_name}</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['ordData']->value['comp_name'];?>
+</td>
 				</tr>
 				<tr>
 					<td><b>ที่อยู่</b></td>
-					<td>{$ordData.comp_addr}</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['ordData']->value['comp_addr'];?>
+</td>
 				</tr>
 				<tr>
 					<td><b>โทรศัพท์</b></td>
-					<td>{$ordData.comp_tel} &nbsp;&nbsp;&nbsp;&nbsp; <b>โทรสาร</b>&nbsp; {$ordData.fax}</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['ordData']->value['comp_tel'];?>
+ &nbsp;&nbsp;&nbsp;&nbsp; <b>โทรสาร</b>&nbsp; <?php echo $_smarty_tpl->tpl_vars['ordData']->value['fax'];?>
+</td>
 				</tr>
 			</table>
 		</div>
@@ -221,15 +263,18 @@
 			<table>
 				<tr>
 					<td><b>เลขที่ใบสั่งซื้อ</b></td>
-					<td>{$ordData.ord_id}</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['ordData']->value['ord_id'];?>
+</td>
 				</tr>
 				<tr>
 					<td><b>วันที่ออกใบสั่งซื้อ</b></td>
-					<td>{$ordData.ord_date}</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['ordData']->value['ord_date'];?>
+</td>
 				</tr>
 				<tr>
 					<td><b>วันกำหนดส่ง</b></td>
-					<td>{$ordData.ord_snd_date}</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['ordData']->value['ord_snd_date'];?>
+</td>
 				</tr>
 			</table>
 		</div>
@@ -249,17 +294,52 @@
 	            </tr>
 	        </thead>
 	        <tbody>
-	            {foreach from=$orddtlData key=i item=orddlt}
+	            <?php  $_smarty_tpl->tpl_vars['orddlt'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['orddlt']->_loop = false;
+ $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['orddtlData']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['orddlt']->key => $_smarty_tpl->tpl_vars['orddlt']->value) {
+$_smarty_tpl->tpl_vars['orddlt']->_loop = true;
+ $_smarty_tpl->tpl_vars['i']->value = $_smarty_tpl->tpl_vars['orddlt']->key;
+?>
 	            <tr>
-	            	<td align="center">{$orddlt.no}</td>
-	                <td align="left">{$orddlt.prd_name}</td>
-	                <td align="right">{$orddlt.orddtl_amount}</td>
-	                <td align="left">{$orddlt.unit_name}</td>
-	                <td align="right">{$orddlt.prd_price}</td>
-	                <td align="right">{$orddlt.sum_price}</td>
+	            	<td align="center"><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['no'];?>
+</td>
+	                <td align="left"><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['prd_name'];?>
+</td>
+	                <td align="right"><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['orddtl_amount'];?>
+</td>
+	                <td align="left"><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['unit_name'];?>
+</td>
+	                <td align="right"><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['prd_price'];?>
+</td>
+	                <td align="right"><?php echo $_smarty_tpl->tpl_vars['orddlt']->value['sum_price'];?>
+</td>
 	            </tr>
-	            {/foreach}
-	            {section name=prdWhiteSpace loop=$prdWhiteSpaceRows}
+	            <?php } ?>
+	            <?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['name'] = 'prdWhiteSpace';
+$_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['prdWhiteSpaceRows']->value) ? count($_loop) : max(0, (int) $_loop); unset($_loop);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['show'] = true;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['max'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['loop'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['step'] = 1;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['start'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['step'] > 0 ? 0 : $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['loop']-1;
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['show']) {
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['total'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['loop'];
+    if ($_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['total'] == 0)
+        $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['show'] = false;
+} else
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['total'] = 0;
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['show']):
+
+            for ($_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['index'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['start'], $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['iteration'] = 1;
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['iteration'] <= $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['total'];
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['index'] += $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['step'], $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['iteration']++):
+$_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['rownum'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['iteration'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['index_prev'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['index'] - $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['index_next'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['index'] + $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['iteration'] == 1);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['prdWhiteSpace']['total']);
+?>
 				 <tr>
 	            	<td><span style="visibility: hidden">White space</span></td>
 	            	<td><span style="visibility: hidden">White space</span></td>
@@ -268,13 +348,15 @@
 	            	<td><span style="visibility: hidden">White space</span></td>
 	            	<td><span style="visibility: hidden">White space</span></td>
 	           	</tr>
-				{/section}
+				<?php endfor; endif; ?>
 	        </tbody>
 	        <tfoot>
 	        	<tr>
-	        		<td colspan="4" align="center">({$totalPriceText})</td>
+	        		<td colspan="4" align="center">(<?php echo $_smarty_tpl->tpl_vars['totalPriceText']->value;?>
+)</td>
 	        		<td align="center"><b>ราคารวมทั้งหมด</b></td>
-	        		<td align="right"><b>{$totalPrice}</b></td>
+	        		<td align="right"><b><?php echo $_smarty_tpl->tpl_vars['totalPrice']->value;?>
+</b></td>
 	        	</tr>
 	        </tfoot>
 	    </table>
@@ -285,7 +367,8 @@
     		<div class="space-for-signature"></div>
     		<p align="center">(<span style="width: 160px; display:inline-block;"></span>)</p>
     		<p align="center">ผู้สั่งซื้อ</p>
-    		<p align="center">วันที่ {$nowDateThai}</p>
+    		<p align="center">วันที่ <?php echo $_smarty_tpl->tpl_vars['nowDateThai']->value;?>
+</p>
     	</div>
     	<div class="signature">
     		<div class="space-for-signature"></div>
@@ -299,4 +382,4 @@
     </div>
 </div>
 </body>
-</html>
+</html><?php }} ?>
