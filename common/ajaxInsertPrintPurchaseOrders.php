@@ -9,6 +9,7 @@ if(isset($_REQUEST['ord_id'])) {
 	$ord_id = $_REQUEST['ord_id'];
 }
 
+date_default_timezone_set('Asia/Bangkok');
 $printTime 		= date("H:i:s");
 $printDate 		= date("Y-m-d");
 $values 		= array($ord_id, $session_emp_id, $printDate, $printTime);
