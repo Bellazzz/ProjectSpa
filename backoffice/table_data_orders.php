@@ -24,6 +24,7 @@ if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 		$like = "(e.emp_name like '%$searchInput%' OR e.emp_surname like '%$searchInput%') ";
 	} else {
 		$like = str_replace('comp_id', 'c.comp_name', $like);
+		$like = str_replace('ordtyp_id', 'ot.ordtyp_name', $like);
 	}
 	$where .= " AND $like";
 }

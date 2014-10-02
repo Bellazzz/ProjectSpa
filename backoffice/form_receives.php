@@ -106,19 +106,116 @@ if(!$_REQUEST['ajaxCall']) {
 		$sum_amount = 0;
 		$sql 	= "	SELECT r.recdtl_amount,
 					r.recdtl_price,
-					p.prd_name,
-					u.unit_name,
-					FORMAT(r.recdtl_amount * r.recdtl_price, 2) sum_price  
-					FROM receive_details r, products p, units u 
-					WHERE r.prd_id = p.prd_id AND p.unit_id = u.unit_id 
-					AND r.rec_id = '$code'";
+					r.prd_id,
+					(r.recdtl_amount * r.recdtl_price) sum_price 
+					FROM receive_details r 
+					WHERE r.rec_id = '$code'";
+					echo $sql;
 		$result = mysql_query($sql, $dbConn);
 		$rows 	= mysql_num_rows($result);
 		for($i=0; $i<$rows; $i++) {
-			array_push($receiveDetailList, mysql_fetch_assoc($result));
-			$sum_amount += $receiveDetailList[$i]['recdtl_amount'];
+			$tmpRow = mysql_fetch_assoc($result);
+			$receiveDetailList[$tmpRow['prd_id']] = array(
+				'recdtl_amount' => $tmpRow['recdtl_amount'],
+				'recdtl_price' 	=> number_format($tmpRow['recdtl_price'], 2),
+				'sum_price' 	=> number_format($tmpRow['sum_price'], 2)
+			);
+			//array_push($receiveDetailList, mysql_fetch_assoc($result));
+			$sum_amount += $tmpRow['recdtl_amount'];
 		}
+
+		// Get order id
+		$sql = "SELECT o.ord_id 
+				FROM 	orders o, receives r 
+				WHERE 	o.ord_id = r.ord_id AND r.rec_id = '$code' LIMIT 1";
+		$result = mysql_query($sql, $dbConn);
+		$tmpRow = mysql_fetch_assoc($result);
+		$ord_id = $tmpRow['ord_id'];
+		
+		//Get order product data
+		$sql = "SELECT 	od.prd_id,
+						od.orddtl_amount,
+						p.prd_name,
+						u.unit_name 
+				FROM 	orders o, order_details od, products p, units u 
+				WHERE 	o.ord_id = od.ord_id AND od.prd_id = p.prd_id 
+						AND p.unit_id = u.unit_id AND o.ord_id = '$ord_id'";
+		$result = mysql_query($sql, $dbConn);
+		$rows 	= mysql_num_rows($result);
+		for ($i=0; $i < $rows; $i++) { 
+			$tmpRow = mysql_fetch_assoc($result);
+			if(!isset($ord_id)) {
+				$ord_id = $tmpRow['ord_id'];
+			}
+			$receiveDetailList[$tmpRow['prd_id']]['orddtl_amount'] 	= $tmpRow['orddtl_amount'];
+			$receiveDetailList[$tmpRow['prd_id']]['prd_name'] 		= $tmpRow['prd_name'];
+			$receiveDetailList[$tmpRow['prd_id']]['unit_name'] 		= $tmpRow['unit_name'];
+			if(!isset($receiveDetailList[$tmpRow['prd_id']]['sum_price'])) {
+				$receiveDetailList[$tmpRow['prd_id']]['sum_price'] = 0;
+			}
+		}
+
+		// Get before receives product
+		$sql = "SELECT 		rd.prd_id,
+							SUM(rd.recdtl_amount) before_recdtl_amount 
+				FROM 		receives r, receive_details rd 
+				WHERE 		r.rec_id = rd.rec_id AND r.ord_id = '$ord_id' 
+							AND r.rec_id < '$code' 
+				GROUP BY 	rd.prd_id";
+		$result = mysql_query($sql, $dbConn);
+		$rows 	= mysql_num_rows($result);
+		for ($i=0; $i < $rows; $i++) { 
+			$tmpRow = mysql_fetch_assoc($result);
+			$receiveDetailList[$tmpRow['prd_id']]['before_recdtl_amount'] 	= $tmpRow['before_recdtl_amount'];
+		}
+
+		// Calculate
+		$sum_remain 		= 0;
+		$sum_ordAmount 		= 0;
+		$sum_before_amount = 0;
+		foreach ($receiveDetailList as $prd_id => $value) {
+			// Cal remain
+			$remain = $receiveDetailList[$prd_id]['orddtl_amount'] - $receiveDetailList[$prd_id]['before_recdtl_amount'] - $receiveDetailList[$prd_id]['recdtl_amount'];
+			$receiveDetailList[$prd_id]['remain'] = $remain;
+
+			// Cal sum
+			$sum_remain 		+= $remain;
+			$sum_ordAmount 		+= $receiveDetailList[$prd_id]['orddtl_amount'];
+			$sum_before_amount 	+= $receiveDetailList[$prd_id]['before_recdtl_amount'];
+		}
+
+		// Convert
+		foreach ($receiveDetailList as $prd_id => $value) {
+			if($receiveDetailList[$prd_id]['before_recdtl_amount'] == 0) {
+				$receiveDetailList[$prd_id]['before_recdtl_amount'] = '-';
+			}
+			if($receiveDetailList[$prd_id]['recdtl_amount'] == 0) {
+				$receiveDetailList[$prd_id]['recdtl_amount'] = '-';
+			}
+			if($receiveDetailList[$prd_id]['remain'] == 0) {
+				$receiveDetailList[$prd_id]['remain'] = '-';
+			}
+			if($receiveDetailList[$prd_id]['sum_price'] == 0) {
+				$receiveDetailList[$prd_id]['sum_price'] = '-';
+			}
+			if(!isset($receiveDetailList[$prd_id]['recdtl_price'])) {
+				$receiveDetailList[$prd_id]['recdtl_price'] = '-';
+			}
+		}
+		if($sum_remain == 0) {
+			$sum_remain = '-';
+		}
+		if($sum_ordAmount == 0) {
+			$sum_ordAmount = '-';
+		}
+		if($sum_before_amount == 0) {
+			$sum_before_amount = '-';
+		}
+
+		$smarty->assign('sum_before_amount', $sum_before_amount);
 		$smarty->assign('sum_amount', $sum_amount);
+		$smarty->assign('sum_ordAmount', $sum_ordAmount);
+		$smarty->assign('sum_remain', $sum_remain);
 		$smarty->assign('receiveDetailList', $receiveDetailList);
 	}
 

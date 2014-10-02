@@ -110,7 +110,7 @@ var table = {
 };
 var timer;
 var currentPage = 1;
-var recordDisplay = 15; // แสดงแถว
+var recordDisplay = 9; // แสดงแถว
 
 function setTable(table) {
     this.table = table;

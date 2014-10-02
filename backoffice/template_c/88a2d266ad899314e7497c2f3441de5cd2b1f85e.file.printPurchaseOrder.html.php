@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 00:56:13
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 04:48:12
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\printPurchaseOrder.html" */ ?>
 <?php /*%%SmartyHeaderCode:31801542d7f40d29cb1-16153906%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88a2d266ad899314e7497c2f3441de5cd2b1f85e' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\printPurchaseOrder.html',
-      1 => 1412268968,
+      1 => 1412282881,
       2 => 'file',
     ),
   ),
@@ -197,8 +197,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         		success:
         		function(response) {
         			if(response == "PASS") {
-        				printPurchaseOrder();
         				parent.hideActionDialog();
+        				parent.closeManageBox();
+        				printPurchaseOrder();
         			} else if(response == "INSERT_PRINT_PURCHASE_ORDERS_FAIL") {
         				alert('เกิดข้อผิดพลาด! ไม่สามารถเพิ่มข้อมูลการพิมพ์ใบสั่งซื้อได้');
         			} else {

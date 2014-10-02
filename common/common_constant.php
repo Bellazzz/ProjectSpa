@@ -825,7 +825,7 @@ function dbClose() {
 				),
 				'hiddenFields' 	=> array(),
 				'defaultNull'	=> array('ord_snd_date'),
-				'searchFields'	=> array('ordtyp_id','comp_id','ord_date','ordstat_id')
+				'searchFields'	=> array('ord_id','ordtyp_id','comp_id','ord_date','ordstat_id')
 			);
 			break;
 
