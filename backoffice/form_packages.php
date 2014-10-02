@@ -18,6 +18,30 @@ if(!$_REQUEST['ajaxCall']) {
 			$values[$field] = $tableRecord->getFieldValue($field);
 		}
 		$smarty->assign('values', $values);
+	} else if($action == 'VIEW_DETAIL') {
+		// Get table packages data
+		$tableRecord = new TableSpa($tableName, $code);
+		$values      = array();
+		foreach($tableInfo['fieldNameList'] as $field => $value) {
+			$values[$field] = $tableRecord->getFieldValue($field);
+		}
+		$smarty->assign('values', $values);
+
+		// Get service lists of packages
+		$pkgsvlDetailList = array();
+		$sql 	= "	SELECT s.svl_id,
+					s.svl_name 
+					FROM package_service_lists ps, service_lists s 
+					WHERE ps.svl_id = s.svl_id 
+					AND ps.pkg_id = '$code'";
+					echo $sql;
+		$result = mysql_query($sql, $dbConn);
+		$rows 	= mysql_num_rows($result);
+		for($i=0; $i<$rows; $i++) {
+			array_push($pkgsvlDetailList, mysql_fetch_assoc($result));
+		}
+		$smarty->assign('pkgsvlDetailList', $pkgsvlDetailList);
+		print_r($pkgsvlDetailList);
 	}
 
 	$smarty->assign('action', $action);
