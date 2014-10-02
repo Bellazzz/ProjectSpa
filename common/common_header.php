@@ -15,6 +15,7 @@
 		$smarty->assign('session_loggedin', $_SESSION['loggedin']);
 	}
 	if(isset($_SESSION['emp_id'])) {
+		$session_emp_id = $_SESSION['emp_id'];
 		$smarty->assign('session_emp_id', $_SESSION['emp_id']);
 	}
 	if(isset($_SESSION['emp_user'])) {
