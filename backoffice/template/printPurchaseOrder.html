@@ -108,14 +108,70 @@
 		}
 	</style>
 	<script>
+		var printNum = '{/literal}{$printNum}{literal}';
+
 		$(document).ready(function() {
 			$('#print-btn').click(function() {
-				printPurchaseOrder();
+				confirmPrint();
 			});
 			$('#cancel-btn').click(function() {
 				parent.closeManageBox();
 			});
 		});
+
+		function confirmPrint() {
+			if(printNum > 0) {
+				parent.showActionDialog({
+	                title: 'พิมพ์ใบสั่งซื้อซ้ำ',
+	                message: 'ใบสั่งซื้อนี้ถูกพิมพ์ไปแล้ว ' + printNum + ' ครั้ง ท่านต้องการพิมพ์อีกใช่หรือไม่?',
+	                actionList: [
+	                    {
+	                        id: 'ok',
+	                        name: 'ตกลง',
+	                        desc: 'พิมพ์ใบสั่งซื้อนี้',
+	                        func:
+	                        function() {
+	                        	insertPrintPurchaseOrders();
+	                        }
+	                    },
+		                {
+		                    id: 'cancel',
+		                    name: 'ยกเลิก',
+		                    desc: 'ไม่พิมพ์ใบสั่งซื้อ',
+		                    func:
+		                    function() {
+		                        parent.hideActionDialog();
+		                    }
+		                }
+	                ],
+	                boxWidth: 400
+	            });
+			} else {
+				insertPrintPurchaseOrders();
+			}
+			
+		}
+
+		function insertPrintPurchaseOrders() {
+			$.ajax({
+        		url: '../common/ajaxInsertPrintPurchaseOrders.php',
+        		type: 'POST',
+        		data: {
+        			ord_id: '{/literal}{$ordData.ord_id}{literal}'
+        		},
+        		success:
+        		function(response) {
+        			if(response == "PASS") {
+        				printPurchaseOrder();
+        				parent.hideActionDialog();
+        			} else if(response == "INSERT_PRINT_PURCHASE_ORDERS_FAIL") {
+        				alert('เกิดข้อผิดพลาด! ไม่สามารถเพิ่มข้อมูลการพิมพ์ใบสั่งซื้อได้');
+        			} else {
+        				alert(response);
+        			}
+        		}
+        	});
+		}
 
 		function printPurchaseOrder()
 		{

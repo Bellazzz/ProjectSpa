@@ -141,6 +141,13 @@ if(hasValue($ordId)) {
 	$prdWhiteSpaceRows = $prdListMaxRows - $rows;
 	$smarty->assign('prdWhiteSpaceRows', $prdWhiteSpaceRows);
 	$smarty->assign('nowDateThai', dateThaiFormatShort(date('Y-m-d')));
+
+	// Get print purchase orders history
+	$sql 		= "SELECT COUNT(*) printNum FROM print_purchase_orders WHERE ord_id = '$ordId'";
+	$result 	= mysql_query($sql, $dbConn);
+	$prtordRow 	= mysql_fetch_assoc($result);
+	$printNum 	= $prtordRow['printNum'];
+	$smarty->assign('printNum', $printNum);
 }
 
 include('../common/common_footer.php');

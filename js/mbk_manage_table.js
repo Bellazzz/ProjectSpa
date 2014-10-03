@@ -109,6 +109,8 @@ var table = {
     'searchInput'   : ''
 };
 var timer;
+var currentPage = 1;
+var recordDisplay = 15; // แสดงแถว
 
 function setTable(table) {
     this.table = table;
@@ -123,6 +125,7 @@ function clearTable() {
         'searchCol'     : '',
         'searchInput'   : ''
     };
+    currentPage = 1;
     $('#search-record-input').val('');
 }
 
@@ -152,7 +155,8 @@ function pullTable(reFilter) {
         type: 'POST',
         data: 'tableName=' + this.table.name + '&sortCol=' + this.table.sortCol + 
               '&sortBy=' + this.table.sortBy + '&searchCol=' + searchCol + 
-              '&searchInput=' + searchInput + '&filter=' + queryFilter,
+              '&searchInput=' + searchInput + '&filter=' + queryFilter + 
+              '&page=' + currentPage + '&recordDisplay=' + recordDisplay,
         success:
         function (response) {
             var htmlResponse;
@@ -166,6 +170,7 @@ function pullTable(reFilter) {
             $('.page-panel-content').html('');
             $('.page-panel-content').html(htmlResponse);
             refreshToolbarMenu();
+            refreshPaging();
             if (reFilter) {
                 refreshSearchRecord();
             }
@@ -357,7 +362,7 @@ function refreshFilterQuery() {
     if(this.table.name == 'orders') {
         filterRecordQueryHTML   = 'ดูการสั่งซื้อจาก '
                                 + '<select id="query-record-filter">'
-                                + '     <option value="WAIT">รอรับสินค้า</option>'
+                                + '     <option value="WAIT">เตรียมการสั่งซื้อ</option>'
                                 + '     <option value="REMAIN">ค้างรับ</option>'
                                 + '     <option value="COMPLETED">รับเรียบร้อยแล้ว</option>'
                                 + '</select>';
@@ -403,6 +408,73 @@ function refreshSearchRecord() {
     } else {
         $('#search-record-filter').css('visibility', 'visible');
     }
+}
+
+function changePage(page) {
+    this.currentPage = page;
+    pullTable(false);
+}
+
+function refreshPaging() {
+    var displayLimit    = 5;
+    var lastPage        = Math.ceil(table.allRecords/recordDisplay);
+    var startPage;
+    var endPage;
+    var pagingHTML      = '';
+
+    // Calculate
+    if(lastPage > displayLimit) {
+        startPage = currentPage - Math.floor(displayLimit/2);
+    } else {
+        startPage = 1;
+    }
+    
+    if(startPage < 1) {
+        startPage = 1;
+    }
+    endPage = startPage + displayLimit - 1;
+    if(endPage > lastPage) {
+        endPage = lastPage;
+    }
+    if(lastPage > displayLimit) {
+        if(startPage > endPage - displayLimit + 1) {
+            startPage = endPage - displayLimit + 1;
+        }
+        if(startPage > 1) {
+            pagingHTML += '<a href="javascript:changePage(1)">หน้าแรก</a>';
+        }
+        if(currentPage > 1) {
+            var previousPage = currentPage - 1;
+            pagingHTML += '<a href="javascript:changePage(' + previousPage + ')"><</a>';
+        }
+        if(startPage > 1) {
+            pagingHTML += '...';
+        }
+    }
+
+    for(i=startPage; i<=endPage; i++) {
+        if(i == currentPage) {
+            pagingHTML += '<a href="javascript:changePage(' + i + ')" class="selected">' + i + '</a>';
+        } else {
+            pagingHTML += '<a href="javascript:changePage(' + i + ')">' + i + '</a>';
+        }
+    }
+
+    if(lastPage > displayLimit) {
+        if(endPage < lastPage) {
+            pagingHTML += '...';
+        }
+        if(currentPage < lastPage) {
+            var nextPage = currentPage + 1;
+            pagingHTML += '<a href="javascript:changePage(' + nextPage + ')">></a>';
+        }
+        if(endPage < lastPage) {
+            pagingHTML += '<a href="javascript:changePage(' + lastPage + ')">หน้าสุดท้าย</a>';
+        }
+    }
+
+    document.getElementById("pagingContainer").innerHTML = pagingHTML;
+
 }
 
 /*

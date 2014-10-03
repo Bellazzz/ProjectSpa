@@ -38,7 +38,6 @@ if(hasValue($_REQUEST['filter'])) {
 		$hideActionCol 	= true; // hide column action in thead
 	}
 }
-
  	 	 	 	 	 	 	 	 	
 // Query table data
 $sql = "SELECT 	r.rec_id,
@@ -52,6 +51,20 @@ $sql = "SELECT 	r.rec_id,
 $result		= mysql_query($sql, $dbConn);
 $rows 		= mysql_num_rows($result);
 $tableData	= array();
+
+// Find all record
+if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
+	$txtSelect = substr($sql, strpos($sql, 'SELECT'), strpos($sql, 'FROM'));
+	$txtLimit  = substr($sql, strpos($sql, 'LIMIT'));
+	$newSelect = "SELECT COUNT(*) allRecords ";
+	$sqlAllRecord = str_replace($txtSelect, $newSelect, $sql);
+	$sqlAllRecord = str_replace($txtLimit, '', $sqlAllRecord);
+} else {
+	$sqlAllRecord 		= "SELECT COUNT(*) allRecords FROM $tableName";
+}
+$resultAllRecord 	= mysql_query($sqlAllRecord, $dbConn);
+$allRecordsRows 	= mysql_fetch_assoc($resultAllRecord);
+$allRecords 		= $allRecordsRows['allRecords'];
 
 // Get table data
 for($i = 0; $i < $rows; $i++) {
@@ -173,7 +186,8 @@ if($rows > 0){
 			} else {
 				echo "[]"; // empty array
 			}
-		?>
+		?>,
+		'allRecords'	: '<?=$allRecords?>'
 	};
 	setTable(table);
 

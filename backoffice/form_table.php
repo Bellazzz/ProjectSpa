@@ -13,6 +13,10 @@ switch ($tableName) {
 	case 'receives':
 		header("location:form_receives.php?action=$action&code=$code");
 		break;
+
+	case 'packages':
+		header("location:form_packages.php?action=$action&code=$code");
+		break;
 }
 
 include('../config/config.php');
