@@ -30,12 +30,14 @@ if(hasValue($_REQUEST['filter'])) {
 	$filter = $_REQUEST['filter'];
 	if($filter == 'REMAIN') {
 		$where .= "AND o.ordstat_id = 'OS02'";
+		$whereAllRecord = "AND ordstat_id = 'OS02'";
 	} else if($filter == 'COMPLETED') {
 		$retroactDate 	= date('Y-m-d', strtotime('-1 years'));
 		$where 			.= "AND o.ordstat_id = 'OS03'";
 		$where 			.= " AND ord_date >= '$retroactDate'";
 		$hideIconCol 	= true; // hide column icon in thead
 		$hideActionCol 	= true; // hide column action in thead
+		$whereAllRecord = "AND o.ordstat_id = 'OS03' AND ord_date >= '$retroactDate'";
 	}
 }
  	 	 	 	 	 	 	 	 	
@@ -60,7 +62,10 @@ if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 	$sqlAllRecord = str_replace($txtSelect, $newSelect, $sql);
 	$sqlAllRecord = str_replace($txtLimit, '', $sqlAllRecord);
 } else {
-	$sqlAllRecord 		= "SELECT COUNT(*) allRecords FROM $tableName";
+	$sqlAllRecord 		= "SELECT COUNT(*) allRecords 
+							FROM receives r, orders o, employees e 
+							WHERE r.ord_id = o.ord_id AND r.emp_id = e.emp_id 
+							$whereAllRecord";
 }
 $resultAllRecord 	= mysql_query($sqlAllRecord, $dbConn);
 $allRecordsRows 	= mysql_fetch_assoc($resultAllRecord);

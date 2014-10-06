@@ -12,6 +12,7 @@ $sortBy		= $_REQUEST['sortBy'];
 $filter 	= $_REQUEST['filter'];
 $where 		= 'WHERE o.emp_id = e.emp_id AND o.comp_id = c.comp_id '
 			. 'AND o.ordtyp_id = ot.ordtyp_id ';
+$order 		= $_REQUEST['order'];
 $tableInfo	= getTableInfo($tableName);
 
 // Generate search
@@ -34,15 +35,18 @@ if(hasValue($_REQUEST['filter'])) {
 	$filter = $_REQUEST['filter'];
 	if($filter == 'WAIT') {
 		$where .= "AND ordstat_id = 'OS01'";
+		$whereAllRecord = "WHERE ordstat_id = 'OS01'";
 	} else if($filter == 'REMAIN') {
 		$where .= "AND ordstat_id = 'OS02'";
 		$hideIconCol = true; // hide column action icon in thead
+		$whereAllRecord = "WHERE ordstat_id = 'OS02'";
 	} else if($filter == 'COMPLETED') {
 		$where .= "AND ordstat_id = 'OS03'";
 		$hideIconCol = true; // hide column action icon in thead
 		// Display retroact 12 month
 		$retroactDate = date('Y-m-d', strtotime('-1 years'));
 		$where .= " AND ord_date >= '$retroactDate'";
+		$whereAllRecord = "WHERE ordstat_id = 'OS03'";
 	}
 }
  	 	 	 	 	 	 	 	 	
@@ -55,7 +59,7 @@ $sql = "SELECT o.ord_id,
 				o.ord_snd_date 
 		FROM orders o, order_types ot, employees e, companies c 
 		$where 
-		ORDER BY o.ord_id DESC";
+		$order";
 $result		= mysql_query($sql, $dbConn);
 $rows 		= mysql_num_rows($result);
 $tableData	= array();
@@ -68,7 +72,7 @@ if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 	$sqlAllRecord = str_replace($txtSelect, $newSelect, $sql);
 	$sqlAllRecord = str_replace($txtLimit, '', $sqlAllRecord);
 } else {
-	$sqlAllRecord 		= "SELECT COUNT(*) allRecords FROM $tableName";
+	$sqlAllRecord 		= "SELECT COUNT(*) allRecords FROM $tableName $whereAllRecord";
 }
 $resultAllRecord 	= mysql_query($sqlAllRecord, $dbConn);
 $allRecordsRows 	= mysql_fetch_assoc($resultAllRecord);

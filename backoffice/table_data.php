@@ -37,8 +37,8 @@ if(hasValue($_REQUEST['recordDisplay'])) {
 	$recordDisplay = (Int)$_REQUEST['recordDisplay'];
 }
 // Generate order and limit
-$startPage 	= ($page - 1) * $recordDisplay;
-$order	 	= "ORDER BY $sortCol $sortBy LIMIT $startPage, $recordDisplay";
+$startPage 		= ($page - 1) * $recordDisplay;
+$order	 		= "ORDER BY $sortCol $sortBy LIMIT $startPage, $recordDisplay";
 
 $searchCol = $tableInfo['keyFieldName'];
 if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
