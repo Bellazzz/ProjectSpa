@@ -8,12 +8,16 @@ include('../common/common_function.php');
 // Pre Valiable
 $tableName	= 'orders';
 $sortCol	= $_REQUEST['sortCol'];
-$sortBy		= $_REQUEST['sortBy'];
+$sortBy		= 'desc';
 $filter 	= $_REQUEST['filter'];
 $where 		= 'WHERE o.emp_id = e.emp_id AND o.comp_id = c.comp_id '
 			. 'AND o.ordtyp_id = ot.ordtyp_id ';
 $order 		= $_REQUEST['order'];
 $tableInfo	= getTableInfo($tableName);
+
+if(hasValue($_REQUEST['sortBy'])) {
+	$sortBy	= $_REQUEST['sortBy'];
+}
 
 // Generate search
 if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {

@@ -1,13 +1,39 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 04:48:12
+=======
+<<<<<<< HEAD
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-30 10:18:32
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\printPurchaseOrder.html" */ ?>
+<?php /*%%SmartyHeaderCode:8288542a12f8e2c9b8-07321391%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 00:56:13
+>>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\printPurchaseOrder.html" */ ?>
 <?php /*%%SmartyHeaderCode:31801542d7f40d29cb1-16153906%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> ec0f594f6de95ecbbc77a050f8ce2b8d0e13898b
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '88a2d266ad899314e7497c2f3441de5cd2b1f85e' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\printPurchaseOrder.html',
+<<<<<<< HEAD
       1 => 1412282881,
+=======
+<<<<<<< HEAD
+      1 => 1411381717,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '8288542a12f8e2c9b8-07321391',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+=======
+      1 => 1412268968,
+>>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
       2 => 'file',
     ),
   ),
@@ -20,6 +46,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'printNum' => 0,
+>>>>>>> ec0f594f6de95ecbbc77a050f8ce2b8d0e13898b
     'ordData' => 0,
     'spaData' => 0,
     'orddtlData' => 0,
@@ -30,8 +57,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'nowDateThai' => 0,
   ),
   'has_nocache_code' => false,
+<<<<<<< HEAD
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_542a12f90de5f6_83019792',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_542a12f90de5f6_83019792')) {function content_542a12f90de5f6_83019792($_smarty_tpl) {?><!DOCTYPE html>
+=======
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_542d7f40ef5dc7_22004659')) {function content_542d7f40ef5dc7_22004659($_smarty_tpl) {?><!DOCTYPE html>
+>>>>>>> ec0f594f6de95ecbbc77a050f8ce2b8d0e13898b
 <html>
 <head>
 	<title>Spa - Backoffice</title>
@@ -141,18 +175,26 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		}
 	</style>
 	<script>
+<<<<<<< HEAD
+		$(document).ready(function() {
+			$('#print-btn').click(function() {
+				printPurchaseOrder();
+=======
 		var printNum = '<?php echo $_smarty_tpl->tpl_vars['printNum']->value;?>
 ';
 
 		$(document).ready(function() {
 			$('#print-btn').click(function() {
 				confirmPrint();
+>>>>>>> ec0f594f6de95ecbbc77a050f8ce2b8d0e13898b
 			});
 			$('#cancel-btn').click(function() {
 				parent.closeManageBox();
 			});
 		});
 
+<<<<<<< HEAD
+=======
 		function confirmPrint() {
 			if(printNum > 0) {
 				parent.showActionDialog({
@@ -209,6 +251,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         	});
 		}
 
+>>>>>>> ec0f594f6de95ecbbc77a050f8ce2b8d0e13898b
 		function printPurchaseOrder()
 		{
 		   var printReadyEle = document.getElementById("printArea");
