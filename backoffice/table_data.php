@@ -13,6 +13,7 @@ if(hasValue($_REQUEST['tableName'])) {
 $tableInfo	= getTableInfo($tableName);
 $sortCol	= $tableInfo['keyFieldName'];
 $sortBy		= 'asc';
+$sortBySpecial = 'desc';
 $filter 	= '';
 $where		= '';
 $like		= '';
@@ -23,6 +24,7 @@ $recordDisplay = 20;
 
 if(hasValue($_REQUEST['sortBy'])) {
 	$sortBy	= $_REQUEST['sortBy'];
+	$sortBySpecial = $_REQUEST['sortBy'];
 }
 if(hasValue($_REQUEST['sortCol'])) {
 	$sortCol = $_REQUEST['sortCol'];
@@ -37,8 +39,9 @@ if(hasValue($_REQUEST['recordDisplay'])) {
 	$recordDisplay = (Int)$_REQUEST['recordDisplay'];
 }
 // Generate order and limit
-$startPage 	= ($page - 1) * $recordDisplay;
-$order	 	= "ORDER BY $sortCol $sortBy LIMIT $startPage, $recordDisplay";
+$startPage 		= ($page - 1) * $recordDisplay;
+$order	 		= "ORDER BY $sortCol $sortBy LIMIT $startPage, $recordDisplay";
+$orderSpecial 	= "ORDER BY $sortCol $sortBySpecial LIMIT $startPage, $recordDisplay";
 
 $searchCol = $tableInfo['keyFieldName'];
 if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
@@ -50,10 +53,10 @@ if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 // check for table that display special
 switch ($tableName) {
 	case 'orders':
-		header("location:table_data_orders.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
+		header("location:table_data_orders.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
 		break;
 	case 'receives':
-		header("location:table_data_receives.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
+		header("location:table_data_receives.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
 		break;
 	/*case 'packages':
 		header("location:table_data_packages.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");

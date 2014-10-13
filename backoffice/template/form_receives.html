@@ -169,9 +169,12 @@
         <thead>
             <tr>
                 <th>ผลิตภัณฑ์</th>
-                <th>หน่วบนับ</th>
                 <th>ราคา/หน่วย (บาท)</th>
-                <th>จำนวนที่รับ</th>
+                <th>หน่วบนับ</th>
+                <th>จำนวนที่สั่ง</th>
+                <th>จำนวนที่รับครั้งก่อน</th>
+                <th>จำนวนที่รับครั้งนี้</th>
+                <th>ค้างรับ</th>
                 <th>ราคารวม (บาท)</th>
             </tr>
         </thead>
@@ -179,9 +182,12 @@
             {foreach from=$receiveDetailList key=i item=recdlt}
             <tr>
                 <td>{$recdlt.prd_name}</td>
+                <td align="right">{$recdlt.recdtl_price}</td>
                 <td align="left">{$recdlt.unit_name}</td>
-                <td align="right">{$recdlt.recdtl_price|number_format:2:".":","}</td>
-                <td align="right">{$recdlt.recdtl_amount|number_format:0:"":","}</td>
+                <td align="right">{$recdlt.orddtl_amount}</td>
+                <td align="right">{$recdlt.before_recdtl_amount}</td>
+                <td align="right">{$recdlt.recdtl_amount}</td>
+                <td align="right">{$recdlt.remain}</td>
                 <td align="right">{$recdlt.sum_price}</td>
             </tr>
             {/foreach}
@@ -189,7 +195,10 @@
         <tfoot>
             <tr class="tfootSummary">
                 <td align="right" colspan="3">รวมทั้งหมด</td>
-                <td align="right"><b>{$sum_amount|number_format:0:"":","}</b></td>
+                <td align="right"><b>{$sum_ordAmount}</b></td>
+                <td align="right"><b>{$sum_before_amount}</b></td>
+                <td align="right"><b>{$sum_amount}</b></td>
+                <td align="right"><b>{$sum_remain}</b></td>
                 <td align="right"><b>{$values.rec_total_price|number_format:2:".":","}</b></td>
             </tr>
         </tfoot>

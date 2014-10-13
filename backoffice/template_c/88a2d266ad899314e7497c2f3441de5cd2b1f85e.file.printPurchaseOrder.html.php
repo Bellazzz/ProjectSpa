@@ -1,13 +1,37 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 08:16:20
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\printPurchaseOrder.html" */ ?>
 <?php /*%%SmartyHeaderCode:2669542dead45a1f41-26052262%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<<<<<<< HEAD
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 04:48:12
+=======
+<<<<<<< HEAD
+<?php /* Smarty version Smarty-3.1.18, created on 2014-09-30 10:18:32
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\printPurchaseOrder.html" */ ?>
+<?php /*%%SmartyHeaderCode:8288542a12f8e2c9b8-07321391%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 00:56:13
+>>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\printPurchaseOrder.html" */ ?>
+<?php /*%%SmartyHeaderCode:31801542d7f40d29cb1-16153906%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> ec0f594f6de95ecbbc77a050f8ce2b8d0e13898b
+>>>>>>> 2db499a0f3d4667770f50dd9df219a5368fbffad
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '88a2d266ad899314e7497c2f3441de5cd2b1f85e' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\printPurchaseOrder.html',
+<<<<<<< HEAD
       1 => 1412295249,
+=======
+<<<<<<< HEAD
+      1 => 1412282881,
+=======
+<<<<<<< HEAD
+      1 => 1411381717,
+>>>>>>> 2db499a0f3d4667770f50dd9df219a5368fbffad
       2 => 'file',
     ),
   ),
@@ -17,6 +41,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'variables' => 
   array (
+<<<<<<< HEAD
+=======
+=======
+      1 => 1412268968,
+>>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '31801542d7f40d29cb1-16153906',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_542d7f40ef5dc7_22004659',
+  'variables' => 
+  array (
+>>>>>>> 2db499a0f3d4667770f50dd9df219a5368fbffad
     'printNum' => 0,
     'ordData' => 0,
     'spaData' => 0,
@@ -197,8 +238,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         		success:
         		function(response) {
         			if(response == "PASS") {
-        				printPurchaseOrder();
         				parent.hideActionDialog();
+        				parent.closeManageBox();
+        				printPurchaseOrder();
         			} else if(response == "INSERT_PRINT_PURCHASE_ORDERS_FAIL") {
         				alert('เกิดข้อผิดพลาด! ไม่สามารถเพิ่มข้อมูลการพิมพ์ใบสั่งซื้อได้');
         			} else {
