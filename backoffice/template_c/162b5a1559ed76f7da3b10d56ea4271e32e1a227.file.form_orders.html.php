@@ -1,31 +1,17 @@
-<<<<<<< HEAD
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-30 10:17:30
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 08:16:55
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_orders.html" */ ?>
-<?php /*%%SmartyHeaderCode:3171542a12ba494d19-84618073%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-=======
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 00:37:17
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_orders.html" */ ?>
-<?php /*%%SmartyHeaderCode:28740542d7f3d78d974-90913145%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
->>>>>>> ec0f594f6de95ecbbc77a050f8ce2b8d0e13898b
+<?php /*%%SmartyHeaderCode:21478542deaf7675944-50111959%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '162b5a1559ed76f7da3b10d56ea4271e32e1a227' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_orders.html',
-<<<<<<< HEAD
       1 => 1411691405,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '3171542a12ba494d19-84618073',
-=======
-      1 => 1411612149,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '28740542d7f3d78d974-90913145',
->>>>>>> ec0f594f6de95ecbbc77a050f8ce2b8d0e13898b
+  'nocache_hash' => '21478542deaf7675944-50111959',
   'function' => 
   array (
   ),
@@ -44,15 +30,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-<<<<<<< HEAD
-  'unifunc' => 'content_542a12ba848642_48094994',
+  'unifunc' => 'content_542deaf7951200_36568825',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_542a12ba848642_48094994')) {function content_542a12ba848642_48094994($_smarty_tpl) {?><!DOCTYPE html>
-=======
-  'unifunc' => 'content_542d7f3da14826_44563012',
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_542d7f3da14826_44563012')) {function content_542d7f3da14826_44563012($_smarty_tpl) {?><!DOCTYPE html>
->>>>>>> ec0f594f6de95ecbbc77a050f8ce2b8d0e13898b
+<?php if ($_valid && !is_callable('content_542deaf7951200_36568825')) {function content_542deaf7951200_36568825($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
