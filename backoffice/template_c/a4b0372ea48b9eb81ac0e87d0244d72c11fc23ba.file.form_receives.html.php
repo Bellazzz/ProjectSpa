@@ -1,45 +1,20 @@
-<<<<<<< HEAD
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 08:16:39
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-14 20:24:56
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_receives.html" */ ?>
-<?php /*%%SmartyHeaderCode:31675542deae7122888-36891874%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-=======
-<<<<<<< HEAD
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 04:25:29
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_receives.html" */ ?>
-<?php /*%%SmartyHeaderCode:9121542d85cbcd4005-17303540%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-=======
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-30 10:20:42
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_receives.html" */ ?>
-<?php /*%%SmartyHeaderCode:8266542a137aa408c8-00134542%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
->>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
->>>>>>> 2db499a0f3d4667770f50dd9df219a5368fbffad
+<?php /*%%SmartyHeaderCode:26778543d1618e5c684-69616712%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'a4b0372ea48b9eb81ac0e87d0244d72c11fc23ba' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_receives.html',
-<<<<<<< HEAD
-      1 => 1412281525,
+      1 => 1413203009,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '9121542d85cbcd4005-17303540',
+  'nocache_hash' => '26778543d1618e5c684-69616712',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_542d85cc00b860_69033964',
-=======
-      1 => 1411691405,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '31675542deae7122888-36891874',
-  'function' => 
-  array (
-  ),
->>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
   'variables' => 
   array (
     'action' => 0,
@@ -52,32 +27,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'session_emp_id' => 0,
     'receiveDetailList' => 0,
     'recdlt' => 0,
-<<<<<<< HEAD
     'sum_ordAmount' => 0,
     'sum_before_amount' => 0,
     'sum_amount' => 0,
     'sum_remain' => 0,
-=======
-    'sum_amount' => 0,
->>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
     'recPrdList' => 0,
     'recPrd' => 0,
     'ordPrdList' => 0,
   ),
   'has_nocache_code' => false,
-<<<<<<< HEAD
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_542d85cc00b860_69033964')) {function content_542d85cc00b860_69033964($_smarty_tpl) {?><!DOCTYPE html>
-=======
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_542deae74a30a2_38476804',
+  'unifunc' => 'content_543d16196804a8_59724331',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<<<<<<< HEAD
-<?php if ($_valid && !is_callable('content_542deae74a30a2_38476804')) {function content_542deae74a30a2_38476804($_smarty_tpl) {?><!DOCTYPE html>
-=======
-<?php if ($_valid && !is_callable('content_542a137acb8a52_72721065')) {function content_542a137acb8a52_72721065($_smarty_tpl) {?><!DOCTYPE html>
->>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
->>>>>>> 2db499a0f3d4667770f50dd9df219a5368fbffad
+<?php if ($_valid && !is_callable('content_543d16196804a8_59724331')) {function content_543d16196804a8_59724331($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -262,18 +224,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <thead>
             <tr>
                 <th>ผลิตภัณฑ์</th>
-<<<<<<< HEAD
                 <th>ราคา/หน่วย (บาท)</th>
                 <th>หน่วบนับ</th>
                 <th>จำนวนที่สั่ง</th>
                 <th>จำนวนที่รับครั้งก่อน</th>
                 <th>จำนวนที่รับครั้งนี้</th>
                 <th>ค้างรับ</th>
-=======
-                <th>หน่วบนับ</th>
-                <th>ราคา/หน่วย (บาท)</th>
-                <th>จำนวนที่รับ</th>
->>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
                 <th>ราคารวม (บาท)</th>
             </tr>
         </thead>
@@ -288,7 +244,6 @@ $_smarty_tpl->tpl_vars['recdlt']->_loop = true;
             <tr>
                 <td><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['prd_name'];?>
 </td>
-<<<<<<< HEAD
                 <td align="right"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['recdtl_price'];?>
 </td>
                 <td align="left"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['unit_name'];?>
@@ -300,13 +255,6 @@ $_smarty_tpl->tpl_vars['recdlt']->_loop = true;
                 <td align="right"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['recdtl_amount'];?>
 </td>
                 <td align="right"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['remain'];?>
-=======
-                <td align="left"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['unit_name'];?>
-</td>
-                <td align="right"><?php echo number_format($_smarty_tpl->tpl_vars['recdlt']->value['recdtl_price'],2,".",",");?>
-</td>
-                <td align="right"><?php echo number_format($_smarty_tpl->tpl_vars['recdlt']->value['recdtl_amount'],0,'',",");?>
->>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
 </td>
                 <td align="right"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['sum_price'];?>
 </td>
@@ -316,7 +264,6 @@ $_smarty_tpl->tpl_vars['recdlt']->_loop = true;
         <tfoot>
             <tr class="tfootSummary">
                 <td align="right" colspan="3">รวมทั้งหมด</td>
-<<<<<<< HEAD
                 <td align="right"><b><?php echo $_smarty_tpl->tpl_vars['sum_ordAmount']->value;?>
 </b></td>
                 <td align="right"><b><?php echo $_smarty_tpl->tpl_vars['sum_before_amount']->value;?>
@@ -324,9 +271,6 @@ $_smarty_tpl->tpl_vars['recdlt']->_loop = true;
                 <td align="right"><b><?php echo $_smarty_tpl->tpl_vars['sum_amount']->value;?>
 </b></td>
                 <td align="right"><b><?php echo $_smarty_tpl->tpl_vars['sum_remain']->value;?>
-=======
-                <td align="right"><b><?php echo number_format($_smarty_tpl->tpl_vars['sum_amount']->value,0,'',",");?>
->>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
 </b></td>
                 <td align="right"><b><?php echo number_format($_smarty_tpl->tpl_vars['values']->value['rec_total_price'],2,".",",");?>
 </b></td>

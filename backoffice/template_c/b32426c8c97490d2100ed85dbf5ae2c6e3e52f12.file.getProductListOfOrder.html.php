@@ -1,31 +1,17 @@
-<<<<<<< HEAD
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 02:22:50
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-14 20:25:48
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\getProductListOfOrder.html" */ ?>
-<?php /*%%SmartyHeaderCode:1295542d97fa300aa4-78641742%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-=======
-<?php /* Smarty version Smarty-3.1.18, created on 2014-09-30 10:20:48
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\getProductListOfOrder.html" */ ?>
-<?php /*%%SmartyHeaderCode:5416542a1380c68077-80194679%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
->>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
+<?php /*%%SmartyHeaderCode:9675543d164ca78113-31839294%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'b32426c8c97490d2100ed85dbf5ae2c6e3e52f12' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\getProductListOfOrder.html',
-<<<<<<< HEAD
-      1 => 1411367739,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '1295542d97fa300aa4-78641742',
-=======
       1 => 1411381717,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5416542a1380c68077-80194679',
->>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
+  'nocache_hash' => '9675543d164ca78113-31839294',
   'function' => 
   array (
   ),
@@ -37,15 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-<<<<<<< HEAD
-  'unifunc' => 'content_542d97fa3ff774_78055960',
+  'unifunc' => 'content_543d164cc338e2_92152824',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_542d97fa3ff774_78055960')) {function content_542d97fa3ff774_78055960($_smarty_tpl) {?><table id="receives-product-list">
-=======
-  'unifunc' => 'content_542a1380d99074_87158209',
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_542a1380d99074_87158209')) {function content_542a1380d99074_87158209($_smarty_tpl) {?><table id="receives-product-list">
->>>>>>> 0920bacaa5193ba7991fde129f14d49b3eeb31c9
+<?php if ($_valid && !is_callable('content_543d164cc338e2_92152824')) {function content_543d164cc338e2_92152824($_smarty_tpl) {?><table id="receives-product-list">
 	<tr>
 		<th>ลำดับ</th>
 		<th>ผลิตภัณฑ์</th>

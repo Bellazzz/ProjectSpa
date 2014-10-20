@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-03 08:16:39
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-13 20:43:53
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_table_header.html" */ ?>
-<?php /*%%SmartyHeaderCode:22744542deae75a2a01-09867207%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:23508543bc909f23ee7-51363126%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '22744542deae75a2a01-09867207',
+  'nocache_hash' => '23508543bc909f23ee7-51363126',
   'function' => 
   array (
   ),
@@ -22,9 +22,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_542deae762abc8_53965153',
+  'unifunc' => 'content_543bc90a0a74c0_25749594',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_542deae762abc8_53965153')) {function content_542deae762abc8_53965153($_smarty_tpl) {?><div class="ftb-header">
+<?php if ($_valid && !is_callable('content_543bc90a0a74c0_25749594')) {function content_543bc90a0a74c0_25749594($_smarty_tpl) {?><div class="ftb-header">
 	<div class="title-container">
 		<h1 id="ftb-title"></h1>
 	</div>
