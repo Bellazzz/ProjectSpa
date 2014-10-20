@@ -427,10 +427,10 @@ function dbClose() {
 				'keyLength'		=> 8,
 				'fieldNameList'	=> array(
 						'pkgsvl_id'	    => 'รหัสรายการบริการที่จัดแพ็คเกจ',
-						'pkg_id'        => 'แพ็คเกจ',
-						'svl_id'	    => 'รายการบริการ'
+						'svl_id'	    => 'รายการบริการ',
+						'pkg_id'        => 'แพ็คเกจ'
 				),
-				'searchFields'	=> array('pkg_id','svl_id')
+				'searchFields'	=> array('svl_id','pkg_id')
 
 			);
 			break;
@@ -783,8 +783,8 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'elechk_id'	  		  => 'รหัสการตรวจประเภทธาตุ',
 						'eletyp_id' 		  => 'ชื่อประเภทธาตุ',
-						'emp_id' 			  => 'ชื่อ-นามสกุลพนักงาน',
-						'cus_id'	  		  => 'ชื่อ-สกุลผู้ใช้บริการ',
+						'emp_id' 			  => 'พนักงานที่ตรวจ',
+						'cus_id'	  		  => 'ผู้ใช้บริการ',
 						'elechk_date'	  	  => 'วันที่ตรวจ',
 						'elechk_time'	  	  => 'เวลาที่ตรวจ'
 				),

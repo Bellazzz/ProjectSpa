@@ -204,23 +204,35 @@
         </tfoot>
     </table>
     {else}      
-    <!-- ADD, EDIT -->    
+    <!-- ADD, EDIT -->
+    เลือกรหัสการสั่งซื้อเพื่อกรอกข้อมูลการรับ<br><br>
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="ord_id,emp_id,rec_date,rec_total_price">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>
                 <td>
-                    <label class="input-required">รหัสการสั่งซื้อผลิตภัณฑ์</label>
-                      <div id="ord_id" class="select-reference form-input half" > </div>
+                    <label class="input-required">รหัสการสั่งซื้อ</label>
+                      <div id="ord_id" class="select-reference form-input half" require></div>
                 </td>
                 <td>
-                    <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
-                    <div id="emp_id" class="select-reference form-input half" > </div>
+                    <label class="input-required">พนักงานที่รับ</label>
+                    <div id="emp_id" class="select-reference form-input half" require></div>
                 </td>
                 <td class="samerow">
                     <label class="input-required">วันที่รับผลิตภัณฑ์</label>
-                      <input id="rec_date" name="rec_date" type="text" class="mbk-dtp-th form-input half" value="{if $values.rec_date}{$values.rec_date}{else}{$nowDate}{/if}">
+                      <input id="rec_date" name="rec_date" type="text" class="mbk-dtp-th form-input half" value="{if $values.rec_date}{$values.rec_date}{else}{$nowDate}{/if}" require>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-ord_id-require" class="errInputMsg half err-ord_id">โปรดเลือกรหัสการสั่งซื้อ</span>
+                </td>
+                <td>
+                    <span id="err-emp_id-require" class="errInputMsg half err-emp_id">โปรดเลือกพนักงานที่รับ</span>
+                </td>
+                <td class="samerow">
+                    <span id="err-rec_date-require" class="errInputMsg half err-rec_date">โปรดป้อนวันที่รับผลิตภัณฑ์</span>
                 </td>
             </tr>
 	    </tbody>

@@ -272,6 +272,7 @@ function selectReference(select) {
                 }
             }
             $(this).parent().parent().parent().removeClass('required');
+            $('.err-' + select.elem.attr('id')).css('display', 'none');
             selectRefCon.siblings('.select-reference-text').text($(this).children('.text').text());
             selectRefCon.siblings('.select-reference-input').val($(this).children('.value').text());
             hideAllPopup();

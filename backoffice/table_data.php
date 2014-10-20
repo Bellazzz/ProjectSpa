@@ -640,10 +640,14 @@ if($rows > 0){
 					<?
 				}
 				else if (mysql_field_type($result, $offset) == 'date' || mysql_field_type($result, $offset) == 'datetime'){
-					$time 		= strtotime($value);
-					$yearMinTH 	= substr(date('Y', $time) + 543, 2);
-					$month 		= $monthThaiMin[(int)date('m', $time)-1];
-					$dateValue 	= date('d', $time).' '.$month.' '.$yearMinTH;
+					if($value == '') {
+						$dateValue 	= '-';
+					} else {
+						$time 		= strtotime($value);
+						$yearMinTH 	= substr(date('Y', $time) + 543, 2);
+						$month 		= $monthThaiMin[(int)date('m', $time)-1];
+						$dateValue 	= date('d', $time).' '.$month.' '.$yearMinTH;
+					}
 					?>
 					<td><?=$dateValue?></td>
 					<?

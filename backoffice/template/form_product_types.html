@@ -32,8 +32,16 @@
 		    <tr>
 			    <td>
 				    <label class="input-required">ชื่อประเภทผลิตภัณฑ์</label>
-				    <input id="prdtyp_name" name="prdtyp_name" type="text" class="form-input full" value="{$values.prdtyp_name}">
+				    <input id="prdtyp_name" name="prdtyp_name" type="text" class="form-input full" value="{$values.prdtyp_name}" valuepattern="character" require>
 			    </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="err-prdtyp_name-require" class="errInputMsg err-prdtyp_name">โปรดป้อนชื่อประเภทผลิตภัณฑ์</span>
+                    <span id="err-prdtyp_name-character" class="errInputMsg err-prdtyp_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-prdtyp_name-unique" class="errInputMsg err-prdtyp_name">มีประเภทผลิตภัณฑ์นี้อยู่แล้ว</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>

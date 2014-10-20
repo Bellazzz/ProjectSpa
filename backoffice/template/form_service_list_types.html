@@ -32,8 +32,16 @@
 		    <tr>
 			    <td>
 				    <label class="input-required">ชื่อประเภทรายการบริการ</label>
-				    <input id="svltyp_name" name="svltyp_name" type="text" class="form-input full" value="{$values.svltyp_name}">
+				    <input id="svltyp_name" name="svltyp_name" type="text" class="form-input full" value="{$values.svltyp_name}" valuepattern="character" require>
 			    </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="err-svltyp_name-require" class="errInputMsg err-svltyp_name">โปรดป้อนชื่อประเภทรายการบริการ</span>
+                    <span id="err-svltyp_name-character" class="errInputMsg err-svltyp_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-svltyp_name-unique" class="errInputMsg err-svltyp_name">มีประเภทรายการบริการนี้อยู่แล้ว</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>

@@ -22,28 +22,23 @@ $(document).ready(function () {
         parent.openFormTable('EDIT', code);
     });
 
-    // Remove required
-    $('.form-input').focusout(function () {
-        if ($(this).val() != '') {
-            $(this).removeClass('required');
-        }
-    });
-
-	
+    // Check Input required and pattern
+    $('#form-table input').filter('[require],[valuepattern]').focusout(validateInput);
+    $('#form-table textarea').filter('[require],[valuepattern]').focusout(validateInput);
 });
 
 function saveRecord() {
 	if(checkRequiredInput()) {
-		// Do someting before save
-		if(typeof beforeSaveRecord == 'function') {
-			if(beforeSaveRecord()) {
-				return;
-			}
-		}
-
 		// Convert thai date to real date
 		$('.mbk-dtp-th').each(function() {
-			getRealDate($(this));
+			if($(this).val() != '') {
+				if(isDateThaiFormat($(this))) {
+					getRealDate($(this));
+				} else {
+					convertThaiDate($(this));
+					getRealDate($(this));
+				}
+			}
 		});
 
 		$.ajax({
@@ -72,9 +67,10 @@ function saveRecord() {
 					$('#' + response.text).addClass('required');
 					$('#' + response.text).focus();
 				} else if(response.status== 'UNIQUE_VALUE') {
-					alert(response.text + ' ไม่สามารถเป็นค่าซ้ำได้');
 					// Add required
 					$('#' + response.text).addClass('required');
+					$('.err-' + response.text).css('display', 'none');
+					$('#err-' + response.text + '-unique').css('display', 'block');
 					$('#' + response.text).focus();
 				} else {
 					alert(response.status + "\n" + response.text);
@@ -84,47 +80,90 @@ function saveRecord() {
 	}
 }
 
+function validateInput() {
+	var id = $(this).attr('id');
+
+	// Clear error
+	$(this).removeClass('required');
+	$('.err-' + id).css('display', 'none');
+	
+	var value = '';
+	if($(this).hasClass('select-reference')) {
+		value = $(this).find('.select-reference-input').val();
+	} else {
+		value = $(this).val();
+	}
+	if (value == '') {
+        var attrRequire = $(this).attr('require');
+    	if (typeof attrRequire !== typeof undefined && attrRequire !== false) {
+    		// Check require
+    		$(this).addClass('required');
+    		$('#err-' + id + '-require').css('display', 'block');
+		}
+    } else {
+    	var attrPattern = $(this).attr('valuepattern');
+    	if (typeof attrPattern !== typeof undefined && attrPattern !== false) {
+    		// Validate value pattern
+    		if(attrPattern == 'money') {
+    			if(!validateMoney(value)) {
+					$('#err-' + id + '-money').css('display', 'block');
+					$(this).addClass('required');
+				}
+    		} else if(attrPattern == 'email') {
+    			if(!validateEmail(value)) {
+					$('#err-' + id + '-email').css('display', 'block');
+					$(this).addClass('required');
+				}
+    		} else if(attrPattern == 'number') {
+    			if(!validateNumber(value)) {
+					$('#err-' + id + '-number').css('display', 'block');
+					$(this).addClass('required');
+				}
+    		} else if(attrPattern == 'character') {
+    			if(!validateCharacter(value)) {
+					$('#err-' + id + '-character').css('display', 'block');
+					$(this).addClass('required');
+				}
+    		} else if(attrPattern == 'tel') {
+    			if(!validateTel(value)) {
+					$('#err-' + id + '-tel').css('display', 'block');
+					$(this).addClass('required');
+				}
+    		} else if(attrPattern == 'minute') {
+    			if(!validateMinute(value)) {
+					$('#err-' + id + '-minute').css('display', 'block');
+					$(this).addClass('required');
+				}
+    		} else if(attrPattern == 'numberMoreThanZero') {
+    			if(!validateNumberMoreThanZero(value)) {
+					$('#err-' + id + '-numberMoreThanZero').css('display', 'block');
+					$(this).addClass('required');
+				}
+    		}
+		}
+    }
+}
+
 function checkRequiredInput() {
 	var pass = true;
 
-	if($('input[name="requiredFields"]').length) {
-		var tmp				= $('input[name="requiredFields"]').val();
-		var requiredFields	= tmp.split(',');
-		var hasFocus		= true;
-		
-		
-		for(i in requiredFields) {
-			var name	=  requiredFields[i];
-			//var input	= $('input[name="' + name + '"]');
-			var input;
-			if($('input[name="' + name + '"]').length){
-				input = $('input[name="' + name + '"]');
-			} else if($('textarea[name="' + name + '"]').length){
-				input = $('textarea[name="' + name + '"]');
-			}
+	$('#form-table input').filter('[require],[valuepattern]').focusout();
+	$('#form-table textarea').filter('[require],[valuepattern]').focusout();
+	$('#form-table .select-reference').filter('[require]').each(validateInput);
 
-			if(input.val() == '') {
-				$('#' + name).addClass('required');
-				if(hasFocus) {
-					$('#' + name).focus();
-					hasFocus = false;
-				}
-				pass = false;
-			} else {
-				// Check input pattern
-				if(input.attr('pattern') == 'email') {
-					if(!validateEmail(input.val())) {
-						alert('รูปแบบ E-mail ไม่ถูกต้อง');
-						$('#' + name).addClass('required');
-						if(hasFocus) {
-							$('#' + name).focus();
-							hasFocus = false;
-						}
-						pass = false;
-					}
-				}
-			}
+	// Do someting before save
+	if(typeof beforeSaveRecord == 'function') {
+		if(beforeSaveRecord()) {
+			pass = false;
 		}
+	}
+
+	var inputErr 		= $('#form-table input.required').length;
+	var txtAreaErr 		= $('#form-table textarea.required').length;
+	var selectRefErr 	= $('#form-table .select-reference.required').length;
+	var allErr 			= inputErr + txtAreaErr + selectRefErr;
+	if(allErr > 0) {
+		pass = false;
 	}
 
 	return pass;
@@ -133,4 +172,52 @@ function checkRequiredInput() {
 function validateEmail(email) { 
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
-} 
+}
+
+function validateMoney(money) {
+	var re = /^[0-9]*(\.[0-9]{1,2})?$/;
+	return re.test(money);
+}
+
+function validateNumber(number) {
+	var re = /^[0-9]*$/;
+	return re.test(number);
+}
+
+function validateCharacter(character) {
+	var re = /^[a-zA-Zก-๙\s]+$/;
+	return re.test(character);
+}
+
+function validateTel(tel) {
+	var re = /^[0-9]{10}$/;
+	return re.test(tel);
+}
+
+function validateMinute(min) {
+	var pass = true;
+	var re 	 = /^[0-9]{1,2}$/;
+	if(re.test(min)) {
+		if(parseInt(min) > 59) {
+			pass = false;
+		}
+	} else {
+		pass = false;
+	}
+
+	return pass;
+}
+
+function validateNumberMoreThanZero(number) {
+	var pass = true;
+	var re 	 = /^[0-9]+$/;
+	if(re.test(number)) {
+		if(parseInt(number) <= 0) {
+			pass = false;
+		}
+	} else {
+		pass = false;
+	}
+
+	return pass;
+}

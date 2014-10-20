@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
+    <script type="text/javascript" src="../inc/datetimepicker/mbk.datetimepickerThai.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -22,24 +23,38 @@
 
         $(document).ready(function () {
             $('#dateatt_in').datetimepicker({
-                lang:'th',
-                format:'Y/m/d',
-                closeOnDateSelect:true,
+                lang                : 'th',
+                format              : 'Y/m/d',
+                timepicker          :false,
+                closeOnDateSelect   :true,
+                scrollInput         :false,
+                yearOffset          :543,
+                onSelectDate: 
+                function(){
+                  $('#dateatt_in').blur();
+                },
                 onShow:function( ct ){
                     this.setOptions({
-                        maxDate:$('#dateatt_out').val()?$('#dateatt_out').val():false
+                        maxDate:$('#dateatt_out').val()?unconvertThaiDate($('#dateatt_out').val()):false
                     })
                 },
                 timepicker:false
             });
 
             $('#dateatt_out').datetimepicker({
-                lang:'th',
-                format:'Y/m/d',
-                closeOnDateSelect:true,
+                lang                : 'th',
+                format              : 'Y/m/d',
+                timepicker          :false,
+                closeOnDateSelect   :true,
+                scrollInput         :false,
+                yearOffset          :543,
+                onSelectDate: 
+                function(){
+                  $('#dateatt_out').blur();
+                },
                 onShow:function( ct ){
                     this.setOptions({
-                        minDate:$('#dateatt_in').val()?$('#dateatt_in').val():false
+                        minDate:$('#dateatt_in').val()?unconvertThaiDate($('#dateatt_in').val()):false
                     })
                 },
                 timepicker:false
@@ -93,24 +108,37 @@
 	    <tbody>
 			<tr>
 			    <td colspan="2">
-				    <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
-				    <div id="emp_id" class="select-reference form-input full"></div>
+				    <label class="input-required">พนักงาน</label>
+				    <div id="emp_id" class="select-reference form-input full" require></div>
 			    </td>
 		    </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-emp_id-require" class="errInputMsg half err-emp_id">โปรดเลือกพนักงาน</span>
+                </td>
+            </tr>
 			<tr>
                 <td>
                     <label class="input-required">วันที่เข้า</label>
-				    <input id="dateatt_in" name="dateatt_in" type="text" class="form-input half" value="{$values.dateatt_in}">
+				    <input id="dateatt_in" name="dateatt_in" type="text" class="mbk-dtp-th form-input half" value="{$values.dateatt_in}" require>
 			    </td>
 			    <td>
 				    <label class="input-required">เวลาที่เข้า</label>
-				    <input id="timeatt_in" name="timeatt_in" type="text" class="form-input half" value="{$values.timeatt_in}">
+				    <input id="timeatt_in" name="timeatt_in" type="text" class="form-input half" value="{$values.timeatt_in}" require>
 			    </td>
 		    </tr>
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-dateatt_in-require" class="errInputMsg half err-dateatt_in">โปรดป้อนวันที่เข้า</span>
+                </td>
+                <td>
+                    <span id="err-timeatt_in-require" class="errInputMsg half err-timeatt_in">โปรดป้อนเวลาที่เข้า</span>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <label>วันที่ออก</label>
-                    <input id="dateatt_out" name="dateatt_out" type="text" class="form-input half" value="{$values.dateatt_out}">
+                    <input id="dateatt_out" name="dateatt_out" type="text" class="mbk-dtp-th form-input half" value="{$values.dateatt_out}">
                 </td>
                 <td>
                     <label>เวลาที่ออก</label>

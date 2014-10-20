@@ -227,8 +227,21 @@ function delteCurrentRecord(code) {
                                 hideActionDialog();
                                 pullTable(false);
                             } else if(response == 'DELETE_REFERENCE') {
-                                alert('ไม่สามารถลบข้อมูลได้ เนื่องจากมีตารางอื่นอ้างอิงข้อมูลนี้อยู่');
                                 hideActionDialog();
+                                showActionDialog({
+                                    title: 'เกิดข้อผิดพลาด',
+                                    message: 'ไม่สามารถลบข้อมูลได้ เนื่องจากมีตารางอื่นอ้างอิงข้อมูลนี้อยู่',
+                                    actionList: [
+                                        {
+                                            id: 'ok',
+                                            name: 'ตกลง',
+                                            func:
+                                            function() {
+                                                hideActionDialog();
+                                            }
+                                        }
+                                    ]
+                                });
                             } else {
                                 alert(response);
                             }
@@ -270,8 +283,21 @@ function deleteRecordSelected() {
 		        // Delete Success
 		        pullTable(false);
 		    }else if(response == 'DELETE_REFERENCE') {
-				alert('ไม่สามารถลบข้อมูลได้ เนื่องจากมีตารางอื่นอ้างอิงข้อมูลนี้อยู่');
 				hideActionDialog();
+                showActionDialog({
+                    title: 'เกิดข้อผิดพลาด',
+                    message: 'ไม่สามารถลบข้อมูลที่เลือกได้ เนื่องจากมีตารางอื่นอ้างอิงข้อมูลที่เลือกอยู่',
+                    actionList: [
+                        {
+                            id: 'ok',
+                            name: 'ตกลง',
+                            func:
+                            function() {
+                                hideActionDialog();
+                            }
+                        }
+                    ]
+                });
 			} else {
 		        alert(response);
 		    }
@@ -360,15 +386,15 @@ function cancelSelectRecord() {
 function refreshFilterQuery() {
     var filterRecordQueryHTML = '';
     if(this.table.name == 'orders') {
-        filterRecordQueryHTML   = 'ดูการสั่งซื้อจาก '
-                                + '<select id="query-record-filter">'
+        filterRecordQueryHTML   = 'ดูการสั่งซื้อที่มีสถานะ '
+                                + '<select id="query-record-filter" class="mbk-select">'
                                 + '     <option value="WAIT">เตรียมการสั่งซื้อ</option>'
                                 + '     <option value="REMAIN">ค้างรับ</option>'
                                 + '     <option value="COMPLETED">รับเรียบร้อยแล้ว</option>'
                                 + '</select>';
     } else if(this.table.name == 'receives') {
-        filterRecordQueryHTML   = 'ดูการรับจาก '
-                                + '<select id="query-record-filter">'
+        filterRecordQueryHTML   = 'ดูการรับที่มีสถานะ '
+                                + '<select id="query-record-filter" class="mbk-select">'
                                 + '     <option value="REMAIN">ค้างรับ</option>'
                                 + '     <option value="COMPLETED">เรียบร้อยแล้ว</option>'
                                 + '</select>';
