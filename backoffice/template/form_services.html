@@ -6,9 +6,10 @@
     {literal}
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css"> <!--include if want to use datepicker-->
+	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script> <!--include if want to use datepicker-->
+	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
+    <script type="text/javascript" src="../inc/datetimepicker/mbk.datetimepickerThai.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -19,7 +20,7 @@
 		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
         var code        = '{/literal}{$code}{literal}';
         var ajaxUrl     = 'form_table.php';
-//ser_id    cus_id  emp_id  paytyp_id   bed_id  bkg_id  ser_date    ser_time    ser_total_price
+
         $(document).ready(function () {
              selectReference({
                 elem            : $('#emp_id'),
@@ -65,10 +66,17 @@
             });
 
             $('#ser_date').datetimepicker({
-                lang:'th',
-                timepicker:false,
-                format:'Y-m-d',
-                closeOnDateSelect:true
+                lang                : 'th',
+                format              : 'Y/m/d',
+                timepicker          :false,
+                closeOnDateSelect   :true,
+                scrollInput         :false,
+                yearOffset          :543,
+                onSelectDate: 
+                function(){
+                  $('#ser_date').blur();
+                },
+                timepicker:false
             });
              $('#ser_time').datetimepicker({
                 datepicker:false,
@@ -138,47 +146,87 @@
 	    <tbody>
             <tr>
                 <td colspan="2">
-                    <label class="input-required">ชื่อ-นามสกุลผู้ใช้บริการ</label>
-                    <div id="cus_id" class="select-reference form-input full" > </div>
+                    <label class="input-required">พนักงานที่รับเงิน</label>
+                    <div id="emp_id" class="select-reference form-input full" require></div>
                 </td>
             </tr>
-			<tr>
-			    <td colspan="2">
-				    <label class="input-required">พนักงานที่รับเงิน</label>
-				    <div id="emp_id" class="select-reference form-input full" > </div>
-			    </td>
-		    </tr>
-			<tr>          
+            <tr class="errMsgRow">
                 <td colspan="2">
-                    <label class="input-required">ประเภทการชำระเงิน</label>
-                    <div id="paytyp_id" class="select-reference form-input full" > </div>
+                    <span id="err-emp_id-require" class="errInputMsg err-emp_id">โปรดเลือกพนักงานที่รับเงิน</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="input-required">ผู้ใช้บริการ</label>
+                    <div id="cus_id" class="select-reference form-input full" require></div>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-cus_id-require" class="errInputMsg err-cus_id">โปรดเลือกผู้ใช้บริการ</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label>รหัสการจอง</label>
+                    <div id="bkg_id" class="select-reference form-input full" require></div>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-bkg_id-require" class="errInputMsg err-bkg_id">โปรดเลือกรหัสการจอง</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="input-required">เตียงนวด</label>
+                    <div id="bed_id" class="select-reference form-input full" require></div>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-bed_id-require" class="errInputMsg err-bed_id">โปรดเลือกเตียงนวด</span>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label class="input-required">ชื่อเตียงนวด</label>
-                    <div id="bed_id" class="select-reference form-input half" > </div>
-                </td>
-                            
-                <td>
-                    <label>รหัสการจอง</label>
-                    <div id="bkg_id" class="select-reference form-input half" > </div>
-                </td>
-            </tr>
-           <tr>
-                <td>
                     <label class="input-required">วันที่ใช้บริการ</label>
-                      <input id="ser_date" name="ser_date" type="text" class="form-input half" value="{$values.ser_date}">
+                      <input id="ser_date" name="ser_date" type="text" class="mbk-dtp-th form-input half" value="{$values.ser_date}" require>
                 </td>
                 <td>
                     <label class="input-required">เวลาที่ใช้บริการ</label>
-                      <input id="ser_time" name="ser_time" type="text" class="form-input half" value="{$values.ser_time}">
+                      <input id="ser_time" name="ser_time" type="text" class="form-input half" value="{$values.ser_time}" require>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-ser_date-require" class="errInputMsg half err-ser_date">โปรดป้อนวันที่ใช้บริการ</span>
+                </td>
+                <td>
+                    <span id="err-ser_time-require" class="errInputMsg half err-ser_time">โปรดป้อนเวลาที่ใช้บริการ</span>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td colspan="2">
                     <label class="input-required">ราคารวมทั้งหมด(บาท)</label>
-                    <input id="ser_total_price" name="ser_total_price" type="text" class="form-input half" value="{$values.ser_total_price}">
+                    <input id="ser_total_price" name="ser_total_price" type="text" class="form-input full" value="{$values.ser_total_price}" valuepattern="money" require>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-ser_total_price-require" class="errInputMsg err-ser_total_price">โปรดป้อนราคารวมทั้งหมด</span>
+                    <span id="err-ser_total_price-money" class="errInputMsg err-ser_total_price">รูปแบบจำนวนเงินไม่ถูกต้อง จำนวนเงินเป็นได้เฉพาะตัวเลข ไม่มีคอมม่าคั่น จุดทศนิยม 2 ตำแหน่ง เช่น 130, 1600.25</span>
+                </td>
+            </tr>
+			<tr>          
+                <td colspan="2">
+                    <label class="input-required">ประเภทการชำระเงิน</label>
+                    <div id="paytyp_id" class="select-reference form-input full" require></div>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-paytyp_id-require" class="errInputMsg err-paytyp_id">โปรดเลือกประเภทการชำระเงิน</span>
                 </td>
             </tr>
 	    </tbody>
