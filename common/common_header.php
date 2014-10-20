@@ -6,7 +6,8 @@
 	$smarty = new Smarty();
 	$smarty->setTemplateDir($subDir.'template');
 	$smarty->setCompileDir($subDir.'template_c');
-
+	
+	date_default_timezone_set('Asia/Bangkok');
 	$nowDate = date('Y/m/d');
 	$smarty->assign('nowDate', date('Y/m/d'));
 

@@ -32,8 +32,16 @@
 		    <tr>
 			    <td>
 				    <label class="input-required">ชื่อประเภทผู้ใช้บริการ</label>
-				    <input id="custype_name" name="custype_name" type="text" class="form-input full" value="{$values.custype_name}">
+				    <input id="custype_name" name="custype_name" type="text" class="form-input full" value="{$values.custype_name}" valuepattern="character" require>
 			    </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="err-custype_name-require" class="errInputMsg err-custype_name">โปรดป้อนชื่อประเภทผู้ใช้บริการ</span>
+                    <span id="err-custype_name-character" class="errInputMsg err-custype_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-custype_name-unique" class="errInputMsg err-custype_name">มีประเภทผู้ใช้บริการนี้อยู่แล้ว</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>

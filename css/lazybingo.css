@@ -304,10 +304,6 @@ body {
 #clear-search-record-input:hover {
     background-color: #45A858;
 }
-#search-record-filter {
-    padding: 0 5px;
-    height: 27px;
-}
 
 /*
  * No select table
@@ -580,10 +576,10 @@ table.mbk .icon {
     display: inline-block;
     float: right;
     background: url('../img/backoffice/mbk-icon-table.png') no-repeat;
-    background-position: 0px -20px;
+    background-position: 0px -40px;
 }
 .tree-view-root:hover > a .root-icon {
-    background-position: 0px -40px;
+    background-position: 0px -20px;
 }
 .tree-view-root.hideChild > a .root-icon {
     background-position: -20px -20px;
@@ -916,6 +912,11 @@ table.mbk .icon {
     margin-left: 0.5em;
     position: absolute;
 }
+.mbk-select {
+    padding: 0 5px;
+    height: 27px;
+    outline: none;
+}
 
 /*
  * Iframe
@@ -1080,6 +1081,7 @@ table.mbk .icon {
     position: absolute;
     top: 0;
     left: 0;
+    color: #666;
 }
 
 /* Table Form Input */
@@ -1099,6 +1101,9 @@ table.mbk .icon {
 }
 .mbk-form-input-normal td .twoInput:nth-child(3n+1) {
     margin-right: 10px;
+}
+.mbk-form-input-normal tr.errMsgRow {
+    vertical-align: top;
 }
 .mbk-form-input-normal .form-input{
     margin-top: 0;
@@ -1156,6 +1161,16 @@ label.article-title {
 .mbk-form-input-normal textarea {
 	min-height: 1.2em;
 }
+.errInputMsg {
+    display: none;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    color: #D80000;
+    max-width: 520px;
+}
+.errInputMsg.half {
+    max-width: 250px;
+}
 
 /*
  * Select Reference
@@ -1166,6 +1181,7 @@ label.article-title {
     border: 1px solid #ccc;
     position: relative;
     cursor: pointer;
+    display: inline-block;
 }
 .select-reference:hover > span.mbk-icon-16{
     background-position: -16px -16px;

@@ -32,8 +32,16 @@
 		    <tr>
 			    <td>
 				    <label class="input-required">ชื่อประเภทธาตุ</label>
-				    <input id="eletyp_name" name="eletyp_name" type="text" class="form-input full" value="{$values.eletyp_name}">
+				    <input id="eletyp_name" name="eletyp_name" type="text" class="form-input full" value="{$values.eletyp_name}" valuepattern="character" require>
 			    </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="err-eletyp_name-require" class="errInputMsg err-eletyp_name">โปรดป้อนชื่อประเภทธาตุ</span>
+                    <span id="err-eletyp_name-character" class="errInputMsg err-eletyp_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-eletyp_name-unique" class="errInputMsg err-eletyp_name">มีประเภทธาตุนี้อยู่แล้ว</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>

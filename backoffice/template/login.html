@@ -23,7 +23,7 @@ $(document).ready(function() {
 				if(response == 'PASS') {
 					window.location ='http://localhost/projectSpa/backoffice/manage_table.php';
 				} else if(response == 'NOT_PASS') {
-					$('#error-message-username').text("ไม่พบบัญชีผู้ใช้นี้ หรือท่านกรอกชื่อผู้ใช้ และรหัสผ่านผิดพลาด โปรดลองอีกครั้ง");
+					$('#error-message-username').text("ไม่พบบัญชีผู้ใช้นี้ หรือคุณกรอกชื่อผู้ใช้ และรหัสผ่านผิดพลาด โปรดลองอีกครั้ง");
 				}  else {
 					alert(response);
 				}

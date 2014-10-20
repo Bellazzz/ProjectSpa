@@ -49,6 +49,11 @@ if(!$_REQUEST['ajaxCall']) {
 	if(hasValue($formData['uniqueFields'])) {
 		$uniqueFields = explode(',', $formData['uniqueFields']);
 		foreach($uniqueFields as $key => $fieldName) {
+			// Skip if value is empty
+			if($formData[$fieldName] == '') {
+				continue;
+			}
+
 			$value = $formData[$fieldName];
 			$value = str_replace("\\\'", "'", $value);
 			$value = str_replace('\\\"', '"', $value);
@@ -105,6 +110,11 @@ if(!$_REQUEST['ajaxCall']) {
 		// Push values to array
 		foreach($formData as $fieldName => $value) {
 			if($fieldName != 'requiredFields' && $fieldName != 'uniqueFields') {
+				// Skip if value is empty and default this field is null
+				if($value == '' && in_array($fieldName, $tableInfo['defaultNull'])) {
+					continue;
+				}
+
 				$value = str_replace("\\\'", "'", $value);
 				$value = str_replace('\\\"', '"', $value);
 				$value = str_replace('\\\\"', '\\', $value);
@@ -156,6 +166,11 @@ if(!$_REQUEST['ajaxCall']) {
 		// Set all field value
 		foreach($formData as $fieldName => $value) {
 			if(in_array($fieldName, $fieldListEn)) {
+				// value is empty will set default is null
+				if($value == '' && in_array($fieldName, $tableInfo['defaultNull'])) {
+					$value = 'NULL';
+				}
+				
 				$tableRecord->setFieldValue($fieldName, $value);
 			}
 		}

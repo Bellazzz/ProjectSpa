@@ -42,15 +42,25 @@
 		    <tr>
 			    <td>
 				    <label class="input-required">ชื่อเตียงนวด</label>
-				    <input id="bed_name" name="bed_name" type="text" class="form-input full" value="{$values.bed_name}">
+				    <input id="bed_name" name="bed_name" type="text" class="form-input full" value="{$values.bed_name}" require>
 			    </td>
 		    </tr>
             <tr>
+                <td>
+                    <span id="err-bed_name-require" class="errInputMsg err-bed_name">โปรดป้อนชื่อเตียงนวด</span>
+                </td>
+            </tr>
+            <tr>
 			    <td>
 				    <label class="input-required">ชื่อห้องนวด</label>
-				    <div id="room_id" class="select-reference form-input full"></div>
+				    <div id="room_id" class="select-reference form-input full" require></div>
 			    </td>
 		    </tr>
+            <tr>
+                <td>
+                    <span id="err-room_id-require" class="errInputMsg err-room_id">โปรดเลือกห้องนวด</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>
