@@ -32,8 +32,16 @@
 		    <tr>
 			    <td>
 				    <label class="input-required">ชื่อห้องนวด</label>
-				    <input id="room_name" name="room_name" type="text" class="form-input full" value="{$values.room_name}">
+				    <input id="room_name" name="room_name" type="text" class="form-input full" value="{$values.room_name}" require valuepattern="character">
 			    </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="err-room_name-require" class="errInputMsg err-room_name">โปรดป้อนชื่อห้องนวด</span>
+                    <span id="err-room_name-character" class="errInputMsg err-room_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-room_name-unique" class="errInputMsg err-room_name">มีห้องนวดชื่อนี้อยู่แล้ว</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>

@@ -14,7 +14,7 @@
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
     <style type="text/css">
-        #order-detail-table tr:nth-child(3) .removeProductBtn {
+        #order-detail-table tr:nth-child(2) .removeProductBtn {
             display: none;
         }
     </style>
@@ -235,16 +235,16 @@
             // Create HTML and append
             var prdRowHTML  = '<tr class="product-row">'
                             + '     <td>'
-                            + '         <div id="' + inputKeyId + '" class="select-reference form-input half" ></div>'
+                            + '         <div id="' + inputKeyId + '" class="select-reference form-input half" require></div>'
                             + '     </td>'
                             + '     <td>';
 
             // add input product amount
             if(data.defaultValue) {
-                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half" value="' + data.prd_qty + '">';
+                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half" value="' + data.prd_qty + '" maxlength="6" size="6" valuepattern="number" require>';
                 selectRefDefault = data.prd_id;
             } else {
-                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half">';
+                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half" maxlength="6" size="6" valuepattern="numberMoreThanZero" require>';
             }
 
             // add order detail id for update
@@ -253,6 +253,21 @@
             }
 
                 prdRowHTML += '         <button class="removeProductBtn button button-icon button-icon-delete" onclick="removeProduct(\'' + randNum + '\')"></button>'
+                            + '     </td>'
+                            + '</tr>'
+                            + '<tr id="errMsgRow_' + randNum + '" class="errMsgRow">'
+                            + '     <td>'
+                            + '         <span id="err-' + inputKeyId + '-require" class="errInputMsg half err-' + inputKeyId + '">'
+                            + '             โปรดเลือกผลิตภัณฑ์'
+                            + '         </span>'
+                            + '     </td>'
+                            + '     <td>'
+                            + '         <span id="err-' + inputQtyId + '-require" class="errInputMsg half err-' + inputQtyId + '">'
+                            + '             โปรดกรอกจำนวนที่สั่งซื้อ'
+                            + '         </span>'
+                            + '         <span id="err-' + inputQtyId + '-numberMoreThanZero" class="errInputMsg half err-' + inputQtyId + '">'
+                            + '             โปรดกรอกจำนวนเป็นตัวเลขจำนวนเต็มตั้งแต่ 1 ขึ้นไป'
+                            + '         </span>'
                             + '     </td>'
                             + '</tr>';
             $('#order-detail-table tbody').append(prdRowHTML);
@@ -271,29 +286,49 @@
                     $('input[name="' + inputKeyId + '"]').attr('name', 'prd_id[]');
                 }
             });
+            // Check Input required and pattern
+            $('#' + inputQtyId).focusout(validateInput);
         }
 
         function removeProduct(randNum) {
-            // Remove html
-            $('#prd_id_' + randNum).parent().parent().remove();
-        }
-
-        function beforeSaveRecord() {
-            // Check product input required
-            var returnVal = false;
-            $('input[name="prd_id[]"]').each(function() {
-                if($(this).val() == '') {
-                    $(this).parent().addClass('required');
-                    returnVal = true;
-                }
+            var selectRef   = $('#prd_id_' + randNum);
+            var tr          = selectRef.parent().parent();
+            var txt         = selectRef.find('.select-reference-text').text();
+            var val         = selectRef.find('.select-reference-input').val();
+            var msg         = '';
+            if(val != '') {
+                msg = 'คุณต้องการลบผลิตภัณฑ์ ' + txt + ' ออกจากการสั่งซื้อครั้งนี้ใช่หรือไม่?';
+            } else {
+                msg = 'คุณต้องการลบผลิตภัณฑ์ที่เลือกออกจากการสั่งซื้อครั้งนี้ใช่หรือไม่?';
+            }
+            parent.showActionDialog({
+                title: 'ลบผลิตภัณฑ์',
+                message: msg,
+                actionList: [
+                    {
+                        id: 'ok',
+                        name: 'ตกลง',
+                        desc: 'ลบผลิตภัณฑ์นี้ออกจากออกจากการสั่งซื้อ',
+                        func:
+                        function() {
+                            parent.hideActionDialog();
+                            tr.remove();
+                            $('#errMsgRow_' + randNum).remove();
+                            refreshSvlTable();
+                        }
+                    },
+                    {
+                        id: 'cancel',
+                        name: 'ยกเลิก',
+                        desc: 'ยกเลิกการลบ',
+                        func:
+                        function() {
+                            parent.hideActionDialog();
+                        }
+                    }
+                ],
+                boxWidth: 400
             });
-            $('input[name="prd_qty[]"]').each(function() {
-                if($(this).val() == '') {
-                    $(this).addClass('required');
-                    returnVal = true;
-                }
-            });
-            return returnVal;
         }
 
         function allowSelectPrdId(selected) {
@@ -301,7 +336,7 @@
             $('input[name="prd_id[]"]').each(function() {
                 if($(this).val() == selected) {
                      parent.showActionDialog({
-                        title: 'ท่านเลือกผลิตภัณฑ์นี้แล้ว',
+                        title: 'คุณเลือกผลิตภัณฑ์นี้แล้ว',
                         message: 'รายการผลิตภัณฑ์ไม่สามารถซ้ำกันได้ค่ะ',
                         actionList: [
                             {
@@ -389,58 +424,69 @@
     <!-- ADD, EDIT -->       
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="ordtyp_id,emp_id,comp_id,ord_date">
+    <label class="article-title">ข้อมูลการสั่งซื้อ</label>
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>
                 <td colspan="2">
-                    <label class="group-title">ข้อมูลการสั่งซื้อ</label>
+                    <label class="input-required">พนักงานที่สั่งซื้อ</label>
+                    <div id="emp_id" class="select-reference form-input full" require></div>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-emp_id-require" class="errInputMsg err-emp_id">โปรดเลือกพนักงานที่สั่งซื้อ</span>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
-                    <div id="emp_id" class="select-reference form-input full" ></div>
+				    <label class="input-required">บริษัทจำหน่ายผลิตภัณฑ์</label>
+				    <div id="comp_id" class="select-reference form-input full" require></div>
+			    </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-comp_id-require" class="errInputMsg err-comp_id">โปรดเลือกบริษัทจำหน่ายผลิตภัณฑ์</span>
                 </td>
             </tr>
             <tr>
-                <td>
-				    <label class="input-required">ชื่อบริษัทจำหน่ายผลิตภัณฑ์</label>
-				    <div id="comp_id" class="select-reference form-input half" ></div>
-			    </td>
-                <td>
+                <td colspan="2">
                     <label class="input-required">ประเภทการสั่งซื้อ</label>
-                    <div id="ordtyp_id" class="select-reference form-input half" ></div>
+                    <div id="ordtyp_id" class="select-reference form-input full" require></div>
                 </td>
 		    </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-ordtyp_id-require" class="errInputMsg err-ordtyp_id">โปรดเลือกประเภทการสั่งซื้อ</span>
+                </td>
+            </tr>
 			<tr>
                 
 			    <td>
                     <label class="input-required">วันที่สั่งซื้อ</label>
-                    <input id="ord_date" name="ord_date" type="text" class="mbk-dtp-th form-input half" value="{if $values.ord_date}{$values.ord_date}{else}{$nowDate}{/if}">
+                    <input id="ord_date" name="ord_date" type="text" class="mbk-dtp-th form-input half" value="{if $values.ord_date}{$values.ord_date}{else}{$nowDate}{/if}" require>
                 </td>
                  <td>
                     <label>วันที่จัดส่ง</label>
                     <input id="ord_snd_date" name="ord_snd_date" type="text" class="mbk-dtp-th form-input half" value="{$values.ord_snd_date}">
                 </td>
 		    </tr>
-             
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-ord_date-require" class="errInputMsg half err-ord_date">โปรดเลือกวันที่สั่งซื้อ</span>
+                </td>
+                <td></td>
+            </tr>
 	    </tbody>
     </table>
 
+    <label class="article-title">รายละเอียดการสั่งซื้อ</label>
     <table id="order-detail-table" class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
         <tbody>
-            <tr>
-                <td colspan="2">
-                    <label class="group-title">รายละเอียดการสั่งซื้อ</label>
-                </td>
-            </tr>
             <tr>
                 <td><label class="input-required">ผลิตภัณฑ์</label></td>
                 <td><label class="input-required">จำนวน</label></td>
             </tr>
-            {if $action == 'ADD'}
-            {elseif $action == 'EDIT'}
-            {/if}
         </tbody>
     </table>
     <button id="addProjectBtn" class="button button-icon button-icon-add">เพิ่มผลิตภัณฑ์</button>

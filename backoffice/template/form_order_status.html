@@ -31,9 +31,16 @@
 	    <tbody>
 		    <tr>
 			    <td>
-				    <label class="input-required">ชื่อสถานะการจอง</label>
-				    <input id="ordstat_name" name="ordstat_name" type="text" class="form-input full" value="{$values.ordstat_name}">
+				    <label class="input-required">ชื่อสถานะการสั่งซื้อ</label>
+				    <input id="ordstat_name" name="ordstat_name" type="text" class="form-input full" value="{$values.ordstat_name}" valuepattern="character" require>
 			    </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="err-ordstat_name-require" class="errInputMsg err-ordstat_name">โปรดป้อนชื่อสถานะการสั่งซื้อ</span>
+                    <span id="err-ordstat_name-character" class="errInputMsg err-ordstat_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>

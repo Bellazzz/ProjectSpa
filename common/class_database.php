@@ -7,6 +7,7 @@ require('common_constant.php');
 class DBRecord {
 	protected $database;
 	protected $data			= null;
+	protected $dataType		= null;
 	protected $key			= null;
 	protected $tableInfo	= null;
 
@@ -127,10 +128,13 @@ class DBRecord {
 		$result = mysql_query($sql, $this->database);
 		if(mysql_num_rows($result) > 0) {
 			$record = mysql_fetch_assoc($result);
+			$offset = 0;
 			foreach ($record as $fieldName => $value) {
 				if($fieldName != $this->keyFieldName) {
-					$this->data[$fieldName] = $value;
+					$this->data[$fieldName] 	= $value;
+					$this->dataType[$fieldName] = mysql_field_type($result, $offset);
 				}
+				$offset++;
 			}
 		} else {
 			$this->data = null;
@@ -143,6 +147,10 @@ class DBRecord {
 
 	public function getFieldValue($fieldName) {
 		return $this->data[$fieldName];
+	}
+
+	public function getFieldType($fieldName) {
+		return $this->dataType[$fieldName];
 	}
 
 	public function delete() {

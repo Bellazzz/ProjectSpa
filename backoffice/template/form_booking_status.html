@@ -32,9 +32,15 @@
 		    <tr>
 			    <td>
 				    <label class="input-required">ชื่อสถานะการจอง</label>
-				    <input id="bkgstat_name" name="bkgstat_name" type="text" class="form-input full" value="{$values.bkgstat_name}">
+				    <input id="bkgstat_name" name="bkgstat_name" type="text" class="form-input full" value="{$values.bkgstat_name}" valuepattern="character" require>
 			    </td>
 		    </tr>
+            <tr>
+                <td>
+                    <span id="err-bkgstat_name-require" class="errInputMsg err-bkgstat_name">โปรดป้อนชื่อสถานะการจอง</span>
+                    <span id="err-bkgstat_name-character" class="errInputMsg err-bkgstat_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>

@@ -12,7 +12,17 @@ $keyName	= $tableInfo['keyFieldName'];
 $keyType	= $tableInfo['keyFieldType'];
 
 // Delete detail
-if($tableName == 'orders') {
+if($tableName == 'packages') {
+	foreach($keySelected as $index => $pkg_id) {
+		$sql = "DELETE FROM package_service_lists WHERE pkg_id = '$pkg_id'";
+		$result = mysql_query($sql, $dbConn);
+		if(!$result) {
+			$err = mysql_error($dbConn);
+			echo "DELETE_PACKAGE_SERVICE_LISTS_FAIL : $err";
+			exit();
+		}
+	}
+} else if($tableName == 'orders') {
 	foreach($keySelected as $index => $ord_id) {
 		$sql = "SELECT orddtl_id FROM order_details WHERE ord_id = '$ord_id'";
 		$result = mysql_query($sql, $dbConn);

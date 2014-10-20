@@ -31,9 +31,17 @@
 	    <tbody>
 		    <tr>
 			    <td>
-				    <label class="input-required">ชื่อประเภทการสั่งซื้อผลิตภัณฑ์</label>
-				    <input id="ordtyp_name" name="ordtyp_name" type="text" class="form-input full" value="{$values.ordtyp_name}">
+				    <label class="input-required">ชื่อประเภทการสั่งซื้อ</label>
+				    <input id="ordtyp_name" name="ordtyp_name" type="text" class="form-input full" value="{$values.ordtyp_name}" valuepattern="character" require>
 			    </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="err-ordtyp_name-require" class="errInputMsg err-ordtyp_name">โปรดป้อนชื่อประเภทการสั่งซื้อ</span>
+                    <span id="err-ordtyp_name-character" class="errInputMsg err-ordtyp_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-ordtyp_name-unique" class="errInputMsg err-ordtyp_name">มีประเภทการสั่งซื้อนี้อยู่แล้ว</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>

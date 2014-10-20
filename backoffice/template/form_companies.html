@@ -72,24 +72,42 @@
 		    <tr>
 			    <td colspan="2">
 				    <label class="input-required">ชื่อบริษัท</label>
-				    <input id="comp_name" name="comp_name" type="text" class="form-input full" value="{$values.comp_name}">
+				    <input id="comp_name" name="comp_name" type="text" class="form-input full" value="{$values.comp_name}" valuepattern="character" require>
 			    </td>
             </tr>
             <tr>
                 <td colspan="2">
+                    <span id="err-comp_name-require" class="errInputMsg err-comp_name">โปรดป้อนชื่อบริษัท</span>
+                    <span id="err-comp_name-character" class="errInputMsg err-comp_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
                     <label class="input-required">ที่อยู่</label>
-                    <textarea id="comp_addr" name="comp_addr" class="form-input full">{$values.comp_addr}</textarea>
+                    <textarea id="comp_addr" name="comp_addr" class="form-input full" require>{$values.comp_addr}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span id="err-comp_addr-require" class="errInputMsg err-comp_addr">โปรดป้อนที่อยู่บริษัท</span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <label class="input-required">เบอร์โทร</label>
-                    <input id="comp_tel" name="comp_tel" type="text" class="form-input half" value="{$values.comp_tel}">
+                    <input id="comp_tel" name="comp_tel" type="text" class="form-input half" value="{$values.comp_tel}" maxlength="10" size="10" valuepattern="tel" require>
                 </td>
                 <td>
                     <label>แฟ็กซ์</label>
                     <input id="fax" name="fax" type="text" class="form-input half" value="{$values.fax}">
                 </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="err-comp_tel-require" class="errInputMsg half err-comp_tel">โปรดป้อนเบอร์โทร</span>
+                    <span id="err-comp_tel-tel" class="errInputMsg half err-comp_tel">โปรดกรอกเบอร์โทรเป็นตัวเลข 10 หลัก</span>
+                </td>
+                <td></td>
             </tr>
             <tr>
                 <td colspan="2">

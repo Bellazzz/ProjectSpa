@@ -76,15 +76,15 @@
 			</tr>
 			<tr>
 				<td>ราคา :</td>
-				<td>{$values.svl_price} บาท</td>
+				<td>{$values.svl_price|number_format:2:".":","} บาท</td>
 			</tr>
 			<tr>
 				<td>ค่าคอมมิชชั่น :</td>
-				<td>{$values.svl_commission} บาท</td>
+				<td>{$values.svl_commission|number_format:2:".":","} บาท</td>
 			</tr>
 			<tr>
 				<td>คำอธิบาย :</td>
-				<td>{$values.svl_desc}</td>
+				<td>{if $values.svl_desc}{$values.svl_desc}{else}-{/if}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -92,40 +92,71 @@
 	<!-- ADD, EDIT -->		 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="svltyp_id,svl_name,svl_price,svl_commission">
+	<input type="hidden" name="uniqueFields" value="svl_name">
 	<table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 		<tbody>
 			<tr>
 				<td colspan=2>
 					<label class="input-required">ชื่อรายการบริการ</label>
-					<input id="svl_name" name="svl_name" type="text" class="form-input full" value="{$values.svl_name}">
+					<input id="svl_name" name="svl_name" type="text" class="form-input full" value="{$values.svl_name}" valuepattern="character" require>
 				</td>
 			</tr>
+			<tr>
+                <td colspan="2">
+                    <span id="err-svl_name-require" class="errInputMsg err-svl_name">โปรดป้อนชื่อรายการบริการ</span>
+                    <span id="err-svl_name-character" class="errInputMsg err-svl_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-svl_name-unique" class="errInputMsg err-svl_name">มีรายการบริการชื่อนี้อยู่แล้ว</span>
+                </td>
+            </tr>
 			<tr>
 				<td colspan=2>
 					<label class="input-required">ประเภทรายการบริการ</label>
-					<div id="svltyp_id" class="select-reference form-input full"></div>
+					<div id="svltyp_id" class="select-reference form-input full" require></div>
 				</td>
 			</tr>
+			<tr>
+                <td colspan="2">
+                    <span id="err-svltyp_id-require" class="errInputMsg err-svltyp_id">โปรดเลือกประเภทรายการบริการ</span>
+                </td>
+            </tr>
 			<tr>
 				<td>
 					<label>เวลาที่ใช้(ชั่วโมง)</label>
-					<input id="svl_hr" name="svl_hr" type="text" class="form-input half" value="{$values.svl_hr}">
+					<input id="svl_hr" name="svl_hr" type="text" class="form-input half" value="{$values.svl_hr}" maxlength="2" size="2" valuepattern="number">
 				</td>
 				<td>
 					<label>เวลาที่ใช้(นาที)</label>
-					<input id="svl_min" name="svl_min" type="text" class="form-input half" value="{$values.svl_min}">
+					<input id="svl_min" name="svl_min" type="text" class="form-input half" value="{$values.svl_min}" maxlength="2" size="2" valuepattern="minute">
 				</td>
 			</tr>
+			<tr class="errMsgRow">
+                <td>
+                    <span id="err-svl_hr-number" class="errInputMsg half err-svl_hr">โปรดกรอกชั่วโมงเป็นตัวเลขจำนวนเต็ม</span>
+                </td>
+                <td>
+                    <span id="err-svl_min-minute" class="errInputMsg half err-svl_min">โปรดกรอกนาทีเป็นตัวเลขจำนวนเต็มที่มีค่าไม่เกิน 59</span>
+                </td>
+            </tr>
 			<tr>
 				<td>
 					<label class="input-required">ราคา</label>
-					<input id="svl_price" name="svl_price" type="text" class="form-input half" value="{$values.svl_price}">
+					<input id="svl_price" name="svl_price" type="text" class="form-input half" value="{$values.svl_price}" valuepattern="money" require>
 				</td>
 				<td>
 					<label class="input-required">ค่าคอมมิชชั่น</label>
-					<input id="svl_commission" name="svl_commission" type="text" class="form-input half" value="{$values.svl_commission}">
+					<input id="svl_commission" name="svl_commission" type="text" class="form-input half" value="{$values.svl_commission}"  valuepattern="money" require>
 				</td>
 			</tr>
+			<tr class="errMsgRow">
+                <td>
+                    <span id="err-svl_price-require" class="errInputMsg half err-svl_price">โปรดป้อนราคา</span>
+                    <span id="err-svl_price-money" class="errInputMsg half err-svl_price">รูปแบบจำนวนเงินไม่ถูกต้อง จำนวนเงินเป็นได้เฉพาะตัวเลข ไม่มีคอมม่าคั่น จุดทศนิยม 2 ตำแหน่ง เช่น 130, 1600.25</span>
+                </td>
+                <td>
+                    <span id="err-svl_commission-require" class="errInputMsg half err-svl_commission">โปรดป้อนค่าคอมมิชชั่น</span>
+                    <span id="err-svl_commission-money" class="errInputMsg half err-svl_commission">รูปแบบจำนวนเงินไม่ถูกต้อง จำนวนเงินเป็นได้เฉพาะตัวเลข ไม่มีคอมม่าคั่น จุดทศนิยม 2 ตำแหน่ง เช่น 130, 1600.25</span>
+                </td>
+            </tr>
 			<tr>
 				<td colspan=2>
 					<label>คำอธิบาย</label>

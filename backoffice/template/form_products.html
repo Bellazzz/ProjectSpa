@@ -86,7 +86,7 @@
             </tr>
             <tr>
                 <td>ราคา :</td>
-                <td>{$values.prd_price}   บาท</td>
+                <td>{$values.prd_price|number_format:2:".":","} บาท</td>
             </tr>
             <tr>
                 <td>จำนวน :</td>
@@ -97,38 +97,65 @@
     {else}      
     <!-- ADD, EDIT -->
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="prd_name,prdtyp_id,brand_id,prd_price,prd_amount,unit_id">
+	<input type="hidden" name="requiredFields" value="prd_name,prdtyp_id,brand_id,prd_price,unit_id">
+    <input type="hidden" name="uniqueFields" value="prd_name">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 			<tr>
 			    <td colspan="2">
 				    <label class="input-required">ชื่อผลิตภัณฑ์</label>
-				    <input id="prd_name" name="prd_name" type="text" class="form-input full" value="{$values.prd_name}">
+				    <input id="prd_name" name="prd_name" type="text" class="form-input full" value="{$values.prd_name}" require>
 			    </td>
 		    </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-prd_name-require" class="errInputMsg half err-prd_name">โปรดป้อนชื่อผลิตภัณฑ์</span>
+                    <span id="err-prd_name-unique" class="errInputMsg err-prd_name">มีผลิตภัณฑ์ชื่อนี้อยู่แล้ว</span>
+                </td>
+            </tr>
 			<tr>
 			    <td colspan="2">
-				    <label class="input-required">ชื่อประเภทผลิตภัณฑ์</label>
-				    <div id="prdtyp_id" class="select-reference form-input full"></div>
+				    <label class="input-required">ประเภทผลิตภัณฑ์</label>
+				    <div id="prdtyp_id" class="select-reference form-input full" require></div>
 			    </td>
 		    </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-prdtyp_id-require" class="errInputMsg half err-prdtyp_id">โปรดเลือกประเภทผลิตภัณฑ์</span>
+                </td>
+            </tr>
 			<tr>
 			    <td colspan="2">
-				    <label class="input-required">ชื่อยี่ห้อ</label>
-				    <div id="brand_id" class="select-reference form-input full"></div>
+				    <label class="input-required">ยี่ห้อ</label>
+				    <div id="brand_id" class="select-reference form-input full" require></div>
 			    </td>
 		    </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-brand_id-require" class="errInputMsg half err-brand_id">โปรดเลือกยี่ห้อ</span>
+                </td>
+            </tr>
 		    <tr>
                 <td>
                     <label class="input-required">ราคา (บาท)</label>
-					 <input id="prd_price" name="prd_price" type="text" class="form-input half" value="{$values.prd_price}">
+					 <input id="prd_price" name="prd_price" type="text" class="form-input half" value="{$values.prd_price}" valuepattern="money" require>
                 </td>
                 <td>
 					<label class="twoInput twoInput-small">จำนวน</label>
-					<label class="twoInput twoInput-large">ชื่อหน่วยนับ</label>
+					<label class="twoInput twoInput-large">หน่วยนับ</label>
                     <br>
-					<input id="prd_amount" name="prd_amount" type="text" class="form-input twoInput twoInput-small" value="{$values.prd_amount}">
-					<div id="unit_id" class="select-reference form-input twoInput twoInput-large">
+					<input id="prd_amount" name="prd_amount" type="text" class="form-input twoInput twoInput-small" value="{$values.prd_amount}" maxlength="6" size="6" valuepattern="number">
+					<div id="unit_id" class="select-reference form-input twoInput twoInput-large" require>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-prd_price-require" class="errInputMsg half err-prd_price">โปรดป้อนราคา</span>
+                    <span id="err-prd_price-money" class="errInputMsg half err-prd_price">รูปแบบจำนวนเงินไม่ถูกต้อง จำนวนเงินเป็นได้เฉพาะตัวเลข ไม่มีคอมม่าคั่น จุดทศนิยม 2 ตำแหน่ง เช่น 130, 1600.25</span>
+                </td>
+                <td>
+                    <span id="err-prd_amount-number" class="errInputMsg half err-prd_amount">โปรดกรอกจำนวนเป็นเลขจำนวนเต็ม</span>
+                    <span id="err-unit_id-require" class="errInputMsg half err-unit_id">โปรดเลือกหน่วยนับ</span>
                 </td>
             </tr>
 	    </tbody>

@@ -81,31 +81,55 @@
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>
-                <td>
-                    <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
-                    <div id="emp_id" class="select-reference form-input half" > </div>
+                <td colspan="2">
+                    <label class="input-required">พนักงานที่ตรวจ</label>
+                    <div id="emp_id" class="select-reference form-input full" require> </div>
                 </td>
-            			    
-                <td>
-				    <label class="input-required">ชื่อ-นามสกุลผู้ใช้บริการ</label>
-				    <div id="cus_id" class="select-reference form-input half" > </div>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-emp_id-require" class="errInputMsg err-emp_id">โปรดเลือกพนักงานที่ตรวจ</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+				    <label class="input-required">ผู้ใช้บริการ</label>
+				    <div id="cus_id" class="select-reference form-input full" require></div>
 			    </td>
 		    </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-cus_id-require" class="errInputMsg err-cus_id">โปรดเลือกผู้ใช้บริการ</span>
+                </td>
+            </tr>
 			<tr>
                 <td>
                     <label class="input-required">วันที่ตรวจ</label>
-				      <input id="elechk_date" name="elechk_date" type="text" class="mbk-dtp-th form-input half" value="{$values.elechk_date}">
+				      <input id="elechk_date" name="elechk_date" type="text" class="mbk-dtp-th form-input half" value="{$values.elechk_date}" require>
 			    </td>
 			    <td>
                     <label class="input-required">เวลาที่ตรวจ</label>
-                      <input id="elechk_time" name="elechk_time" type="text" class="form-input half" value="{$values.elechk_time}">
+                      <input id="elechk_time" name="elechk_time" type="text" class="form-input half" value="{$values.elechk_time}" require>
                 </td>
 		    </tr>
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-elechk_date-require" class="errInputMsg half err-elechk_date">โปรดป้อนวันที่ตรวจ</span>
+                </td>
+                <td>
+                    <span id="err-elechk_time-require" class="errInputMsg half err-elechk_time">โปรดป้อนเวลาที่ตรวจ</span>
+                </td>
+            </tr>
             <tr>
-               <td>
+               <td colspan="2">
                     <label class="input-required">ประเภทธาตุ</label>
-                    <div id="eletyp_id" class="select-reference form-input half" > </div>
+                    <div id="eletyp_id" class="select-reference form-input full" require></div>
                 </td> 
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-eletyp_id-require" class="errInputMsg err-eletyp_id">โปรดเลือกประเภทธาตุ</span>
+                </td>
             </tr>
 	    </tbody>
     </table>

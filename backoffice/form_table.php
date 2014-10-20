@@ -32,6 +32,17 @@ if(!$_REQUEST['ajaxCall']) {
 		$values      = array();
 		foreach($tableInfo['fieldNameList'] as $field => $value) {
 			$values[$field] = $tableRecord->getFieldValue($field);
+
+			if($action == 'VIEW_DETAIL') {
+				if(hasValue($values[$field])) {
+					$colFieldType = $tableRecord->getFieldType($field);
+					if($colFieldType == 'date' || $colFieldType == 'datetime') {
+						$values[$field] = dateThaiFormat($values[$field]);
+					}
+				} else {
+					$values[$field] = '-';
+				}
+			}
 		}
 		$smarty->assign('values', $values);
 	}
@@ -40,6 +51,9 @@ if(!$_REQUEST['ajaxCall']) {
 	$smarty->assign('tableName', $tableName);
 	$smarty->assign('tableNameTH', $tableInfo['tableNameTH']);
 	$smarty->assign('code', $code);
+	if(isset($_REQUEST['hideEditButton'])) {
+		$smarty->assign('hideEditButton', true);
+	}
 	include('../common/common_footer.php');
 } else {
 	//2. Process record

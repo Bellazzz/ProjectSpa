@@ -32,8 +32,15 @@
 		    <tr>
 			    <td>
 				    <label class="input-required">ชื่อยี่ห้อผลิตภัณฑ์</label>
-				    <input id="brand_name" name="brand_name" type="text" class="form-input full" value="{$values.brand_name}">
+				    <input id="brand_name" name="brand_name" type="text" class="form-input full" value="{$values.brand_name}" require>
 			    </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="err-brand_name-require" class="errInputMsg err-brand_name">โปรดป้อนชื่อยี่ห้อผลิตภัณฑ์</span>
+                    <span id="err-brand_name-unique" class="errInputMsg err-brand_name">มียี่ห้อผลิตภัณฑ์ชื่อนี้อยู่แล้ว</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>

@@ -8,10 +8,14 @@ include('../common/common_function.php');
 // Pre Valiable
 $tableName	= 'receives';
 $sortCol	= $_REQUEST['sortCol'];
-$sortBy		= $_REQUEST['sortBy'];
+$sortBy		= 'desc';
 $filter 	= $_REQUEST['filter'];
 $where 		= 'WHERE r.ord_id = o.ord_id AND r.emp_id = e.emp_id ';
 $tableInfo	= getTableInfo($tableName);
+
+if(hasValue($_REQUEST['sortBy'])) {
+	$sortBy	= $_REQUEST['sortBy'];
+}
 
 // Generate search
 if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
@@ -49,7 +53,7 @@ $sql = "SELECT 	r.rec_id,
 				r.rec_total_price 
 		FROM 	receives r, orders o, employees e 
 		$where 
-		ORDER BY r.rec_id DESC";
+		$order";
 $result		= mysql_query($sql, $dbConn);
 $rows 		= mysql_num_rows($result);
 $tableData	= array();
@@ -141,10 +145,14 @@ if($rows > 0){
 					<?
 				}
 				else if (mysql_field_type($result, $offset) == 'date' || mysql_field_type($result, $offset) == 'datetime'){
-					$time 		= strtotime($value);
-					$yearMinTH 	= substr(date('Y', $time) + 543, 2);
-					$month 		= $monthThaiMin[(int)date('m', $time)-1];
-					$dateValue 	= date('d', $time).' '.$month.' '.$yearMinTH;
+					if($value == '') {
+						$dateValue 	= '-';
+					} else {
+						$time 		= strtotime($value);
+						$yearMinTH 	= substr(date('Y', $time) + 543, 2);
+						$month 		= $monthThaiMin[(int)date('m', $time)-1];
+						$dateValue 	= date('d', $time).' '.$month.' '.$yearMinTH;
+					}
 					?>
 					<td><?=$dateValue?></td>
 					<?
