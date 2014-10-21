@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script> 
+	<script type="text/javascript" src="../inc/datetimepicker/mbk.datetimepickerThai.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -67,26 +68,38 @@
 			//	 	
 
 			$('#bkg_date').datetimepicker({
-				lang:'th',
-				timepicker:false,
-				format:'Y-m-d',
-				closeOnDateSelect:true
-			});
+                lang                : 'th',
+                format              : 'Y/m/d',
+                timepicker          :false,
+                closeOnDateSelect   :true,
+                scrollInput         :false,
+                yearOffset          :543,
+                onSelectDate: 
+                function(){
+                  $('#bkg_date').blur();
+                },
+                timepicker:false
+            });
 			$('#bkg_transfer_date').datetimepicker({
-				lang:'th',
-				timepicker:false,
-				format:'Y-m-d',
-				closeOnDateSelect:true
-			});
+                lang                : 'th',
+                format              : 'Y/m/d',
+                timepicker          :false,
+                closeOnDateSelect   :true,
+                scrollInput         :false,
+                yearOffset          :543,
+                onSelectDate: 
+                function(){
+                  $('#bkg_transfer_date').blur();
+                },
+                timepicker:false
+            });
 			 $('#bkg_time').datetimepicker({
                 datepicker:false,
-                format:'H:i',
-                minTime:'06:00',
+                format:'H:i'
             });
 			  $('#bkg_transfer_time').datetimepicker({
                 datepicker:false,
-                format:'H:i',
-                minTime:'06:00',
+                format:'H:i'
             });
 		});
     </script>
@@ -155,44 +168,87 @@
 	{else}	 	
 	<!-- ADD, EDIT -->	 	 	 	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="cus_id,emp_id,status_id,bnkacc_id,bkg_total_price,bkg_date,bkg_time,bkg_transfer_money">
-    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
-	    <tbody>
-			<tr>
-				<td>
-					<div id="bkg_transfer_evidence" class="uploadImageArea full"></div>
-					<input type="hidden" name="bkg_transfer_evidence" value="{$values.bkg_transfer_evidence}">
-				</td>
-		</tbody> 											
-			</tr> 
-    </table>
+	<input type="hidden" name="requiredFields" value="cus_id,emp_id,status_id,bkg_total_price,bkg_date,bkg_time">
 	<table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 		<tbody>
 			<tr>
-				<td>
-					<label class="input-required">ชื่อ-นามสกุลผู้ใช้บริการ</label>
-					 <div id="cus_id" class="select-reference form-input half" > </div>
-				</td>
-			
-				<td>
-					<label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
-					 <div id="emp_id" class="select-reference form-input half" > </div>
+				<td colspan="2">
+					<label class="input-required">พนักงานที่บันทึก</label>
+					 <div id="emp_id" class="select-reference form-input full" require></div>
 				</td>
 			</tr>
+			<tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-emp_id-require" class="errInputMsg err-emp_id">โปรดเลือกพนักงานที่บันทึก</span>
+                </td>
+            </tr>
 			<tr>
-				<td>
-					<label class="input-required">สถานะการจอง</label>
-					 <div id="status_id" class="select-reference form-input half" > </div>
+				<td colspan="2">
+					<label class="input-required">ผู้ใช้บริการที่ทำการจอง</label>
+					 <div id="cus_id" class="select-reference form-input full" require></div>
+				</td>
+			</tr>
+			<tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-cus_id-require" class="errInputMsg err-cus_id">โปรดเลือกผู้ใช้บริการที่ทำการจอง</span>
+                </td>
+            </tr>
+            <tr>
+            	<td>
+					<label class="input-required">วันที่จอง</label>
+					<input id="bkg_date" name="bkg_date" type="text" class="mbk-dtp-th form-input half" value="{$values.bkg_date}" require>
 				</td>
 				<td>
-					<label class="input-required">บัญชีธนาคาร</label>
-					 <div id="bnkacc_id" class="select-reference form-input half" > </div>
+					<label class="input-required">เวลาที่จอง</label>
+					<input id="bkg_time" name="bkg_time" type="text" class="form-input half" value="{$values.bkg_time}" require>
+				</td>
+            </tr>
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-bkg_date-require" class="errInputMsg half err-bkg_date">โปรดป้อนวันที่จอง</span>
+                </td>
+                <td>
+                    <span id="err-bkg_time-require" class="errInputMsg half err-bkg_time">โปรดป้อนเวลาที่จอง</span>
+                </td>
+            </tr>
+            <tr>
+				<td colspan="2">
+					<label class="input-required">ราคารวมการจอง(บาท)</label>
+					<input id="bkg_total_price" name="bkg_total_price" type="text" class="form-input full" value="{$values.bkg_total_price}" valuepattern="money" require>
+				</td>
+			</tr>
+			<tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-bkg_total_price-require" class="errInputMsg err-bkg_total_price">โปรดป้อนราคารวมการจอง</span>
+                    <span id="err-bkg_total_price-money" class="errInputMsg err-bkg_total_price">รูปแบบจำนวนเงินไม่ถูกต้อง จำนวนเงินเป็นได้เฉพาะตัวเลข ไม่มีคอมม่าคั่น จุดทศนิยม 2 ตำแหน่ง เช่น 130, 1600.25</span>
+                </td>
+            </tr>
+			<tr>
+				<td colspan="2">
+					<label class="input-required">สถานะการจอง</label>
+					 <div id="status_id" class="select-reference form-input full" require></div>
+				</td>
+			</tr>
+			<tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-status_id-require" class="errInputMsg err-status_id">โปรดเลือกสถานะการจอง</span>
+                </td>
+            </tr>
+		</tbody>
+    </table>
+    <label class="article-title">ข้อมูลการชำระเงิน</label>
+    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+		<tbody>
+			<tr>
+				<td colspan="2">
+					<label>บัญชีธนาคาร</label>
+					 <div id="bnkacc_id" class="select-reference form-input full"></div>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<label>วันที่โอน</label>
-                	<input id="bkg_transfer_date" name="bkg_transfer_date" type="text" class="form-input half" value="{$values.bkg_transfer_date}">
+                	<input id="bkg_transfer_date" name="bkg_transfer_date" type="text" class="mbk-dtp-th form-input half" value="{$values.bkg_transfer_date}">
                 </td>
                 <td>
 					<label>เวลาที่โอน</label>
@@ -200,25 +256,18 @@
                 </td>
 			</tr>
 			<tr>
-				<td>
-					<label class="input-required">ราคารวมการจอง(บาท)</label>
-					<input id="bkg_total_price" name="bkg_total_price" type="text" class="form-input half" value="{$values.bkg_total_price}">
-				</td>
-				<td>
-					<label class="input-required">วันที่จอง</label>
-					<input id="bkg_date" name="bkg_date" type="text" class="form-input half" value="{$values.bkg_date}">
+				<td colspan="2">
+					<label>จำนวนเงินที่โอน(บาท)</label>
+					<input id="bkg_transfer_money" name="bkg_transfer_money" type="text" class="form-input full" value="{$values.bkg_transfer_money}">
 				</td>
 			</tr>
 			<tr>
-				<td>
-					<label class="input-required">เวลาที่จอง</label>
-					<input id="bkg_time" name="bkg_time" type="text" class="form-input half" value="{$values.bkg_time}">
+				<td colspan="2">
+					<label>รูปภาพหลักฐานการโอนเงิน</label>
+					<div id="bkg_transfer_evidence" class="uploadImageArea full"></div>
+					<input type="hidden" name="bkg_transfer_evidence" value="{$values.bkg_transfer_evidence}">
 				</td>
-				<td>
-					<label class="input-required">จำนวนเงินที่โอน(บาท)</label>
-					<input id="bkg_transfer_money" name="bkg_transfer_money" type="text" class="form-input half" value="{$values.bkg_transfer_money}">
-				</td>
-			</tr>
+			</tr> 
 	    </tbody>
     </table>
     </form>

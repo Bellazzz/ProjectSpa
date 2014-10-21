@@ -6,11 +6,10 @@
     {literal}
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-    <!--<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css">-->
     <link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <!--<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script>-->
     <script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
+    <script type="text/javascript" src="../inc/datetimepicker/mbk.datetimepickerThai.js"></script>
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -46,14 +45,21 @@
                 keyFieldName    : 'emp_id',
                 textFieldName   : 'emp_id,emp_name,emp_surname',
                 searchTool      : true,
-                defaultValue    : '{/literal}{$values.emp_id}{literal}',
+                defaultValue    : '{/literal}{if $values.emp_give_id}{$values.emp_give_id}{else}{$session_emp_id}{/if}{literal}',
                 pattern         : 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
-             $('#wdw_date').datetimepicker({
-                lang:'th',
-                timepicker:false,
-                format:'Y-m-d',
-                closeOnDateSelect:true
+            $('#wdw_date').datetimepicker({
+                lang                : 'th',
+                format              : 'Y/m/d',
+                timepicker          :false,
+                closeOnDateSelect   :true,
+                scrollInput         :false,
+                yearOffset          :543,
+                onSelectDate: 
+                function(){
+                  $('#wdw_date').blur();
+                },
+                timepicker:false
             });
 
 			
@@ -71,28 +77,49 @@
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>
-                <td>
+                <td colspan="2">
                     <label class="input-required">พนักงานที่ให้เบิก</label>
-                    <div id="emp_give_id" class="select-reference form-input half" > </div>
+                    <div id="emp_give_id" class="select-reference form-input full" require></div>
                 </td>
-                <td>
-                    <label class="input-required">พนักงานที่เบิก</label>
-                    <div id="emp_id" class="select-reference form-input half" > </div>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-emp_give_id-require" class="errInputMsg err-emp_give_id">โปรดเลือกพนักงานที่ให้เบิก</span>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td colspan="2">
+                    <label class="input-required">พนักงานที่เบิก</label>
+                    <div id="emp_id" class="select-reference form-input full" require></div>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-emp_id-require" class="errInputMsg err-emp_id">โปรดเลือกพนักงานที่เบิก</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
                     <label class="input-required">วันที่เบิกผลิตภัณฑ์</label>
-                      <input id="wdw_date" name="wdw_date" type="text" class="form-input half" value="{$values.wdw_date}">
+                      <input id="wdw_date" name="wdw_date" type="text" class="mbk-dtp-th form-input full" value="{$values.wdw_date}" require>
                 </td>
-               <td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-wdw_date-require" class="errInputMsg err-wdw_date">โปรดป้อนวันที่เบิกผลิตภัณฑ์</span>
+                </td>
+            </tr>
+            <tr>
+               <td colspan="2">
                     <label class="input-required">รหัสการใช้บริการ</label>
-                    <div id="ser_id" class="select-reference form-input half" > </div>
+                    <div id="ser_id" class="select-reference form-input full" require></div>
                 </td>
-                 
 		    </tr>
-			
-            
+			<tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-ser_id-require" class="errInputMsg err-ser_id">โปรดเลือกรหัสการใช้บริการ</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>
