@@ -541,7 +541,7 @@ function dbClose() {
 						'timeatt_out'	  => 'เวลาที่ออก'
 				),
 				'defaultNull' 	=> array('timeatt_out','dateatt_out'),
-				'searchFields'	=> array('emp_id','dateatt_id','timeatt_out')
+				'searchFields'	=> array('emp_id','dateatt_in','dateatt_out')
 			);
 			break;
 
@@ -586,7 +586,7 @@ function dbClose() {
 						'bkg_transfer_money'      => 'จำนวนเงินที่โอน(บาท)'
 				),
 				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time'),
-				'defaultNull' 	=> array('bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_transfer_money'),
+				'defaultNull' 	=> array('bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_transfer_money','bnkacc_id'),
 				'searchFields'	=> array('bkg_id','cus_id','emp_id','status_id','bkg_total_price','bkg_date','bkg_time')
 			);
 			break;

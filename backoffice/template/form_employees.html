@@ -182,7 +182,7 @@
 	{if $action == 'VIEW_DETAIL'}
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-		<img src="{if $values.emp_pic}../img/employees/{$values.emp_pic}{else}../img/backoffice/no-pic.png{/if}">
+		<img src="{if $values.emp_pic != '-'}../img/employees/{$values.emp_pic}{else}../img/backoffice/no-pic.png{/if}">
 	</div>
 	<table class="table-view-detail">
 		<tbody>
@@ -358,6 +358,7 @@
 	    <tbody>
 	    	<tr>
 	    		<td>
+	    			<label>รูปภาพพนักงาน</label>
 					<div id="emp_pic" class="uploadImageArea full"></div>
 					<input type="hidden" name="emp_pic" value="{$values.emp_pic}">
 				</td>

@@ -103,7 +103,7 @@ switch ($tableName) {
 		break;
 
 		case'booking':
-		$where		= 'WHERE b.cus_id = c.cus_id and b.emp_id = e.emp_id and b.status_id = s.bkgstat_id and b.bnkacc_id = a.bnkacc_id ';
+		$where		= 'WHERE b.cus_id = c.cus_id and b.emp_id = e.emp_id and b.status_id = s.bkgstat_id ';
 		if(hasValue($like)) {
 			if($searchCol == 'emp_id') {
 				$like = "(e.emp_name like '%$searchInput%' OR e.emp_surname like '%$searchInput%') ";

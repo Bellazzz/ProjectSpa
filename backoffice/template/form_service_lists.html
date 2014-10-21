@@ -54,7 +54,7 @@
 	{if $action == 'VIEW_DETAIL'}
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-		<img src="../img/service_lists/{$values.svl_picture}">
+		<img src="{if $values.svl_picture != '-'}../img/service_lists/{$values.svl_picture}{else}../img/backoffice/no-pic.png{/if}">
 	</div>
 	<table class="table-view-detail">
 		<tbody>
@@ -165,6 +165,7 @@
 			</tr>
 			<tr>
 				<td colspan=2>
+					<label>รูปภาพรายการบริการ</label>
 					<div id="svl_picture" class="uploadImageArea full"></div>
 					<input type="hidden" name="svl_picture" value="{$values.svl_picture}">
 				</td>
