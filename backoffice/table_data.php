@@ -88,6 +88,20 @@ switch ($tableName) {
 				$order";
 		break;
 
+	case 'titles':
+		$where = 'WHERE s.sex_id = t.sex_id ';
+		if(hasValue($like)) {
+			$like	= str_replace('s.sex_id', 's.sex_name', $like);
+			$where .= " AND $like";
+		}
+		$sql = "SELECT t.title_id,
+				t.title_name,
+				s.sex_name sex_id 
+				FROM titles t, sex s  
+				$where 
+				$order";
+		break;
+
 		case'booking':
 		$where		= 'WHERE b.cus_id = c.cus_id and b.emp_id = e.emp_id and b.status_id = s.bkgstat_id and b.bnkacc_id = a.bnkacc_id ';
 		if(hasValue($like)) {
