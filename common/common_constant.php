@@ -56,8 +56,10 @@ function dbClose() {
 				'keyLength'		=> 3,
 				'fieldNameList'	=> array(
 					'title_id'		=> 'รหัสคำนำหน้าชื่อ',
-					'title_name'	=> 'คำนำหน้าชื่อ'
+					'title_name'	=> 'คำนำหน้าชื่อ',
+					'sex_id' 		=> 'เพศ'
 				),
+				'defaultNull' 	=> array('sex_id'),
 				'searchFields'	=> array('title_name')
 			);
 			break;
