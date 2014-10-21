@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-21 11:07:28
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-21 12:16:01
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_titles.html" */ ?>
 <?php /*%%SmartyHeaderCode:57955445dc005ec2f5-76004215%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '27378bcd0e170dfc447ebcad9120101faf889e50' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_titles.html',
-      1 => 1409493315,
+      1 => 1413867121,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5445dc007ca550_15878813',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5445dc007ca550_15878813',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5445dc007ca550_15878813')) {function content_5445dc007ca550_15878813($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -36,10 +36,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
     <link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css"> 
-    <!--include if want to use datepicker-->
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script> 
-    <!--include if want to use datepicker-->
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -65,13 +63,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 textFieldName: 'title_name',
                 defaultValue: 'T01'
             });
-            selectReference({
-                elem: $('#unit_id'),
-                tableName: 'units',
-                keyFieldName: 'unit_id',
-                textFieldName: 'unit_name',
-                searchTool: false
-            });
         });
     </script>
     
@@ -90,42 +81,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			    <td>
 				    <label class="input-required">คำนำหน้าชื่อ</label>
 				    <input id="title_name" name="title_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['title_name'];?>
-"> <!--เปลี่ยน id, name, value-->
+"> 
 			    </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="input-required">เพศ</label>
+                    <label style="display:inline; margin-right:20px;"><input type="radio" name="sex_id" value="X1"> ชาย</label>
+                    <label style="display:inline; margin-right:20px;"><input type="radio" name="sex_id" value="X2"> หญิง</label>
+                    <label style="display:inline"><input type="radio" name="sex_id" value=""> ไม่ระบุ</label>
+                </td>
 		    </tr>
 	    </tbody>
     </table>
     </form>
-    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
-	    <tbody>
-		    <tr>
-                <td>
-                    <label>ตำแหน่ง:</label>
-				    <div id="ref_pos_id" class="select-reference form-input half"></div>
-			    </td>
-			    <td>
-				    <label>วันที่จอง</label>
-				    <input id="bk_date" name="bk_date" type="text" class="form-input half">
-			    </td>
-		    </tr>
-            <tr>
-                <td>
-                    <label class="twoInput twoInput-large">% completed</label>
-                    <label class="twoInput twoInput-small">Priority</label>
-                    <br />
-                    <input type="text" class="form-input twoInput twoInput-large" />
-                    <input type="text" class="form-input twoInput twoInput-small" />
-                </td>
-                <td>
-                    <label class="twoInput twoInput-small">จำนวน</label>
-                    <label class="twoInput twoInput-large"></label>
-                    <br />
-                    <input type="text" class="form-input twoInput twoInput-large" />
-                    <div id="unit_id" class="select-reference form-input twoInput twoInput-small" />
-                </td>
-            </tr>
-	    </tbody>
-    </table>
 </div>
 </body>
 </html>

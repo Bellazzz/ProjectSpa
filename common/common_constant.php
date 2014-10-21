@@ -540,6 +540,7 @@ function dbClose() {
 						'dateatt_out'	  => 'วันที่ออก',
 						'timeatt_out'	  => 'เวลาที่ออก'
 				),
+				'defaultNull' 	=> array('timeatt_out','dateatt_out'),
 				'searchFields'	=> array('emp_id','dateatt_id','timeatt_out')
 			);
 			break;

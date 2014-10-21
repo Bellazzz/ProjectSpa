@@ -96,7 +96,7 @@ switch ($tableName) {
 		}
 		$sql = "SELECT t.title_id,
 				t.title_name,
-				s.sex_name sex_id 
+				IFNULL(s.sex_name,'ไม่ระบุ') sex_id 
 				FROM titles t  
 				$where 
 				$order";
@@ -631,46 +631,53 @@ if($rows > 0){
 					continue;
 				}
 				//Display field
-				if($field == $tableInfo['keyFieldName']) {
-					if(isset($tableInfo['hiddenFields'])) {
-						// ถ้าตารางนี้มี hiddenFields แสดงว่าต้องมีหน้าแสดงรายละเอียด
+				if ($value == ''){
+					?>
+						<td>-</td>
+					<?
+				}else {
+					if($field == $tableInfo['keyFieldName']) {
+						if(isset($tableInfo['hiddenFields'])) {
+							// ถ้าตารางนี้มี hiddenFields แสดงว่าต้องมีหน้าแสดงรายละเอียด
+							?>
+							<td><a href="javascript:openFormTable('VIEW_DETAIL', '<?=$value?>');" class="normal-link" title="คลิกเพื่อดูรายละเอียด"><?=$value?></a></td>
+							<?
+						} else {
+							?>
+							<td><?=$value?></td>
+							<?
+						}
+					}
+					else if(mysql_field_type($result, $offset) == 'real') {
 						?>
-						<td><a href="javascript:openFormTable('VIEW_DETAIL', '<?=$value?>');" class="normal-link" title="คลิกเพื่อดูรายละเอียด"><?=$value?></a></td>
+						<td class="real-col"><? echo number_format($value,2);?></td>
 						<?
-					} else {
+					} 
+					else if (mysql_field_type($result, $offset) == 'int'){
+						?>
+						<td class="real-col"><?=$value?></td>
+						<?
+					}
+					else if (mysql_field_type($result, $offset) == 'date' || mysql_field_type($result, $offset) == 'datetime'){
+						if($value == '') {
+							$dateValue 	= '-';
+						} else {
+							$time 		= strtotime($value);
+							$yearMinTH 	= substr(date('Y', $time) + 543, 2);
+							$month 		= $monthThaiMin[(int)date('m', $time)-1];
+							$dateValue 	= date('d', $time).' '.$month.' '.$yearMinTH;
+						}
+						?>
+						<td><?=$dateValue?></td>
+						<?
+					}
+					else {
 						?>
 						<td><?=$value?></td>
 						<?
 					}
 				}
-				else if(mysql_field_type($result, $offset) == 'real') {
-					?>
-					<td class="real-col"><? echo number_format($value,2);?></td>
-					<?
-				} 
-				else if (mysql_field_type($result, $offset) == 'int'){
-					?>
-					<td class="real-col"><?=$value?></td>
-					<?
-				}
-				else if (mysql_field_type($result, $offset) == 'date' || mysql_field_type($result, $offset) == 'datetime'){
-					if($value == '') {
-						$dateValue 	= '-';
-					} else {
-						$time 		= strtotime($value);
-						$yearMinTH 	= substr(date('Y', $time) + 543, 2);
-						$month 		= $monthThaiMin[(int)date('m', $time)-1];
-						$dateValue 	= date('d', $time).' '.$month.' '.$yearMinTH;
-					}
-					?>
-					<td><?=$dateValue?></td>
-					<?
-				}
-				else {
-					?>
-					<td><?=$value?></td>
-					<?
-				}
+				
 				$offset++;
 			}
 			?>
