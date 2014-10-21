@@ -89,15 +89,15 @@ switch ($tableName) {
 		break;
 
 	case 'titles':
-		$where = 'WHERE s.sex_id = t.sex_id ';
+		$where = 'LEFT JOIN sex s ON t.sex_id = s.sex_id ';
 		if(hasValue($like)) {
-			$like	= str_replace('s.sex_id', 's.sex_name', $like);
-			$where .= " AND $like";
+			$like	= str_replace('sex_id', 's.sex_name', $like);
+			$where .= " WHERE $like";
 		}
 		$sql = "SELECT t.title_id,
 				t.title_name,
 				s.sex_name sex_id 
-				FROM titles t, sex s  
+				FROM titles t  
 				$where 
 				$order";
 		break;
