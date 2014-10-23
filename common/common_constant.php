@@ -60,7 +60,8 @@ function dbClose() {
 					'sex_id' 		=> 'เพศ'
 				),
 				'defaultNull' 	=> array('sex_id'),
-				'searchFields'	=> array('title_name')
+				'searchFields'	=> array('title_name'),
+				'deleteTxtField'	=> array('title_name')
 			);
 			break;
 
@@ -75,7 +76,8 @@ function dbClose() {
 					'sex_id'	=> 'รหัสเพศ',
 					'sex_name'	=> 'ชื่อเพศ'
 				),
-				'searchFields'	=> array('sex_name')
+				'searchFields'	=> array('sex_name'),
+				'deleteTxtField'	=> array('sex_name')
 			);
 			break;
 
@@ -90,7 +92,8 @@ function dbClose() {
 					'ordstat_id'		=> 'รหัสสถานะการสั่งซื้อ',
 					'ordstat_name'		=> 'ชื่อสถานะการสั่งซื้อ'
 				),
-				'searchFields'	=> array('ordstat_name')
+				'searchFields'	=> array('ordstat_name'),
+				'deleteTxtField'	=> array('ordstat_name')
 			);
 			break;
 				
@@ -541,7 +544,10 @@ function dbClose() {
 						'timeatt_out'	  => 'เวลาที่ออก'
 				),
 				'defaultNull' 	=> array('timeatt_out','dateatt_out'),
-				'searchFields'	=> array('emp_id','dateatt_id','timeatt_out')
+				'searchFields'	=> array('emp_id','dateatt_in','dateatt_out'),
+				'deleteTxtField'	=> array('dateatt_in','emp_id'),
+				'deleteTxtPatternMain' 	=> 'คุณต้องการลบการเข้า-ออกงานวันที่ %f1 ของ %f2 ใช่หรือไม่?',
+				'deleteTxtPatternMin' 	=> 'วันที่ %f1 ของ %f2'
 			);
 			break;
 
@@ -586,7 +592,7 @@ function dbClose() {
 						'bkg_transfer_money'      => 'จำนวนเงินที่โอน(บาท)'
 				),
 				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time'),
-				'defaultNull' 	=> array('bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_transfer_money'),
+				'defaultNull' 	=> array('bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_transfer_money','bnkacc_id'),
 				'searchFields'	=> array('bkg_id','cus_id','emp_id','status_id','bkg_total_price','bkg_date','bkg_time')
 			);
 			break;

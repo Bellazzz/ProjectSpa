@@ -64,7 +64,7 @@
     {if $action == 'VIEW_DETAIL'}
     <!-- VIEW_DETAIL-->
     <div class="table-view-detail-image full">
-        <img src="../img/products/{$values.prd_pic}">
+    <img src="{if $values.prd_pic != '-'}../img/products/{$values.prd_pic}{else}../img/backoffice/no-pic.png{/if}">
     </div>
     <table class="table-view-detail">
         <tbody>                     
@@ -158,13 +158,9 @@
                     <span id="err-unit_id-require" class="errInputMsg half err-unit_id">โปรดเลือกหน่วยนับ</span>
                 </td>
             </tr>
-	    </tbody>
-    </table>
-
-    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
-        <tbody>
             <tr>
-                <td>
+                <td colspan="2">
+                    <label>รูปภาพผลิตภัณฑ์</label>
                     <div id="prd_pic" class="uploadImageArea full"></div>
                     <input type="hidden" name="prd_pic" value="{$values.prd_pic}">
                 </td>

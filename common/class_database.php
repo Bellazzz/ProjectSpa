@@ -215,6 +215,7 @@ class DBRecord {
 	}
 
 	public function genKeyCharRunningWithYear() {
+		date_default_timezone_set('Asia/Bangkok');
 		$keyLength	= $this->tableInfo['keyLength'];
 		$keyChar	= $this->tableInfo['keyChar'];
 		$keyCharLen	= strlen($keyChar);
