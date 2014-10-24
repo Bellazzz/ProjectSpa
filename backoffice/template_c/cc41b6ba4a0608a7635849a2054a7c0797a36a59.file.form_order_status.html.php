@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-24 08:23:58
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_sex.html" */ ?>
-<?php /*%%SmartyHeaderCode:188545449aa2e4dfb89-46633201%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 06:40:08
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_order_status.html" */ ?>
+<?php /*%%SmartyHeaderCode:31260544ae35885d957-63533912%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '0be5ceee72b007b7c335d74d7d7f73902722def7' => 
+    'cc41b6ba4a0608a7635849a2054a7c0797a36a59' => 
     array (
-      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_sex.html',
-      1 => 1410073808,
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_order_status.html',
+      1 => 1414193995,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '188545449aa2e4dfb89-46633201',
+  'nocache_hash' => '31260544ae35885d957-63533912',
   'function' => 
   array (
   ),
@@ -25,9 +25,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5449aa2e571368_61488801',
+  'unifunc' => 'content_544ae358989854_07920997',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5449aa2e571368_61488801')) {function content_5449aa2e571368_61488801($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_544ae358989854_07920997')) {function content_544ae358989854_07920997($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -54,22 +54,29 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     
 </head>
 <body>
-
+ 	 	 	 	 
 <?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="sex_name">
-    <input type="hidden" name="uniqueFields" value="sex_name">
+	<input type="hidden" name="requiredFields" value="ordstat_name">
+	<input type="hidden" name="uniqueFields" value="ordstat_name">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 		    <tr>
 			    <td>
-				    <label class="input-required">ชื่อเพศ</label>
-				    <input id="sex_name" name="sex_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['sex_name'];?>
-">
+				    <label class="input-required">ชื่อสถานะการสั่งซื้อ</label>
+				    <input id="ordstat_name" name="ordstat_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['ordstat_name'];?>
+" valuepattern="character" require>
 			    </td>
-		    </tr>
+            </tr>
+            <tr>
+                <td>
+                    <span id="err-ordstat_name-require" class="errInputMsg err-ordstat_name">โปรดป้อนชื่อสถานะการสั่งซื้อ</span>
+                    <span id="err-ordstat_name-character" class="errInputMsg err-ordstat_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-ordstat_name-unique" class="errInputMsg err-ordstat_name">ชื่อสถานะการสั่งซื้อซ้ำ โปรดป้อนชื่อสถานะการสั่งซื้อหม่</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>
@@ -80,5 +87,4 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     [Note]
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
-	3.  input[name="uniqueFields"] ใส่ชื่อฟิลด์ที่ต้องการเช็คว่าห้ามซ้ำ
 --><?php }} ?>

@@ -108,7 +108,8 @@ function dbClose() {
 						'pos_id'		=> 'รหัสตำแหน่ง',
 						'pos_name'		=> 'ตำแหน่ง'
 				),
-				'searchFields'	=> array('pos_name')
+				'searchFields'	=> array('pos_name'),
+				'deleteTxtField'=> array('pos_name')
 			);
 			break;
 
@@ -136,7 +137,10 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('emp_indate','emp_birthdate','emp_addr','emp_tel','emp_user','emp_pass','emp_pic'),
 				'defaultNull' 	=> array('emp_pic','emp_birthdate','emp_user','emp_pass'),
-				'searchFields'	=> array('sex_id','title_id','emp_name','emp_surname','pos_id')
+				'searchFields'	=> array('sex_id','title_id','emp_name','emp_surname','pos_id'),
+				'deleteTxtField'	 	=> array('sex_id','emp_name','emp_surname'),
+				'deleteTxtPatternMain' 	=> 'คุณต้องการลบข้อมูลพนักงานของ %f1%f2 %f3 ใช่หรือไม่?',
+				'deleteTxtPatternMin' 	=> '%f1%f2 %f3'
 			);
 			break;
 		
