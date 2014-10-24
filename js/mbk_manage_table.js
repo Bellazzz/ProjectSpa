@@ -351,6 +351,7 @@ function deleteRecordSelected() {
                             }
                         }
                     });
+                    hideActionDialog();
                 }
             },
             {
