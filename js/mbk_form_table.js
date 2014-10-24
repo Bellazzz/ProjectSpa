@@ -12,7 +12,36 @@ $(document).ready(function () {
 
     // Button Click
     $('#save-btn').click(function () {
-        saveRecord();
+    	if(action == 'EDIT'){
+	        parent.showActionDialog({
+	            title: 'บันทึกการแก้ไข',
+	            message: 'คุณต้องการแก้ไขข้อมูลใช่หรือไม่?',
+	            actionList: [
+	                {
+	                    id: 'ok',
+	                    name: 'ตกลง',
+	                    desc: 'บันทึกการเปลี่ยนแปลงข้อมูล',
+	                    func:
+	                    function() { 
+	                    	saveRecord();
+	                        parent.hideActionDialog();
+	                    }
+	                },
+	                {
+	                    id: 'cancel',
+	                    name: 'ยกเลิก',
+	                    desc: 'ยกเลิกการเปลี่ยนแปลงข้อมูล',
+	                    func:
+	                    function() {
+	                        parent.hideActionDialog();
+	                    }
+	                }
+	            ],
+	            boxWidth: 400
+	        });
+    	} else if (action == 'ADD'){
+    		saveRecord();
+    	}
     });
     $('#cancel-btn').click(function () {
         parent.confirmCloseFormTable(action);
