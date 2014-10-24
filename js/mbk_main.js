@@ -401,14 +401,14 @@ function selectReference(select) {
 		clearTempImage();
 
 		// fetch FileList object
-		var allowType	= ['jpg', 'jpeg', 'gif', 'png'];
+		var allowType	= ['jpg', 'jpeg', 'png'];
 		var files		= e.target.files || e.dataTransfer.files;
 		var file		= files[0]; // Only one file
 		var ftype		= file.type.replace("image/","");
 		var form		= $(this).parent();
 
 		// Parse file
-		if(file.type.indexOf("image") == 0) {
+		if(file.type.indexOf("image") == 0 && allowType.indexOf(ftype)) {
 			// Show image in area
 			var reader = new FileReader();
 			reader.onload = function(e) {
@@ -441,7 +441,24 @@ function selectReference(select) {
 				}
 			}
 			reader.readAsDataURL(file);
-		}
+		} else {
+            parent.showActionDialog({
+                title: 'รูปภาพไม่ถูกต้อง',
+                message: 'ไฟล์รูปภาพที่คุณเลือกไม่ถูกต้อง <br>กรุณาเลือกไฟล์ ' + allowType.join(' ,') + ' เท่านั้น',
+                actionList: [
+                    {
+                        id: 'ok',
+                        name: 'ตกลง',
+                        desc: 'เลือกไฟล์รูปภาพใหม่',
+                        func:
+                        function() {
+                            parent.hideActionDialog();
+                        }
+                    }
+                ],
+                boxWidth: 400
+            });
+        }
 	});
 
 	function showImage(bg) {
