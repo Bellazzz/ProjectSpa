@@ -1,9 +1,39 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-24 07:49:38
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_promotion_service_lists.html" */ ?>
+<?php /*%%SmartyHeaderCode:236175449988ad55b54-38598837%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '60ea36815315be1e19cea1ca0304c346f069ae1a' => 
+    array (
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_promotion_service_lists.html',
+      1 => 1414111772,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '236175449988ad55b54-38598837',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5449988af31e34_92429699',
+  'variables' => 
+  array (
+    'action' => 0,
+    'tableName' => 0,
+    'tableNameTH' => 0,
+    'code' => 0,
+    'values' => 0,
+    'nowDate' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5449988af31e34_92429699')) {function content_5449988af31e34_92429699($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
 	<meta charset="UTF-8"/>
-    {literal}
+    
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
 	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
@@ -15,10 +45,14 @@
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
     <script type="text/javascript">
         // Global variables
-        var action      = '{/literal}{$action}{literal}';
-        var tableName   = '{/literal}{$tableName}{literal}';
-		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
-        var code        = '{/literal}{$code}{literal}';
+        var action      = '<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
+';
+        var tableName   = '<?php echo $_smarty_tpl->tpl_vars['tableName']->value;?>
+';
+		var tableNameTH = '<?php echo $_smarty_tpl->tpl_vars['tableNameTH']->value;?>
+';
+        var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+';
         var ajaxUrl     = 'form_table.php';
 
         $(document).ready(function () {
@@ -27,7 +61,8 @@
                 tableName		: 'service_lists',
                 keyFieldName	: 'svl_id',
                 textFieldName	: 'svl_name',
-                defaultValue	: '{/literal}{$values.svl_id}{literal}'
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_id'];?>
+'
             });
 
 			selectReference({
@@ -35,7 +70,8 @@
                 tableName		: 'promotions',
                 keyFieldName	: 'prm_id',
                 textFieldName	: 'prm_name',
-                defaultValue	: '{/literal}{$values.prm_id}{literal}'
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['prm_id'];?>
+'
             });
 
 			$('#prmsvl_start').datetimepicker({
@@ -52,7 +88,8 @@
                 onShow:function( ct ){
                     if(action == 'ADD') {
                     	this.setOptions({
-	                        minDate: realDateToTmpDate('{/literal}{$nowDate}{literal}'),
+	                        minDate: realDateToTmpDate('<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+'),
 	                        maxDate:$('#prmsvl_end').val()?unconvertThaiDate($('#prmsvl_end').val()):false
 	                    });
                     } else if(action == 'EDIT') {
@@ -78,7 +115,8 @@
                 onShow:function( ct ){
                     if(action == 'ADD') {
                     	this.setOptions({
-	                        minDate:$('#prmsvl_start').val()?unconvertThaiDate($('#prmsvl_start').val()):realDateToTmpDate('{/literal}{$nowDate}{literal}')
+	                        minDate:$('#prmsvl_start').val()?unconvertThaiDate($('#prmsvl_start').val()):realDateToTmpDate('<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+')
 	                    });
                     } else if(action="EDIT") {
                     	this.setOptions({
@@ -106,7 +144,8 @@
 
             var selfDate        = new Date(self.val());
             var siblingDate     = new Date(unconvertThaiDate(sibling.val()));
-            var nowDate         = new Date(realDateToTmpDate('{/literal}{$nowDate}{literal}'));
+            var nowDate         = new Date(realDateToTmpDate('<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+'));
             var selfId          = self.attr('id');
 
             // Check sibling
@@ -183,56 +222,66 @@
             }
         }
     </script>
-    {/literal}
+    
 </head>
 <body>
 
-{include file="form_table_header.html"}
+<?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <div class="ftb-body">
-	{if $action == 'VIEW_DETAIL'}
+	<?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
 	<!-- VIEW_DETAIL -->
 	<table class="table-view-detail">
 		<tbody> 			
 			<tr>
 				<td>รหัสรายการบริการที่จัดโปรโมชั่น :</td>
-				<td>{$code}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+</td>
 			</tr>
 			<tr>
 				<td>รหัสรายการบริการ :</td>
 				<td>
-					<a href="form_table.php?action=VIEW_DETAIL&tableName=service_lists&code={$values.svl_id}&hideEditButton=true" class="normal-link" title="คลิกเพื่อดูรายละเอียด">
-                		{$values.svl_id}
+					<a href="form_table.php?action=VIEW_DETAIL&tableName=service_lists&code=<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_id'];?>
+&hideEditButton=true" class="normal-link" title="คลิกเพื่อดูรายละเอียด">
+                		<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_id'];?>
+
                 	</a>
 				</td>
 			</tr>
 			<tr>
 				<td>รหัสโปรโมชั่น :</td>
 				<td>
-					<a href="form_table.php?action=VIEW_DETAIL&tableName=promotions&code={$values.prm_id}&hideEditButton=true" class="normal-link" title="คลิกเพื่อดูรายละเอียด">
-                		{$values.prm_id}
+					<a href="form_table.php?action=VIEW_DETAIL&tableName=promotions&code=<?php echo $_smarty_tpl->tpl_vars['values']->value['prm_id'];?>
+&hideEditButton=true" class="normal-link" title="คลิกเพื่อดูรายละเอียด">
+                		<?php echo $_smarty_tpl->tpl_vars['values']->value['prm_id'];?>
+
                 	</a>
 				</td>
 			</tr>
 			<tr>
 				<td>ราคา :</td>
-				<td>{$values.prmsvl_price|number_format:2:".":","} บาท</td>
+				<td><?php echo number_format($_smarty_tpl->tpl_vars['values']->value['prmsvl_price'],2,".",",");?>
+ บาท</td>
 			</tr>
 			<tr>
 				<td>วันที่เริ่มใช้ :</td>
-				<td>{$values.prmsvl_start}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['prmsvl_start'];?>
+</td>
 			</tr>
 			<tr>
 				<td>วันที่สิ้นสุด :</td>
-				<td>{if $values.prmsvl_end}{$values.prmsvl_end}{else}-{/if}</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['prmsvl_end']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['prmsvl_end'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>คำอธิบาย :</td>
-				<td>{if $values.prmsvl_desc}{$values.prmsvl_desc}{else}-{/if}</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['prmsvl_desc']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['prmsvl_desc'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 		
 		</tbody>
 	</table>
-	{else}	 	
+	<?php } else { ?>	 	
 	<!-- ADD, EDIT -->	 
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="svl_id,prm_id,prmsvl_price,prmsvl_start">
@@ -263,7 +312,8 @@
 		    <tr>
 			    <td colspan="2">
 				    <label class="input-required">ราคา (บาท)</label>
-				    <input id="prmsvl_price" name="prmsvl_price" type="text" class="form-input full" value="{$values.prmsvl_price}" valuepattern="money" require>
+				    <input id="prmsvl_price" name="prmsvl_price" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['prmsvl_price'];?>
+" valuepattern="money" require>
 			    </td>
 		    </tr>
 		    <tr class="errMsgRow">
@@ -275,11 +325,13 @@
 			<tr>
                 <td>
                     <label class="input-required">วันที่เริ่มใช้</label>
-				    <input id="prmsvl_start" name="prmsvl_start" type="text" class="mbk-dtp-th form-input half" value="{$values.prmsvl_start}" require>
+				    <input id="prmsvl_start" name="prmsvl_start" type="text" class="mbk-dtp-th form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['prmsvl_start'];?>
+" require>
 			    </td>
 			    <td>
 				    <label>วันที่สิ้นสุด</label>
-				    <input id="prmsvl_end" name="prmsvl_end" type="text" class="mbk-dtp-th form-input half" value="{$values.prmsvl_end}">
+				    <input id="prmsvl_end" name="prmsvl_end" type="text" class="mbk-dtp-th form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['prmsvl_end'];?>
+">
 			    </td>
 		    </tr>
 		    <tr class="errMsgRow">
@@ -291,13 +343,14 @@
             <tr>
 			    <td colspan="2">
 				    <label>คำอธิบาย</label>
-					<textarea id="prmsvl_desc" name="prmsvl_desc" class="form-input full">{$values.prmsvl_desc}</textarea>
+					<textarea id="prmsvl_desc" name="prmsvl_desc" class="form-input full"><?php echo $_smarty_tpl->tpl_vars['values']->value['prmsvl_desc'];?>
+</textarea>
 			    </td>
 		    </tr>
 	    </tbody>
     </table>
     </form>
-    {/if}
+    <?php }?>
 </div>
 </body>
 </html>
@@ -306,4 +359,4 @@
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
 	3.  input[name="uniqueFields"] ใส่ชื่อฟิลด์ที่ต้องการเช็คว่าห้ามซ้ำ
--->
+--><?php }} ?>

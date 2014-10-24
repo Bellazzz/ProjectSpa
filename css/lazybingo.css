@@ -1203,6 +1203,10 @@ label.article-title {
     border: 1px solid #ccc;
     z-index: 2; /*Add by Bell*/
 }
+.select-reference .clear-value-btn {
+    padding: 5px 15px;
+    width: 100%;
+}
 .select-reference .option-container{
     margin: 0;
     padding: 0;
@@ -1214,7 +1218,7 @@ label.article-title {
     cursor: pointer;
     padding: 5px 5px 5px 15px;
 }
-.select-reference .option-container li:hover{
+.select-reference .option-container li:hover, .select-reference .clear-value-btn:hover{
     background: #8AC007;
 	color: white;
 }
@@ -1246,6 +1250,7 @@ label.article-title {
     width: 100%;
     padding-left: 32px;
 }
+
 /*
  * Select reference text
  */

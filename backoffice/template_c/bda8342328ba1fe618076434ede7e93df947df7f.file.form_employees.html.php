@@ -1,9 +1,38 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-24 07:45:20
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
+<?php /*%%SmartyHeaderCode:27330544997de1817b5-54788096%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'bda8342328ba1fe618076434ede7e93df947df7f' => 
+    array (
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_employees.html',
+      1 => 1414111507,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '27330544997de1817b5-54788096',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_544997de354723_63071107',
+  'variables' => 
+  array (
+    'action' => 0,
+    'tableName' => 0,
+    'tableNameTH' => 0,
+    'code' => 0,
+    'values' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_544997de354723_63071107')) {function content_544997de354723_63071107($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
 	<meta charset="UTF-8"/>
-    {literal}
+    
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
 	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
@@ -15,10 +44,14 @@
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
     <script type="text/javascript">
         // Global variables
-        var action      = '{/literal}{$action}{literal}';
-        var tableName   = '{/literal}{$tableName}{literal}';
-		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
-        var code        = '{/literal}{$code}{literal}';
+        var action      = '<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
+';
+        var tableName   = '<?php echo $_smarty_tpl->tpl_vars['tableName']->value;?>
+';
+		var tableNameTH = '<?php echo $_smarty_tpl->tpl_vars['tableNameTH']->value;?>
+';
+        var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+';
         var ajaxUrl     = 'form_employees.php';
 
 		$(document).ready(function() {
@@ -56,28 +89,32 @@
                 keyFieldName	: 'sex_id',
                 textFieldName	: 'sex_name',
 				searchTool		: false,
-                defaultValue	: '{/literal}{$values.sex_id}{literal}'
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['sex_id'];?>
+'
             });
 			selectReference({
                 elem			: $('#title_id'),
                 tableName		: 'titles',
                 keyFieldName	: 'title_id',
                 textFieldName	: 'title_name',
-                defaultValue	: '{/literal}{$values.title_id}{literal}'
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['title_id'];?>
+'
             });
             selectReference({
                 elem            : $('#pos_id'),
                 tableName       : 'positions',
                 keyFieldName    : 'pos_id',
                 textFieldName   : 'pos_name',
-                defaultValue    : '{/literal}{$values.pos_id}{literal}'
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['pos_id'];?>
+'
             });
 
 			uploadImageInput({
 				area: $('#emp_pic'),
 				input: $('input[name="emp_pic"]'),
 				selector: $('#emp_pic_file'),
-				defaultValue: '{/literal}{if $values.emp_pic}../img/employees/{$values.emp_pic}{/if}{literal}'
+				defaultValue: '<?php if ($_smarty_tpl->tpl_vars['values']->value['emp_pic']) {?>../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
+<?php }?>'
 			});
 
 			// Add input password
@@ -170,23 +207,26 @@
 			}
 		}
     </script>
-    {/literal}
+    
 </head>
 <body>
  	 	 	 	 
-{include file="form_table_header.html"}
+<?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <div class="ftb-body"> 	 
 	<div class="ftb-body">
-	{if $action == 'VIEW_DETAIL'}
+	<?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-		<img src="{if $values.emp_pic != '-'}../img/employees/{$values.emp_pic}{else}../img/backoffice/no-pic.png{/if}">
+		<img src="<?php if ($_smarty_tpl->tpl_vars['values']->value['emp_pic']!='-') {?>../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
+<?php } else { ?>../img/backoffice/no-pic.png<?php }?>">
 	</div>
 	<table class="table-view-detail">
 		<tbody>
 			<tr>
 				<td>รหัสพนักงาน :</td>
-				<td>{$code}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+</td>
 			</tr>
 			<tr>
 				<td>คำนำหน้าชื่อ :</td>
@@ -194,11 +234,13 @@
 			</tr>
 			<tr>
 				<td>ชื่อพนักงาน :</td>
-				<td>{if $values.emp_name}{$values.emp_name}{else}-{/if}</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_name']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>นามสกุล :</td>
-				<td>{if $values.emp_surname}{$values.emp_surname}{else}-{/if}</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_surname']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>เพศ :</td>
@@ -210,27 +252,32 @@
 			</tr>
 			<tr>
 				<td>ที่อยู่ :</td>
-				<td>{if $values.emp_addr}{$values.emp_addr}{else}-{/if}</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_addr']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_addr'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>เบอร์โทรศัพท์ :</td>
-				<td>{if $values.emp_tel}{$values.emp_tel}{else}-{/if}</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_tel']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_tel'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>วันเกิด :</td>
-				<td>{if $values.emp_birthdate}{$values.emp_birthdate}{else}-{/if}</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_birthdate']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_birthdate'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>วันที่เข้าทำงาน :</td>
-				<td>{if $values.emp_indate}{$values.emp_indate}{else}-{/if}</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_indate']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_indate'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>ชื่อผู้ใช้งาน :</td>
-				<td>{if $values.emp_user}{$values.emp_user}{else}-{/if}</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_user']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_user'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 		</tbody>
 	</table>
-	{else}	 	
+	<?php } else { ?>	 	
 	<!-- ADD, EDIT -->	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_indate,sex_id,emp_birthdate">
@@ -258,7 +305,8 @@
 			<tr>
 				<td colspan="2">
 					<label class="input-required">ชื่อพนักงาน</label>
-					<input id="emp_name" name="emp_name" type="text" class="form-input full" value="{$values.emp_name}" valuepattern="character" require>
+					<input id="emp_name" name="emp_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
+" valuepattern="character" require>
 				</td>
 			</tr>
 			<tr class="errMsgRow">
@@ -270,7 +318,8 @@
 			<tr>
 				<td colspan="2">
 					<label class="input-required">นามสกุล</label>
-					<input id="emp_surname" name="emp_surname" type="text" class="form-input full" value="{$values.emp_surname}" valuepattern="character" require>
+					<input id="emp_surname" name="emp_surname" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
+" valuepattern="character" require>
 	
 				</td>
 			</tr>
@@ -287,7 +336,8 @@
 				</td>
 				<td>
 					<label class="input-required">วันที่เข้าทำงาน</label>
-					<input id="emp_indate" name="emp_indate" type="text" class="mbk-dtp-th form-input half" value="{$values.emp_indate}" require>
+					<input id="emp_indate" name="emp_indate" type="text" class="mbk-dtp-th form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_indate'];?>
+" require>
 				</td>
 			</tr>
 			<tr class="errMsgRow">
@@ -301,7 +351,8 @@
 			<tr>
 				<td colspan=2>
 					<label class="input-required">ที่อยู่</label>
-					<textarea id="emp_addr" name="emp_addr" class="form-input full" require>{$values.emp_addr}</textarea>
+					<textarea id="emp_addr" name="emp_addr" class="form-input full" require><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_addr'];?>
+</textarea>
 				</td>
 			</tr>
 			<tr class="errMsgRow">
@@ -312,11 +363,13 @@
 			<tr>
 				<td>
 					<label class="input-required">เบอร์โทรศัพท์</label>
-					<input id="emp_tel" name="emp_tel" type="text" class="form-input half" value="{$values.emp_tel}" valuepattern="tel" maxlength="10" size="10" require>
+					<input id="emp_tel" name="emp_tel" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_tel'];?>
+" valuepattern="tel" maxlength="10" size="10" require>
 				</td>
 				<td>
 					<label class="input-required">วันเกิด</label>
-					<input id="emp_birthdate" name="emp_birthdate" type="text" class="mbk-dtp-th form-input half" value="{$values.emp_birthdate}" require>
+					<input id="emp_birthdate" name="emp_birthdate" type="text" class="mbk-dtp-th form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_birthdate'];?>
+" require>
 				</td>
 			</tr>
 			<tr class="errMsgRow">
@@ -335,7 +388,8 @@
 			<tr>
 				<td colspan=2>
 					<label>ชื่อผู้ใช้งาน</label>
-					<input id="emp_user" name="emp_user" type="text" class="form-input full" value="{$values.emp_user}">
+					<input id="emp_user" name="emp_user" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_user'];?>
+">
 				</td>
 			</tr>
 			<tr class="errMsgRow">
@@ -343,13 +397,13 @@
                     <span id="err-emp_user-require" class="errInputMsg half err-emp_user">โปรดป้อนชื่อผู้ใช้งาน</span>
                 </td>
             </tr>
-			{if $action == 'EDIT'}
+			<?php if ($_smarty_tpl->tpl_vars['action']->value=='EDIT') {?>
 			<tr id="trResetPass">
 				<td colspan="2">
 					<a href="javascript:resetPass();" class="normal-link">ตั้งรหัสผ่านใหม่</a>
 				</td>
 			</tr>
-			{/if}
+			<?php }?>
 	    </tbody>
     </table>
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
@@ -358,7 +412,8 @@
 	    		<td>
 	    			<label>รูปภาพพนักงาน</label>
 					<div id="emp_pic" class="uploadImageArea full"></div>
-					<input type="hidden" name="emp_pic" value="{$values.emp_pic}">
+					<input type="hidden" name="emp_pic" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
+">
 				</td>
 	    	</tr>
 	    </tbody>
@@ -366,7 +421,7 @@
 	<form method="post" enctype="multipart/form-data">
 		<input id="emp_pic_file" type="file" name="imageFile" class="uploadImageSelector" multiple="multiple">
 	</form>
-	{/if}
+	<?php }?>
 </div>
 </body>
 </html>
@@ -374,4 +429,4 @@
     [Note]
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
--->
+--><?php }} ?>

@@ -168,6 +168,9 @@ function selectReference(select) {
                      + '         <span class="mbk-icon-16 mbk-icon-16-search"></span>'
                      + '         <input class="search-input" type="text">'
                      + '     </div>'
+                     + '     <div class="clear-value-btn">'
+                     + '         <span>ไม่เลือก</span>'
+                     + '     </div>';
         }
         initTag += '     <ul id="' + select.elem.attr('id') + '-option-container" class="option-container"></ul>'
                  + '</div>';
@@ -175,6 +178,26 @@ function selectReference(select) {
         select.elem.attr('more', 'true');
         select.elem.attr('begin', '0');
         select.elem.html(initTag);
+
+        // Add event clear value
+        var clearValBtn = select.elem.find('.clear-value-btn');
+        clearValBtn.click(function(e){
+            e.stopPropagation();
+            if(typeof(select.allowChangeOption) == 'function') {
+                if(!select.allowChangeOption('')) {
+                    hideAllPopup();
+                    return;
+                }
+            }
+            $(this).parent().parent().parent().removeClass('required');
+            $('.err-' + select.elem.attr('id')).css('display', 'none');
+            selectRefCon.siblings('.select-reference-text').text('กรุณาเลือก');
+            selectRefCon.siblings('.select-reference-input').val('');
+            hideAllPopup();
+            if(typeof(select.onOptionSelect) == 'function') {
+                select.onOptionSelect();
+            }
+        });
 
          // Skip this if has class text
         if(!select.elem.hasClass('text')) {
