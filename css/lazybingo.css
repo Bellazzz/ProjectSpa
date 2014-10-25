@@ -1177,6 +1177,14 @@ label.article-title {
 .errInputMsg.half {
     max-width: 250px;
 }
+.errInputMsg:before {
+    content: "\f06a";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    margin-right: 4px;
+}
 
 /*
  * Select Reference
@@ -1357,11 +1365,66 @@ label.article-title {
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	cursor: pointer;
 	position: relative;
 }
 .uploadImageArea.full{
     width: 520px;
+}
+.uploadImageArea .desc {
+    width: 200px;
+    height: 120px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -60px;
+    text-align: center;
+    color: #bbb;
+}
+.uploadImageArea .desc i {
+    font-size: 100px;
+}
+.uploadImageArea.hasImage .desc {
+    display: none;
+}
+.uploadImageArea .control {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 10px;
+    background: rgba(0,0,0,0.8);
+    list-style: none;
+    color: #b3b3b3;
+    opacity: 0;
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+}
+.uploadImageArea:hover .control {
+    opacity: 1;
+}
+.uploadImageArea .control li {
+    float: right;
+    font-weight: bold;
+    margin-left: 15px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.uploadImageArea .control li:hover {
+    background: rgba(255,255,255,0.4);
+    color: white;
+}
+.uploadImageArea .editImgBtn, .uploadImageArea .clearImgBtn{
+    display: none;
+}
+.uploadImageArea.hasImage .editImgBtn, .uploadImageArea.hasImage .clearImgBtn {
+    display: inline-block;
+}
+.uploadImageArea.hasImage .chooseImgBtn {
+    display: none;
 }
 .uploadImageSelector {
 	width: 0;

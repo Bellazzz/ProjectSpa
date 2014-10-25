@@ -385,17 +385,36 @@ function selectReference(select) {
  */
  function uploadImageInput(data) {
 	 var imgData = Array();
+
+     // Initial
+    var inner   = '<div class="desc">'
+                + '     <i class="fa fa-image"></i><br>'
+                + '     JPG, JPEG, PNG'
+                + '</div>'
+                + '<ul class="control">'
+                + '     <li class="clearImgBtn">ลบ</li>'
+                + '     <li class="editImgBtn">เปลี่ยนรูปภาพ</li>'
+                + '     <li class="chooseImgBtn">เลือกรูปภาพ</li>'
+                + '</ul>';
+    $(data.area).html(inner);
 	 
 	 // Set default image
 	 if(typeof(data.defaultValue) != 'undefined' && data.defaultValue != '') {
-		 var url = "url(" + data.defaultValue + ")";
-		 $(data.area).css('background-image', url);
+         showImage(data.defaultValue);
 	 }
 	
 	// Add event
-	$(data.area).click(function(){
-		data.selector.click();
-	});
+    $(data.area).find('.chooseImgBtn').click(function() {
+        data.selector.click();
+    });
+    $(data.area).find('.editImgBtn').click(function() {
+        data.selector.click();
+    });
+    $(data.area).find('.clearImgBtn').click(function() {
+        $(data.area).removeClass('hasImage');
+        $(data.area).css('background-image', 'none');
+        data.input.val('');
+    });
 
 	data.selector.change(function(e){
 		clearTempImage();
@@ -472,6 +491,7 @@ function selectReference(select) {
 		}
 		var url = "url(" + img.src + ")";
 		$(data.area).css('background-image', url);
+        $(data.area).addClass('hasImage');
 	}
  }
 
