@@ -65,6 +65,14 @@
                 }
             });
             selectReference({
+                elem            : $('#sex_id'),
+                tableName       : 'sex',
+                keyFieldName    : 'sex_id',
+                textFieldName   : 'sex_name',
+                searchTool      : false,
+                defaultValue    : '{/literal}{$values.sex_id}{literal}'
+            });
+            selectReference({
                 elem            : $('#pos_id'),
                 tableName       : 'positions',
                 keyFieldName    : 'pos_id',

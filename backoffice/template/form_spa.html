@@ -28,9 +28,6 @@
 				selector: $('#spa_logo_file'),
 				defaultValue: '{/literal}{if $values.spa_logo}../img/spa/{$values.spa_logo}?rand={$randNum}{/if}{literal}'
 			});
-
-			// Set default value of textarea
-			$('#spa_addr').text('{/literal}{$values.spa_addr}{literal}');
 		});
     </script>
     {/literal}
@@ -63,6 +60,10 @@
 				<td>{$values.spa_tel}</td>
 			</tr>
 			<tr>
+				<td>E-mail :</td>
+				<td>{$values.spa_email}</td>
+			</tr>
+			<tr>
 				<td>โทรสาร :</td>
 				<td>{$values.spa_fax}</td>
 			</tr>
@@ -89,7 +90,7 @@
 			<tr>
 				<td colspan="2">
 					<label class="input-required">ที่อยู่</label>
-					<textarea id="spa_addr" name="spa_addr" class="form-input full" value="{$values.spa_addr}" require></textarea>
+					<textarea id="spa_addr" name="spa_addr" class="form-input full" require>{$values.spa_addr}</textarea>
 				</td>
 			</tr>
 			<tr>
@@ -100,7 +101,7 @@
 			<tr>
 				<td>
 					<label class="input-required">เบอร์โทร</label>
-					<input id="spa_tel" name="spa_tel" type="text" class="form-input half" value="{$values.spa_tel}" require>
+					<input id="spa_tel" name="spa_tel" type="text" class="form-input half" value="{$values.spa_tel}" require maxlength="10">
 				</td>
 				<td>
 					<label>โทรสาร</label>
@@ -112,6 +113,18 @@
                     <span id="err-spa_tel-require" class="errInputMsg err-spa_tel">โปรดป้อนเบอร์โทร</span>
                 </td>
                 <td></td>
+            </tr>
+			<tr>
+                <td colspan="2">
+                    <label>E-mail</label>
+                    <input id="spa_email" name="spa_email" type="text" class="form-input full" 
+                    value="{$values.spa_email}" valuepattern="email">
+                </td>
+            </tr>
+			<tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-spa_email-email" class="errInputMsg err-spa_email">รูปแบบอีเมลไม่ถูกต้อง</span>
+                </td>
             </tr>
 			<tr>
 				<td colspan="2">

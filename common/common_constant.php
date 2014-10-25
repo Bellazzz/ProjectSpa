@@ -106,7 +106,7 @@ function dbClose() {
 				'keyLength'		=> 3,
 				'fieldNameList'	=> array(
 						'pos_id'		=> 'รหัสตำแหน่ง',
-						'pos_name'		=> 'ตำแหน่ง'
+						'pos_name'		=> 'ชื่อตำแหน่ง'
 				),
 				'searchFields'	=> array('pos_name'),
 				'deleteTxtField'=> array('pos_name')
@@ -154,8 +154,9 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'unit_id'		=> 'รหัสหน่วยนับ',
 						'unit_name'		=> 'หน่วยนับ'
-				),
-				'searchFields'	=> array('unit_name')
+				),  
+				'searchFields'	=> array('unit_name'),
+				'deleteTxtField'=> array('unit_name')
 			);
 			break;
 
@@ -171,7 +172,8 @@ function dbClose() {
 						'room_id'		=> 'ห้องนวด',
 						'bed_name'		=> 'เตียงนวด'
 				),
-				'searchFields'	=> array('bed_name')
+				'searchFields'	=> array('bed_name'),
+				'deleteTxtField'=> array('bed_name')
 			);
 			break;
 
@@ -189,7 +191,8 @@ function dbClose() {
 						'bnkacc_branch' => 'สาขา',
 						'bnkacc_type'	=> 'ประเภทบัญชี'
 				),
-				'searchFields'	=> array('bnkacc_no','bnkacc_name')
+				'searchFields'	=> array('bnkacc_no','bnkacc_name'),
+				'deleteTxtField'=> array('bnkacc_name')
 			);
 			break;
 
@@ -204,7 +207,8 @@ function dbClose() {
 						'room_id'		=> 'รหัสห้องนวด',
 						'room_name'		=> 'ห้องนวด'	
 				),
-				'searchFields'	=> array('room_name')
+				'searchFields'	=> array('room_name'),
+				'deleteTxtField'=> array('room_name')
 			);
 			break;
 
@@ -219,7 +223,8 @@ function dbClose() {
 						'bkgstat_id'		=> 'รหัสสถานะการจอง',
 						'bkgstat_name'		=> 'สถานะการจอง'
 				),
-				'searchFields'	=> array('bkgstat_name')
+				'searchFields'	=> array('bkgstat_name'),
+				'deleteTxtField'=> array('bkgstat_name')
 			);
 			break;
 
@@ -234,7 +239,8 @@ function dbClose() {
 						'brand_id'		=> 'รหัสยี่ห้อ',
 						'brand_name'	=> 'ยี่ห้อ'
 				),
-				'searchFields'	=> array('brand_name')
+				'searchFields'	=> array('brand_name'),
+				'deleteTxtField'=> array('brand_name')
 			);
 			break;
 
@@ -249,7 +255,8 @@ function dbClose() {
 						'paytyp_id'		=> 'รหัสประเภทการชำระเงิน',
 						'paytyp_name'	=> 'ประเภทการชำระเงิน'
 				),
-				'searchFields'	=> array('paytyp_name')
+				'searchFields'	=> array('paytyp_name'),
+				'deleteTxtField'=> array('paytyp_name')
 			);
 			break;
 
@@ -264,7 +271,8 @@ function dbClose() {
 						'eletyp_id'		=> 'รหัสประเภทธาตุ',
 						'eletyp_name'	=> 'ประเภทธาตุ'
 				),
-				'searchFields'	=> array('eletyp_name')
+				'searchFields'	=> array('eletyp_name'),
+				'deleteTxtField'=> array('eletyp_name')
 			);
 			break;
 
@@ -279,7 +287,8 @@ function dbClose() {
 						'prdtyp_id'		=> 'รหัสประเภทผลิตภัณฑ์',
 						'prdtyp_name'	=> 'ประเภทผลิตภัณฑ์'
 				),
-				'searchFields'	=> array('prdtyp_name')
+				'searchFields'	=> array('prdtyp_name'),
+				'deleteTxtField'=> array('prdtyp_name')
 			);
 			break;
 
@@ -294,7 +303,8 @@ function dbClose() {
 						'ordtyp_id'		=> 'รหัสประเภทการสั่งซื้อ',
 						'ordtyp_name'	=> 'ประเภทการสั่งซื้อ'
 				),
-				'searchFields'	=> array('ordtyp_name')
+				'searchFields'	=> array('ordtyp_name'),
+				'deleteTxtField'=> array('ordtyp_name')
 			);
 			break;
 
@@ -309,7 +319,8 @@ function dbClose() {
 						'svltyp_id'		=> 'รหัสประเภทรายการบริการ',
 						'svltyp_name'	=> 'ประเภทรายการบริการ'
 				),
-				'searchFields'	=> array('svltyp_name')
+				'searchFields'	=> array('svltyp_name'),
+				'deleteTxtField'=> array('svltyp_name')
 			);
 			break;
 
@@ -324,7 +335,8 @@ function dbClose() {
 						'custype_id'		=> 'รหัสประเภทผู้ใช้บริการ',
 						'custype_name'		=> 'ประเภทผู้ใช้บริการ'
 				),
-				'searchFields'	=> array('custype_name')
+				'searchFields'	=> array('custype_name'),
+				'deleteTxtField'=> array('custype_name')
 			);
 			break;
 
@@ -341,10 +353,12 @@ function dbClose() {
 						'spa_addr'		=> 'ที่อยู่',
 						'spa_tel'		=> 'เบอร์โทรศัพท์',
 						'spa_fax'		=> 'แฟ็กซ์',
-						'spa_logo'		=> 'รูปภาพ'
+						'spa_logo'		=> 'รูปภาพ',
+						'spa_email'		=> 'E-mail'
 				),
 				'hiddenFields'	=> array('spa_addr','spa_logo'),
-				'searchFields'	=> array('spa_name','spa_addr')
+				'searchFields'	=> array('spa_name','spa_addr'),
+				'deleteTxtField'=> array('spa_name')
 
 			);
 			break;
@@ -376,7 +390,10 @@ function dbClose() {
 				'hiddenFields'	=> array('cus_tel','cus_addr','cus_user','cus_pass','cus_birthdate','cus_registered_date',
 					'cus_facebook','cus_line_id','cus_email'),
 				'defaultNull' 	=> array('cus_user','cus_pass','cus_birthdate','cus_facebook','cus_line_id','cus_email'),
-				'searchFields'	=> array('cus_name','sex_id','custype_id')
+				'searchFields'	=> array('cus_name','cus_surname','sex_id','custype_id'),
+				'deleteTxtField' => array('title_id','cus_name','cus_surname'),
+				'deleteTxtPatternMain' => 'คุณต้องการลบข้อมูลผู้ใช้บริการของ %f1%f2 %f3 ใช่หรือไม่',
+				'deleteTxtPatternMin' => '%f1%f2 %f3'
 			);
 			break;
 
