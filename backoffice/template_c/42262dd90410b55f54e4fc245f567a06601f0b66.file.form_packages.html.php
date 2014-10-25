@@ -1,9 +1,42 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 09:27:33
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_packages.html" */ ?>
+<?php /*%%SmartyHeaderCode:28901544b052cb8df27-35988630%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '42262dd90410b55f54e4fc245f567a06601f0b66' => 
+    array (
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_packages.html',
+      1 => 1414204048,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '28901544b052cb8df27-35988630',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_544b052cdeb211_43866223',
+  'variables' => 
+  array (
+    'action' => 0,
+    'tableName' => 0,
+    'tableNameTH' => 0,
+    'code' => 0,
+    'valuesDetail' => 0,
+    'values' => 0,
+    'nowDate' => 0,
+    'pkgsvlDetailList' => 0,
+    'pkgsvl' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_544b052cdeb211_43866223')) {function content_544b052cdeb211_43866223($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
 	<meta charset="UTF-8"/>
-    {literal}
+    
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
 	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
@@ -20,22 +53,27 @@
     </style>
     <script type="text/javascript">
         // Global variables
-        var action      = '{/literal}{$action}{literal}';
-        var tableName   = '{/literal}{$tableName}{literal}';
-		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
-        var code        = '{/literal}{$code}{literal}';
+        var action      = '<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
+';
+        var tableName   = '<?php echo $_smarty_tpl->tpl_vars['tableName']->value;?>
+';
+		var tableNameTH = '<?php echo $_smarty_tpl->tpl_vars['tableNameTH']->value;?>
+';
+        var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+';
         var ajaxUrl     = 'form_packages.php';
         var valuesDetail    = '';
         var vdtlAllSvl 	= 0;
 
          // Set valuesDetail
-        {/literal}
-        {if $valuesDetail}
-        {literal}
-            valuesDetail= {/literal}{$valuesDetail|@json_encode}{literal};
-        {/literal}
-        {/if}
-        {literal}
+        
+        <?php if ($_smarty_tpl->tpl_vars['valuesDetail']->value) {?>
+        
+            valuesDetail= <?php echo json_encode($_smarty_tpl->tpl_vars['valuesDetail']->value);?>
+;
+        
+        <?php }?>
+        
 
 		$(document).ready(function() {
 			$('#addSvlBtn').click(addServiceList);
@@ -44,7 +82,8 @@
 				area: $('#pkg_picture'),
 				input: $('input[name="pkg_picture"]'),
 				selector: $('#pkg_picture_file'),
-				defaultValue: '{/literal}{if $values.pkg_picture}../img/packages/{$values.pkg_picture}{/if}{literal}'
+				defaultValue: '<?php if ($_smarty_tpl->tpl_vars['values']->value['pkg_picture']) {?>../img/packages/<?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_picture'];?>
+<?php }?>'
 			});
 
 			$('#pkg_start').datetimepicker({
@@ -61,7 +100,8 @@
                 onShow:function( ct ){
                     if(action == 'ADD') {
                     	this.setOptions({
-	                        minDate: realDateToTmpDate('{/literal}{$nowDate}{literal}'),
+	                        minDate: realDateToTmpDate('<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+'),
 	                        maxDate:$('#pkg_stop').val()?unconvertThaiDate($('#pkg_stop').val()):false
 	                    });
                     } else if(action == 'EDIT') {
@@ -87,7 +127,8 @@
                 onShow:function( ct ){
                     if(action == 'ADD') {
                     	this.setOptions({
-	                        minDate:$('#pkg_start').val()?unconvertThaiDate($('#pkg_start').val()):realDateToTmpDate('{/literal}{$nowDate}{literal}')
+	                        minDate:$('#pkg_start').val()?unconvertThaiDate($('#pkg_start').val()):realDateToTmpDate('<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+')
 	                    });
                     } else if(action="EDIT") {
                     	this.setOptions({
@@ -114,7 +155,8 @@
 
                 var selfDate        = new Date(self.val());
                 var siblingDate     = new Date(unconvertThaiDate(sibling.val()));
-                var nowDate         = new Date(realDateToTmpDate('{/literal}{$nowDate}{literal}'));
+                var nowDate         = new Date(realDateToTmpDate('<?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+'));
                 var selfId          = self.attr('id');
 
                 // Check sibling
@@ -205,7 +247,8 @@
                     });
                 }
             } else if(action == 'VIEW_DETAIL') {
-            	$('#allSvl').text('{/literal}{$pkgsvlDetailList|@count}{literal}');
+            	$('#allSvl').text('<?php echo count($_smarty_tpl->tpl_vars['pkgsvlDetailList']->value);?>
+');
             }
 
 
@@ -331,39 +374,46 @@
         	$('#allSvl').text(allSvl);
         }
     </script>
-    {/literal}
+    
 </head>
 <body>
  	 	 	 	 
-{include file="form_table_header.html"}
+<?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <div class="ftb-body">
-	{if $action == 'VIEW_DETAIL'}
+	<?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-        <img src="{if $values.pkg_picture}../img/packages/{$values.pkg_picture}{else}../img/backoffice/no-pic.png{/if}">
+        <img src="<?php if ($_smarty_tpl->tpl_vars['values']->value['pkg_picture']) {?>../img/packages/<?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_picture'];?>
+<?php } else { ?>../img/backoffice/no-pic.png<?php }?>">
 	</div>
 	<table class="table-view-detail">
 		<tbody> 					
 			<tr>
 				<td>รหัสแพ็คเกจ :</td>
-				<td>{$code}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+</td>
 			</tr>
 			
 			<tr>
 				<td>วันที่เริ่มใช้ :</td>
-				<td>{$values.pkg_start_th}</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_start_th'];?>
+</td>
 			</tr>
 			<tr>
 				<td>วันที่สิ้นสุด :</td>
-				<td>{if $values.pkg_stop}{$values.pkg_stop_th}{else}-{/if}</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['pkg_stop']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_stop_th'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>คำอธิบาย :</td>
-				<td>{if $values.pkg_desc}{$values.pkg_desc}{else}-{/if}</td>
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['pkg_desc']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_desc'];?>
+<?php } else { ?>-<?php }?></td>
 			</tr>
 			<tr>
 				<td>ราคา :</td>
-				<td>{$values.pkg_price|number_format:2:".":","} บาท</td>
+				<td><?php echo number_format($_smarty_tpl->tpl_vars['values']->value['pkg_price'],2,".",",");?>
+ บาท</td>
 			</tr>
 			
 		</tbody>
@@ -381,21 +431,33 @@
             </tr>
         </thead>
         <tbody>
-            {foreach from=$pkgsvlDetailList key=i item=pkgsvl}
+            <?php  $_smarty_tpl->tpl_vars['pkgsvl'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['pkgsvl']->_loop = false;
+ $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['pkgsvlDetailList']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['pkgsvl']->key => $_smarty_tpl->tpl_vars['pkgsvl']->value) {
+$_smarty_tpl->tpl_vars['pkgsvl']->_loop = true;
+ $_smarty_tpl->tpl_vars['i']->value = $_smarty_tpl->tpl_vars['pkgsvl']->key;
+?>
             <tr>
-                <td align="center">{$pkgsvl.no}</td>
+                <td align="center"><?php echo $_smarty_tpl->tpl_vars['pkgsvl']->value['no'];?>
+</td>
                 <td align="left">
-                	<a href="form_table.php?action=VIEW_DETAIL&tableName=service_lists&code={$pkgsvl.svl_id}&hideEditButton=true" class="normal-link" title="คลิกเพื่อดูรายละเอียด">
-                		{$pkgsvl.svl_id}
+                	<a href="form_table.php?action=VIEW_DETAIL&tableName=service_lists&code=<?php echo $_smarty_tpl->tpl_vars['pkgsvl']->value['svl_id'];?>
+&hideEditButton=true" class="normal-link" title="คลิกเพื่อดูรายละเอียด">
+                		<?php echo $_smarty_tpl->tpl_vars['pkgsvl']->value['svl_id'];?>
+
                 	</a>
                 </td>
-                <td align="left">{$pkgsvl.svl_name}</td>
-                <td align="left">{$pkgsvl.svl_hr} ชั่วโมง {$pkgsvl.svl_min} นาที</td>
+                <td align="left"><?php echo $_smarty_tpl->tpl_vars['pkgsvl']->value['svl_name'];?>
+</td>
+                <td align="left"><?php echo $_smarty_tpl->tpl_vars['pkgsvl']->value['svl_hr'];?>
+ ชั่วโมง <?php echo $_smarty_tpl->tpl_vars['pkgsvl']->value['svl_min'];?>
+ นาที</td>
             </tr>
-            {/foreach}
+            <?php } ?>
         </tbody>
     </table>
-	{else}	 	
+	<?php } else { ?>	 	
 	<!-- ADD, EDIT -->	 	 	 	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="pkg_name,pkg_start,pkg_price">
@@ -404,7 +466,8 @@
 			<tr>
 				<td colspan=2>
 					<label class="input-required">ชื่อแพ็คเกจ</label>
-					<input id="pkg_name" name="pkg_name" type="text" class="form-input full" value="{$values.pkg_name}" require>
+					<input id="pkg_name" name="pkg_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_name'];?>
+" require>
 				</td>
 			</tr>
 			<tr>
@@ -415,11 +478,14 @@
 			<tr>
 				<td>
 					<label class="input-required">วันที่เริ่มใช้</label>
-                	<input id="pkg_start" name="pkg_start" type="text" class="mbk-dtp-th form-input half" value="{if $values.pkg_start}{$values.pkg_start}{else}{$nowDate}{/if}" require>
+                	<input id="pkg_start" name="pkg_start" type="text" class="mbk-dtp-th form-input half" value="<?php if ($_smarty_tpl->tpl_vars['values']->value['pkg_start']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_start'];?>
+<?php } else { ?><?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+<?php }?>" require>
                 </td>
                 <td>
 					<label>วันที่สิ้นสุด</label>
-                	<input id="pkg_stop" name="pkg_stop" type="text" class="mbk-dtp-th form-input half" value="{$values.pkg_stop}">
+                	<input id="pkg_stop" name="pkg_stop" type="text" class="mbk-dtp-th form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_stop'];?>
+">
                 </td>
 			</tr>
 			<tr>
@@ -431,7 +497,8 @@
 			<tr>
 				<td colspan=2>
 					<label class="input-required">ราคา (บาท)</label>
-					<input id="pkg_price" name="pkg_price" type="text" class="form-input full" value="{$values.pkg_price}" valuepattern="money" require>
+					<input id="pkg_price" name="pkg_price" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_price'];?>
+" valuepattern="money" require>
 				</td>
 			</tr>
 			<tr>
@@ -443,14 +510,16 @@
 			<tr>
 				<td colspan=2>
 					<label>คำอธิบาย</label>
-					<textarea id="pkg_desc" name="pkg_desc" class="form-input full">{$values.pkg_desc}</textarea>
+					<textarea id="pkg_desc" name="pkg_desc" class="form-input full"><?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_desc'];?>
+</textarea>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
                     <label>รูปภาพแพ็คเกจ</label>
 					<div id="pkg_picture" class="uploadImageArea full"></div>
-					<input type="hidden" name="pkg_picture" value="{$values.pkg_picture}">
+					<input type="hidden" name="pkg_picture" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_picture'];?>
+">
 				</td>
 			</tr>
 		</tbody>
@@ -472,7 +541,7 @@
 	</form>
 	
 	
-	{/if}
+	<?php }?>
 </div>
 </body>
 </html>
@@ -480,4 +549,4 @@
     [Note]
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
--->
+--><?php }} ?>

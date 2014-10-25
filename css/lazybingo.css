@@ -931,6 +931,7 @@ table.mbk .icon {
     max-width: 800px;
     min-width: 600px;
     background: white;
+    overflow-y: auto;
 }
 #manage-box.large {
     min-width: 1050px;
