@@ -56,6 +56,17 @@ $(document).ready(function () {
     // Check Input required and pattern
     $('#form-table input').filter('[require],[valuepattern]').focusout(validateInput);
     $('#form-table textarea').filter('[require],[valuepattern]').focusout(validateInput);
+
+    // Fixed image in view detail
+    $('.table-view-detail-image img').load(function() {
+    	var width 	= $(this).width();
+    	var height 	= $(this).height();
+    	if(height > 350) {
+    		$(this).height(350);
+    	} else if(width > 470) {
+    		$(this).height(470);
+    	}
+    })
 });
 
 function saveRecord() {

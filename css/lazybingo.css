@@ -442,13 +442,13 @@ table.table-view-detail tr td:last-child {
     width: 100%;
 }
 .table-view-detail-image {
-    text-align: center;
+    text-align: left;
 }
 .table-view-detail-image img {
     max-width: 100%;
 }
 .table-view-detail-image.full {
-    width: 520px;
+    width: 100%;
 }
 
 /*
