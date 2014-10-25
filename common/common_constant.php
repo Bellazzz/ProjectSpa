@@ -417,7 +417,8 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('svl_desc','svl_picture','svl_commission','svl_price'),
 				'defaultNull' 	=> array('svl_min','svl_hr','svl_desc','svl_picture'),
-				'searchFields'	=> array('svl_name','svl_price')
+				'searchFields'	=> array('svl_name','svl_price'),
+				'deleteTxtField' => array('svl_name')
 			
 			);
 			break;
