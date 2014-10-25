@@ -12,36 +12,38 @@ $(document).ready(function () {
 
     // Button Click
     $('#save-btn').click(function () {
-    	if(action == 'EDIT'){
-	        parent.showActionDialog({
-	            title: 'บันทึกการแก้ไข',
-	            message: 'คุณต้องการแก้ไขข้อมูลใช่หรือไม่?',
-	            actionList: [
-	                {
-	                    id: 'ok',
-	                    name: 'ตกลง',
-	                    desc: 'บันทึกการเปลี่ยนแปลงข้อมูล',
-	                    func:
-	                    function() { 
-	                    	saveRecord();
-	                        parent.hideActionDialog();
-	                    }
-	                },
-	                {
-	                    id: 'cancel',
-	                    name: 'ยกเลิก',
-	                    desc: 'ยกเลิกการเปลี่ยนแปลงข้อมูล',
-	                    func:
-	                    function() {
-	                        parent.hideActionDialog();
-	                    }
-	                }
-	            ],
-	            boxWidth: 400
-	        });
-    	} else if (action == 'ADD'){
-    		saveRecord();
-    	}
+    	if(checkRequiredInput()) {
+	    	if(action == 'EDIT'){
+		        parent.showActionDialog({
+		            title: 'บันทึกการแก้ไข',
+		            message: 'คุณต้องการแก้ไขข้อมูลใช่หรือไม่?',
+		            actionList: [
+		                {
+		                    id: 'ok',
+		                    name: 'ตกลง',
+		                    desc: 'บันทึกการเปลี่ยนแปลงข้อมูล',
+		                    func:
+		                    function() { 
+		                    	saveRecord();
+		                        parent.hideActionDialog();
+		                    }
+		                },
+		                {
+		                    id: 'cancel',
+		                    name: 'ยกเลิก',
+		                    desc: 'ยกเลิกการเปลี่ยนแปลงข้อมูล',
+		                    func:
+		                    function() {
+		                        parent.hideActionDialog();
+		                    }
+		                }
+		            ],
+		            boxWidth: 400
+		        });
+	    	} else if (action == 'ADD'){
+	    		saveRecord();
+	    	}
+	    }
     });
     $('#cancel-btn').click(function () {
         parent.confirmCloseFormTable(action);
@@ -57,56 +59,54 @@ $(document).ready(function () {
 });
 
 function saveRecord() {
-	if(checkRequiredInput()) {
-		// Convert thai date to real date
-		$('.mbk-dtp-th').each(function() {
-			if($(this).val() != '') {
-				if(isDateThaiFormat($(this))) {
-					getRealDate($(this));
-				} else {
-					convertThaiDate($(this));
-					getRealDate($(this));
-				}
+	// Convert thai date to real date
+	$('.mbk-dtp-th').each(function() {
+		if($(this).val() != '') {
+			if(isDateThaiFormat($(this))) {
+				getRealDate($(this));
+			} else {
+				convertThaiDate($(this));
+				getRealDate($(this));
 			}
-		});
+		}
+	});
 
-		$.ajax({
-			url: ajaxUrl,
-			type: 'POST',
-			data: {
-				'ajaxCall'			: true,
-				'action'			: action,
-				'tableName'			: tableName,
-				'code'				: code,
-				'formData'			: $('#form-table').serialize()
-			},
-			success:
-			function (responseJSON) {
-				var response = $.parseJSON(responseJSON);
-				if (response.status == 'ADD_PASS') {
-					// Add record success
-					parent.closeFormTable();
-					parent.refreshTable();
-				} else if (response.status == 'EDIT_PASS') {
-					// Edit record success
-					parent.closeFormTable();
-					parent.refreshTable();
-				} else if (response.status == 'REQURIED_VALUE') {
-					// Add required
-					$('#' + response.text).addClass('required');
-					$('#' + response.text).focus();
-				} else if(response.status== 'UNIQUE_VALUE') {
-					// Add required
-					$('#' + response.text).addClass('required');
-					$('.err-' + response.text).css('display', 'none');
-					$('#err-' + response.text + '-unique').css('display', 'block');
-					$('#' + response.text).focus();
-				} else {
-					alert(response.status + "\n" + response.text);
-				}
+	$.ajax({
+		url: ajaxUrl,
+		type: 'POST',
+		data: {
+			'ajaxCall'			: true,
+			'action'			: action,
+			'tableName'			: tableName,
+			'code'				: code,
+			'formData'			: $('#form-table').serialize()
+		},
+		success:
+		function (responseJSON) {
+			var response = $.parseJSON(responseJSON);
+			if (response.status == 'ADD_PASS') {
+				// Add record success
+				parent.closeFormTable();
+				parent.refreshTable();
+			} else if (response.status == 'EDIT_PASS') {
+				// Edit record success
+				parent.closeFormTable();
+				parent.refreshTable();
+			} else if (response.status == 'REQURIED_VALUE') {
+				// Add required
+				$('#' + response.text).addClass('required');
+				$('#' + response.text).focus();
+			} else if(response.status== 'UNIQUE_VALUE') {
+				// Add required
+				$('#' + response.text).addClass('required');
+				$('.err-' + response.text).css('display', 'none');
+				$('#err-' + response.text + '-unique').css('display', 'block');
+				$('#' + response.text).focus();
+			} else {
+				alert(response.status + "\n" + response.text);
 			}
-		});
-	}
+		}
+	});
 }
 
 function validateInput() {
