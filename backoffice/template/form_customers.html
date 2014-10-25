@@ -70,7 +70,14 @@
                 tableName       : 'titles',
                 keyFieldName    : 'title_id',
                 textFieldName   : 'title_name',
-                defaultValue    : '{/literal}{$values.title_id}{literal}'
+                defaultValue    : '{/literal}{$values.title_id}{literal}',
+                onOptionSelect  : changeTitleId,
+                success         :
+                function() {
+                    if(action == 'EDIT') {
+                        changeTitleId();
+                    }
+                }
             });
 
             // Add input password
@@ -162,6 +169,39 @@
                 $('.err-cus_re_pass').css('display', 'none');
             }
         }
+
+        function changeTitleId() {
+            var titleId = $('input[name="title_id"]').val();
+            $.ajax({
+                url: '../common/ajaxGetSexOfTitle.php',
+                data: {
+                    title_id: titleId
+                },
+                success:
+                function(response) {
+                    if(response != 'NO_ROWS') {
+                        if(response != '') {
+                            if(response == 'X1') {
+                                $('#sex_id_male').prop('checked', true);
+                                $('#sex_id_male').prop('disabled', false);
+                                $('#sex_id_female').prop('disabled', true);
+                            } else if(response == 'X2') {
+                                $('#sex_id_female').prop('checked', true);
+                                $('#sex_id_female').prop('disabled', false);
+                                $('#sex_id_male').prop('disabled', true);
+                            }
+                            $('input[name="sex_id"]').prop('readonly', true);
+                        } else {
+                            $('#sex_id_male').prop('checked', true);
+                            $('input[name="sex_id"]').prop('disabled', false);
+                        }
+                    } else {
+                        $('#sex_id_male').prop('checked', true);
+                        $('input[name="sex_id"]').prop('disabled', false);
+                    }
+                }
+            });
+        }
     </script>
     {/literal}
 </head>
@@ -200,8 +240,6 @@
             <tr>
                 <td>เพศ :</td>
                 <td><div id="sex_id" class="select-reference text"></td>
-                <!--<input type="radio" name="sex" value="male">ชาย
-                <input type="radio" name="sex" value="female">หญิง-->
             </tr>
             <tr>
                 <td>ที่อยู่ :</td>
@@ -252,7 +290,8 @@
                 </td>
                 <td>
                     <label class="input-required">เพศ</label>
-                    <div id="sex_id" class="select-reference form-input half" require></div>
+                    <label style="display:inline; margin-right:20px;"><input id="sex_id_male" type="radio" name="sex_id" value="X1" {if $values.sex_id == 'X1'}checked{/if} checked> ชาย</label>
+                    <label style="display:inline; margin-right:20px;"><input id="sex_id_female" type="radio" name="sex_id" value="X2" {if $values.sex_id == 'X2'}checked{/if}> หญิง</label>
                 </td>
             </tr>
             <tr class="errMsgRow">

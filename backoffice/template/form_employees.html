@@ -65,6 +65,14 @@
                 }
             });
             selectReference({
+                elem            : $('#sex_id'),
+                tableName       : 'sex',
+                keyFieldName    : 'sex_id',
+                textFieldName   : 'sex_name',
+                searchTool      : false,
+                defaultValue    : '{/literal}{$values.sex_id}{literal}'
+            });
+            selectReference({
                 elem            : $('#pos_id'),
                 tableName       : 'positions',
                 keyFieldName    : 'pos_id',
@@ -220,17 +228,17 @@
 				<td>{$code}</td>
 			</tr>
 			<tr>
-				<td>คำนำหน้าชื่อ :</td>
-				<td><div id="title_id" class="select-reference text"></td>
+				<td>ชื่อพนักงาน :</td>
+				<td><div id="title_id" class="select-reference text"></div>{if $values.emp_name}{$values.emp_name}{else}-{/if} {if $values.emp_surname}{$values.emp_surname}{else}-{/if}</td>
 			</tr>
-			<tr>
+			<!--<tr>
 				<td>ชื่อพนักงาน :</td>
 				<td>{if $values.emp_name}{$values.emp_name}{else}-{/if}</td>
 			</tr>
 			<tr>
 				<td>นามสกุล :</td>
 				<td>{if $values.emp_surname}{$values.emp_surname}{else}-{/if}</td>
-			</tr>
+			</tr>-->
 			<tr>
 				<td>เพศ :</td>
 				<td><div id="sex_id" class="select-reference text"></td>
