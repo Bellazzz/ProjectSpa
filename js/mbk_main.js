@@ -365,6 +365,12 @@ function selectReference(select) {
             if (response != '') {
                 textShow.text(response);
                 inputHidden.val(defaultValue);
+            } else {
+                // Null value will display (-) for view detail
+                if(select.elem.hasClass('text')) {
+                    textShow.text('-');
+                    inputHidden.val('');
+                }
             }
 
             // Skip this if has class text
