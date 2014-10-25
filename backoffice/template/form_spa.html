@@ -26,7 +26,7 @@
 				area: $('#spa_logo'),
 				input: $('input[name="spa_logo"]'),
 				selector: $('#spa_logo_file'),
-				defaultValue: '{/literal}{if $values.spa_logo}../img/spa/{$values.spa_logo}{/if}{literal}'
+				defaultValue: '{/literal}{if $values.spa_logo}../img/spa/{$values.spa_logo}?rand={$randNum}{/if}{literal}'
 			});
 
 			// Set default value of textarea
@@ -42,7 +42,7 @@
 	{if $action == 'VIEW_DETAIL'}
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-	<img src="{if $values.spa_logo != '-'}../img/spa/{$values.spa_logo}{else}../img/backoffice/no-pic.png{/if}">
+	<img src="{if $values.spa_logo != '-'}../img/spa/{$values.spa_logo}?rand={$randNum}{else}../img/backoffice/no-pic.png{/if}">
 	</div>
 	<table class="table-view-detail">
 		<tbody>

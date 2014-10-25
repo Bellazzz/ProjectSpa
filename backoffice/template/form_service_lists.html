@@ -38,7 +38,7 @@
 				area: $('#svl_picture'),
 				input: $('input[name="svl_picture"]'),
 				selector: $('#svl_picture_file'),
-				defaultValue: '{/literal}{if $values.svl_picture}../img/service_lists/{$values.svl_picture}{/if}{literal}'
+				defaultValue: '{/literal}{if $values.svl_picture}../img/service_lists/{$values.svl_picture}?rand={$randNum}{/if}{literal}'
 			});
 
 			// Set default value of textarea
@@ -54,7 +54,7 @@
 	{if $action == 'VIEW_DETAIL'}
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-		<img src="{if $values.svl_picture != '-'}../img/service_lists/{$values.svl_picture}{else}../img/backoffice/no-pic.png{/if}">
+		<img src="{if $values.svl_picture != '-'}../img/service_lists/{$values.svl_picture}?rand={$randNum}{else}../img/backoffice/no-pic.png{/if}">
 	</div>
 	<table class="table-view-detail">
 		<tbody>

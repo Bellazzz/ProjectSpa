@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 09:17:08
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 10:26:13
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
 <?php /*%%SmartyHeaderCode:608544ae3c7a22e41-91312978%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bda8342328ba1fe618076434ede7e93df947df7f' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_employees.html',
-      1 => 1414203424,
+      1 => 1414207569,
       2 => 'file',
     ),
   ),
@@ -24,6 +24,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'tableNameTH' => 0,
     'code' => 0,
     'values' => 0,
+    'randNum' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -112,6 +113,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				input: $('input[name="emp_pic"]'),
 				selector: $('#emp_pic_file'),
 				defaultValue: '<?php if ($_smarty_tpl->tpl_vars['values']->value['emp_pic']) {?>../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
+?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
 <?php }?>'
 			});
 
@@ -248,6 +250,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
 		<img src="<?php if ($_smarty_tpl->tpl_vars['values']->value['emp_pic']!='-') {?>../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
+?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
 <?php } else { ?>../img/backoffice/no-pic.png<?php }?>">
 	</div>
 	<table class="table-view-detail">

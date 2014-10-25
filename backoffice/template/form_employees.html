@@ -76,7 +76,7 @@
 				area: $('#emp_pic'),
 				input: $('input[name="emp_pic"]'),
 				selector: $('#emp_pic_file'),
-				defaultValue: '{/literal}{if $values.emp_pic}../img/employees/{$values.emp_pic}{/if}{literal}'
+				defaultValue: '{/literal}{if $values.emp_pic}../img/employees/{$values.emp_pic}?rand={$randNum}{/if}{literal}'
 			});
 
 			// Add input password
@@ -210,7 +210,7 @@
 	{if $action == 'VIEW_DETAIL'}
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-		<img src="{if $values.emp_pic != '-'}../img/employees/{$values.emp_pic}{else}../img/backoffice/no-pic.png{/if}">
+		<img src="{if $values.emp_pic != '-'}../img/employees/{$values.emp_pic}?rand={$randNum}{else}../img/backoffice/no-pic.png{/if}">
 	</div>
 	<table class="table-view-detail">
 		<tbody>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 09:27:33
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 10:01:44
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_packages.html" */ ?>
 <?php /*%%SmartyHeaderCode:28901544b052cb8df27-35988630%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '42262dd90410b55f54e4fc245f567a06601f0b66' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_packages.html',
-      1 => 1414204048,
+      1 => 1414206097,
       2 => 'file',
     ),
   ),
@@ -25,6 +25,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'code' => 0,
     'valuesDetail' => 0,
     'values' => 0,
+    'randNum' => 0,
     'nowDate' => 0,
     'pkgsvlDetailList' => 0,
     'pkgsvl' => 0,
@@ -83,6 +84,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				input: $('input[name="pkg_picture"]'),
 				selector: $('#pkg_picture_file'),
 				defaultValue: '<?php if ($_smarty_tpl->tpl_vars['values']->value['pkg_picture']) {?>../img/packages/<?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_picture'];?>
+?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
 <?php }?>'
 			});
 
@@ -385,6 +387,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
         <img src="<?php if ($_smarty_tpl->tpl_vars['values']->value['pkg_picture']) {?>../img/packages/<?php echo $_smarty_tpl->tpl_vars['values']->value['pkg_picture'];?>
+?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
 <?php } else { ?>../img/backoffice/no-pic.png<?php }?>">
 	</div>
 	<table class="table-view-detail">

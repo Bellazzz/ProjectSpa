@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 09:17:14
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 10:27:25
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_spa.html" */ ?>
 <?php /*%%SmartyHeaderCode:5085544b082adf40b3-38520184%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '544eb269e68d05920d56f6958356f3f7113858b1' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_spa.html',
-      1 => 1413882890,
+      1 => 1414207637,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_544b082b0295f5_94454243',
   'variables' => 
   array (
     'action' => 0,
@@ -22,10 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'tableNameTH' => 0,
     'code' => 0,
     'values' => 0,
+    'randNum' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544b082b0295f5_94454243',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_544b082b0295f5_94454243')) {function content_544b082b0295f5_94454243($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -60,6 +61,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				input: $('input[name="spa_logo"]'),
 				selector: $('#spa_logo_file'),
 				defaultValue: '<?php if ($_smarty_tpl->tpl_vars['values']->value['spa_logo']) {?>../img/spa/<?php echo $_smarty_tpl->tpl_vars['values']->value['spa_logo'];?>
+?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
 <?php }?>'
 			});
 
@@ -79,6 +81,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
 	<img src="<?php if ($_smarty_tpl->tpl_vars['values']->value['spa_logo']!='-') {?>../img/spa/<?php echo $_smarty_tpl->tpl_vars['values']->value['spa_logo'];?>
+?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
 <?php } else { ?>../img/backoffice/no-pic.png<?php }?>">
 	</div>
 	<table class="table-view-detail">

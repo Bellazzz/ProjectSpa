@@ -50,7 +50,7 @@
                 area: $('#prd_pic'),
                 input: $('input[name="prd_pic"]'),
                 selector: $('#prd_pic_file'),
-                defaultValue: '{/literal}{if $values.prd_pic}../img/products/{$values.prd_pic}{/if}{literal}'
+                defaultValue: '{/literal}{if $values.prd_pic}../img/products/{$values.prd_pic}?rand={$randNum}{/if}{literal}'
             });
         });
     </script>
@@ -64,7 +64,7 @@
     {if $action == 'VIEW_DETAIL'}
     <!-- VIEW_DETAIL-->
     <div class="table-view-detail-image full">
-    <img src="{if $values.prd_pic != '-'}../img/products/{$values.prd_pic}{else}../img/backoffice/no-pic.png{/if}">
+    <img src="{if $values.prd_pic != '-'}../img/products/{$values.prd_pic}?rand={$randNum}{else}../img/backoffice/no-pic.png{/if}">
     </div>
     <table class="table-view-detail">
         <tbody>                     

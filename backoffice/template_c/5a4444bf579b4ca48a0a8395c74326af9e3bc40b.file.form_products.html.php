@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 09:17:56
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 10:30:03
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_products.html" */ ?>
 <?php /*%%SmartyHeaderCode:8369544b0854215a75-72855927%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5a4444bf579b4ca48a0a8395c74326af9e3bc40b' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_products.html',
-      1 => 1413884616,
+      1 => 1414207797,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_544b0854436ea7_64759152',
   'variables' => 
   array (
     'action' => 0,
@@ -22,10 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'tableNameTH' => 0,
     'code' => 0,
     'values' => 0,
+    'randNum' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544b0854436ea7_64759152',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_544b0854436ea7_64759152')) {function content_544b0854436ea7_64759152($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -87,6 +88,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 input: $('input[name="prd_pic"]'),
                 selector: $('#prd_pic_file'),
                 defaultValue: '<?php if ($_smarty_tpl->tpl_vars['values']->value['prd_pic']) {?>../img/products/<?php echo $_smarty_tpl->tpl_vars['values']->value['prd_pic'];?>
+?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
 <?php }?>'
             });
         });
@@ -103,6 +105,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <!-- VIEW_DETAIL-->
     <div class="table-view-detail-image full">
     <img src="<?php if ($_smarty_tpl->tpl_vars['values']->value['prd_pic']!='-') {?>../img/products/<?php echo $_smarty_tpl->tpl_vars['values']->value['prd_pic'];?>
+?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
 <?php } else { ?>../img/backoffice/no-pic.png<?php }?>">
     </div>
     <table class="table-view-detail">
