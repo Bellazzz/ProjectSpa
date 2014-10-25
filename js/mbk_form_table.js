@@ -179,6 +179,11 @@ function validateInput() {
 					$('#err-' + id + '-numberMoreThanZero').css('display', 'block');
 					$(this).addClass('required');
 				}
+    		} else if(attrPattern == 'username') {
+    			if(!validateUsername(value)) {
+					$('#err-' + id + '-username').css('display', 'block');
+					$(this).addClass('required');
+				}
     		}
 		}
     }
@@ -253,6 +258,20 @@ function validateNumberMoreThanZero(number) {
 	var re 	 = /^[0-9]+$/;
 	if(re.test(number)) {
 		if(parseInt(number) <= 0) {
+			pass = false;
+		}
+	} else {
+		pass = false;
+	}
+
+	return pass;
+}
+
+function validateUsername(strUsername) {
+	var pass = true;
+	var re = /^[a-zA-Z]+[a-zA-Z0-9]*$/;
+	if(re.test(strUsername)) {
+		if(strUsername.length < 6) {
 			pass = false;
 		}
 	} else {
