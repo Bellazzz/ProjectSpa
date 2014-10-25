@@ -58,18 +58,6 @@ switch ($tableName) {
 	case 'receives':
 		header("location:table_data_receives.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
 		break;
-	/*case 'packages':
-		header("location:table_data_packages.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
-		break;
-	case 'spa':
-		header("location:table_data_spa.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
-		break;
-	case 'promotions':
-		header("location:table_data_promotions.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
-		break;
-	case 'booking':
-		header("location:table_data_booking.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
-		break;*/
 }
 
 // Query table data

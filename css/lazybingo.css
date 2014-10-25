@@ -306,6 +306,16 @@ body {
 }
 
 /*
+ * Table data empty
+ */
+ #table-data-empty {
+    width: 100%;
+    padding-left: 35px;
+    padding-top: 35px;
+    color: #999;
+}
+
+/*
  * No select table
  */
 .no-select-table {
@@ -1451,6 +1461,7 @@ datetimepicker
     padding: 8px 0 8px 280px;
     background: #eee;
     z-index: 1;
+    min-height: 39px;
 }
 .sidebar[aria-expanded="false"] ~  #pagingContainer {
     padding-left: 56px;

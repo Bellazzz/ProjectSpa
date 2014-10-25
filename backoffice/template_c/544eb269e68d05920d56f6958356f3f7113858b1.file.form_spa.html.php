@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 15:04:31
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 16:48:14
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_spa.html" */ ?>
 <?php /*%%SmartyHeaderCode:9952544b598f4a6fb6-58273299%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '544eb269e68d05920d56f6958356f3f7113858b1' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_spa.html',
-      1 => 1414207637,
+      1 => 1414230427,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_544b598f66a272_15233408',
   'variables' => 
   array (
     'action' => 0,
@@ -25,8 +27,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'randNum' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544b598f66a272_15233408',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_544b598f66a272_15233408')) {function content_544b598f66a272_15233408($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -64,10 +64,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
 <?php }?>'
 			});
-
-			// Set default value of textarea
-			$('#spa_addr').text('<?php echo $_smarty_tpl->tpl_vars['values']->value['spa_addr'];?>
-');
 		});
     </script>
     
@@ -107,6 +103,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </td>
 			</tr>
 			<tr>
+				<td>E-mail :</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['spa_email'];?>
+</td>
+			</tr>
+			<tr>
 				<td>โทรสาร :</td>
 				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['spa_fax'];?>
 </td>
@@ -135,8 +136,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<tr>
 				<td colspan="2">
 					<label class="input-required">ที่อยู่</label>
-					<textarea id="spa_addr" name="spa_addr" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['spa_addr'];?>
-" require></textarea>
+					<textarea id="spa_addr" name="spa_addr" class="form-input full" require><?php echo $_smarty_tpl->tpl_vars['values']->value['spa_addr'];?>
+</textarea>
 				</td>
 			</tr>
 			<tr>
@@ -148,7 +149,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<td>
 					<label class="input-required">เบอร์โทร</label>
 					<input id="spa_tel" name="spa_tel" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['spa_tel'];?>
-" require>
+" require maxlength="10">
 				</td>
 				<td>
 					<label>โทรสาร</label>
@@ -161,6 +162,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <span id="err-spa_tel-require" class="errInputMsg err-spa_tel">โปรดป้อนเบอร์โทร</span>
                 </td>
                 <td></td>
+            </tr>
+			<tr>
+                <td colspan="2">
+                    <label>E-mail</label>
+                    <input id="spa_email" name="spa_email" type="text" class="form-input full" 
+                    value="<?php echo $_smarty_tpl->tpl_vars['values']->value['spa_email'];?>
+" valuepattern="email">
+                </td>
+            </tr>
+			<tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-spa_email-email" class="errInputMsg err-spa_email">รูปแบบอีเมลไม่ถูกต้อง</span>
+                </td>
             </tr>
 			<tr>
 				<td colspan="2">
