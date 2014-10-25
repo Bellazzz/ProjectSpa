@@ -195,7 +195,8 @@
 							$('input[name="sex_id"]').prop('disabled', false);
 						}
 					} else {
-						alert('no return data.');
+						$('#sex_id_male').prop('checked', true);
+						$('input[name="sex_id"]').prop('disabled', false);
 					}
 				}
 			});
