@@ -81,6 +81,7 @@ $(document).ready(function () {
 	    clearTimeout(timer);
 	    var ms = 300; // Delay search (miliseconds)
 	    timer = setTimeout(function () {
+            currentPage = 1;
 	        searchRecord();
 	    }, ms);
 	});
@@ -166,6 +167,13 @@ function pullTable(reFilter) {
                 htmlResponse = 'EMPTY';
             } else {
                 htmlResponse = response;
+            }
+
+            // Check for re pullTable with previous page
+            if(htmlResponse.indexOf('table-data-empty') != -1 && currentPage > 1) {
+                currentPage--;
+                pullTable(reFilter);
+                return;
             }
 
             // Refresh Content
