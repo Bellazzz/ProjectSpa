@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 13:12:31
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 14:44:54
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_customers.html" */ ?>
 <?php /*%%SmartyHeaderCode:13007544b3f4f0434f8-58596076%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2a1643d9f3b7447d1c25ce2a05226a857b050290' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_customers.html',
-      1 => 1414111615,
+      1 => 1414223086,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_544b3f4f3b1373_26876138',
   'variables' => 
   array (
     'action' => 0,
@@ -24,8 +26,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544b3f4f3b1373_26876138',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_544b3f4f3b1373_26876138')) {function content_544b3f4f3b1373_26876138($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -106,7 +106,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 keyFieldName    : 'title_id',
                 textFieldName   : 'title_name',
                 defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['title_id'];?>
-'
+',
+                onOptionSelect  : changeTitleId,
+                success         :
+                function() {
+                    if(action == 'EDIT') {
+                        changeTitleId();
+                    }
+                }
             });
 
             // Add input password
@@ -198,6 +205,39 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 $('.err-cus_re_pass').css('display', 'none');
             }
         }
+
+        function changeTitleId() {
+            var titleId = $('input[name="title_id"]').val();
+            $.ajax({
+                url: '../common/ajaxGetSexOfTitle.php',
+                data: {
+                    title_id: titleId
+                },
+                success:
+                function(response) {
+                    if(response != 'NO_ROWS') {
+                        if(response != '') {
+                            if(response == 'X1') {
+                                $('#sex_id_male').prop('checked', true);
+                                $('#sex_id_male').prop('disabled', false);
+                                $('#sex_id_female').prop('disabled', true);
+                            } else if(response == 'X2') {
+                                $('#sex_id_female').prop('checked', true);
+                                $('#sex_id_female').prop('disabled', false);
+                                $('#sex_id_male').prop('disabled', true);
+                            }
+                            $('input[name="sex_id"]').prop('readonly', true);
+                        } else {
+                            $('#sex_id_male').prop('checked', true);
+                            $('input[name="sex_id"]').prop('disabled', false);
+                        }
+                    } else {
+                        $('#sex_id_male').prop('checked', true);
+                        $('input[name="sex_id"]').prop('disabled', false);
+                    }
+                }
+            });
+        }
     </script>
     
 </head>
@@ -240,8 +280,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <tr>
                 <td>เพศ :</td>
                 <td><div id="sex_id" class="select-reference text"></td>
-                <!--<input type="radio" name="sex" value="male">ชาย
-                <input type="radio" name="sex" value="female">หญิง-->
             </tr>
             <tr>
                 <td>ที่อยู่ :</td>
@@ -300,7 +338,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 </td>
                 <td>
                     <label class="input-required">เพศ</label>
-                    <div id="sex_id" class="select-reference form-input half" require></div>
+                    <label style="display:inline; margin-right:20px;"><input id="sex_id_male" type="radio" name="sex_id" value="X1" <?php if ($_smarty_tpl->tpl_vars['values']->value['sex_id']=='X1') {?>checked<?php }?> checked> ชาย</label>
+                    <label style="display:inline; margin-right:20px;"><input id="sex_id_female" type="radio" name="sex_id" value="X2" <?php if ($_smarty_tpl->tpl_vars['values']->value['sex_id']=='X2') {?>checked<?php }?>> หญิง</label>
                 </td>
             </tr>
             <tr class="errMsgRow">

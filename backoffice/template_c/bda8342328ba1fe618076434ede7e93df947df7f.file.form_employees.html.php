@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 13:12:34
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-25 14:41:32
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
 <?php /*%%SmartyHeaderCode:10781544b3f520433d2-91364857%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bda8342328ba1fe618076434ede7e93df947df7f' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_employees.html',
-      1 => 1414209846,
+      1 => 1414214922,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_544b3f524b0f24_61059046',
   'variables' => 
   array (
     'action' => 0,
@@ -25,8 +27,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'randNum' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544b3f524b0f24_61059046',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_544b3f524b0f24_61059046')) {function content_544b3f524b0f24_61059046($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
@@ -98,6 +98,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 		changeTitleId();
                 	}
                 }
+            });
+            selectReference({
+                elem            : $('#sex_id'),
+                tableName       : 'sex',
+                keyFieldName    : 'sex_id',
+                textFieldName   : 'sex_name',
+                searchTool      : false,
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['sex_id'];?>
+'
             });
             selectReference({
                 elem            : $('#pos_id'),
