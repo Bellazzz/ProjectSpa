@@ -879,8 +879,8 @@ function dbClose() {
 				'defaultNull'	=> array('ord_snd_date'),
 				'searchFields'	=> array('ord_id','ordtyp_id','comp_id','ord_date','ordstat_id'),
 				'deleteTxtField'		=> array('comp_id','ord_date'),
-				'deleteTxtPatternMain' 	=> 'คุณต้องการลบการสั่งซื้อจาก%f1 ในวันที่ %f2 ใช่หรือไม่?',
-				'deleteTxtPatternMin' 	=> '%f1 สั่งซื้อวันที่ %f2'
+				'deleteTxtPatternMain' 	=> 'คุณต้องการลบการสั่งซื้อวันที่ %f2 จาก%f1 ใช่หรือไม่?',
+				'deleteTxtPatternMin' 	=> 'การสั่งซื้อวันที่ %f2 จาก%f1'
 			);
 			break;
 
