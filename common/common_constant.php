@@ -528,7 +528,7 @@ function dbClose() {
 						'comp_contact'    => 'ผู้ติดต่อ'
 				),
 				'hiddenFields'	=> array('fax','comp_tel','comp_addr','comp_contact','comp_email'),
-				'defaultNull' 	=> array('fax','comp_contact'),
+				'defaultNull' 	=> array('fax','comp_contact','comp_email'),
 				'searchFields'	=> array('comp_name'),
 				'deleteTxtField' 		=> array('comp_name')
 			);
