@@ -64,8 +64,13 @@ if(hasValue($ordId)) {
 		'spa_name' 	=> $spaRecord->getFieldValue('spa_name'),
 		'spa_addr' 	=> $spaRecord->getFieldValue('spa_addr'),
 		'spa_tel' 	=> $spaRecord->getFieldValue('spa_tel'),
-		'spa_fax' 	=> $spaRecord->getFieldValue('spa_fax')
+		'spa_fax' 	=> $spaRecord->getFieldValue('spa_fax'),
+		'spa_email' => $spaRecord->getFieldValue('spa_email')
 	);
+	// Check null
+	$spaData['spa_fax'] 	= $spaData['spa_fax'] == '' ? '-' : $spaData['spa_fax'];
+	$spaData['spa_email'] 	= $spaData['spa_email'] == '' ? '-' : $spaData['spa_email'];
+
 	$smarty->assign('spaData', $spaData);
 
 	// Get orders data
@@ -88,6 +93,13 @@ if(hasValue($ordId)) {
 	$rows 	= mysql_num_rows($result);
 	for($i=0; $i<$rows; $i++) {
 		$ordRecord = mysql_fetch_assoc($result);
+		// Check ord_snd_date if is null will not convert
+		if($ordRecord['ord_snd_date'] == '') {
+			$ord_snd_date = '-';
+		} else {
+			$ord_snd_date = dateThaiFormat($ordRecord['ord_snd_date']);
+		}
+
 		$ordData = array(
 			'ord_id' 		=> $ordId,
 			'ordstat_id' 	=> $ordRecord['ordstat_id'],
@@ -97,11 +109,17 @@ if(hasValue($ordId)) {
 			'comp_addr' 	=> $ordRecord['comp_addr'],
 			'comp_contact' 	=> $ordRecord['comp_contact'],
 			'comp_tel' 		=> $ordRecord['comp_tel'],
+			'comp_email' 	=> $ordRecord['comp_email'],
 			'fax' 			=> $ordRecord['fax'],
 			'ord_date' 		=> dateThaiFormat($ordRecord['ord_date']),
-			'ord_snd_date' 	=> dateThaiFormat($ordRecord['ord_snd_date'])
+			'ord_snd_date' 	=> $ord_snd_date
 		);
 	}
+	// Check null
+	$ordData['fax'] 			= $ordData['fax'] == '' ? '-' : $ordData['fax'];
+	$ordData['comp_contact'] 	= $ordData['comp_contact'] == '' ? '-' : $ordData['comp_contact'];
+	$ordData['comp_email'] 		= $ordData['comp_email'] == '' ? '-' : $ordData['comp_email'];
+
 	$smarty->assign('ordData', $ordData);
 			
 	// Get order details data
