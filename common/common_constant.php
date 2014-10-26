@@ -626,9 +626,9 @@ function dbClose() {
 				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time'),
 				'defaultNull' 	=> array('bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_transfer_money','bnkacc_id'),
 				'searchFields'	=> array('bkg_id','cus_id','emp_id','status_id','bkg_total_price','bkg_date','bkg_time'),
-				'deleteTxtField'	=> array('cus_id','bkg_date'),
-				'deleteTxtPatternMain' 	=> 'คุณต้องการลบการจองของ %f1 ในวันที่ %f2 ใช่หรือไม่?',
-				'deleteTxtPatternMin' 	=> '%f1 จองวันที่ %f2'
+				'deleteTxtField'	=> array('cus_id')
+				//'deleteTxtPatternMain' 	=> 'คุณต้องการลบการจองของ %f1 ในวันที่ %f2 ใช่หรือไม่?',
+				//'deleteTxtPatternMin' 	=> '%f1 จองวันที่ %f2'
 			);
 			break;
 

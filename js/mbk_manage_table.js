@@ -218,12 +218,12 @@ function delteCurrentRecord(code) {
     if(typeof(table.deleteTxtPatternMain) != 'undefined' && table.deleteTxtPatternMain != '') {
         delText = table.deleteTxtPatternMain;
         for(i in table.deleteTxtField) {
-            delVal = $('#' + code).find('td[field="' + table.deleteTxtField[i] + '"]').text();
+            delVal = $('tr[id="' + code + '"]').find('td[field="' + table.deleteTxtField[i] + '"]').text();
             delText = delText.replace('%f' + (parseInt(i)+1), delVal);
         }
     } else {
         for(i in table.deleteTxtField) {
-            delVal += $('#' + code).find('td[field="' + table.deleteTxtField[i] + '"]').text() + ' ';
+            delVal += $('tr[id="' + code + '"]').find('td[field="' + table.deleteTxtField[i] + '"]').text() + ' ';
         }
         delText = 'คุณต้องการลบ' + table.nameTH + ' ' + delVal + 'ใช่หรือไม่?';
     }
@@ -301,14 +301,14 @@ function deleteRecordSelected() {
             if(typeof(table.deleteTxtPatternMin) != 'undefined' && table.deleteTxtPatternMin != '') {
                 delVal = table.deleteTxtPatternMin;
                 for(j in table.deleteTxtField) {
-                    delTmpVal = $('#' + code).find('td[field="' + table.deleteTxtField[j] + '"]').text();
+                    delTmpVal = $('tr[id="' + code + '"]').find('td[field="' + table.deleteTxtField[j] + '"]').text();
                     delVal = delVal.replace('%f' + (parseInt(j)+1), delTmpVal);
                 }
                 delText += '<li>' + delVal + '</li>';
             } else {
                 delVal = '';
                 for(j in table.deleteTxtField) {
-                    delVal += $('#' + code).find('td[field="' + table.deleteTxtField[j] + '"]').text() + ' ';
+                    delVal += $('tr[id="' + code + '"]').find('td[field="' + table.deleteTxtField[j] + '"]').text() + ' ';
                 }
                 delText += '<li>' + delVal + '</li>';
             }
