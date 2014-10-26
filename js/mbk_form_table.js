@@ -64,7 +64,7 @@ $(document).ready(function () {
     	if(height > 350) {
     		$(this).height(350);
     	} else if(width > 470) {
-    		$(this).height(470);
+    		$(this).width(470);
     	}
     })
 });
