@@ -619,9 +619,15 @@ if($rows > 0){
 				}
 				//Display field
 				if ($value == ''){
-					?>
-						<td field="<?=$field?>">-</td>
-					<?
+					if(mysql_field_type($result, $offset) == 'real' || mysql_field_type($result, $offset) == 'int') {
+						?>
+							<td field="<?=$field?>" class="real-col">-</td>
+						<?
+					} else {
+						?>
+							<td field="<?=$field?>">-</td>
+						<?
+					}
 				}else {
 					if($field == $tableInfo['keyFieldName']) {
 						if(isset($tableInfo['hiddenFields'])) {

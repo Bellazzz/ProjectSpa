@@ -1459,9 +1459,10 @@ datetimepicker
     width: 100%;
     text-align: center;
     padding: 8px 0 8px 280px;
-    background: #eee;
+    background: #f5f5f5;
     z-index: 1;
     min-height: 39px;
+    border-top: 1px solid #ddd;
 }
 .sidebar[aria-expanded="false"] ~  #pagingContainer {
     padding-left: 56px;
