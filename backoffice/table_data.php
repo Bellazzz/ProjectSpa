@@ -114,7 +114,6 @@ switch ($tableName) {
 				b.bkg_transfer_time,
 				b.bkg_transfer_evidence,
 				b.bkg_total_price,
-				b.bkg_total_price,
 				b.bkg_date,
 				b.bkg_time,
 				b.bkg_transfer_money 
@@ -306,12 +305,12 @@ switch ($tableName) {
 		}
 		$sql = "SELECT s.ser_id,
 				s.bkg_id,
-				s.ser_date,
 				s.ser_time,
 				CONCAT(c.cus_name, '  ', c.cus_surname) cus_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				p.paytyp_name paytyp_id,
 				b.bed_name bed_id,
+				s.ser_date,
 				s.ser_total_price 
 				FROM services s, customers c, employees e, pay_types p, beds b 
 				$where 

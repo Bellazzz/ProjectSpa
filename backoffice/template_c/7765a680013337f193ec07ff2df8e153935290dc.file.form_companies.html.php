@@ -1,9 +1,38 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-26 14:12:19
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_companies.html" */ ?>
+<?php /*%%SmartyHeaderCode:1595544c9c678891f6-55861972%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '7765a680013337f193ec07ff2df8e153935290dc' => 
+    array (
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_companies.html',
+      1 => 1414307533,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1595544c9c678891f6-55861972',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_544c9c679d7a09_74921741',
+  'variables' => 
+  array (
+    'action' => 0,
+    'tableName' => 0,
+    'tableNameTH' => 0,
+    'code' => 0,
+    'values' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_544c9c679d7a09_74921741')) {function content_544c9c679d7a09_74921741($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
 	<meta charset="UTF-8"/>
-    {literal}
+    
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
     <!--<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css">-->
@@ -16,59 +45,72 @@
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
     <script type="text/javascript">
         // Global variables
-        var action      = '{/literal}{$action}{literal}';
-        var tableName   = '{/literal}{$tableName}{literal}';
-		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
-        var code        = '{/literal}{$code}{literal}';
+        var action      = '<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
+';
+        var tableName   = '<?php echo $_smarty_tpl->tpl_vars['tableName']->value;?>
+';
+		var tableNameTH = '<?php echo $_smarty_tpl->tpl_vars['tableNameTH']->value;?>
+';
+        var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+';
         var ajaxUrl     = 'form_table.php';
 
         // Set default value of textarea
-        $('#comp_addr').text('{/literal}{$values.comp_addr}{literal}');
+        $('#comp_addr').text('<?php echo $_smarty_tpl->tpl_vars['values']->value['comp_addr'];?>
+');
     </script>
-    {/literal}
+    
 </head>
 <body>
  	 	 	 	 
-{include file="form_table_header.html"}
+<?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <div class="ftb-body">
     <div class="ftb-body">
 
-     {if $action == 'VIEW_DETAIL'}
+     <?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
     <!-- VIEW_DETAIL -->
     <table class="table-view-detail">
         <tbody>
             <tr>
                 <td>รหัสบริษัทจำหน่ายผลิตภัณฑ์ :</td>
-                <td>{$code}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+</td>
             </tr>
             <tr>
                 <td>ชื่อบริษัท :</td>
-                <td>{$values.comp_name}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['comp_name'];?>
+</td>
             </tr>
             <tr>
                 <td>ที่อยู่ :</td>
-                <td>{$values.comp_addr}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['comp_addr'];?>
+</td>
             </tr>
             <tr>
                 <td>เบอร์โทร :</td>
-                <td>{$values.comp_tel}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['comp_tel'];?>
+</td>
             </tr>
             <tr>
                 <td>โทรสาร :</td>
-                <td>{$values.fax}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['fax'];?>
+</td>
             </tr>
             <tr>
                 <td>E-mail :</td>
-                <td>{$values.comp_email}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['comp_email'];?>
+</td>
             </tr>
             <tr>
                 <td>ชื่อผู้ติดต่อ :</td>
-                <td>{$values.comp_contact}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['comp_contact'];?>
+</td>
             </tr>
             
         </tbody> 
     </table> 
-    {else}      
+    <?php } else { ?>      
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="comp_name,comp_tel,comp_addr">
     <input type="hidden" name="uniqueFields" value="comp_name">
@@ -77,7 +119,8 @@
 		    <tr>
 			    <td colspan="2">
 				    <label class="input-required">ชื่อบริษัท</label>
-				    <input id="comp_name" name="comp_name" type="text" class="form-input full" value="{$values.comp_name}" require>
+				    <input id="comp_name" name="comp_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['comp_name'];?>
+" require>
 			    </td>
             </tr>
             <tr>
@@ -89,7 +132,8 @@
             <tr>
                 <td colspan="2">
                     <label class="input-required">ที่อยู่</label>
-                    <textarea id="comp_addr" name="comp_addr" class="form-input full" require>{$values.comp_addr}</textarea>
+                    <textarea id="comp_addr" name="comp_addr" class="form-input full" require><?php echo $_smarty_tpl->tpl_vars['values']->value['comp_addr'];?>
+</textarea>
                 </td>
             </tr>
             <tr>
@@ -100,11 +144,13 @@
             <tr>
                 <td>
                     <label class="input-required">เบอร์โทร</label>
-                    <input id="comp_tel" name="comp_tel" type="text" class="form-input half" value="{$values.comp_tel}"require>
+                    <input id="comp_tel" name="comp_tel" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['comp_tel'];?>
+"require>
                 </td>
                 <td>
                     <label>โทรสาร</label>
-                    <input id="fax" name="fax" type="text" class="form-input half" value="{$values.fax}">
+                    <input id="fax" name="fax" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['fax'];?>
+">
                 </td>
             </tr>
             <tr class="errMsgRow">
@@ -116,7 +162,8 @@
             <tr>
                 <td colspan="2">
                     <label>E-mail</label>
-                    <input id="comp_email" name="comp_email" type="text" class="form-input full" value="{$values.comp_email}" valuepattern="email">
+                    <input id="comp_email" name="comp_email" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['comp_email'];?>
+" valuepattern="email">
                 </td>
             </tr>
             <tr class="errMsgRow">
@@ -127,13 +174,14 @@
             <tr>
                 <td colspan="2">
                     <label>ชื่อผู้ติดต่อ</label>
-                    <input id="comp_contact" name="comp_contact" type="text" class="form-input full" value="{$values.comp_contact}">
+                    <input id="comp_contact" name="comp_contact" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['comp_contact'];?>
+">
                 </td>
             </tr>
 	    </tbody>
     </table>
     </form>
-    {/if}
+    <?php }?>
 </div>
 </body>
 </html>
@@ -141,4 +189,4 @@
     [Note]
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
--->
+--><?php }} ?>
