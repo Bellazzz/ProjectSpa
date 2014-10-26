@@ -97,14 +97,14 @@ if($rows > 0){
 		foreach($tableData as $key => $row) {
 			$code = $row[$tableInfo['keyFieldName']];
 			?>
-			<tr>
+			<tr id="<?=$code?>">
 				<?
 				if($filter == 'REMAIN') {
 				?>
-					<td class="icon-col">
+					<td field="<?=$field?>" class="icon-col">
 						<input type="checkbox" value="<?=$code?>" name="table-record[]" class="mbk-checkbox" onclick="checkRecord(this)">
 					</td>
-					<td class="action-col">
+					<td field="<?=$field?>" class="action-col">
 						<a title="แก้ไข">
 							<i class="fa fa-pencil" onclick="openFormTable('EDIT', '<?=$code?>')"></i>
 						</a>
@@ -136,12 +136,12 @@ if($rows > 0){
 				}
 				else if(mysql_field_type($result, $offset) == 'real') {
 					?>
-					<td class="real-col"><? echo number_format($value,2);?></td>
+					<td field="<?=$field?>" class="real-col"><? echo number_format($value,2);?></td>
 					<?
 				} 
 				else if (mysql_field_type($result, $offset) == 'int'){
 					?>
-					<td class="real-col"><?=$value?></td>
+					<td field="<?=$field?>" class="real-col"><?=$value?></td>
 					<?
 				}
 				else if (mysql_field_type($result, $offset) == 'date' || mysql_field_type($result, $offset) == 'datetime'){
@@ -154,12 +154,12 @@ if($rows > 0){
 						$dateValue 	= date('d', $time).' '.$month.' '.$yearMinTH;
 					}
 					?>
-					<td><?=$dateValue?></td>
+					<td field="<?=$field?>"><?=$dateValue?></td>
 					<?
 				}
 				else {
 					?>
-					<td><?=$value?></td>
+					<td field="<?=$field?>"><?=$value?></td>
 					<?
 				}
 				$offset++;
@@ -200,7 +200,10 @@ if($rows > 0){
 				echo "[]"; // empty array
 			}
 		?>,
-		'allRecords'	: '<?=$allRecords?>'
+		'allRecords'	: '<?=$allRecords?>',
+		'deleteTxtField': <? echo json_encode($tableInfo['deleteTxtField']); ?>,
+		'deleteTxtPatternMain' 	: '<?=$tableInfo["deleteTxtPatternMain"]?>',
+		'deleteTxtPatternMin' 	: '<?=$tableInfo["deleteTxtPatternMin"]?>'
 	};
 	setTable(table);
 
