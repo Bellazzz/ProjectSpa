@@ -63,27 +63,49 @@
 			<tr>
 			    <td colspan="2">
 				    <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
-				    <div id="emp_id" class="select-reference form-input full" > </div>
+				    <div id="emp_id" class="select-reference form-input full" require> </div>
 			    </td>
 		    </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-emp_id-require" class="errInputMsg half err-emp_id">โปรดเลือกชื่อ-นามสกุลพนักงาน</span>
+                </td>
+            </tr>
 			<tr>
                 <td>
                     <label class="input-required">จำนวนเงินเดือน(บาท)</label>
-				    <input id="payroll_salary" name="payroll_salary" type="text" class="form-input half" value="{$values.payroll_salary}">
+				    <input id="payroll_salary" name="payroll_salary" type="text" class="form-input half" value="{$values.payroll_salary}" valuepattern="money" require>
 			    </td>
 			    <td>
 				    <label>ค่าคอมมิชชั่น(บาท)</label>
-				    <input id="payroll_commission" name="payroll_commission" type="text" class="form-input half" value="{$values.payroll_commission}">
+				    <input id="payroll_commission" name="payroll_commission" type="text" class="form-input half" value="{$values.payroll_commission}" valuepattern="money">
 			    </td>
 		    </tr>
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-payroll_salary-require" class="errInputMsg half err-payroll_salary">โปรดป้อนราคา</span>
+                    <span id="err-payroll_salary-money" class="errInputMsg half err-payroll_salary">รูปแบบจำนวนเงินไม่ถูกต้อง จำนวนเงินเป็นได้เฉพาะตัวเลข ไม่มีคอมม่าคั่น จุดทศนิยม 2 ตำแหน่ง เช่น 130, 1600.25</span>
+                </td>
+                <td>
+                    <span id="err-payroll_commission-money" class="errInputMsg half err-payroll_commission">รูปแบบจำนวนเงินไม่ถูกต้อง จำนวนเงินเป็นได้เฉพาะตัวเลข ไม่มีคอมม่าคั่น จุดทศนิยม 2 ตำแหน่ง เช่น 130, 1600.25</span>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <label class="input-required">ประจำเดือน-ปี</label>
-                    <input id="payroll_monthly" name="payroll_monthly" type="text" class="form-input half" value="{$values.payroll_monthly}">
+                    <input id="payroll_monthly" name="payroll_monthly" type="text" class="form-input half" value="{$values.payroll_monthly}" require>
                 </td>
                 <td>
                     <label class="input-required">วันที่จ่ายเงินเดือน</label>
-                    <input id="payroll_date" name="payroll_date" type="text" class="form-input half" value="{$values.payroll_date}">
+                    <input id="payroll_date" name="payroll_date" type="text" class="form-input half" value="{$values.payroll_date}" require>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-payroll_monthly-require" class="errInputMsg half err-payroll_monthly">โปรดป้อนประจำเดือน-ปี</span>
+                </td>
+                <td>
+                    <span id="err-payroll_date-require" class="errInputMsg half err-payroll_date">โปรดป้อนวันที่จ่ายเงินเดือน</span>
                 </td>
             </tr>
 	    </tbody>

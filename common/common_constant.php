@@ -391,9 +391,9 @@ function dbClose() {
 					'cus_facebook','cus_line_id','cus_email'),
 				'defaultNull' 	=> array('cus_user','cus_pass','cus_birthdate','cus_facebook','cus_line_id','cus_email'),
 				'searchFields'	=> array('cus_name','cus_surname','sex_id','custype_id'),
-				'deleteTxtField' => array('title_id','cus_name','cus_surname'),
-				'deleteTxtPatternMain' => 'คุณต้องการลบข้อมูลผู้ใช้บริการของ %f1%f2 %f3 ใช่หรือไม่',
-				'deleteTxtPatternMin' => '%f1%f2 %f3'
+				'deleteTxtField' 		=> array('title_id','cus_name','cus_surname'),
+				'deleteTxtPatternMain' 	=> 'คุณต้องการลบข้อมูลผู้ใช้บริการของ %f1%f2 %f3 ใช่หรือไม่',
+				'deleteTxtPatternMin' 	=> '%f1%f2 %f3'
 			);
 			break;
 
@@ -418,7 +418,7 @@ function dbClose() {
 				'hiddenFields'	=> array('svl_desc','svl_picture','svl_commission','svl_price'),
 				'defaultNull' 	=> array('svl_min','svl_hr','svl_desc','svl_picture'),
 				'searchFields'	=> array('svl_name','svl_price'),
-				'deleteTxtField' => array('svl_name')
+				'deleteTxtField' 	=> array('svl_name')
 			
 			);
 			break;
@@ -441,7 +441,8 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('pkg_desc','pkg_picture'),
 				'defaultNull' 	=> array('pkg_stop','pkg_desc','pkg_picture'),
-				'searchFields'	=> array('pkg_name','pkg_price')
+				'searchFields'	=> array('pkg_name','pkg_price'),
+				'deleteTxtField' 	=> array('pkg_name')
 			);
 			break;
 
@@ -480,7 +481,8 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('prm_picture'),
 				'defaultNull' 	=> array('prm_use_amount','prm_free_amount','prm_enddate','prm_picture'),
-				'searchFields'	=> array('prm_name','prm_use_amount','prm_free_amount')
+				'searchFields'	=> array('prm_name'),
+				'deleteTxtField' 	=> array('prm_name')
 			);
 			break;
 
@@ -501,7 +503,10 @@ function dbClose() {
 						'prmsvl_price'    => 'ราคา(บาท)'
 				),
 				'hiddenFields'	=> array('prmsvl_desc'),
-				'defaultNull' 	=> array('prmsvl_start','prmsvl_end')
+				'defaultNull' 	=> array('prmsvl_start','prmsvl_end'),
+				'deleteTxtField' 		=> array('prm_id','svl_id'),
+				'deleteTxtPatternMain' 	=>('คุณต้องการลบรายการบริการ%f2 ออกจาก%f1 ใช่หรือไม่'),
+				'deleteTxtPatternMin' 	=>('รายการบริการ%f2 ของโ%f1')
 
 			);
 			break;
@@ -523,7 +528,8 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('fax','comp_tel','comp_addr','comp_contact'),
 				'defaultNull' 	=> array('fax','comp_contact'),
-				'searchFields'	=> array('comp_name')
+				'searchFields'	=> array('comp_name'),
+				'deleteTxtField' 		=> array('comp_name')
 			);
 			break;
 
@@ -546,7 +552,8 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('prd_pic','prd_amount','unit_id'),
 				'defaultNull' 	=> array('prd_amount'),
-				'searchFields'	=> array('prd_name','prd_price')
+				'searchFields'	=> array('prd_name','prd_price'),
+				'deleteTxtField' 		=> array('prd_name')
 			);
 			break;
 
@@ -588,7 +595,10 @@ function dbClose() {
 						'payroll_monthly'		=> 'ประจำเดือน-ปี',
 						'payroll_date'			=> 'วันที่จ่ายเงินเดือน'
 				),
-				'searchFields'	=> array('emp_id','payroll_salary','payroll_monthly')
+				'searchFields'	=> array('emp_id','payroll_salary','payroll_monthly'),
+				'deleteTxtField'	=> array('emp_id','payroll_monthly'),
+				'deleteTxtPatternMain' 	=> 'คุณต้องการลบการจ่ายเงินเดือนของ %f1 ประจำเดือน %f2 ใช่หรือไม่?',
+				'deleteTxtPatternMin' 	=> '%f1 ประจำเดือน %f2'
 			);
 			break;
 
@@ -615,7 +625,10 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('bnkacc_id','bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_total_price','bkg_transfer_money','bkg_date','bkg_time'),
 				'defaultNull' 	=> array('bkg_transfer_date','bkg_transfer_time','bkg_transfer_evidence','bkg_transfer_money','bnkacc_id'),
-				'searchFields'	=> array('bkg_id','cus_id','emp_id','status_id','bkg_total_price','bkg_date','bkg_time')
+				'searchFields'	=> array('bkg_id','cus_id','emp_id','status_id','bkg_total_price','bkg_date','bkg_time'),
+				'deleteTxtField'	=> array('cus_id','bkg_date'),
+				'deleteTxtPatternMain' 	=> 'คุณต้องการลบการจองของ %f1 ในวันที่ %f2 ใช่หรือไม่?',
+				'deleteTxtPatternMin' 	=> '%f1 จองวันที่ %f2'
 			);
 			break;
 
@@ -697,7 +710,10 @@ function dbClose() {
 				),
 				'hiddenFields'	=> array('emp_id','bed_id','bkg_id','ser_date','ser_time','ser_total_price'),
 				'defaultNull' 	=> array('bkg_id'),
-				'searchFields'	=> array('ser_id','cus_id','ser_date','ser_time')
+				'searchFields'	=> array('ser_id','cus_id','ser_date','ser_time'),
+				'deleteTxtField'		=> array('cus_id','ser_date'),
+				'deleteTxtPatternMain' 	=> 'คุณต้องการลบการใช้บริการของ %f1 ในวันที่ %f2 ใช่หรือไม่?',
+				'deleteTxtPatternMin' 	=> '%f1 ใช้บริการวันที่ %f2'
 
 			);
 			break;
@@ -814,12 +830,15 @@ function dbClose() {
 				'fieldNameList'	=> array(
 						'elechk_id'	  		  => 'รหัสการตรวจประเภทธาตุ',
 						'eletyp_id' 		  => 'ชื่อประเภทธาตุ',
-						'emp_id' 			  => 'พนักงานที่ตรวจ',
+						'emp_id' 			  => 'แพทย์ผู้ตรวจ',
 						'cus_id'	  		  => 'ผู้ใช้บริการ',
 						'elechk_date'	  	  => 'วันที่ตรวจ',
 						'elechk_time'	  	  => 'เวลาที่ตรวจ'
 				),
-				'searchFields'	=> array('elechk_id','cus_id','elechk_date')
+				'searchFields'	=> array('cus_id','emp_id','elechk_date'),
+				'deleteTxtField'		=> array('cus_id','elechk_date'),
+				'deleteTxtPatternMain' 	=> 'คุณต้องการลบการตรวจธาตุของ %f1 ในวันที่ %f2 ใช่หรือไม่?',
+				'deleteTxtPatternMin' 	=> '%f1 ตรวจธาตุวันที่ %f2'
 			);
 			break;
 
@@ -834,7 +853,8 @@ function dbClose() {
 						'ordstat_id'	  	  => 'รหัสสถานะการสั่งซื้อ',
 						'ordstat_name' 		  => 'ชื่อสถานะการสั่งซื้อ'
 				),
-				'searchFields'	=> array('ordstat_name')
+				'searchFields'	=> array('ordstat_name'),
+				'deleteTxtField'		=> array('ordstat_name')
 			);
 			break;
 
@@ -856,7 +876,10 @@ function dbClose() {
 				),
 				'hiddenFields' 	=> array(),
 				'defaultNull'	=> array('ord_snd_date'),
-				'searchFields'	=> array('ord_id','ordtyp_id','comp_id','ord_date','ordstat_id')
+				'searchFields'	=> array('ord_id','ordtyp_id','comp_id','ord_date','ordstat_id'),
+				'deleteTxtField'		=> array('comp_id','ord_date'),
+				'deleteTxtPatternMain' 	=> 'คุณต้องการลบการสั่งซื้อจาก%f1 ในวันที่ %f2 ใช่หรือไม่?',
+				'deleteTxtPatternMin' 	=> '%f1 สั่งซื้อวันที่ %f2'
 			);
 			break;
 
