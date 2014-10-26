@@ -88,6 +88,7 @@ if(!$_REQUEST['ajaxCall']) {
 			$type		= str_replace(".", "", strrchr($formData['bkg_transfer_evidence'],"."));
 			$tmpRecord	= new TableSpa('booking', null);
 			$bkg_transfer_evidence	= $tmpRecord->genKeyCharRunning().".$type";
+			$bkg_transfer_evidence 	= str_replace('/', '_', $bkg_transfer_evidence);
 			$bkg_transfer_evidence_path = '../img/booking/'.$bkg_transfer_evidence;
 
 			// Delete Old Image
@@ -141,6 +142,7 @@ if(!$_REQUEST['ajaxCall']) {
 		if(strpos($formData['bkg_transfer_evidence'], 'temp_') !== FALSE) {
 			$type		= str_replace(".", "", strrchr($formData['bkg_transfer_evidence'],"."));
 			$bkg_transfer_evidence = $code.".$type";
+			$bkg_transfer_evidence = str_replace('/', '_', $bkg_transfer_evidence);
 			$imgTmpPath = '../img/temp/'.$formData['bkg_transfer_evidence'];
 			$imgNewPath = '../img/booking/'.$bkg_transfer_evidence;
 
