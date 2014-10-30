@@ -494,6 +494,7 @@ table.view-detail-reference td {
 table.mbk .icon-col {
     width: 40px;
     text-align: center !important;
+    display: none;
 }
 table.mbk .action-col {
     width: 50px;
@@ -524,6 +525,8 @@ table.mbk .txtLong-col {
 }
 table.mbk .action-col > a, table.mbk.hasSelectRecord .action-col span, table.mbk.hasSelectRecord tbody tr:hover .action-col > a{
     visibility: hidden;
+    display: inline-block;
+    margin-left: 8px;
 }
 table.mbk tbody tr:hover .action-col > a{
     visibility: visible;
