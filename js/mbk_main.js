@@ -204,6 +204,12 @@ function selectReference(select) {
             // Add Event Listener
             $(select.elem).click(function (e) {
                 e.stopPropagation();
+                if(typeof(select.beforeShow) == 'function') {
+                    if(!select.beforeShow()) {
+                        hideAllPopup();
+                        return;
+                    }
+                }
 
                 if (selectRefCon.css('display') == 'none') {
                     hideAllPopup();

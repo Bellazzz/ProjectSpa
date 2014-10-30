@@ -80,7 +80,7 @@ $rows	= mysql_num_rows($result);
 if($rows > 0) {
 	while($record = mysql_fetch_assoc($result)) {
 		?>
-		<li>
+		<li id="<?=$id?>_<?=$record[$keyFieldName]?>">
 			<span class="text"><?=$record['pattern']?></span>
 			<span class="value"><?=$record[$keyFieldName]?></span>
         </li>

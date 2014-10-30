@@ -56,7 +56,8 @@
                 keyFieldName    : 'sex_id',
                 textFieldName   : 'sex_name',
                 searchTool      : false,
-                defaultValue    : '{/literal}{$values.sex_id}{literal}'
+                defaultValue    : '{/literal}{$values.sex_id}{literal}',
+                beforeShow      : allowSelectSex
             });
             selectReference({
                 elem			: $('#custype_id'),
@@ -166,35 +167,56 @@
 
         function changeTitleId() {
             var titleId = $('input[name="title_id"]').val();
-            $.ajax({
-                url: '../common/ajaxGetSexOfTitle.php',
-                data: {
-                    title_id: titleId
-                },
-                success:
-                function(response) {
-                    if(response != 'NO_ROWS') {
-                        if(response != '') {
-                            if(response == 'X1') {
-                                $('#sex_id_male').prop('checked', true);
-                                $('#sex_id_male').prop('disabled', false);
-                                $('#sex_id_female').prop('disabled', true);
-                            } else if(response == 'X2') {
-                                $('#sex_id_female').prop('checked', true);
-                                $('#sex_id_female').prop('disabled', false);
-                                $('#sex_id_male').prop('disabled', true);
+            if(titleId != '') {
+                $.ajax({
+                    url: '../common/ajaxGetSexOfTitle.php',
+                    data: {
+                        title_id: titleId
+                    },
+                    success:
+                    function(responseJSON) {
+                        var response = $.parseJSON(responseJSON);
+                        if(response.status == 'PASS') {
+                            if(response.sex_id != '') {
+                                sexIdOfTitle = response.sex_id;
+                                $('#sex_id_' + response.sex_id).click();
+                            } else {
+                                sexIdOfTitle = '';
                             }
-                            $('input[name="sex_id"]').prop('readonly', true);
                         } else {
-                            $('#sex_id_male').prop('checked', true);
-                            $('input[name="sex_id"]').prop('disabled', false);
+                            alert(response.status);
                         }
-                    } else {
-                        $('#sex_id_male').prop('checked', true);
-                        $('input[name="sex_id"]').prop('disabled', false);
                     }
-                }
-            });
+                });
+            } else {
+                sexIdOfTitle = '';
+            }
+        }
+
+        function allowSelectSex() {
+            if(sexIdOfTitle == '') {
+                return true;
+            } else {
+                var msg = 'คำนำหน้าชื่อ ' + $('#title_id').find('.select-reference-text').text()
+                        + ' ถูกระบุให้เป็นได้เฉพาะเพศ' + $('#sex_id').find('.select-reference-text').text()
+                        + 'เท่านั้น';
+                parent.showActionDialog({
+                    title: 'ไม่สามารถเลือกเพศได้',
+                    message: msg,
+                    actionList: [
+                        {
+                            id: 'ok',
+                            name: 'ตกลง',
+                            func:
+                            function() {
+                                parent.hideActionDialog();
+                            }
+                        }
+                    ],
+                    boxWidth: 400
+                });
+                return false;
+            }
         }
     </script>
     {/literal}
@@ -284,8 +306,7 @@
                 </td>
                 <td>
                     <label class="input-required">เพศ</label>
-                    <label style="display:inline; margin-right:20px;"><input id="sex_id_male" type="radio" name="sex_id" value="X1" {if $values.sex_id == 'X1'}checked{/if} checked> ชาย</label>
-                    <label style="display:inline; margin-right:20px;"><input id="sex_id_female" type="radio" name="sex_id" value="X2" {if $values.sex_id == 'X2'}checked{/if}> หญิง</label>
+                    <div id="sex_id" class="select-reference form-input half" require></div>
                 </td>
             </tr>
             <tr class="errMsgRow">
