@@ -459,7 +459,7 @@ function refreshFilterQuery() {
     if(this.table.name == 'orders') {
         filterRecordQueryHTML   = 'ดูการสั่งซื้อที่มีสถานะ '
                                 + '<select id="query-record-filter" class="mbk-select">'
-                                + '     <option value="WAIT">เตรียมการสั่งซื้อ</option>'
+                                + '     <option value="WAIT">ใบสั่งซื้อ</option>'
                                 + '     <option value="REMAIN">ค้างรับ</option>'
                                 + '     <option value="COMPLETED">รับเรียบร้อยแล้ว</option>'
                                 + '</select>';

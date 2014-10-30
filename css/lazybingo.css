@@ -1285,6 +1285,18 @@ label.article-title {
 }
 
 /*
+ * select option
+ */
+.select-option{
+    padding: 5px;
+    margin-top: 2px;
+    border: 1px solid #ccc;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/*
  * Button 
  */
 .button {
