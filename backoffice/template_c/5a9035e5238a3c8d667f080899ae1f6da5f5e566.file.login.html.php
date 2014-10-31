@@ -1,25 +1,45 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-10-13 20:31:12
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\login.html" */ ?>
 <?php /*%%SmartyHeaderCode:8880543bc610af4012-38295473%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 16:54:30
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\login.html" */ ?>
+<?php /*%%SmartyHeaderCode:15968544e16569ed009-45314601%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '5a9035e5238a3c8d667f080899ae1f6da5f5e566' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\login.html',
+<<<<<<< HEAD
       1 => 1411691405,
       2 => 'file',
     ),
   ),
   'nocache_hash' => '8880543bc610af4012-38295473',
+=======
+      1 => 1413814534,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '15968544e16569ed009-45314601',
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
   'function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
+<<<<<<< HEAD
   'unifunc' => 'content_543bc6110d6344_85244865',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_543bc6110d6344_85244865')) {function content_543bc6110d6344_85244865($_smarty_tpl) {?><!DOCTYPE html>
+=======
+  'unifunc' => 'content_544e1656ade954_04119778',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_544e1656ade954_04119778')) {function content_544e1656ade954_04119778($_smarty_tpl) {?><!DOCTYPE html>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 <html>
 <head>
 	<title>Back Office - Spa</title>
@@ -44,7 +64,11 @@ $(document).ready(function() {
 				if(response == 'PASS') {
 					window.location ='http://localhost/projectSpa/backoffice/manage_table.php';
 				} else if(response == 'NOT_PASS') {
+<<<<<<< HEAD
 					$('#error-message-username').text("ไม่พบบัญชีผู้ใช้นี้ หรือท่านกรอกชื่อผู้ใช้ และรหัสผ่านผิดพลาด โปรดลองอีกครั้ง");
+=======
+					$('#error-message-username').text("ไม่พบบัญชีผู้ใช้นี้ หรือคุณกรอกชื่อผู้ใช้ และรหัสผ่านผิดพลาด โปรดลองอีกครั้ง");
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 				}  else {
 					alert(response);
 				}

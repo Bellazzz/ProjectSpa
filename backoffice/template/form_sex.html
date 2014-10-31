@@ -32,9 +32,16 @@
 		    <tr>
 			    <td>
 				    <label class="input-required">ชื่อเพศ</label>
-				    <input id="sex_name" name="sex_name" type="text" class="form-input full" value="{$values.sex_name}">
+				    <input id="sex_name" name="sex_name" type="text" class="form-input full" value="{$values.sex_name}" require valuepattern = "character">
 			    </td>
 		    </tr>
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-sex_name-require" class="errInputMsg err-sex_name">โปรดป้อนชื่อเพศ</span>
+                    <span id="err-sex_name-unique" class="errInputMsg err-sex_name">ชื่อเพศซ้ำ โปรดป้อนชื่อเพศใหม่</span>
+                    <span id="err-sex_name-character" class="errInputMsg err-sex_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>

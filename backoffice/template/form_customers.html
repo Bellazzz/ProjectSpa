@@ -56,14 +56,14 @@
                 keyFieldName    : 'sex_id',
                 textFieldName   : 'sex_name',
                 searchTool      : false,
-                defaultValue    : '{/literal}{$values.sex_id}{literal}'
+                defaultValue    : '{/literal}{$values.sex_id}{literal}',
+                beforeShow      : allowSelectSex
             });
             selectReference({
                 elem			: $('#custype_id'),
                 tableName		: 'customer_types',
                 keyFieldName	: 'custype_id',
                 textFieldName	: 'custype_name',
-				searchTool		: false,
                 defaultValue	: '{/literal}{$values.custype_id}{literal}'
             });
             selectReference({
@@ -71,8 +71,14 @@
                 tableName       : 'titles',
                 keyFieldName    : 'title_id',
                 textFieldName   : 'title_name',
-                searchTool      : false,
-                defaultValue    : '{/literal}{$values.title_id}{literal}'
+                defaultValue    : '{/literal}{$values.title_id}{literal}',
+                onOptionSelect  : changeTitleId,
+                success         :
+                function() {
+                    if(action == 'EDIT') {
+                        changeTitleId();
+                    }
+                }
             });
 
             // Add input password
@@ -128,16 +134,12 @@
         }
 
         function checkUserAndPass() {
-            // Clear username error
             if($('#cus_pass').length > 0) {
-                $('#cus_user').removeClass('required');
-                $('.err-cus_user').css('display', 'none');
                 // Check username
                 if($('#cus_pass').val() != '' || $('#cus_re_pass').val() != '') {
                     if($('#cus_user').val() == '') {
                         $('#cus_user').addClass('required');
                         $('#err-cus_user-require').css('display', 'block');
-                        $('#cus_user').focus();
                     }
                 }
             }
@@ -146,7 +148,6 @@
             if($('#cus_user').val() != '' && $('#cus_pass').val() == '') {
                 $('#cus_pass').addClass('required');
                 $('#err-cus_pass-require').css('display', 'block');
-                $('#cus_pass').focus();
             } else {
                 // Clear password error
                 $('#cus_pass').removeClass('required');
@@ -157,11 +158,64 @@
             if($('#cus_pass').val() != $('#cus_re_pass').val()) {
                 $('#cus_re_pass').addClass('required');
                 $('#err-cus_re_pass-equal').css('display', 'block');
-                $('#cus_re_pass').focus();
             } else {
                 // Clear re-password error
                 $('#cus_re_pass').removeClass('required');
                 $('.err-cus_re_pass').css('display', 'none');
+            }
+        }
+
+        function changeTitleId() {
+            var titleId = $('input[name="title_id"]').val();
+            if(titleId != '') {
+                $.ajax({
+                    url: '../common/ajaxGetSexOfTitle.php',
+                    data: {
+                        title_id: titleId
+                    },
+                    success:
+                    function(responseJSON) {
+                        var response = $.parseJSON(responseJSON);
+                        if(response.status == 'PASS') {
+                            if(response.sex_id != '') {
+                                sexIdOfTitle = response.sex_id;
+                                $('#sex_id_' + response.sex_id).click();
+                            } else {
+                                sexIdOfTitle = '';
+                            }
+                        } else {
+                            alert(response.status);
+                        }
+                    }
+                });
+            } else {
+                sexIdOfTitle = '';
+            }
+        }
+
+        function allowSelectSex() {
+            if(sexIdOfTitle == '') {
+                return true;
+            } else {
+                var msg = 'คำนำหน้าชื่อ ' + $('#title_id').find('.select-reference-text').text()
+                        + ' ถูกระบุให้เป็นได้เฉพาะเพศ' + $('#sex_id').find('.select-reference-text').text()
+                        + 'เท่านั้น';
+                parent.showActionDialog({
+                    title: 'ไม่สามารถเลือกเพศได้',
+                    message: msg,
+                    actionList: [
+                        {
+                            id: 'ok',
+                            name: 'ตกลง',
+                            func:
+                            function() {
+                                parent.hideActionDialog();
+                            }
+                        }
+                    ],
+                    boxWidth: 400
+                });
+                return false;
             }
         }
     </script>
@@ -368,12 +422,13 @@
              <tr>
                 <td>
                     <label>ชื่อผู้ใช้งาน</label>
-                    <input id="cus_user" name="cus_user" type="text" class="form-input half" value="{$values.cus_user}">
+                    <input id="cus_user" name="cus_user" type="text" class="form-input full" value="{$values.cus_user}" valuepattern="username">
                 </td>
             </tr>
             <tr class="errMsgRow">
                 <td colspan=2>
-                    <span id="err-cus_user-require" class="errInputMsg half err-cus_user">โปรดป้อนชื่อผู้ใช้งาน</span>
+                    <span id="err-cus_user-require" class="errInputMsg err-cus_user">โปรดป้อนชื่อผู้ใช้งาน</span>
+                    <span id="err-cus_user-username" class="errInputMsg err-cus_user">ชื่อผู้ใช้เป็นได้เฉพาะตัวอักษรภาษาอังกฤษและตัวเลขอย่างน้อย 6 ตัวอักษร ห้ามมีช่องว่าง และอักระพิเศษ</span>
                 </td>
             </tr>
             {if $action == 'EDIT'}

@@ -38,7 +38,7 @@
 				area: $('#svl_picture'),
 				input: $('input[name="svl_picture"]'),
 				selector: $('#svl_picture_file'),
-				defaultValue: '{/literal}{if $values.svl_picture}../img/service_lists/{$values.svl_picture}{/if}{literal}'
+				defaultValue: '{/literal}{if $values.svl_picture}../img/service_lists/{$values.svl_picture}?rand={$randNum}{/if}{literal}'
 			});
 
 			// Set default value of textarea
@@ -54,7 +54,7 @@
 	{if $action == 'VIEW_DETAIL'}
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
-		<img src="../img/service_lists/{$values.svl_picture}">
+		<img src="{if $values.svl_picture != '-'}../img/service_lists/{$values.svl_picture}?rand={$randNum}{else}../img/backoffice/no-pic.png{/if}">
 	</div>
 	<table class="table-view-detail">
 		<tbody>
@@ -105,7 +105,7 @@
                 <td colspan="2">
                     <span id="err-svl_name-require" class="errInputMsg err-svl_name">โปรดป้อนชื่อรายการบริการ</span>
                     <span id="err-svl_name-character" class="errInputMsg err-svl_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
-                    <span id="err-svl_name-unique" class="errInputMsg err-svl_name">มีรายการบริการชื่อนี้อยู่แล้ว</span>
+                    <span id="err-svl_name-unique" class="errInputMsg err-svl_name">ชื่อรายการบริการซ้ำ โปรดป้อนชื่อรายการบริการใหม่</span>
                 </td>
             </tr>
 			<tr>
@@ -165,6 +165,7 @@
 			</tr>
 			<tr>
 				<td colspan=2>
+					<label>รูปภาพรายการบริการ</label>
 					<div id="svl_picture" class="uploadImageArea full"></div>
 					<input type="hidden" name="svl_picture" value="{$values.svl_picture}">
 				</td>

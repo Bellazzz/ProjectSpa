@@ -63,7 +63,7 @@
 				area: $('#bkg_transfer_evidence'),
 				input: $('input[name="bkg_transfer_evidence"]'),
 				selector: $('#bkg_transfer_evidence_file'),
-				defaultValue: '{/literal}{if $values.bkg_transfer_evidence}../img/booking/{$values.bkg_transfer_evidence}{/if}{literal}'
+				defaultValue: '{/literal}{if $values.bkg_transfer_evidence}../img/booking/{$values.bkg_transfer_evidence}?rand={$randNum}{/if}{literal}'
 			});
 			//	 	
 
@@ -112,9 +112,6 @@
 <div class="ftb-body">
 	{if $action == 'VIEW_DETAIL'}
 	<!-- VIEW_DETAIL -->
-	<div class="table-view-detail-image full">
-		<img src="../img/booking/{$values.bkg_transfer_evidence}">
-	</div>
 	<table class="table-view-detail">
 		<tbody> 			
 			<tr>
@@ -122,12 +119,30 @@
 				<td>{$code}</td>
 			</tr>
 			<tr>
-				<td>ชื่อผู้ใช้บริการ :</td>
+				<td>พนักงานที่บันทึก :</td>
+				<td><div id="emp_id" class="select-reference text"></td>
+			</tr>
+			<tr>
+				<td>ผู้ใช้บริการที่ทำการจอง :</td>
 				<td><div id="cus_id" class="select-reference text"></td>
 			</tr>
 			<tr>
-				<td>ชื่อพนักงาน :</td>
-				<td><div id="emp_id" class="select-reference text"></td>
+				<td>วันที่จอง :</td>
+				<td>{$values.bkg_date}</td>
+			</tr>
+			<tr>
+				<td>เวลาที่จอง :</td>
+				<td>{$values.bkg_time} น.</td>
+			</tr>
+			<tr>
+				<td>ราคารวมการจองทั้งหมด :</td>
+				<td>
+					{if $values.bkg_total_price != '-'}
+						{$values.bkg_total_price|number_format:2:".":","} บาท
+					{else}
+						-
+					{/if}
+				</td>
 			</tr>
 			<tr>
 				<td>สถานะการจอง :</td>
@@ -143,28 +158,30 @@
 			</tr>
 			<tr>
 				<td>เวลาที่โอน :</td>
-				<td>{$values.bkg_transfer_time}</td>
+				<td>
+					{if $values.bkg_transfer_time != '-'}
+						{$values.bkg_transfer_time} น.
+					{else}
+						-
+					{/if}
+				</td>
 			</tr>
 			<tr>
-				<td>ราคารวมการจองทั้งหมด(บาท) :</td>
-				<td>{$values.bkg_total_price}</td>
+				<td>จำนวนเงินที่โอน :</td>
+				<td>
+					{if $values.bkg_transfer_money != '-'}
+						{$values.bkg_transfer_money|number_format:2:".":","} บาท
+					{else}
+						-
+					{/if}
+				</td>
 			</tr>
-			<tr>
-				<td>วันที่จอง :</td>
-				<td>{$values.bkg_date}</td>
-			</tr>
-			<tr>
-				<td>เวลาที่จอง :</td>
-				<td>{$values.bkg_time}</td>
-			</tr>
-			<tr>
-				<td>จำนวนเงินที่โอน(บาท) :</td>
-				<td>{$values.bkg_transfer_money}</td>
-			</tr>
-			
-													
 		</tbody>
 	</table>
+	<label>รูปภาพหลักฐานการโอนเงิน</label>
+	<div class="table-view-detail-image full">
+		<img src="{if $values.bkg_transfer_evidence != '-'}../img/booking/{$values.bkg_transfer_evidence}?rand={$randNum}{else}../img/backoffice/no-pic.png{/if}">
+	</div>
 	{else}	 	
 	<!-- ADD, EDIT -->	 	 	 	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">

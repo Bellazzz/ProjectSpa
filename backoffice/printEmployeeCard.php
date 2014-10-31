@@ -36,6 +36,7 @@ if(hasValue($empId)) {
 	$smarty->assign('datePrint', date('d')."  ".$monthTH[date('m')]."  ".(date('Y')+543));
 	$smarty->assign('dateExpire', date('d')."  ".$monthTH[date('m')]."  ".(date('Y')+544));
 	$smarty->assign('empInfo', $empInfo);
+	$smarty->assign('randNum', substr(str_shuffle('0123456789'), 0, 5));
 }
 
 include('../common/common_footer.php');

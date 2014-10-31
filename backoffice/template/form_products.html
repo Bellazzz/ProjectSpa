@@ -50,7 +50,7 @@
                 area: $('#prd_pic'),
                 input: $('input[name="prd_pic"]'),
                 selector: $('#prd_pic_file'),
-                defaultValue: '{/literal}{if $values.prd_pic}../img/products/{$values.prd_pic}{/if}{literal}'
+                defaultValue: '{/literal}{if $values.prd_pic}../img/products/{$values.prd_pic}?rand={$randNum}{/if}{literal}'
             });
         });
     </script>
@@ -64,7 +64,7 @@
     {if $action == 'VIEW_DETAIL'}
     <!-- VIEW_DETAIL-->
     <div class="table-view-detail-image full">
-        <img src="../img/products/{$values.prd_pic}">
+    <img src="{if $values.prd_pic != '-'}../img/products/{$values.prd_pic}?rand={$randNum}{else}../img/backoffice/no-pic.png{/if}">
     </div>
     <table class="table-view-detail">
         <tbody>                     
@@ -110,7 +110,7 @@
             <tr class="errMsgRow">
                 <td colspan="2">
                     <span id="err-prd_name-require" class="errInputMsg half err-prd_name">โปรดป้อนชื่อผลิตภัณฑ์</span>
-                    <span id="err-prd_name-unique" class="errInputMsg err-prd_name">มีผลิตภัณฑ์ชื่อนี้อยู่แล้ว</span>
+                    <span id="err-prd_name-unique" class="errInputMsg err-prd_name">ผลิตภัณฑ์้ำ โปรดป้อนชื่อผลิตภัณฑ์ใหม่</span>
                 </td>
             </tr>
 			<tr>
@@ -158,13 +158,9 @@
                     <span id="err-unit_id-require" class="errInputMsg half err-unit_id">โปรดเลือกหน่วยนับ</span>
                 </td>
             </tr>
-	    </tbody>
-    </table>
-
-    <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
-        <tbody>
             <tr>
-                <td>
+                <td colspan="2">
+                    <label>รูปภาพผลิตภัณฑ์</label>
                     <div id="prd_pic" class="uploadImageArea full"></div>
                     <input type="hidden" name="prd_pic" value="{$values.prd_pic}">
                 </td>

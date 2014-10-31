@@ -1,17 +1,31 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-10-14 16:35:26
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_orders.html" */ ?>
 <?php /*%%SmartyHeaderCode:10785543ce04e04cbc1-99761272%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 16:54:45
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_orders.html" */ ?>
+<?php /*%%SmartyHeaderCode:6326544e1665c3dff8-33208828%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '162b5a1559ed76f7da3b10d56ea4271e32e1a227' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_orders.html',
+<<<<<<< HEAD
       1 => 1411691405,
       2 => 'file',
     ),
   ),
   'nocache_hash' => '10785543ce04e04cbc1-99761272',
+=======
+      1 => 1413814533,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '6326544e1665c3dff8-33208828',
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
   'function' => 
   array (
   ),
@@ -30,9 +44,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
+<<<<<<< HEAD
   'unifunc' => 'content_543ce04e3e3791_54863652',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_543ce04e3e3791_54863652')) {function content_543ce04e3e3791_54863652($_smarty_tpl) {?><!DOCTYPE html>
+=======
+  'unifunc' => 'content_544e1666139070_87853654',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_544e1666139070_87853654')) {function content_544e1666139070_87853654($_smarty_tpl) {?><!DOCTYPE html>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -48,7 +68,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
     <style type="text/css">
+<<<<<<< HEAD
         #order-detail-table tr:nth-child(3) .removeProductBtn {
+=======
+        #order-detail-table tr:nth-child(2) .removeProductBtn {
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
             display: none;
         }
     </style>
@@ -282,16 +306,27 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             // Create HTML and append
             var prdRowHTML  = '<tr class="product-row">'
                             + '     <td>'
+<<<<<<< HEAD
                             + '         <div id="' + inputKeyId + '" class="select-reference form-input half" ></div>'
+=======
+                            + '         <div id="' + inputKeyId + '" class="select-reference form-input half" require></div>'
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                             + '     </td>'
                             + '     <td>';
 
             // add input product amount
             if(data.defaultValue) {
+<<<<<<< HEAD
                 prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half" value="' + data.prd_qty + '">';
                 selectRefDefault = data.prd_id;
             } else {
                 prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half">';
+=======
+                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half" value="' + data.prd_qty + '" maxlength="6" size="6" valuepattern="number" require>';
+                selectRefDefault = data.prd_id;
+            } else {
+                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half" maxlength="6" size="6" valuepattern="numberMoreThanZero" require>';
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
             }
 
             // add order detail id for update
@@ -301,6 +336,24 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
                 prdRowHTML += '         <button class="removeProductBtn button button-icon button-icon-delete" onclick="removeProduct(\'' + randNum + '\')"></button>'
                             + '     </td>'
+<<<<<<< HEAD
+=======
+                            + '</tr>'
+                            + '<tr id="errMsgRow_' + randNum + '" class="errMsgRow">'
+                            + '     <td>'
+                            + '         <span id="err-' + inputKeyId + '-require" class="errInputMsg half err-' + inputKeyId + '">'
+                            + '             โปรดเลือกผลิตภัณฑ์'
+                            + '         </span>'
+                            + '     </td>'
+                            + '     <td>'
+                            + '         <span id="err-' + inputQtyId + '-require" class="errInputMsg half err-' + inputQtyId + '">'
+                            + '             โปรดกรอกจำนวนที่สั่งซื้อ'
+                            + '         </span>'
+                            + '         <span id="err-' + inputQtyId + '-numberMoreThanZero" class="errInputMsg half err-' + inputQtyId + '">'
+                            + '             โปรดกรอกจำนวนเป็นตัวเลขจำนวนเต็มตั้งแต่ 1 ขึ้นไป'
+                            + '         </span>'
+                            + '     </td>'
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                             + '</tr>';
             $('#order-detail-table tbody').append(prdRowHTML);
 
@@ -318,6 +371,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     $('input[name="' + inputKeyId + '"]').attr('name', 'prd_id[]');
                 }
             });
+<<<<<<< HEAD
         }
 
         function removeProduct(randNum) {
@@ -341,6 +395,51 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 }
             });
             return returnVal;
+=======
+            // Check Input required and pattern
+            $('#' + inputQtyId).focusout(validateInput);
+        }
+
+        function removeProduct(randNum) {
+            var selectRef   = $('#prd_id_' + randNum);
+            var tr          = selectRef.parent().parent();
+            var txt         = selectRef.find('.select-reference-text').text();
+            var val         = selectRef.find('.select-reference-input').val();
+            var msg         = '';
+            if(val != '') {
+                msg = 'คุณต้องการลบผลิตภัณฑ์ ' + txt + ' ออกจากการสั่งซื้อครั้งนี้ใช่หรือไม่?';
+            } else {
+                msg = 'คุณต้องการลบผลิตภัณฑ์ที่เลือกออกจากการสั่งซื้อครั้งนี้ใช่หรือไม่?';
+            }
+            parent.showActionDialog({
+                title: 'ลบผลิตภัณฑ์',
+                message: msg,
+                actionList: [
+                    {
+                        id: 'ok',
+                        name: 'ตกลง',
+                        desc: 'ลบผลิตภัณฑ์นี้ออกจากออกจากการสั่งซื้อ',
+                        func:
+                        function() {
+                            parent.hideActionDialog();
+                            tr.remove();
+                            $('#errMsgRow_' + randNum).remove();
+                            refreshSvlTable();
+                        }
+                    },
+                    {
+                        id: 'cancel',
+                        name: 'ยกเลิก',
+                        desc: 'ยกเลิกการลบ',
+                        func:
+                        function() {
+                            parent.hideActionDialog();
+                        }
+                    }
+                ],
+                boxWidth: 400
+            });
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
         }
 
         function allowSelectPrdId(selected) {
@@ -348,7 +447,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             $('input[name="prd_id[]"]').each(function() {
                 if($(this).val() == selected) {
                      parent.showActionDialog({
+<<<<<<< HEAD
                         title: 'ท่านเลือกผลิตภัณฑ์นี้แล้ว',
+=======
+                        title: 'คุณเลือกผลิตภัณฑ์นี้แล้ว',
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                         message: 'รายการผลิตภัณฑ์ไม่สามารถซ้ำกันได้ค่ะ',
                         actionList: [
                             {
@@ -450,10 +553,15 @@ $_smarty_tpl->tpl_vars['orddlt']->_loop = true;
     <!-- ADD, EDIT -->       
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="ordtyp_id,emp_id,comp_id,ord_date">
+<<<<<<< HEAD
+=======
+    <label class="article-title">ข้อมูลการสั่งซื้อ</label>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>
                 <td colspan="2">
+<<<<<<< HEAD
                     <label class="group-title">ข้อมูลการสั่งซื้อ</label>
                 </td>
             </tr>
@@ -473,13 +581,50 @@ $_smarty_tpl->tpl_vars['orddlt']->_loop = true;
                     <div id="ordtyp_id" class="select-reference form-input half" ></div>
                 </td>
 		    </tr>
+=======
+                    <label class="input-required">พนักงานที่สั่งซื้อ</label>
+                    <div id="emp_id" class="select-reference form-input full" require></div>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-emp_id-require" class="errInputMsg err-emp_id">โปรดเลือกพนักงานที่สั่งซื้อ</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+				    <label class="input-required">บริษัทจำหน่ายผลิตภัณฑ์</label>
+				    <div id="comp_id" class="select-reference form-input full" require></div>
+			    </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-comp_id-require" class="errInputMsg err-comp_id">โปรดเลือกบริษัทจำหน่ายผลิตภัณฑ์</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="input-required">ประเภทการสั่งซื้อ</label>
+                    <div id="ordtyp_id" class="select-reference form-input full" require></div>
+                </td>
+		    </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-ordtyp_id-require" class="errInputMsg err-ordtyp_id">โปรดเลือกประเภทการสั่งซื้อ</span>
+                </td>
+            </tr>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			<tr>
                 
 			    <td>
                     <label class="input-required">วันที่สั่งซื้อ</label>
                     <input id="ord_date" name="ord_date" type="text" class="mbk-dtp-th form-input half" value="<?php if ($_smarty_tpl->tpl_vars['values']->value['ord_date']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['ord_date'];?>
 <?php } else { ?><?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+<<<<<<< HEAD
 <?php }?>">
+=======
+<?php }?>" require>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                 </td>
                  <td>
                     <label>วันที่จัดส่ง</label>
@@ -487,6 +632,7 @@ $_smarty_tpl->tpl_vars['orddlt']->_loop = true;
 ">
                 </td>
 		    </tr>
+<<<<<<< HEAD
              
 	    </tbody>
     </table>
@@ -505,6 +651,24 @@ $_smarty_tpl->tpl_vars['orddlt']->_loop = true;
             <?php if ($_smarty_tpl->tpl_vars['action']->value=='ADD') {?>
             <?php } elseif ($_smarty_tpl->tpl_vars['action']->value=='EDIT') {?>
             <?php }?>
+=======
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-ord_date-require" class="errInputMsg half err-ord_date">โปรดเลือกวันที่สั่งซื้อ</span>
+                </td>
+                <td></td>
+            </tr>
+	    </tbody>
+    </table>
+
+    <label class="article-title">รายละเอียดการสั่งซื้อ</label>
+    <table id="order-detail-table" class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr>
+                <td><label class="input-required">ผลิตภัณฑ์</label></td>
+                <td><label class="input-required">จำนวน</label></td>
+            </tr>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
         </tbody>
     </table>
     <button id="addProjectBtn" class="button button-icon button-icon-add">เพิ่มผลิตภัณฑ์</button>

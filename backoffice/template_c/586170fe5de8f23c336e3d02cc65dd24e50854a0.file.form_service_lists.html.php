@@ -1,17 +1,31 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-10-13 20:54:33
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_service_lists.html" */ ?>
 <?php /*%%SmartyHeaderCode:3007543bcb895a3320-45764834%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-28 08:25:50
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_service_lists.html" */ ?>
+<?php /*%%SmartyHeaderCode:17621544ef09e7f1e46-92011710%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '586170fe5de8f23c336e3d02cc65dd24e50854a0' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_service_lists.html',
+<<<<<<< HEAD
       1 => 1411088007,
       2 => 'file',
     ),
   ),
   'nocache_hash' => '3007543bcb895a3320-45764834',
+=======
+      1 => 1414229635,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '17621544ef09e7f1e46-92011710',
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
   'function' => 
   array (
   ),
@@ -22,12 +36,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'tableNameTH' => 0,
     'code' => 0,
     'values' => 0,
+<<<<<<< HEAD
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
   'unifunc' => 'content_543bcb897e9f07_93810476',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_543bcb897e9f07_93810476')) {function content_543bcb897e9f07_93810476($_smarty_tpl) {?><!DOCTYPE html>
+=======
+    'randNum' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_544ef09eb1b0b4_49552927',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_544ef09eb1b0b4_49552927')) {function content_544ef09eb1b0b4_49552927($_smarty_tpl) {?><!DOCTYPE html>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -73,6 +97,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				input: $('input[name="svl_picture"]'),
 				selector: $('#svl_picture_file'),
 				defaultValue: '<?php if ($_smarty_tpl->tpl_vars['values']->value['svl_picture']) {?>../img/service_lists/<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_picture'];?>
+<<<<<<< HEAD
+=======
+?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 <?php }?>'
 			});
 
@@ -91,8 +119,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
+<<<<<<< HEAD
 		<img src="../img/service_lists/<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_picture'];?>
 ">
+=======
+		<img src="<?php if ($_smarty_tpl->tpl_vars['values']->value['svl_picture']!='-') {?>../img/service_lists/<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_picture'];?>
+?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
+<?php } else { ?>../img/backoffice/no-pic.png<?php }?>">
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 	</div>
 	<table class="table-view-detail">
 		<tbody>
@@ -118,18 +152,31 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</tr>
 			<tr>
 				<td>ราคา :</td>
+<<<<<<< HEAD
 				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['svl_price'];?>
+=======
+				<td><?php echo number_format($_smarty_tpl->tpl_vars['values']->value['svl_price'],2,".",",");?>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
  บาท</td>
 			</tr>
 			<tr>
 				<td>ค่าคอมมิชชั่น :</td>
+<<<<<<< HEAD
 				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['svl_commission'];?>
+=======
+				<td><?php echo number_format($_smarty_tpl->tpl_vars['values']->value['svl_commission'],2,".",",");?>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
  บาท</td>
 			</tr>
 			<tr>
 				<td>คำอธิบาย :</td>
+<<<<<<< HEAD
 				<td><?php echo $_smarty_tpl->tpl_vars['values']->value['svl_desc'];?>
 </td>
+=======
+				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['svl_desc']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['svl_desc'];?>
+<?php } else { ?>-<?php }?></td>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			</tr>
 		</tbody>
 	</table>
@@ -137,12 +184,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<!-- ADD, EDIT -->		 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="svltyp_id,svl_name,svl_price,svl_commission">
+<<<<<<< HEAD
+=======
+	<input type="hidden" name="uniqueFields" value="svl_name">
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 	<table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 		<tbody>
 			<tr>
 				<td colspan=2>
 					<label class="input-required">ชื่อรายการบริการ</label>
 					<input id="svl_name" name="svl_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_name'];?>
+<<<<<<< HEAD
 ">
 				</td>
 			</tr>
@@ -157,25 +209,87 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<label>เวลาที่ใช้(ชั่วโมง)</label>
 					<input id="svl_hr" name="svl_hr" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_hr'];?>
 ">
+=======
+" valuepattern="character" require>
+				</td>
+			</tr>
+			<tr>
+                <td colspan="2">
+                    <span id="err-svl_name-require" class="errInputMsg err-svl_name">โปรดป้อนชื่อรายการบริการ</span>
+                    <span id="err-svl_name-character" class="errInputMsg err-svl_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-svl_name-unique" class="errInputMsg err-svl_name">ชื่อรายการบริการซ้ำ โปรดป้อนชื่อรายการบริการใหม่</span>
+                </td>
+            </tr>
+			<tr>
+				<td colspan=2>
+					<label class="input-required">ประเภทรายการบริการ</label>
+					<div id="svltyp_id" class="select-reference form-input full" require></div>
+				</td>
+			</tr>
+			<tr>
+                <td colspan="2">
+                    <span id="err-svltyp_id-require" class="errInputMsg err-svltyp_id">โปรดเลือกประเภทรายการบริการ</span>
+                </td>
+            </tr>
+			<tr>
+				<td>
+					<label>เวลาที่ใช้(ชั่วโมง)</label>
+					<input id="svl_hr" name="svl_hr" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_hr'];?>
+" maxlength="2" size="2" valuepattern="number">
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 				</td>
 				<td>
 					<label>เวลาที่ใช้(นาที)</label>
 					<input id="svl_min" name="svl_min" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_min'];?>
+<<<<<<< HEAD
 ">
 				</td>
 			</tr>
+=======
+" maxlength="2" size="2" valuepattern="minute">
+				</td>
+			</tr>
+			<tr class="errMsgRow">
+                <td>
+                    <span id="err-svl_hr-number" class="errInputMsg half err-svl_hr">โปรดกรอกชั่วโมงเป็นตัวเลขจำนวนเต็ม</span>
+                </td>
+                <td>
+                    <span id="err-svl_min-minute" class="errInputMsg half err-svl_min">โปรดกรอกนาทีเป็นตัวเลขจำนวนเต็มที่มีค่าไม่เกิน 59</span>
+                </td>
+            </tr>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			<tr>
 				<td>
 					<label class="input-required">ราคา</label>
 					<input id="svl_price" name="svl_price" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_price'];?>
+<<<<<<< HEAD
 ">
+=======
+" valuepattern="money" require>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 				</td>
 				<td>
 					<label class="input-required">ค่าคอมมิชชั่น</label>
 					<input id="svl_commission" name="svl_commission" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_commission'];?>
+<<<<<<< HEAD
 ">
 				</td>
 			</tr>
+=======
+"  valuepattern="money" require>
+				</td>
+			</tr>
+			<tr class="errMsgRow">
+                <td>
+                    <span id="err-svl_price-require" class="errInputMsg half err-svl_price">โปรดป้อนราคา</span>
+                    <span id="err-svl_price-money" class="errInputMsg half err-svl_price">รูปแบบจำนวนเงินไม่ถูกต้อง จำนวนเงินเป็นได้เฉพาะตัวเลข ไม่มีคอมม่าคั่น จุดทศนิยม 2 ตำแหน่ง เช่น 130, 1600.25</span>
+                </td>
+                <td>
+                    <span id="err-svl_commission-require" class="errInputMsg half err-svl_commission">โปรดป้อนค่าคอมมิชชั่น</span>
+                    <span id="err-svl_commission-money" class="errInputMsg half err-svl_commission">รูปแบบจำนวนเงินไม่ถูกต้อง จำนวนเงินเป็นได้เฉพาะตัวเลข ไม่มีคอมม่าคั่น จุดทศนิยม 2 ตำแหน่ง เช่น 130, 1600.25</span>
+                </td>
+            </tr>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			<tr>
 				<td colspan=2>
 					<label>คำอธิบาย</label>
@@ -185,6 +299,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</tr>
 			<tr>
 				<td colspan=2>
+<<<<<<< HEAD
+=======
+					<label>รูปภาพรายการบริการ</label>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 					<div id="svl_picture" class="uploadImageArea full"></div>
 					<input type="hidden" name="svl_picture" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['svl_picture'];?>
 ">

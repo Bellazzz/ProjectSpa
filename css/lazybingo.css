@@ -306,6 +306,16 @@ body {
 }
 
 /*
+ * Table data empty
+ */
+ #table-data-empty {
+    width: 100%;
+    padding-left: 35px;
+    padding-top: 35px;
+    color: #999;
+}
+
+/*
  * No select table
  */
 .no-select-table {
@@ -442,13 +452,13 @@ table.table-view-detail tr td:last-child {
     width: 100%;
 }
 .table-view-detail-image {
-    text-align: center;
+    text-align: left;
 }
 .table-view-detail-image img {
     max-width: 100%;
 }
 .table-view-detail-image.full {
-    width: 520px;
+    width: 100%;
 }
 
 /*
@@ -484,6 +494,7 @@ table.view-detail-reference td {
 table.mbk .icon-col {
     width: 40px;
     text-align: center !important;
+    display: none;
 }
 table.mbk .action-col {
     width: 50px;
@@ -931,6 +942,7 @@ table.mbk .icon {
     max-width: 800px;
     min-width: 600px;
     background: white;
+    overflow-y: auto;
 }
 #manage-box.large {
     min-width: 1050px;
@@ -1008,6 +1020,11 @@ table.mbk .icon {
 }
 .action-dialog > h2, .action-dialog .message {
     color: #205081;
+    display: block;
+    max-height: 180px;
+    width: 100%;
+    overflow-y: auto;
+    margin-top: 10px;
 }
 
 .action-dialog .action-btn{
@@ -1171,6 +1188,14 @@ label.article-title {
 .errInputMsg.half {
     max-width: 250px;
 }
+.errInputMsg:before {
+    content: "\f06a";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    margin-right: 4px;
+}
 
 /*
  * Select Reference
@@ -1198,6 +1223,10 @@ label.article-title {
     border: 1px solid #ccc;
     z-index: 2; /*Add by Bell*/
 }
+.select-reference .clear-value-btn {
+    padding: 5px 15px;
+    width: 100%;
+}
 .select-reference .option-container{
     margin: 0;
     padding: 0;
@@ -1209,7 +1238,7 @@ label.article-title {
     cursor: pointer;
     padding: 5px 5px 5px 15px;
 }
-.select-reference .option-container li:hover{
+.select-reference .option-container li:hover, .select-reference .clear-value-btn:hover{
     background: #8AC007;
 	color: white;
 }
@@ -1241,6 +1270,7 @@ label.article-title {
     width: 100%;
     padding-left: 32px;
 }
+
 /*
  * Select reference text
  */
@@ -1253,6 +1283,18 @@ label.article-title {
 }
 .select-reference.text span:first-child {
     display: none;
+}
+
+/*
+ * select option
+ */
+.select-option{
+    padding: 5px;
+    margin-top: 2px;
+    border: 1px solid #ccc;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
 }
 
 /*
@@ -1346,11 +1388,66 @@ label.article-title {
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
-	cursor: pointer;
 	position: relative;
 }
 .uploadImageArea.full{
     width: 520px;
+}
+.uploadImageArea .desc {
+    width: 200px;
+    height: 120px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -60px;
+    text-align: center;
+    color: #bbb;
+}
+.uploadImageArea .desc i {
+    font-size: 100px;
+}
+.uploadImageArea.hasImage .desc {
+    display: none;
+}
+.uploadImageArea .control {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px 10px;
+    background: rgba(0,0,0,0.8);
+    list-style: none;
+    color: #b3b3b3;
+    opacity: 0;
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+}
+.uploadImageArea:hover .control {
+    opacity: 1;
+}
+.uploadImageArea .control li {
+    float: right;
+    font-weight: bold;
+    margin-left: 15px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.uploadImageArea .control li:hover {
+    background: rgba(255,255,255,0.4);
+    color: white;
+}
+.uploadImageArea .editImgBtn, .uploadImageArea .clearImgBtn{
+    display: none;
+}
+.uploadImageArea.hasImage .editImgBtn, .uploadImageArea.hasImage .clearImgBtn {
+    display: inline-block;
+}
+.uploadImageArea.hasImage .chooseImgBtn {
+    display: none;
 }
 .uploadImageSelector {
 	width: 0;
@@ -1375,8 +1472,10 @@ datetimepicker
     width: 100%;
     text-align: center;
     padding: 8px 0 8px 280px;
-    background: #eee;
+    background: #f5f5f5;
     z-index: 1;
+    min-height: 39px;
+    border-top: 1px solid #ddd;
 }
 .sidebar[aria-expanded="false"] ~  #pagingContainer {
     padding-left: 56px;

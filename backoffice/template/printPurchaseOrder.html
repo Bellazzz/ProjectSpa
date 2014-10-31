@@ -219,7 +219,7 @@
 	<h2>{$spaData.spa_name}</h2>
 	<p>
 		{$spaData.spa_addr}<br>
-		โทรศัพท์ : {$spaData.spa_tel} โทรสาร : {$spaData.spa_fax} อีเมล : 
+		โทรศัพท์ : {$spaData.spa_tel} โทรสาร : {$spaData.spa_fax} อีเมล : {$spaData.spa_email}
 	</p>
 	<h2>ใบสั่งซื้อผลิตภัณฑ์</h2>
 	<div class="order-data-table-container clearfix">
@@ -240,6 +240,10 @@
 				<tr>
 					<td><b>โทรศัพท์</b></td>
 					<td>{$ordData.comp_tel} &nbsp;&nbsp;&nbsp;&nbsp; <b>โทรสาร</b>&nbsp; {$ordData.fax}</td>
+				</tr>
+				<tr>
+					<td><b>อีเมล</b></td>
+					<td>{$ordData.comp_email}</td>
 				</tr>
 			</table>
 		</div>
@@ -311,7 +315,10 @@
     		<div class="space-for-signature"></div>
     		<p align="center">(<span style="width: 160px; display:inline-block;"></span>)</p>
     		<p align="center">ผู้สั่งซื้อ</p>
-    		<p align="center">วันที่ {$nowDateThai}</p>
+    		<p align="center">
+    			วันที่ 
+    			<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    		</p>
     	</div>
     	<div class="signature">
     		<div class="space-for-signature"></div>

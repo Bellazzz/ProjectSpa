@@ -168,6 +168,9 @@ function selectReference(select) {
                      + '         <span class="mbk-icon-16 mbk-icon-16-search"></span>'
                      + '         <input class="search-input" type="text">'
                      + '     </div>'
+                     + '     <div class="clear-value-btn">'
+                     + '         <span>ไม่เลือก</span>'
+                     + '     </div>';
         }
         initTag += '     <ul id="' + select.elem.attr('id') + '-option-container" class="option-container"></ul>'
                  + '</div>';
@@ -176,11 +179,37 @@ function selectReference(select) {
         select.elem.attr('begin', '0');
         select.elem.html(initTag);
 
+        // Add event clear value
+        var clearValBtn = select.elem.find('.clear-value-btn');
+        clearValBtn.click(function(e){
+            e.stopPropagation();
+            if(typeof(select.allowChangeOption) == 'function') {
+                if(!select.allowChangeOption('')) {
+                    hideAllPopup();
+                    return;
+                }
+            }
+            $(this).parent().parent().parent().removeClass('required');
+            $('.err-' + select.elem.attr('id')).css('display', 'none');
+            selectRefCon.siblings('.select-reference-text').text('กรุณาเลือก');
+            selectRefCon.siblings('.select-reference-input').val('');
+            hideAllPopup();
+            if(typeof(select.onOptionSelect) == 'function') {
+                select.onOptionSelect();
+            }
+        });
+
          // Skip this if has class text
         if(!select.elem.hasClass('text')) {
             // Add Event Listener
             $(select.elem).click(function (e) {
                 e.stopPropagation();
+                if(typeof(select.beforeShow) == 'function') {
+                    if(!select.beforeShow()) {
+                        hideAllPopup();
+                        return;
+                    }
+                }
 
                 if (selectRefCon.css('display') == 'none') {
                     hideAllPopup();
@@ -342,6 +371,12 @@ function selectReference(select) {
             if (response != '') {
                 textShow.text(response);
                 inputHidden.val(defaultValue);
+            } else {
+                // Null value will display (-) for view detail
+                if(select.elem.hasClass('text')) {
+                    textShow.text('-');
+                    inputHidden.val('');
+                }
             }
 
             // Skip this if has class text
@@ -362,30 +397,49 @@ function selectReference(select) {
  */
  function uploadImageInput(data) {
 	 var imgData = Array();
+
+     // Initial
+    var inner   = '<div class="desc">'
+                + '     <i class="fa fa-image"></i><br>'
+                + '     JPG, JPEG, PNG'
+                + '</div>'
+                + '<ul class="control">'
+                + '     <li class="clearImgBtn">ลบ</li>'
+                + '     <li class="editImgBtn">เปลี่ยนรูปภาพ</li>'
+                + '     <li class="chooseImgBtn">เลือกรูปภาพ</li>'
+                + '</ul>';
+    $(data.area).html(inner);
 	 
 	 // Set default image
 	 if(typeof(data.defaultValue) != 'undefined' && data.defaultValue != '') {
-		 var url = "url(" + data.defaultValue + ")";
-		 $(data.area).css('background-image', url);
+         showImage(data.defaultValue);
 	 }
 	
 	// Add event
-	$(data.area).click(function(){
-		data.selector.click();
-	});
+    $(data.area).find('.chooseImgBtn').click(function() {
+        data.selector.click();
+    });
+    $(data.area).find('.editImgBtn').click(function() {
+        data.selector.click();
+    });
+    $(data.area).find('.clearImgBtn').click(function() {
+        $(data.area).removeClass('hasImage');
+        $(data.area).css('background-image', 'none');
+        data.input.val('');
+    });
 
 	data.selector.change(function(e){
 		clearTempImage();
 
 		// fetch FileList object
-		var allowType	= ['jpg', 'jpeg', 'gif', 'png'];
+		var allowType	= ['jpg', 'jpeg', 'png'];
 		var files		= e.target.files || e.dataTransfer.files;
 		var file		= files[0]; // Only one file
 		var ftype		= file.type.replace("image/","");
 		var form		= $(this).parent();
 
 		// Parse file
-		if(file.type.indexOf("image") == 0) {
+		if(file.type.indexOf("image") == 0 && allowType.indexOf(ftype)) {
 			// Show image in area
 			var reader = new FileReader();
 			reader.onload = function(e) {
@@ -418,7 +472,24 @@ function selectReference(select) {
 				}
 			}
 			reader.readAsDataURL(file);
-		}
+		} else {
+            parent.showActionDialog({
+                title: 'รูปภาพไม่ถูกต้อง',
+                message: 'ไฟล์รูปภาพที่คุณเลือกไม่ถูกต้อง <br>กรุณาเลือกไฟล์ ' + allowType.join(' ,') + ' เท่านั้น',
+                actionList: [
+                    {
+                        id: 'ok',
+                        name: 'ตกลง',
+                        desc: 'เลือกไฟล์รูปภาพใหม่',
+                        func:
+                        function() {
+                            parent.hideActionDialog();
+                        }
+                    }
+                ],
+                boxWidth: 400
+            });
+        }
 	});
 
 	function showImage(bg) {
@@ -432,6 +503,7 @@ function selectReference(select) {
 		}
 		var url = "url(" + img.src + ")";
 		$(data.area).css('background-image', url);
+        $(data.area).addClass('hasImage');
 	}
  }
 

@@ -81,6 +81,7 @@ $(document).ready(function () {
 	    clearTimeout(timer);
 	    var ms = 300; // Delay search (miliseconds)
 	    timer = setTimeout(function () {
+            currentPage = 1;
 	        searchRecord();
 	    }, ms);
 	});
@@ -123,7 +124,9 @@ function clearTable() {
         'sortCol'       : '',
         'sortBy'        : '',
         'searchCol'     : '',
-        'searchInput'   : ''
+        'searchInput'   : '',
+        'deleteTxtPatternMain'   : '',
+        'deleteTxtPatternMin'   : ''
     };
     currentPage = 1;
     $('#search-record-input').val('');
@@ -166,6 +169,13 @@ function pullTable(reFilter) {
                 htmlResponse = response;
             }
 
+            // Check for re pullTable with previous page
+            if(htmlResponse.indexOf('table-data-empty') != -1 && currentPage > 1) {
+                currentPage--;
+                pullTable(reFilter);
+                return;
+            }
+
             // Refresh Content
             $('.page-panel-content').html('');
             $('.page-panel-content').html(htmlResponse);
@@ -202,13 +212,29 @@ function searchRecord() {
 }
 
 function delteCurrentRecord(code) {
+    // Generate delete text
+    var delText     = '';
+    var delVal      = '';
+    if(typeof(table.deleteTxtPatternMain) != 'undefined' && table.deleteTxtPatternMain != '') {
+        delText = table.deleteTxtPatternMain;
+        for(i in table.deleteTxtField) {
+            delVal = $('tr[id="' + code + '"]').find('td[field="' + table.deleteTxtField[i] + '"]').text();
+            delText = delText.replace('%f' + (parseInt(i)+1), delVal);
+        }
+    } else {
+        for(i in table.deleteTxtField) {
+            delVal += $('tr[id="' + code + '"]').find('td[field="' + table.deleteTxtField[i] + '"]').text() + ' ';
+        }
+        delText = 'คุณต้องการลบ' + table.nameTH + ' ' + delVal + 'ใช่หรือไม่?';
+    }
+
     showActionDialog({
         title: 'ลบข้อมูล',
+        message: delText,
         actionList: [
             {
                 id: 'delete',
                 name: 'ลบ',
-                desc: 'ลบข้อมูลที่เลือก',
                 func:
                 function() {
                     var codeArr = [code];
@@ -252,56 +278,101 @@ function delteCurrentRecord(code) {
             {
                 id: 'cancel',
                 name: 'ยกเลิก',
+                func:
+                function() {
+                    hideActionDialog();
+                }
+            }
+        ],
+        boxWidth: 400
+    });
+}
+function deleteRecordSelected() {
+    var delText     = 'ข้อมูล' + table.nameTH + 'ที่คุณเลือกคือ<ol style="margin-bottom:10px;">';
+    var delVal      = '';
+    var keySelected = Array();
+    var checkboxs = document.getElementsByName('table-record[]');
+
+    for (i = 0; i < checkboxs.length; i++) {
+        if (checkboxs[i].checked) {
+            var code = checkboxs[i].value;
+            keySelected.push(code);
+            // Generate delete text
+            if(typeof(table.deleteTxtPatternMin) != 'undefined' && table.deleteTxtPatternMin != '') {
+                delVal = table.deleteTxtPatternMin;
+                for(j in table.deleteTxtField) {
+                    delTmpVal = $('tr[id="' + code + '"]').find('td[field="' + table.deleteTxtField[j] + '"]').text();
+                    delVal = delVal.replace('%f' + (parseInt(j)+1), delTmpVal);
+                }
+                delText += '<li>' + delVal + '</li>';
+            } else {
+                delVal = '';
+                for(j in table.deleteTxtField) {
+                    delVal += $('tr[id="' + code + '"]').find('td[field="' + table.deleteTxtField[j] + '"]').text() + ' ';
+                }
+                delText += '<li>' + delVal + '</li>';
+            }
+        }
+    }
+    delText += '</ol>คุณต้องการลบข้อมูลทั้งหมดที่เลือกใช่หรือไม่?';
+
+    showActionDialog({
+        title: 'ลบข้อมูล',
+        message: delText,
+        actionList: [
+            {
+                id: 'delete',
+                name: 'ลบ',
+                desc: 'ลบข้อมูลที่เลือก',
+                func:
+                function() {
+                    $.ajax({
+                        url: 'delete_record.php',
+                        type: 'POST',
+                        data: {
+                            'keySelected'   : keySelected,
+                            'tableName'     : table.name
+                        },
+                        success:
+                        function (response) {
+                            if (response == 'PASS') {
+                                // Delete Success
+                                pullTable(false);
+                            }else if(response == 'DELETE_REFERENCE') {
+                                hideActionDialog();
+                                showActionDialog({
+                                    title: 'เกิดข้อผิดพลาด',
+                                    message: 'ไม่สามารถลบข้อมูลที่เลือกได้ เนื่องจากมีตารางอื่นอ้างอิงข้อมูลที่เลือกอยู่',
+                                    actionList: [
+                                        {
+                                            id: 'ok',
+                                            name: 'ตกลง',
+                                            func:
+                                            function() {
+                                                hideActionDialog();
+                                            }
+                                        }
+                                    ]
+                                });
+                            } else {
+                                alert(response);
+                            }
+                        }
+                    });
+                    hideActionDialog();
+                }
+            },
+            {
+                id: 'cancel',
+                name: 'ยกเลิก',
                 desc: 'ยกเลิกการลบ',
                 func:
                 function() {
                     hideActionDialog();
                 }
             }
-        ]
-    });
-}
-function deleteRecordSelected() {
-    var keySelected = Array();
-    var checkboxs = document.getElementsByName('table-record[]');
-    for (i = 0; i < checkboxs.length; i++) {
-        if (checkboxs[i].checked) {
-            keySelected.push(checkboxs[i].value);
-        }
-    }
-
-    $.ajax({
-        url: 'delete_record.php',
-        type: 'POST',
-        data: {
-            'keySelected'   : keySelected,
-            'tableName'     : table.name
-        },
-        success:
-		function (response) {
-		    if (response == 'PASS') {
-		        // Delete Success
-		        pullTable(false);
-		    }else if(response == 'DELETE_REFERENCE') {
-				hideActionDialog();
-                showActionDialog({
-                    title: 'เกิดข้อผิดพลาด',
-                    message: 'ไม่สามารถลบข้อมูลที่เลือกได้ เนื่องจากมีตารางอื่นอ้างอิงข้อมูลที่เลือกอยู่',
-                    actionList: [
-                        {
-                            id: 'ok',
-                            name: 'ตกลง',
-                            func:
-                            function() {
-                                hideActionDialog();
-                            }
-                        }
-                    ]
-                });
-			} else {
-		        alert(response);
-		    }
-		}
+        ],
+        boxWidth: 400
     });
 }
 
@@ -388,7 +459,7 @@ function refreshFilterQuery() {
     if(this.table.name == 'orders') {
         filterRecordQueryHTML   = 'ดูการสั่งซื้อที่มีสถานะ '
                                 + '<select id="query-record-filter" class="mbk-select">'
-                                + '     <option value="WAIT">เตรียมการสั่งซื้อ</option>'
+                                + '     <option value="WAIT">ใบสั่งซื้อ</option>'
                                 + '     <option value="REMAIN">ค้างรับ</option>'
                                 + '     <option value="COMPLETED">รับเรียบร้อยแล้ว</option>'
                                 + '</select>';

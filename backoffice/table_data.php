@@ -58,18 +58,6 @@ switch ($tableName) {
 	case 'receives':
 		header("location:table_data_receives.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
 		break;
-	/*case 'packages':
-		header("location:table_data_packages.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
-		break;
-	case 'spa':
-		header("location:table_data_spa.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
-		break;
-	case 'promotions':
-		header("location:table_data_promotions.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
-		break;
-	case 'booking':
-		header("location:table_data_booking.php?sortCol=$sortCol&sortBy=$sortBy&order=$order&searchCol=$searchCol&searchInput=$searchInput");
-		break;*/
 }
 
 // Query table data
@@ -88,8 +76,22 @@ switch ($tableName) {
 				$order";
 		break;
 
+	case 'titles':
+		$where = 'LEFT JOIN sex s ON t.sex_id = s.sex_id ';
+		if(hasValue($like)) {
+			$like	= str_replace('sex_id', 's.sex_name', $like);
+			$where .= " WHERE $like";
+		}
+		$sql = "SELECT t.title_id,
+				t.title_name,
+				IFNULL(s.sex_name,'ไม่ระบุ') sex_id 
+				FROM titles t  
+				$where 
+				$order";
+		break;
+
 		case'booking':
-		$where		= 'WHERE b.cus_id = c.cus_id and b.emp_id = e.emp_id and b.status_id = s.bkgstat_id and b.bnkacc_id = a.bnkacc_id ';
+		$where		= 'WHERE b.cus_id = c.cus_id and b.emp_id = e.emp_id and b.status_id = s.bkgstat_id ';
 		if(hasValue($like)) {
 			if($searchCol == 'emp_id') {
 				$like = "(e.emp_name like '%$searchInput%' OR e.emp_surname like '%$searchInput%') ";
@@ -111,7 +113,6 @@ switch ($tableName) {
 				b.bkg_transfer_date,
 				b.bkg_transfer_time,
 				b.bkg_transfer_evidence,
-				b.bkg_total_price,
 				b.bkg_total_price,
 				b.bkg_date,
 				b.bkg_time,
@@ -304,12 +305,12 @@ switch ($tableName) {
 		}
 		$sql = "SELECT s.ser_id,
 				s.bkg_id,
-				s.ser_date,
 				s.ser_time,
 				CONCAT(c.cus_name, '  ', c.cus_surname) cus_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				p.paytyp_name paytyp_id,
 				b.bed_name bed_id,
+				s.ser_date,
 				s.ser_total_price 
 				FROM services s, customers c, employees e, pay_types p, beds b 
 				$where 
@@ -581,7 +582,7 @@ if($rows > 0){
 		foreach($tableData as $key => $row) {
 			$code = $row[$tableInfo['keyFieldName']];
 			?>
-			<tr>
+			<tr id="<?=$code?>">
 				<td class="icon-col">
 					<input type="checkbox" value="<?=$code?>" name="table-record[]" class="mbk-checkbox" onclick="checkRecord(this)">
 				</td>
@@ -617,46 +618,59 @@ if($rows > 0){
 					continue;
 				}
 				//Display field
-				if($field == $tableInfo['keyFieldName']) {
-					if(isset($tableInfo['hiddenFields'])) {
-						// ถ้าตารางนี้มี hiddenFields แสดงว่าต้องมีหน้าแสดงรายละเอียด
+				if ($value == ''){
+					if(mysql_field_type($result, $offset) == 'real' || mysql_field_type($result, $offset) == 'int') {
 						?>
-						<td><a href="javascript:openFormTable('VIEW_DETAIL', '<?=$value?>');" class="normal-link" title="คลิกเพื่อดูรายละเอียด"><?=$value?></a></td>
+							<td field="<?=$field?>" class="real-col">-</td>
 						<?
 					} else {
 						?>
-						<td><?=$value?></td>
+							<td field="<?=$field?>">-</td>
+						<?
+					}
+				}else {
+					if($field == $tableInfo['keyFieldName']) {
+						if(isset($tableInfo['hiddenFields'])) {
+							// ถ้าตารางนี้มี hiddenFields แสดงว่าต้องมีหน้าแสดงรายละเอียด
+							?>
+							<td field="<?=$field?>"><a href="javascript:openFormTable('VIEW_DETAIL', '<?=$value?>');" class="normal-link" title="คลิกเพื่อดูรายละเอียด"><?=$value?></a></td>
+							<?
+						} else {
+							?>
+							<td field="<?=$field?>"><?=$value?></td>
+							<?
+						}
+					}
+					else if(mysql_field_type($result, $offset) == 'real') {
+						?>
+						<td field="<?=$field?>" class="real-col"><? echo number_format($value,2);?></td>
+						<?
+					} 
+					else if (mysql_field_type($result, $offset) == 'int'){
+						?>
+						<td field="<?=$field?>" class="real-col"><?=$value?></td>
+						<?
+					}
+					else if (mysql_field_type($result, $offset) == 'date' || mysql_field_type($result, $offset) == 'datetime'){
+						if($value == '') {
+							$dateValue 	= '-';
+						} else {
+							$time 		= strtotime($value);
+							$yearMinTH 	= substr(date('Y', $time) + 543, 2);
+							$month 		= $monthThaiMin[(int)date('m', $time)-1];
+							$dateValue 	= date('d', $time).' '.$month.' '.$yearMinTH;
+						}
+						?>
+						<td field="<?=$field?>"><?=$dateValue?></td>
+						<?
+					}
+					else {
+						?>
+						<td field="<?=$field?>"><?=$value?></td>
 						<?
 					}
 				}
-				else if(mysql_field_type($result, $offset) == 'real') {
-					?>
-					<td class="real-col"><? echo number_format($value,2);?></td>
-					<?
-				} 
-				else if (mysql_field_type($result, $offset) == 'int'){
-					?>
-					<td class="real-col"><?=$value?></td>
-					<?
-				}
-				else if (mysql_field_type($result, $offset) == 'date' || mysql_field_type($result, $offset) == 'datetime'){
-					if($value == '') {
-						$dateValue 	= '-';
-					} else {
-						$time 		= strtotime($value);
-						$yearMinTH 	= substr(date('Y', $time) + 543, 2);
-						$month 		= $monthThaiMin[(int)date('m', $time)-1];
-						$dateValue 	= date('d', $time).' '.$month.' '.$yearMinTH;
-					}
-					?>
-					<td><?=$dateValue?></td>
-					<?
-				}
-				else {
-					?>
-					<td><?=$value?></td>
-					<?
-				}
+				
 				$offset++;
 			}
 			?>
@@ -695,7 +709,10 @@ if($rows > 0){
 				echo "[]"; // empty array
 			}
 		?>,
-		'allRecords'	: '<?=$allRecords?>'
+		'allRecords'	: '<?=$allRecords?>',
+		'deleteTxtField': <? echo json_encode($tableInfo['deleteTxtField']); ?>,
+		'deleteTxtPatternMain' 	: '<?=$tableInfo["deleteTxtPatternMain"]?>',
+		'deleteTxtPatternMin' 	: '<?=$tableInfo["deleteTxtPatternMin"]?>'
 	};
 	setTable(table);
 

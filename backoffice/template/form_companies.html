@@ -54,8 +54,12 @@
                 <td>{$values.comp_tel}</td>
             </tr>
             <tr>
-                <td>แฟ็กซ์ :</td>
+                <td>โทรสาร :</td>
                 <td>{$values.fax}</td>
+            </tr>
+            <tr>
+                <td>E-mail :</td>
+                <td>{$values.comp_email}</td>
             </tr>
             <tr>
                 <td>ชื่อผู้ติดต่อ :</td>
@@ -67,18 +71,19 @@
     {else}      
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="comp_name,comp_tel,comp_addr">
+    <input type="hidden" name="uniqueFields" value="comp_name">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 		    <tr>
 			    <td colspan="2">
 				    <label class="input-required">ชื่อบริษัท</label>
-				    <input id="comp_name" name="comp_name" type="text" class="form-input full" value="{$values.comp_name}" valuepattern="character" require>
+				    <input id="comp_name" name="comp_name" type="text" class="form-input full" value="{$values.comp_name}" require>
 			    </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <span id="err-comp_name-require" class="errInputMsg err-comp_name">โปรดป้อนชื่อบริษัท</span>
-                    <span id="err-comp_name-character" class="errInputMsg err-comp_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-comp_name-unique" class="errInputMsg err-comp_name">ชื่อบริษัทซ้ำ โปรดป้อนชื่อบริษัทใหม่</span>
                 </td>
             </tr>
             <tr>
@@ -95,19 +100,29 @@
             <tr>
                 <td>
                     <label class="input-required">เบอร์โทร</label>
-                    <input id="comp_tel" name="comp_tel" type="text" class="form-input half" value="{$values.comp_tel}" maxlength="10" size="10" valuepattern="tel" require>
+                    <input id="comp_tel" name="comp_tel" type="text" class="form-input half" value="{$values.comp_tel}"require>
                 </td>
                 <td>
-                    <label>แฟ็กซ์</label>
+                    <label>โทรสาร</label>
                     <input id="fax" name="fax" type="text" class="form-input half" value="{$values.fax}">
                 </td>
             </tr>
-            <tr>
+            <tr class="errMsgRow">
                 <td>
                     <span id="err-comp_tel-require" class="errInputMsg half err-comp_tel">โปรดป้อนเบอร์โทร</span>
-                    <span id="err-comp_tel-tel" class="errInputMsg half err-comp_tel">โปรดกรอกเบอร์โทรเป็นตัวเลข 10 หลัก</span>
                 </td>
                 <td></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label>E-mail</label>
+                    <input id="comp_email" name="comp_email" type="text" class="form-input full" value="{$values.comp_email}" valuepattern="email">
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-comp_email-email" class="errInputMsg err-comp_email">รูปแบบอีเมลไม่ถูกต้อง</span>
+                </td>
             </tr>
             <tr>
                 <td colspan="2">

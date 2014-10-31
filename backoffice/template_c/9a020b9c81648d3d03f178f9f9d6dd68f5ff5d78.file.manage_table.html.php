@@ -1,17 +1,31 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-10-13 20:31:15
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
 <?php /*%%SmartyHeaderCode:22178543bc613c62b39-65528623%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 16:54:30
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
+<?php /*%%SmartyHeaderCode:4339544e16565a39b1-83590457%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '9a020b9c81648d3d03f178f9f9d6dd68f5ff5d78' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\manage_table.html',
+<<<<<<< HEAD
       1 => 1412295249,
       2 => 'file',
     ),
   ),
   'nocache_hash' => '22178543bc613c62b39-65528623',
+=======
+      1 => 1414227129,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '4339544e16565a39b1-83590457',
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
   'function' => 
   array (
   ),
@@ -23,9 +37,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
+<<<<<<< HEAD
   'unifunc' => 'content_543bc613e98e47_02961269',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_543bc613e98e47_02961269')) {function content_543bc613e98e47_02961269($_smarty_tpl) {?>﻿<!DOCTYPE html>
+=======
+  'unifunc' => 'content_544e1656821cb0_96065707',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_544e1656821cb0_96065707')) {function content_544e1656821cb0_96065707($_smarty_tpl) {?>﻿<!DOCTYPE html>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 <html>
 <head>
 	<title>Spa - Backoffice</title>
@@ -99,18 +119,30 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 <div class="tree-view">
 			        <div class="tree-view-root">
                         <a>
+<<<<<<< HEAD
                             <span class="root-label">ข้อมูลพื้นฐาน(14)</span>
+=======
+                            <span class="root-label">ข้อมูลพื้นฐาน(15)</span>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                             <span class="root-icon"></span>
                         </a>
 			        </div>
 			        <div class="tree-view-child">
 				        <ul>
+<<<<<<< HEAD
                             <li id="tn-sex">
+=======
+                            <!--<li id="tn-sex">
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-sex"></span>
                                     <span class="item-label">เพศ</span>
                                 </a>
+<<<<<<< HEAD
                             </li>
+=======
+                            </li>-->
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 					        <li id="tn-titles">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-titles"></span>
@@ -207,7 +239,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		        <div class="tree-view">
 			        <div class="tree-view-root">
                         <a>
+<<<<<<< HEAD
                             <span class="root-label">ข้อมูลหลัก(10)</span>
+=======
+                            <span class="root-label">ข้อมูลหลัก(9)</span>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                             <span class="root-icon"></span>
                         </a>
 			        </div>
@@ -243,12 +279,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                     <span class="item-label">แพ็คเกจ</span>
                                 </a>
 					        </li>
+<<<<<<< HEAD
                             <li id="tn-package_service_lists">
+=======
+                            <!--<li id="tn-package_service_lists">
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-package_service_lists"></span>
                                     <span class="item-label">รายการบริการที่จัดแพ็คเกจ</span>
                                 </a>
+<<<<<<< HEAD
                             </li>
+=======
+                            </li>-->
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 					        <li id="tn-promotions">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-promotions"></span>
@@ -279,7 +323,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			     <div class="tree-view">
 			        <div class="tree-view-root">
                         <a>
+<<<<<<< HEAD
                             <span class="root-label">ข้อมูลอื่นๆ(22)</span>
+=======
+                            <span class="root-label">ข้อมูลอื่นๆ(9)</span>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                             <span class="root-icon"></span>
                         </a>
 			        </div>
@@ -436,7 +484,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <div>
                         <button id="add-record-btn" class="button large button-icon button-icon-add">เพิ่ม</button>
 						<div class="search-container">
+<<<<<<< HEAD
                             <select id="search-record-filter" name="search-record-filter">
+=======
+                            <select id="search-record-filter" class="mbk-select" name="search-record-filter">
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                             </select>
                             <div class="mbk-input-icon">
                                 <span class="mbk-icon-16 mbk-icon-16-search"></span>

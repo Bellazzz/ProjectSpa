@@ -1,17 +1,31 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-10-14 20:25:48
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\getProductListOfOrder.html" */ ?>
 <?php /*%%SmartyHeaderCode:9675543d164ca78113-31839294%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 16:56:57
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\getProductListOfOrder.html" */ ?>
+<?php /*%%SmartyHeaderCode:22568544e16e936a2e3-43794049%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'b32426c8c97490d2100ed85dbf5ae2c6e3e52f12' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\getProductListOfOrder.html',
+<<<<<<< HEAD
       1 => 1411381717,
       2 => 'file',
     ),
   ),
   'nocache_hash' => '9675543d164ca78113-31839294',
+=======
+      1 => 1411367739,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '22568544e16e936a2e3-43794049',
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
   'function' => 
   array (
   ),
@@ -23,9 +37,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
+<<<<<<< HEAD
   'unifunc' => 'content_543d164cc338e2_92152824',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_543d164cc338e2_92152824')) {function content_543d164cc338e2_92152824($_smarty_tpl) {?><table id="receives-product-list">
+=======
+  'unifunc' => 'content_544e16e9474fd5_36731876',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_544e16e9474fd5_36731876')) {function content_544e16e9474fd5_36731876($_smarty_tpl) {?><table id="receives-product-list">
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 	<tr>
 		<th>ลำดับ</th>
 		<th>ผลิตภัณฑ์</th>

@@ -51,6 +51,7 @@ if(!$_REQUEST['ajaxCall']) {
 	$smarty->assign('tableName', $tableName);
 	$smarty->assign('tableNameTH', $tableInfo['tableNameTH']);
 	$smarty->assign('code', $code);
+	$smarty->assign('randNum', substr(str_shuffle('0123456789'), 0, 5));
 	if(isset($_REQUEST['hideEditButton'])) {
 		$smarty->assign('hideEditButton', true);
 	}

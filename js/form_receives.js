@@ -95,6 +95,7 @@ function changeOrderId() {
 								}
 							}
 						});
+						$('#rec_date').val(realDateToThaiDate(nowDate));
 	                    parent.hideActionDialog();
 	                }
 	            },

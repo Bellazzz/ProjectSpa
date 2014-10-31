@@ -1,17 +1,31 @@
+<<<<<<< HEAD
 <?php /* Smarty version Smarty-3.1.18, created on 2014-10-14 20:24:56
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_receives.html" */ ?>
 <?php /*%%SmartyHeaderCode:26778543d1618e5c684-69616712%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+=======
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 16:56:51
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_receives.html" */ ?>
+<?php /*%%SmartyHeaderCode:11492544e16e3599b36-37496779%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'a4b0372ea48b9eb81ac0e87d0244d72c11fc23ba' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_receives.html',
+<<<<<<< HEAD
       1 => 1413203009,
       2 => 'file',
     ),
   ),
   'nocache_hash' => '26778543d1618e5c684-69616712',
+=======
+      1 => 1414300487,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '11492544e16e3599b36-37496779',
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
   'function' => 
   array (
   ),
@@ -37,9 +51,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
+<<<<<<< HEAD
   'unifunc' => 'content_543d16196804a8_59724331',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_543d16196804a8_59724331')) {function content_543d16196804a8_59724331($_smarty_tpl) {?><!DOCTYPE html>
+=======
+  'unifunc' => 'content_544e16e38435d8_03146249',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_544e16e38435d8_03146249')) {function content_544e16e38435d8_03146249($_smarty_tpl) {?><!DOCTYPE html>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -156,6 +176,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     setMinDate(this);
                 }
             });
+<<<<<<< HEAD
+=======
+            // Check date
+            $('#rec_date').focusout(checkDate);
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 
             // Calculate auto
             if(action == 'EDIT') {
@@ -180,6 +205,37 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         function setOrdDate(date) {
             ordDate = date;
         }
+<<<<<<< HEAD
+=======
+
+        function checkDate() {
+            if(ordDate != '' && $('#rec_date').val() != '') {
+                var selfDate        = new Date($('#rec_date').val());
+                var siblingDate     = new Date(realDateToTmpDate(ordDate));
+                if(selfDate.getTime() < siblingDate.getTime()) {
+                    parent.showActionDialog({
+                        title: 'วันที่รับไม่ถูกต้อง',
+                        message: 'วันที่รับไม่สามารถอยู่ก่อนหน้าวันที่สั่งซื้อได้ค่ะ<br>'
+                               + 'วันที่สั่งซื้อของการสั่งซื้อครั้งนี้คือวันที่ ' + realDateToThaiDate(ordDate),
+                        actionList: [
+                            {
+                                id: 'ok',
+                                name: 'ตกลง',
+                                desc: 'ป้อนวันที่รับใหม่',
+                                func:
+                                function() {
+                                    parent.hideActionDialog();
+                                    $('#rec_date').val('');
+                                    $('#rec_date').focus();
+                                }
+                            }
+                        ],
+                        boxWidth: 450
+                    });
+                }
+            }
+        }
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
     </script>
     
 </head>
@@ -278,25 +334,54 @@ $_smarty_tpl->tpl_vars['recdlt']->_loop = true;
         </tfoot>
     </table>
     <?php } else { ?>      
+<<<<<<< HEAD
     <!-- ADD, EDIT -->    
+=======
+    <!-- ADD, EDIT -->
+    เลือกรหัสการสั่งซื้อเพื่อกรอกข้อมูลการรับ<br><br>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="ord_id,emp_id,rec_date,rec_total_price">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>
                 <td>
+<<<<<<< HEAD
                     <label class="input-required">รหัสการสั่งซื้อผลิตภัณฑ์</label>
                       <div id="ord_id" class="select-reference form-input half" > </div>
                 </td>
                 <td>
                     <label class="input-required">ชื่อ-นามสกุลพนักงาน</label>
                     <div id="emp_id" class="select-reference form-input half" > </div>
+=======
+                    <label class="input-required">รหัสการสั่งซื้อ</label>
+                    <div id="ord_id" class="select-reference form-input half" require></div>
+                </td>
+                <td>
+                    <label class="input-required">พนักงานที่รับ</label>
+                    <div id="emp_id" class="select-reference form-input half" require></div>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                 </td>
                 <td class="samerow">
                     <label class="input-required">วันที่รับผลิตภัณฑ์</label>
                       <input id="rec_date" name="rec_date" type="text" class="mbk-dtp-th form-input half" value="<?php if ($_smarty_tpl->tpl_vars['values']->value['rec_date']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['rec_date'];?>
 <?php } else { ?><?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+<<<<<<< HEAD
 <?php }?>">
+=======
+<?php }?>" require>
+                </td>
+            </tr>
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-ord_id-require" class="errInputMsg half err-ord_id">โปรดเลือกรหัสการสั่งซื้อ</span>
+                </td>
+                <td>
+                    <span id="err-emp_id-require" class="errInputMsg half err-emp_id">โปรดเลือกพนักงานที่รับ</span>
+                </td>
+                <td class="samerow">
+                    <span id="err-rec_date-require" class="errInputMsg half err-rec_date">โปรดป้อนวันที่รับผลิตภัณฑ์</span>
+>>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                 </td>
             </tr>
 	    </tbody>
