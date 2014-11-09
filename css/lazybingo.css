@@ -1255,7 +1255,7 @@ label.article-title {
 }
 .select-reference:not(.text) .select-reference-text, .select-reference .option-container li .text {
     width: 100%;
-    display: inline-block;
+    display: block;
     text-overflow: ellipsis;
     overflow: hidden;
     padding-right: 20px;
