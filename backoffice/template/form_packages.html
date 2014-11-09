@@ -379,7 +379,7 @@
             <tr>
                 <th style="text-align:center;">ลำดับ</th>
                 <th>รหัสรายการบริการ</th>
-                <th>ชื่อรายการบริการ</th>
+                <th class="txtLong-col">ชื่อรายการบริการ</th>
                 <th>เวลาที่ใช้</th>
             </tr>
         </thead>
@@ -392,7 +392,7 @@
                 		{$pkgsvl.svl_id}
                 	</a>
                 </td>
-                <td align="left">{$pkgsvl.svl_name}</td>
+                <td align="left" class="txtLong-col">{$pkgsvl.svl_name}</td>
                 <td align="left">{$pkgsvl.svl_hr} ชั่วโมง {$pkgsvl.svl_min} นาที</td>
             </tr>
             {/foreach}

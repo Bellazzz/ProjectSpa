@@ -198,7 +198,7 @@
     <table class="view-detail-reference">
         <thead>
             <tr>
-                <th>ผลิตภัณฑ์</th>
+                <th class="txtLong-col">ผลิตภัณฑ์</th>
                 <th>ราคา/หน่วย (บาท)</th>
                 <th>หน่วบนับ</th>
                 <th>จำนวนที่สั่ง</th>
@@ -211,7 +211,7 @@
         <tbody>
             {foreach from=$receiveDetailList key=i item=recdlt}
             <tr>
-                <td>{$recdlt.prd_name}</td>
+                <td class="txtLong-col">{$recdlt.prd_name}</td>
                 <td align="right">{$recdlt.recdtl_price}</td>
                 <td align="left">{$recdlt.unit_name}</td>
                 <td align="right">{$recdlt.orddtl_amount}</td>
