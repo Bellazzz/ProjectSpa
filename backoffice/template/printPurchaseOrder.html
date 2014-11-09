@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Spa - Backoffice</title>
+	<title>Purchase order ({$ordData.ord_id})</title>
 	<meta charset="utf-8"/>
     {literal}
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
@@ -43,6 +43,7 @@
 			vertical-align: top;
 			text-align: left;
 			font-size: 12px;
+			line-height: 1.2em;
 		}
 		.order-data-table table td:first-child {
 			padding-right: 20px;
@@ -93,6 +94,7 @@
 		    padding-bottom: 7px;
 		    vertical-align: top;
 			border: 1px solid #555;
+			word-wrap: break-word;
 		}
 		table.productList td:first-child {
 			border-left: none;
@@ -106,101 +108,27 @@
 		table.productList tfoot tr:last-child td {
 			border-bottom: none;
 		}
+		.signature-container {
+			page-break-after: always;
+		}
+		.spa_name, .purchaseTxt {
+			font-family: ThaiSansNeue-Bold;
+		}
+		.spa_name {
+			font-size: 30px;
+		}
+		.purchaseTxt {
+			font-size: 25px;
+		}
+		.prd_name_col {
+			width: 200px;
+			max-width: 200px;
+		}
+		.no_col {
+			width: 50px;
+			max-width: 50px;
+		}
 	</style>
-	<script>
-		var printNum = '{/literal}{$printNum}{literal}';
-
-		$(document).ready(function() {
-			$('#print-btn').click(function() {
-				confirmPrint();
-			});
-			$('#cancel-btn').click(function() {
-				parent.closeManageBox();
-			});
-		});
-
-		function confirmPrint() {
-			if(printNum > 0) {
-				parent.showActionDialog({
-	                title: 'พิมพ์ใบสั่งซื้อซ้ำ',
-	                message: 'ใบสั่งซื้อนี้ถูกพิมพ์ไปแล้ว ' + printNum + ' ครั้ง คุณต้องการพิมพ์อีกใช่หรือไม่?',
-	                actionList: [
-	                    {
-	                        id: 'ok',
-	                        name: 'ตกลง',
-	                        desc: 'พิมพ์ใบสั่งซื้อนี้',
-	                        func:
-	                        function() {
-	                        	insertPrintPurchaseOrders();
-	                        }
-	                    },
-		                {
-		                    id: 'cancel',
-		                    name: 'ยกเลิก',
-		                    desc: 'ไม่พิมพ์ใบสั่งซื้อ',
-		                    func:
-		                    function() {
-		                        parent.hideActionDialog();
-		                    }
-		                }
-	                ],
-	                boxWidth: 400
-	            });
-			} else {
-				insertPrintPurchaseOrders();
-			}
-			
-		}
-
-		function insertPrintPurchaseOrders() {
-			$.ajax({
-        		url: '../common/ajaxInsertPrintPurchaseOrders.php',
-        		type: 'POST',
-        		data: {
-        			ord_id: '{/literal}{$ordData.ord_id}{literal}'
-        		},
-        		success:
-        		function(response) {
-        			if(response == "PASS") {
-        				parent.hideActionDialog();
-        				parent.closeManageBox();
-        				printPurchaseOrder();
-        			} else if(response == "INSERT_PRINT_PURCHASE_ORDERS_FAIL") {
-        				alert('เกิดข้อผิดพลาด! ไม่สามารถเพิ่มข้อมูลการพิมพ์ใบสั่งซื้อได้');
-        			} else {
-        				alert(response);
-        			}
-        		}
-        	});
-		}
-
-		function printPurchaseOrder()
-		{
-		   var printReadyEle = document.getElementById("printArea");
-		   var shtml = '<HTML>\n<HEAD>\n';
-		   if (document.getElementsByTagName != null)
-		   {
-			  var sheadTags = document.getElementsByTagName("head");
-			  if (sheadTags.length > 0)
-				 shtml += sheadTags[0].innerHTML;
-			}
-			shtml += '</HEAD>\n<BODY>\n';
-			if (printReadyEle != null)
-			{
-			   shtml += '<form name = frmform1>';
-			   shtml += printReadyEle.innerHTML;
-			}
-			shtml += '\n</form>\n</BODY>\n</HTML>';
-			var printWin1 = window.open();
-			printWin1.document.open();
-			printWin1.document.write(shtml);
-			printWin1.document.close();
-			setTimeout(function() {
-				printWin1.print();
-			}, 100);
-		}
-	</script>
-
 	{/literal}
 </head>
 <body>
@@ -212,17 +140,17 @@
     	{if $ordData.ordstat_id == 'OS01'}
 		<button id="print-btn" class="button button-icon button-icon-print">พิมพ์</button>
 		{/if}
-		<button id="cancel-btn" class="button button-icon button-icon-delete">ยกเลิก</button>
+		<button id="cancel-btn" class="button button-icon button-icon-delete">ปิด</button>
     </div>
 </div>
 <div id="printArea" class="ftb-body">
-	<h2>{$spaData.spa_name}</h2>
-	<p>
+	<h2 id="spa_name_1" class="spa_name">{$spaData.spa_name}</h2>
+	<p id="spa_contact_1">
 		{$spaData.spa_addr}<br>
 		โทรศัพท์ : {$spaData.spa_tel} โทรสาร : {$spaData.spa_fax} อีเมล : {$spaData.spa_email}
 	</p>
-	<h2>ใบสั่งซื้อผลิตภัณฑ์</h2>
-	<div class="order-data-table-container clearfix">
+	<h2 id="purchaseTxt_1" class="purchaseTxt">ใบสั่งซื้อผลิตภัณฑ์</h2>
+	<div id="ordDataTable_1" class="order-data-table-container clearfix">
 		<div class="order-data-table">
 			<table>
 				<tr>
@@ -250,6 +178,10 @@
 		<div class="order-data-table">
 			<table>
 				<tr>
+					<td><b>หน้า</b></td>
+					<td><span class="curPage">1</span> จาก <span class="allPage">1</span> หน้า</td>
+				</tr>
+				<tr>
 					<td><b>เลขที่ใบสั่งซื้อ</b></td>
 					<td>{$ordData.ord_id}</td>
 				</tr>
@@ -261,17 +193,21 @@
 					<td><b>วันกำหนดส่ง</b></td>
 					<td>{$ordData.ord_snd_date}</td>
 				</tr>
+				<tr>
+					<td><b>รายการสั่งซื้อทั้งหมด</b></td>
+					<td>{$orddtlData|@count} รายการ</td>
+				</tr>
 			</table>
 		</div>
-	</div> <!--end order-table-container-->
+	</div>
 	
 	
-	<div class="productList-container">
-		<table class="productList">
+	<div id="prdListCont_1" class="productList-container">
+		<table id="productList_1" class="productList">
 	        <thead>
 	            <tr>
-	            	<th>ลำดับ</th>
-	                <th>ชื่อผลิตภัณฑ์</th>
+	            	<th class="no_col">ลำดับ</th>
+	                <th class="prd_name_col">ชื่อผลิตภัณฑ์</th>
 	                <th>จำนวน</th>
 	                <th>หน่วยนับ</th>
 	                <th>ราคาต่อหน่วย(บาท)</th>
@@ -281,55 +217,216 @@
 	        <tbody>
 	            {foreach from=$orddtlData key=i item=orddlt}
 	            <tr>
-	            	<td align="center">{$orddlt.no}</td>
-	                <td align="left">{$orddlt.prd_name}</td>
+	            	<td align="center" class="no_col">{$orddlt.no}</td>
+	                <td align="left" class="prd_name_col">{$orddlt.prd_name}</td>
 	                <td align="right">{$orddlt.orddtl_amount}</td>
 	                <td align="left">{$orddlt.unit_name}</td>
 	                <td align="right">{$orddlt.prd_price}</td>
 	                <td align="right">{$orddlt.sum_price}</td>
 	            </tr>
 	            {/foreach}
-	            {section name=prdWhiteSpace loop=$prdWhiteSpaceRows}
-				 <tr>
-	            	<td><span style="visibility: hidden">White space</span></td>
-	            	<td><span style="visibility: hidden">White space</span></td>
-	            	<td><span style="visibility: hidden">White space</span></td>
-	            	<td><span style="visibility: hidden">White space</span></td>
-	            	<td><span style="visibility: hidden">White space</span></td>
-	            	<td><span style="visibility: hidden">White space</span></td>
-	           	</tr>
-				{/section}
 	        </tbody>
-	        <tfoot>
-	        	<tr>
-	        		<td colspan="4" align="center">({$totalPriceText})</td>
-	        		<td align="center"><b>ราคารวมทั้งหมด</b></td>
-	        		<td align="right"><b>{$totalPrice}</b></td>
-	        	</tr>
-	        </tfoot>
 	    </table>
 	</div>
-	
-    <div style="text-align: center;">
-    	<div class="signature">
-    		<div class="space-for-signature"></div>
-    		<p align="center">(<span style="width: 160px; display:inline-block;"></span>)</p>
-    		<p align="center">ผู้สั่งซื้อ</p>
-    		<p align="center">
-    			วันที่ 
-    			<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    		</p>
-    	</div>
-    	<div class="signature">
-    		<div class="space-for-signature"></div>
-    		<p align="center">(<span style="width: 160px; display:inline-block;"></span>)</p>
-    		<p align="center">ผู้อนุมัติ</p>
-    		<p align="center">
-    			วันที่ 
-    			<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    		</p>
-    	</div>
-    </div>
 </div>
+{literal}
+<script>
+	var printNum = '{/literal}{$printNum}{literal}';
+	var purchaseOrdPage	= 1;
+
+	$(document).ready(function() {
+		$('#print-btn').click(function() {
+			confirmPrint();
+		});
+		$('#cancel-btn').click(function() {
+			parent.closeManageBox();
+		});
+
+		if($('#productList_1').height() <= 486) {
+			while($('#productList_1').height() < 456) {
+				// 1 page
+				var spaceHtml 	= '<tr>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '</tr>';
+				$('#productList_1 tbody').append(spaceHtml);
+			}
+			addTotalRow('#productList_1');
+			addSignatureBox();
+		} else {
+			// Multi page
+			addSignatureBox();
+			while($('#productList_' + purchaseOrdPage).height() > 486) {
+				// Add head purchase order
+				var curPage			= purchaseOrdPage+1;
+				var spa_name 		= '<h2 id="spa_name_' + curPage + '" class="spa_name">' + $('#spa_name_1').html() + '</h2>';
+				var spa_contact 	= '<p id="spa_contact_' + curPage + '">' + $('#spa_contact_1').html() + '</p>';
+				var purchaseTxt 	= '<h2 id="purchaseTxt_' + curPage + '" class="purchaseTxt">' + $('#purchaseTxt_1').html() + '</h2>'
+				var ordDataTable 	= '<div id="ordDataTable_' + curPage + '" class="order-data-table-container clearfix">'
+									+ $('#ordDataTable_1').html()
+									+ '</div>';
+				$('#printArea').append(spa_name + spa_contact + purchaseTxt + ordDataTable);
+
+				// Add product list table
+				var prdListCont = '<div id="prdListCont_' + curPage + '" class="productList-container">'
+								+ '<table id="productList_' + curPage + '" class="productList">'
+								+ '		<thead>' + $('#productList_1 thead').html() + '</thead>'
+								+ '		<tbody></tbody>'
+								+ '</table>';
+				$('#printArea').append(prdListCont);
+
+				//break page of product list table
+				while($('#productList_' + purchaseOrdPage).height() > 486) {
+					var tr = '<tr>' + $('#productList_' + purchaseOrdPage + ' tbody tr:last-child').html() + '</tr>';
+					$('#productList_' + purchaseOrdPage + ' tbody tr:last-child').remove();
+					$('#productList_' + curPage + ' tbody').prepend(tr);
+				}
+
+				// add curent page and all page
+				$('#ordDataTable_' + curPage).find('.curPage').text(curPage);
+				$('.allPage').text(curPage);
+
+				if($('#productList_' + curPage).height() <= 486) {
+					addTotalRow('#productList_' + curPage);
+				}
+				addSignatureBox();
+				purchaseOrdPage++;
+			}
+			// add space rows
+			while($('#productList_' + purchaseOrdPage).height() < 456) {
+				var spaceHtml 	= '<tr>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '<td><span style="visibility: hidden">WS</span></td>'
+								+ '</tr>';
+				$('#productList_' + purchaseOrdPage + ' tbody').append(spaceHtml);
+			}
+		}
+	});
+
+	function confirmPrint() {
+		if(printNum > 0) {
+			parent.showActionDialog({
+                title: 'พิมพ์ใบสั่งซื้อซ้ำ',
+                message: 'ใบสั่งซื้อนี้ถูกพิมพ์ไปแล้ว ' + printNum + ' ครั้ง คุณต้องการพิมพ์อีกใช่หรือไม่?',
+                actionList: [
+                    {
+                        id: 'ok',
+                        name: 'ตกลง',
+                        desc: 'พิมพ์ใบสั่งซื้อนี้',
+                        func:
+                        function() {
+                        	insertPrintPurchaseOrders();
+                        }
+                    },
+	                {
+	                    id: 'cancel',
+	                    name: 'ยกเลิก',
+	                    desc: 'ไม่พิมพ์ใบสั่งซื้อ',
+	                    func:
+	                    function() {
+	                        parent.hideActionDialog();
+	                    }
+	                }
+                ],
+                boxWidth: 400
+            });
+		} else {
+			insertPrintPurchaseOrders();
+		}
+		
+	}
+
+	function insertPrintPurchaseOrders() {
+		$.ajax({
+    		url: '../common/ajaxInsertPrintPurchaseOrders.php',
+    		type: 'POST',
+    		data: {
+    			ord_id: '{/literal}{$ordData.ord_id}{literal}'
+    		},
+    		success:
+    		function(response) {
+    			if(response == "PASS") {
+    				parent.hideActionDialog();
+    				parent.closeManageBox();
+    				printPurchaseOrder();
+    			} else if(response == "INSERT_PRINT_PURCHASE_ORDERS_FAIL") {
+    				alert('เกิดข้อผิดพลาด! ไม่สามารถเพิ่มข้อมูลการพิมพ์ใบสั่งซื้อได้');
+    			} else {
+    				alert(response);
+    			}
+    		}
+    	});
+	}
+
+	function printPurchaseOrder()
+	{
+	   var printReadyEle = document.getElementById("printArea");
+	   var shtml = '<HTML>\n<HEAD>\n';
+	   if (document.getElementsByTagName != null)
+	   {
+		  var sheadTags = document.getElementsByTagName("head");
+		  if (sheadTags.length > 0)
+			 shtml += sheadTags[0].innerHTML;
+		}
+		shtml += '</HEAD>\n<BODY>\n';
+		if (printReadyEle != null)
+		{
+		   shtml += '<form name = frmform1>';
+		   shtml += printReadyEle.innerHTML;
+		}
+		shtml += '\n</form>\n</BODY>\n</HTML>';
+		var printWin1 = window.open();
+		printWin1.document.open();
+		printWin1.document.write(shtml);
+		printWin1.document.close();
+		setTimeout(function() {
+			printWin1.print();
+		}, 100);
+	}
+
+	function addTotalRow(id) {
+		var tfoot 	= '<tfoot>'
+					+ '		<tr>'
+					+ '			<td colspan="4" align="center">({/literal}{$totalPriceText}{literal})</td>'
+					+ '			<td align="center"><b>ราคารวมทั้งหมด</b></td>'
+					+ '			<td align="right"><b>{/literal}{$totalPrice}{literal}</b></td>'
+					+ '		</tr>'
+					+ '</tfoot>';
+		$(id).append(tfoot);
+	}
+
+	function addSignatureBox() {
+		var sigBox 	= '<div style="text-align: center;" class="signature-container">'
+					+ '		<div class="signature">'
+					+ '			<div class="space-for-signature"></div>'
+					+ '			<p align="center">(<span style="width: 160px; display:inline-block;"></span>)</p>'
+					+ '			<p align="center">ผู้สั่งซื้อ</p>'
+					+ '			<p align="center">'
+					+ '			วันที่ '
+					+ '			<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>'
+					+ '			</p>'
+					+ '		</div>'
+					+ '		<div class="signature">'
+					+ '			<div class="space-for-signature"></div>'
+					+ '			<p align="center">(<span style="width: 160px; display:inline-block;"></span>)</p>'
+					+ '			<p align="center">ผู้อนุมัติ</p>'
+					+ '			<p align="center">'
+					+ '			วันที่ '
+					+ '			<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>'
+					+ '			</p>'
+					+ '		</div>'
+					+ '</div>';
+		$('#printArea').append(sigBox);
+	}
+</script>
+{/literal}
 </body>
 </html>
