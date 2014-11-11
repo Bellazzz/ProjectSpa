@@ -160,7 +160,6 @@ function selectReference(select) {
     function init() {
         var initTag = '<span class="mbk-icon-16 mbk-icon-16-dropdown" style="right: 5px;"></span>'
                     + '<span class="select-reference-text">กรุณาเลือก</span>'
-                    //+ '<span class="select-reference-value"></span>'
                     + '<input class="select-reference-input" type="hidden" name="' + select.elem.attr('id') + '">'
                     + '<div class="select-reference-container">';
         if (searchTool) {

@@ -314,7 +314,6 @@
                             parent.hideActionDialog();
                             tr.remove();
                             $('#errMsgRow_' + randNum).remove();
-                            refreshSvlTable();
                         }
                     },
                     {
@@ -403,7 +402,7 @@
     <table class="view-detail-reference">
         <thead>
             <tr>
-                <th>ผลิตภัณฑ์</th>
+                <th lass="txtLong-col">ผลิตภัณฑ์</th>
                 <th>ราคา/หน่วย (บาท)</th>
                 <th>จำนวน</th>
                 <th>หน่วยนับ</th>
@@ -412,7 +411,7 @@
         <tbody>
             {foreach from=$orderDetailList key=i item=orddlt}
             <tr>
-                <td>{$orddlt.prd_name}</td>
+                <td class="txtLong-col">{$orddlt.prd_name}</td>
                 <td align="right">{$orddlt.prd_price|number_format:2:".":","}</td>
                 <td align="right">{$orddlt.orddtl_amount|number_format:0:"":","}</td>
                 <td align="left">{$orddlt.unit_name}</td>
