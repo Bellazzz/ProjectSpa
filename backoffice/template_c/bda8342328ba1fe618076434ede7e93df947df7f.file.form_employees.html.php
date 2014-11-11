@@ -1,31 +1,17 @@
-<<<<<<< HEAD
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-13 20:43:53
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-31 09:27:57
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
-<?php /*%%SmartyHeaderCode:32039543bc909b88bb3-07948211%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-=======
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 17:17:25
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_employees.html" */ ?>
-<?php /*%%SmartyHeaderCode:17567544e1bb540ec00-35395701%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
+<?php /*%%SmartyHeaderCode:155285452f3ad34fb80-79587928%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'bda8342328ba1fe618076434ede7e93df947df7f' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_employees.html',
-<<<<<<< HEAD
-      1 => 1410269612,
+      1 => 1414720046,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '32039543bc909b88bb3-07948211',
-=======
-      1 => 1414286061,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '17567544e1bb540ec00-35395701',
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
+  'nocache_hash' => '155285452f3ad34fb80-79587928',
   'function' => 
   array (
   ),
@@ -36,22 +22,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'tableNameTH' => 0,
     'code' => 0,
     'values' => 0,
-<<<<<<< HEAD
-  ),
-  'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_543bc909e07b57_58043453',
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_543bc909e07b57_58043453')) {function content_543bc909e07b57_58043453($_smarty_tpl) {?><!DOCTYPE html>
-=======
     'randNum' => 0,
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544e1bb5d6dbb5_33307863',
+  'unifunc' => 'content_5452f3ad64ec49_65038799',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544e1bb5d6dbb5_33307863')) {function content_544e1bb5d6dbb5_33307863($_smarty_tpl) {?><!DOCTYPE html>
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
+<?php if ($_valid && !is_callable('content_5452f3ad64ec49_65038799')) {function content_5452f3ad64ec49_65038799($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -59,18 +36,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
-<<<<<<< HEAD
-	<!--<link rel="stylesheet" type="text/css" href="../inc/jquery-ui/jquery-ui.css">-->
-	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-	<!--<script type="text/javascript" src="../inc/jquery-ui/jquery-ui.js"></script>-->
-	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
-=======
 	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../inc/datetimepicker/jquery.datetimepicker.js"></script>
 	<script type="text/javascript" src="../inc/datetimepicker/mbk.datetimepickerThai.js"></script>
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
     <script type="text/javascript" src="../js/mbk_common_function.js"></script>
     <script type="text/javascript" src="../js/mbk_main.js"></script>
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
@@ -85,33 +54,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
 ';
         var ajaxUrl     = 'form_employees.php';
+        var sexIdOfTitle = '';
 
 		$(document).ready(function() {
 			$('#emp_indate').datetimepicker({
-<<<<<<< HEAD
-				lang:'th',
-				timepicker:false,
-				format:'Y-m-d',
-				closeOnDateSelect:true
-			});
-			$('#emp_birthdate').datetimepicker({
-				lang:'th',
-				timepicker:false,
-				format:'Y-m-d',
-				closeOnDateSelect:true
-			});
-
-
-			selectReference({
-                elem			: $('#sex_id'),
-                tableName		: 'sex',
-                keyFieldName	: 'sex_id',
-                textFieldName	: 'sex_name',
-				searchTool		: false,
-                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['sex_id'];?>
-'
-            });
-=======
                 lang                : 'th',
                 format              : 'Y/m/d',
                 timepicker          :false,
@@ -139,16 +85,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 timepicker:false
             });
 
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			selectReference({
                 elem			: $('#title_id'),
                 tableName		: 'titles',
                 keyFieldName	: 'title_id',
                 textFieldName	: 'title_name',
-<<<<<<< HEAD
-				searchTool		: false,
-                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['title_id'];?>
-=======
                 defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['title_id'];?>
 ',
                 onOptionSelect	: changeTitleId,
@@ -166,18 +107,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 textFieldName   : 'sex_name',
                 searchTool      : false,
                 defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['sex_id'];?>
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
-'
+',
+                beforeShow 		: allowSelectSex
             });
             selectReference({
                 elem            : $('#pos_id'),
                 tableName       : 'positions',
                 keyFieldName    : 'pos_id',
                 textFieldName   : 'pos_name',
-<<<<<<< HEAD
-                searchTool      : false,
-=======
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
                 defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['pos_id'];?>
 '
             });
@@ -187,39 +124,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				input: $('input[name="emp_pic"]'),
 				selector: $('#emp_pic_file'),
 				defaultValue: '<?php if ($_smarty_tpl->tpl_vars['values']->value['emp_pic']) {?>../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
-<<<<<<< HEAD
-<?php }?>'
-			});
-
-			// Set default value of textarea
-			$('#emp_addr').text('<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_addr'];?>
-');
-
-=======
 ?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
 <?php }?>'
 			});
 
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			// Add input password
 			if(action == 'ADD') {
 				addInputPassword();
 			}
-<<<<<<< HEAD
-		});
-		
-		function beforeSaveRecord() {
-			// Check password
-			if($('#emp_pass').val() != $('#emp_re_pass').val()) {
-				$('#emp_pass').addClass('required');
-				$('#emp_re_pass').addClass('required');
-				alert('กรุณาป้อน password ให้ตรงกันค่ะ');
-				$('#emp_re_pass').focus();
-				return true;
-			} else {
-				return false;
-			}
-=======
 
 			$('#emp_user').focusout(checkUserAndPass);
 		});
@@ -227,7 +139,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		function beforeSaveRecord() {
 			checkUserAndPass();
 			return false;
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 		}
 
 		function addInputPassword() {
@@ -237,8 +148,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 							  + '		<input id="emp_pass" name="emp_pass" type="password" class="form-input full">'
 							  + '	</td>'
 							  + '</tr>'
-<<<<<<< HEAD
-=======
 							   + '<tr class="errMsgRow">'
 							  + '	<td colspan="2">'
 							  + '		<span id="err-emp_pass-require" class="errInputMsg err-emp_pass">'
@@ -246,38 +155,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 							  + '		</span>'
 							  + '	</td>'
 							  + '</tr>'
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 							  + '<tr>'
 							  + '	<td colspan=2>'
 							  + '		<label>ป้อนรหัสผ่านอีกครั้ง</label>'
 							  + '		<input id="emp_re_pass" name="emp_re_pass" type="password" class="form-input full">'
 							  + '	</td>'
-<<<<<<< HEAD
-							  + '</tr>';
-			$('#tableforAddPass tbody').append(inputPassHTML);
-
-			function removeRequired(input) {
-				if (input.val() != '') {
-		            input.removeClass('required');
-		        }
-			}
-
-			// Add event for remove required
-			$('#emp_pass').focusout(function(){
-				removeRequired($(this));
-			});
-			$('#emp_re_pass').focusout(function(){
-				removeRequired($(this));
-			});
-		}
-
-		function resetPass() {
-			//var oldRequired = $('input[name="requiredFields"]').val();
-			//$('input[name="requiredFields"]').val(oldRequired + ',emp_pass,emp_re_pass');
-			$('#trResetPass').remove();
-			addInputPassword();
-		}
-=======
 							  + '</tr>'
 							  + '<tr class="errMsgRow">'
 							  + '	<td colspan="2">'
@@ -332,37 +214,57 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 		function changeTitleId() {
 			var titleId = $('input[name="title_id"]').val();
-			$.ajax({
-				url: '../common/ajaxGetSexOfTitle.php',
-				data: {
-					title_id: titleId
-				},
-				success:
-				function(response) {
-					if(response != 'NO_ROWS') {
-						if(response != '') {
-							if(response == 'X1') {
-								$('#sex_id_male').prop('checked', true);
-								$('#sex_id_male').prop('disabled', false);
-								$('#sex_id_female').prop('disabled', true);
-							} else if(response == 'X2') {
-								$('#sex_id_female').prop('checked', true);
-								$('#sex_id_female').prop('disabled', false);
-								$('#sex_id_male').prop('disabled', true);
+			if(titleId != '') {
+				$.ajax({
+					url: '../common/ajaxGetSexOfTitle.php',
+					data: {
+						title_id: titleId
+					},
+					success:
+					function(responseJSON) {
+						var response = $.parseJSON(responseJSON);
+						if(response.status == 'PASS') {
+							if(response.sex_id != '') {
+								sexIdOfTitle = response.sex_id;
+								$('#sex_id_' + response.sex_id).click();
+							} else {
+								sexIdOfTitle = '';
 							}
-							$('input[name="sex_id"]').prop('readonly', true);
 						} else {
-							$('#sex_id_male').prop('checked', true);
-							$('input[name="sex_id"]').prop('disabled', false);
+							alert(response.status);
 						}
-					} else {
-						$('#sex_id_male').prop('checked', true);
-						$('input[name="sex_id"]').prop('disabled', false);
 					}
-				}
-			});
+				});
+			} else {
+				sexIdOfTitle = '';
+			}
 		}
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
+
+		function allowSelectSex() {
+			if(sexIdOfTitle == '') {
+				return true;
+			} else {
+				var msg = 'คำนำหน้าชื่อ ' + $('#title_id').find('.select-reference-text').text()
+						+ ' ถูกระบุให้เป็นได้เฉพาะเพศ' + $('#sex_id').find('.select-reference-text').text()
+						+ 'เท่านั้น';
+				parent.showActionDialog({
+	                title: 'ไม่สามารถเลือกเพศได้',
+	                message: msg,
+	                actionList: [
+	                    {
+	                        id: 'ok',
+	                        name: 'ตกลง',
+	                        func:
+	                        function() {
+	                            parent.hideActionDialog();
+	                        }
+	                    }
+	                ],
+	                boxWidth: 400
+	            });
+				return false;
+			}
+		}
     </script>
     
 </head>
@@ -371,19 +273,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 <div class="ftb-body"> 	 
-<<<<<<< HEAD
-	<div class="ftb-body">
-	<?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
-	<!-- VIEW_DETAIL -->
-	<div class="table-view-detail-image full">
-		<img src="<?php if ($_smarty_tpl->tpl_vars['values']->value['emp_pic']) {?>../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
-=======
 	<?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
 	<!-- VIEW_DETAIL -->
 	<div class="table-view-detail-image full">
 		<img src="<?php if ($_smarty_tpl->tpl_vars['values']->value['emp_pic']!='-') {?>../img/employees/<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
 ?rand=<?php echo $_smarty_tpl->tpl_vars['randNum']->value;?>
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 <?php } else { ?>../img/backoffice/no-pic.png<?php }?>">
 	</div>
 	<table class="table-view-detail">
@@ -394,19 +288,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </td>
 			</tr>
 			<tr>
-<<<<<<< HEAD
-				<td>คำนำหน้าชื่อ :</td>
-				<td><div id="title_id" class="select-reference text"></td>
-			</tr>
-			<tr>
-=======
 				<td>ชื่อพนักงาน :</td>
 				<td><div id="title_id" class="select-reference text"></div><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_name']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
 <?php } else { ?>-<?php }?> <?php if ($_smarty_tpl->tpl_vars['values']->value['emp_surname']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
 <?php } else { ?>-<?php }?></td>
 			</tr>
 			<!--<tr>
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 				<td>ชื่อพนักงาน :</td>
 				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_name']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
 <?php } else { ?>-<?php }?></td>
@@ -415,11 +302,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<td>นามสกุล :</td>
 				<td><?php if ($_smarty_tpl->tpl_vars['values']->value['emp_surname']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
 <?php } else { ?>-<?php }?></td>
-<<<<<<< HEAD
-			</tr>
-=======
 			</tr>-->
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			<tr>
 				<td>เพศ :</td>
 				<td><div id="sex_id" class="select-reference text"></td>
@@ -465,22 +348,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<tr>
 				<td>
 					<label class="input-required">คำนำหน้าชื่อ</label>
-<<<<<<< HEAD
-					<div id="title_id" class="select-reference form-input half"></div>
-				</td>
-				<td>
-					<label class="input-required">เพศ</label>
-					<div id="sex_id" class="select-reference form-input half"></div>
-				</td>
-			</tr>
-=======
 					<div id="title_id" class="select-reference form-input half" require></div>
 				</td>
 				<td>
 					<label class="input-required">เพศ</label>
-					<!--<div id="sex_id" class="select-reference form-input half" require></div>-->
-					<label style="display:inline; margin-right:20px;"><input id="sex_id_male" type="radio" name="sex_id" value="X1" <?php if ($_smarty_tpl->tpl_vars['values']->value['sex_id']=='X1') {?>checked<?php }?> checked> ชาย</label>
-                    <label style="display:inline; margin-right:20px;"><input id="sex_id_female" type="radio" name="sex_id" value="X2" <?php if ($_smarty_tpl->tpl_vars['values']->value['sex_id']=='X2') {?>checked<?php }?>> หญิง</label>
+					<div id="sex_id" class="select-reference form-input half" require></div>
 				</td>
 			</tr>
 			<tr class="errMsgRow">
@@ -491,16 +363,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 	<span id="err-sex_id-require" class="errInputMsg half err-sex_id">โปรดเลือกเพศ</span>
                 </td>
             </tr>
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			<tr>
 				<td colspan="2">
 					<label class="input-required">ชื่อพนักงาน</label>
 					<input id="emp_name" name="emp_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_name'];?>
-<<<<<<< HEAD
-">
-				</td>
-			</tr>
-=======
 " valuepattern="character" require>
 				</td>
 			</tr>
@@ -510,39 +376,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <span id="err-emp_name-character" class="errInputMsg err-emp_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
                 </td>
             </tr>
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			<tr>
 				<td colspan="2">
 					<label class="input-required">นามสกุล</label>
 					<input id="emp_surname" name="emp_surname" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_surname'];?>
-<<<<<<< HEAD
-">
-	
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="input-required">ตำแหน่ง</label>
-					<div id="pos_id" class="select-reference form-input half"></div>
-				</td>
-				<td>
-					<label class="input-required">วันที่เข้าทำงาน</label>
-					<input id="emp_indate" name="emp_indate" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_indate'];?>
-">
-				</td>
-			</tr>
-		</tbody>
-    </table>
-	<table id="tableforAddPass" class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
-		<tbody>
-			<tr>
-				<td colspan=2>
-					<label class="input-required">ที่อยู่</label>
-					<textarea id="emp_addr" name="emp_addr" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_addr'];?>
-"></textarea>
-				</td>
-			</tr>
-=======
 " valuepattern="character" require>
 	
 				</td>
@@ -584,21 +421,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <span id="err-emp_addr-require" class="errInputMsg err-emp_addr">โปรดป้อนที่อยู่</span>
                 </td>
             </tr>
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			<tr>
 				<td>
 					<label class="input-required">เบอร์โทรศัพท์</label>
 					<input id="emp_tel" name="emp_tel" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_tel'];?>
-<<<<<<< HEAD
-">
-				</td>
-				<td>
-					<label>วันเกิด</label>
-					<input id="emp_birthdate" name="emp_birthdate" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_birthdate'];?>
-">
-				</td>
-			</tr>
-=======
 " valuepattern="tel" maxlength="10" size="10" require>
 				</td>
 				<td>
@@ -617,16 +443,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </table>
     <table id="tableforAddPass" class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 		<tbody>
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			<tr>
 				<td colspan=2>
 					<label>ชื่อผู้ใช้งาน</label>
 					<input id="emp_user" name="emp_user" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_user'];?>
-<<<<<<< HEAD
-">
-				</td>
-			</tr>
-=======
 " valuepattern="username">
 				</td>
 			</tr>
@@ -636,7 +456,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <span id="err-emp_user-username" class="errInputMsg err-emp_user">ชื่อผู้ใช้เป็นได้เฉพาะตัวอักษรภาษาอังกฤษและตัวเลขอย่างน้อย 6 ตัวอักษร ห้ามมีช่องว่าง และอักระพิเศษ</span>
                 </td>
             </tr>
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 			<?php if ($_smarty_tpl->tpl_vars['action']->value=='EDIT') {?>
 			<tr id="trResetPass">
 				<td colspan="2">
@@ -650,10 +469,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	    <tbody>
 	    	<tr>
 	    		<td>
-<<<<<<< HEAD
-=======
 	    			<label>รูปภาพพนักงาน</label>
->>>>>>> f992e9c96dd1475aea41c20f2127279eab8cec15
 					<div id="emp_pic" class="uploadImageArea full"></div>
 					<input type="hidden" name="emp_pic" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_pic'];?>
 ">

@@ -1,20 +1,22 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-28 10:30:32
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-31 09:42:21
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_titles.html" */ ?>
-<?php /*%%SmartyHeaderCode:25744544f0dd8848148-78290780%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:226105452f4746b1919-74717458%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '27378bcd0e170dfc447ebcad9120101faf889e50' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_titles.html',
-      1 => 1414077662,
+      1 => 1414723285,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '25744544f0dd8848148-78290780',
+  'nocache_hash' => '226105452f4746b1919-74717458',
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5452f4747bf376_22892496',
   'variables' => 
   array (
     'action' => 0,
@@ -24,10 +26,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'values' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544f0dd8c253b3_59105510',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544f0dd8c253b3_59105510')) {function content_544f0dd8c253b3_59105510($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_5452f4747bf376_22892496')) {function content_5452f4747bf376_22892496($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -63,6 +63,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 textFieldName: 'title_name',
                 defaultValue: 'T01'
             });
+            selectReference({
+                elem            : $('#sex_id'),
+                tableName       : 'sex',
+                keyFieldName    : 'sex_id',
+                textFieldName   : 'sex_name',
+                searchTool      : false,
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['sex_id'];?>
+'
+            });
         });
     </script>
     
@@ -80,7 +89,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		    <tr>
 			    <td>
 				    <label class="input-required">คำนำหน้าชื่อ</label>
-				    <input id="title_name" name="title_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['title_name'];?>
+				    <input id="title_name" name="title_name" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['title_name'];?>
 " require valuepattern = "character"> 
 			    </td>
             </tr>
@@ -91,14 +100,20 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <span id="err-title_name-character" class="errInputMsg err-title_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
                 </td>
             </tr>
-            <tr>
+            <!--<tr>
                 <td>
                     <label class="input-required">เพศ</label>
                     <label style="display:inline; margin-right:20px;"><input type="radio" name="sex_id" value="X1" <?php if ($_smarty_tpl->tpl_vars['values']->value['sex_id']=='X1') {?>checked<?php }?>> ชาย</label>
                     <label style="display:inline; margin-right:20px;"><input type="radio" name="sex_id" value="X2" <?php if ($_smarty_tpl->tpl_vars['values']->value['sex_id']=='X2') {?>checked<?php }?>> หญิง</label>
                     <label style="display:inline"><input type="radio" name="sex_id" value="" <?php if ($_smarty_tpl->tpl_vars['values']->value['sex_id']=='') {?>checked<?php }?>> ไม่ระบุ</label>
                 </td>
-		    </tr>
+		    </tr>-->
+            <tr>
+                <td>
+                    <label class="input-required">เพศ</label>
+                    <div id="sex_id" class="select-reference form-input half" require></div>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>
