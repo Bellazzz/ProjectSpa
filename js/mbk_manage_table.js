@@ -458,7 +458,7 @@ function cancelSelectRecord() {
 
 function refreshFilterQuery() {
     var filterRecordQueryHTML = '';
-    var allowFilterRetroact   = ['orders','receives'];
+    var allowFilterRetroact   = ['orders','receives','time_attendances'];
 
     if(this.table.name == 'orders') {
         filterRecordQueryHTML   = 'ดูการสั่งซื้อที่มีสถานะ '

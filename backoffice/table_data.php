@@ -22,6 +22,7 @@ $order			= '';
 $limit 			= '';
 $page 			= 1;
 $recordDisplay 	= 20;
+$retroactDate 	= date('Y-m-d', strtotime('-1 years'));
 
 if(hasValue($_REQUEST['sortBy'])) {
 	$sortBy	= $_REQUEST['sortBy'];
@@ -262,7 +263,10 @@ switch ($tableName) {
 				$like = "(e.emp_name like '%$searchInput%' OR e.emp_surname like '%$searchInput%') ";
 			}
 			$where .= " AND $like";
-		}//timeatt_id	emp_id	dateatt_in	timeatt_in	dateatt_out	timeatt_out
+		}
+		if($filterRetroact == 'true') {
+			$where .= " AND t.dateatt_in >= '$retroactDate' ";
+		}
 		$sql = "SELECT t.timeatt_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				t.dateatt_in,
@@ -271,7 +275,8 @@ switch ($tableName) {
 				t.timeatt_out 
 				FROM time_attendances t, employees e 
 				$where 
-				$order";
+				$orderSpecial";
+		$sortBy = $sortBySpecial;
 		break;
  	 	 	 	
 	case 'payrolls':
