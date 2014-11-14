@@ -129,7 +129,7 @@ if(!$_REQUEST['ajaxCall']) {
 			}
 		}
 
-		// Insert
+		// Insert แบบระบุ Field
 		$tableRecord = new TableSpa($tableName, $values['fieldName'], $values['fieldValue']);
 		if($tableRecord->insertSuccess()) {
 			$response['status'] = 'ADD_PASS';

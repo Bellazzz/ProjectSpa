@@ -14,13 +14,14 @@ $tableInfo	= getTableInfo($tableName);
 $sortCol	= $tableInfo['keyFieldName'];
 $sortBy		= 'asc';
 $sortBySpecial = 'desc';
-$filter 	= '';
-$where		= '';
-$like		= '';
-$order		= '';
-$limit 		= '';
-$page 		= 1;
-$recordDisplay = 20;
+$filter 		= '';
+$filterRetroact = '';
+$where			= '';
+$like			= '';
+$order			= '';
+$limit 			= '';
+$page 			= 1;
+$recordDisplay 	= 20;
 
 if(hasValue($_REQUEST['sortBy'])) {
 	$sortBy	= $_REQUEST['sortBy'];
@@ -31,6 +32,9 @@ if(hasValue($_REQUEST['sortCol'])) {
 }
 if(hasValue($_REQUEST['filter'])) {
 	$filter = $_REQUEST['filter'];
+}
+if(hasValue($_REQUEST['filterRetroact'])) {
+	$filterRetroact = $_REQUEST['filterRetroact'];
 }
 if(hasValue($_REQUEST['page'])) {
 	$page = (Int)$_REQUEST['page'];
@@ -53,10 +57,10 @@ if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 // check for table that display special
 switch ($tableName) {
 	case 'orders':
-		header("location:table_data_orders.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
+		header("location:table_data_orders.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter&filterRetroact=$filterRetroact");
 		break;
 	case 'receives':
-		header("location:table_data_receives.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
+		header("location:table_data_receives.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter&filterRetroact=$filterRetroact");
 		break;
 }
 

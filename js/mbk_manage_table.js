@@ -149,9 +149,10 @@ function pullTable(reFilter) {
     $('.page-panel-content').css('opacity', '0.5');
 
     // Prepare variables
-    var searchCol   = $('#search-record-filter').val();
-    var searchInput = $('#search-record-input').val();
-    var queryFilter = $('#query-record-filter').val();
+    var searchCol           = $('#search-record-filter').val();
+    var searchInput         = $('#search-record-input').val();
+    var queryFilter         = $('#query-record-filter').val();
+    var filterRetroact      = $('#query-record-filter-retroact').val(); 
  
     $.ajax({
         url: 'table_data.php',
@@ -159,6 +160,7 @@ function pullTable(reFilter) {
         data: 'tableName=' + this.table.name + '&sortCol=' + this.table.sortCol + 
               '&sortBy=' + this.table.sortBy + '&searchCol=' + searchCol + 
               '&searchInput=' + searchInput + '&filter=' + queryFilter + 
+              '&filterRetroact=' + filterRetroact +
               '&page=' + currentPage + '&recordDisplay=' + recordDisplay,
         success:
         function (response) {
@@ -456,6 +458,8 @@ function cancelSelectRecord() {
 
 function refreshFilterQuery() {
     var filterRecordQueryHTML = '';
+    var allowFilterRetroact   = ['orders','receives'];
+
     if(this.table.name == 'orders') {
         filterRecordQueryHTML   = 'ดูการสั่งซื้อที่มีสถานะ '
                                 + '<select id="query-record-filter" class="mbk-select">'
@@ -470,11 +474,26 @@ function refreshFilterQuery() {
                                 + '     <option value="COMPLETED">เรียบร้อยแล้ว</option>'
                                 + '</select>';
     }
+
+    if(allowFilterRetroact.indexOf(this.table.name) != -1) {
+        filterRecordQueryHTML  += '&emsp;&emsp;ขอบเขตการแสดง '
+                                + '<select id="query-record-filter-retroact" class="mbk-select">'
+                                + '     <option value="true">12 เดือนก่อน - ปัจจุบัน</option>'
+                                + '     <option value="false">ข้อมูลทั้งหมด</option>'
+                                + '</select>';
+    }
+
+
     $('.table-toolbar-filter').html(filterRecordQueryHTML);
 
     // Add event
     if($('#query-record-filter').length > 0) {
         $('#query-record-filter').change(function() {
+            pullTable(false);
+        });
+    }
+    if($('#query-record-filter-retroact').length > 0) {
+        $('#query-record-filter-retroact').change(function() {
             pullTable(false);
         });
     }

@@ -1,7 +1,7 @@
 <?php
 function wrapSingleQuote($value) {
 	return "'$value'";
-}
+}//เอาไว้ครอบ Single Qute เมื่อรับค้าตอน Insert
 
 function hasValue($variable) {
 	if(isset($variable) && $variable != null && $variable != '') {
