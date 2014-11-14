@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-11 10:56:55
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_sex.html" */ ?>
-<?php /*%%SmartyHeaderCode:2232854618907c4ebf5-37361797%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-11 10:57:32
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_units.html" */ ?>
+<?php /*%%SmartyHeaderCode:223905461892c41b9d7-95436944%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '0be5ceee72b007b7c335d74d7d7f73902722def7' => 
+    '5079a13075b68ec3acea662ce090172b309cd84d' => 
     array (
-      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_sex.html',
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_units.html',
       1 => 1414720046,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2232854618907c4ebf5-37361797',
+  'nocache_hash' => '223905461892c41b9d7-95436944',
   'function' => 
   array (
   ),
@@ -25,9 +25,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54618907e26367_90923784',
+  'unifunc' => 'content_5461892c566874_59386342',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54618907e26367_90923784')) {function content_54618907e26367_90923784($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_5461892c566874_59386342')) {function content_5461892c566874_59386342($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -41,15 +41,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
     <script type="text/javascript">
         // Global variables
-        var action      = '<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
+        var action = '<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
 ';
-        var tableName   = '<?php echo $_smarty_tpl->tpl_vars['tableName']->value;?>
+        var tableName = '<?php echo $_smarty_tpl->tpl_vars['tableName']->value;?>
 ';
-		var tableNameTH = '<?php echo $_smarty_tpl->tpl_vars['tableNameTH']->value;?>
+        var tableNameTH = '<?php echo $_smarty_tpl->tpl_vars['tableNameTH']->value;?>
 ';
-        var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+        var code = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
 ';
-        var ajaxUrl     = 'form_table.php';
+        var ajaxUrl = 'form_table.php';
     </script>
     
 </head>
@@ -59,22 +59,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="sex_name">
-    <input type="hidden" name="uniqueFields" value="sex_name">
+	<input type="hidden" name="requiredFields" value="unit_name">
+	<input type="hidden" name="uniqueFields" value="unit_name">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 		    <tr>
 			    <td>
-				    <label class="input-required">ชื่อเพศ</label>
-				    <input id="sex_name" name="sex_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['sex_name'];?>
-" require valuepattern = "character">
+				    <label class="input-required">ชื่อหน่วยนับ</label>
+				    <input id="unit_name" name="unit_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['unit_name'];?>
+" valuepattern="character" require>
 			    </td>
 		    </tr>
-            <tr class="errMsgRow">
+            <tr>
                 <td>
-                    <span id="err-sex_name-require" class="errInputMsg err-sex_name">โปรดป้อนชื่อเพศ</span>
-                    <span id="err-sex_name-unique" class="errInputMsg err-sex_name">ชื่อเพศซ้ำ โปรดป้อนชื่อเพศใหม่</span>
-                    <span id="err-sex_name-character" class="errInputMsg err-sex_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-unit_name-require" class="errInputMsg err-unit_name">โปรดป้อนชื่อหน่วยนับ</span>
+                    <span id="err-unit_name-character" class="errInputMsg err-unit_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-unit_name-unique" class="errInputMsg err-unit_name">หน่วยนับซ้ำ โปรดป้อนชื่อหน่วยนับใหม่</span>
                 </td>
             </tr>
 	    </tbody>
@@ -87,5 +87,4 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     [Note]
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
-	3.  input[name="uniqueFields"] ใส่ชื่อฟิลด์ที่ต้องการเช็คว่าห้ามซ้ำ
 --><?php }} ?>

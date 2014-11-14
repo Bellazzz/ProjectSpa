@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-31 08:50:45
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-12 16:36:09
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_receives.html" */ ?>
-<?php /*%%SmartyHeaderCode:307695452eaf5863307-33397658%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1713954632a096dfab6-22855032%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'a4b0372ea48b9eb81ac0e87d0244d72c11fc23ba' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_receives.html',
-      1 => 1414720046,
+      1 => 1415678099,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '307695452eaf5863307-33397658',
+  'nocache_hash' => '1713954632a096dfab6-22855032',
   'function' => 
   array (
   ),
@@ -37,9 +37,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5452eaf5cc1221_83739955',
+  'unifunc' => 'content_54632a0998b875_36413498',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5452eaf5cc1221_83739955')) {function content_5452eaf5cc1221_83739955($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_54632a0998b875_36413498')) {function content_54632a0998b875_36413498($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -253,7 +253,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <table class="view-detail-reference">
         <thead>
             <tr>
-                <th>ผลิตภัณฑ์</th>
+                <th class="txtLong-col">ผลิตภัณฑ์</th>
                 <th>ราคา/หน่วย (บาท)</th>
                 <th>หน่วบนับ</th>
                 <th>จำนวนที่สั่ง</th>
@@ -272,7 +272,7 @@ $_smarty_tpl->tpl_vars['recdlt']->_loop = true;
  $_smarty_tpl->tpl_vars['i']->value = $_smarty_tpl->tpl_vars['recdlt']->key;
 ?>
             <tr>
-                <td><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['prd_name'];?>
+                <td class="txtLong-col"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['prd_name'];?>
 </td>
                 <td align="right"><?php echo $_smarty_tpl->tpl_vars['recdlt']->value['recdtl_price'];?>
 </td>

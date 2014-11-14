@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-11 10:56:55
-         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_sex.html" */ ?>
-<?php /*%%SmartyHeaderCode:2232854618907c4ebf5-37361797%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-11 10:57:23
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_positions.html" */ ?>
+<?php /*%%SmartyHeaderCode:2230454618923695110-53204950%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '0be5ceee72b007b7c335d74d7d7f73902722def7' => 
+    '78d0c63242ad77f737ea1d5feb94f475e58f5920' => 
     array (
-      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_sex.html',
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_positions.html',
       1 => 1414720046,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2232854618907c4ebf5-37361797',
+  'nocache_hash' => '2230454618923695110-53204950',
   'function' => 
   array (
   ),
@@ -25,9 +25,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_54618907e26367_90923784',
+  'unifunc' => 'content_54618923772317_63053227',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54618907e26367_90923784')) {function content_54618907e26367_90923784($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_54618923772317_63053227')) {function content_54618923772317_63053227($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
@@ -59,22 +59,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
-	<input type="hidden" name="requiredFields" value="sex_name">
-    <input type="hidden" name="uniqueFields" value="sex_name">
+	<input type="hidden" name="requiredFields" value="pos_name">
+	<input type="hidden" name="uniqueFields" value="pos_name">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 		    <tr>
 			    <td>
-				    <label class="input-required">ชื่อเพศ</label>
-				    <input id="sex_name" name="sex_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['sex_name'];?>
-" require valuepattern = "character">
+				    <label class="input-required">ชื่อตำแหน่ง</label>
+				    <input id="pos_name" name="pos_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['pos_name'];?>
+" require valuepattern="character">
 			    </td>
 		    </tr>
-            <tr class="errMsgRow">
+            <tr>
                 <td>
-                    <span id="err-sex_name-require" class="errInputMsg err-sex_name">โปรดป้อนชื่อเพศ</span>
-                    <span id="err-sex_name-unique" class="errInputMsg err-sex_name">ชื่อเพศซ้ำ โปรดป้อนชื่อเพศใหม่</span>
-                    <span id="err-sex_name-character" class="errInputMsg err-sex_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-pos_name-require" class="errInputMsg err-pos_name">โปรดป้อนชื่อตำแหน่ง</span>
+                    <span id="err-pos_name-character" class="errInputMsg err-pos_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
+                    <span id="err-pos_name-unique" class="errInputMsg err-pos_name">ชื่อตำแหน่งซ้ำ โปรดป้อนชื่อตำแหน่งใหม่</span>
                 </td>
             </tr>
 	    </tbody>
