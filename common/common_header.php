@@ -4,8 +4,8 @@
 	require(WEB_ROOTDIR.'/inc/Smarty-3.1.18/libs/Smarty.class.php');
 
 	$smarty = new Smarty();
-	$smarty->setTemplateDir($subDir.'template');
-	$smarty->setCompileDir($subDir.'template_c');
+	$smarty->setTemplateDir($subDir.'template');//html
+	$smarty->setCompileDir($subDir.'template_c');//file compile
 	
 	date_default_timezone_set('Asia/Bangkok');
 	$nowDate = date('Y/m/d');

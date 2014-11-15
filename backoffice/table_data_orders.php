@@ -6,14 +6,15 @@ include('../common/common_constant.php');
 include('../common/common_function.php');
 
 // Pre Valiable
-$tableName	= 'orders';
-$sortCol	= $_REQUEST['sortCol'];
-$sortBy		= 'desc';
-$filter 	= $_REQUEST['filter'];
-$where 		= 'WHERE o.emp_id = e.emp_id AND o.comp_id = c.comp_id '
-			. 'AND o.ordtyp_id = ot.ordtyp_id ';
-$order 		= $_REQUEST['order'];
-$tableInfo	= getTableInfo($tableName);
+$tableName		= 'orders';
+$sortCol		= $_REQUEST['sortCol'];
+$sortBy			= 'desc';
+$filter 		= $_REQUEST['filter'];
+$filterRetroact = $_REQUEST['filterRetroact'];
+$where 			= 'WHERE o.emp_id = e.emp_id AND o.comp_id = c.comp_id '
+				. 'AND o.ordtyp_id = ot.ordtyp_id ';
+$order 			= $_REQUEST['order'];
+$tableInfo		= getTableInfo($tableName);
 
 if(hasValue($_REQUEST['sortBy'])) {
 	$sortBy	= $_REQUEST['sortBy'];
@@ -38,19 +39,29 @@ if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 if(hasValue($_REQUEST['filter'])) {
 	$filter = $_REQUEST['filter'];
 	if($filter == 'WAIT') {
-		$where .= "AND ordstat_id = 'OS01'";
-		$whereAllRecord = "WHERE ordstat_id = 'OS01'";
+		$where .= " AND ordstat_id = 'OS01' ";
+		$whereAllRecord = " WHERE ordstat_id = 'OS01' ";
 	} else if($filter == 'REMAIN') {
-		$where .= "AND ordstat_id = 'OS02'";
+		$where .= " AND ordstat_id = 'OS02' ";
 		$hideIconCol = true; // hide column action icon in thead
-		$whereAllRecord = "WHERE ordstat_id = 'OS02'";
+		$whereAllRecord = " WHERE ordstat_id = 'OS02' ";
 	} else if($filter == 'COMPLETED') {
-		$where .= "AND ordstat_id = 'OS03'";
+		$where .= " AND ordstat_id = 'OS03' ";
 		$hideIconCol = true; // hide column action icon in thead
-		// Display retroact 12 month
+		$whereAllRecord = " WHERE ordstat_id = 'OS03' ";
+	}
+}
+
+// Generate filter retroact
+if(hasValue($_REQUEST['filterRetroact'])) {
+	if($filterRetroact == 'true') {
 		$retroactDate = date('Y-m-d', strtotime('-1 years'));
-		$where .= " AND ord_date >= '$retroactDate'";
-		$whereAllRecord = "WHERE ordstat_id = 'OS03'";
+		$where .= " AND ord_date >= '$retroactDate' ";
+		if(isset($whereAllRecord)) {
+			$whereAllRecord .= " AND ord_date >= '$retroactDate' ";
+		} else {
+			$whereAllRecord = " WHERE ord_date >= '$retroactDate' ";
+		}
 	}
 }
  	 	 	 	 	 	 	 	 	

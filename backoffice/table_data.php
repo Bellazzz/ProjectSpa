@@ -14,13 +14,15 @@ $tableInfo	= getTableInfo($tableName);
 $sortCol	= $tableInfo['keyFieldName'];
 $sortBy		= 'asc';
 $sortBySpecial = 'desc';
-$filter 	= '';
-$where		= '';
-$like		= '';
-$order		= '';
-$limit 		= '';
-$page 		= 1;
-$recordDisplay = 20;
+$filter 		= '';
+$filterRetroact = '';
+$where			= '';
+$like			= '';
+$order			= '';
+$limit 			= '';
+$page 			= 1;
+$recordDisplay 	= 20;
+$retroactDate 	= date('Y-m-d', strtotime('-1 years'));
 
 if(hasValue($_REQUEST['sortBy'])) {
 	$sortBy	= $_REQUEST['sortBy'];
@@ -31,6 +33,9 @@ if(hasValue($_REQUEST['sortCol'])) {
 }
 if(hasValue($_REQUEST['filter'])) {
 	$filter = $_REQUEST['filter'];
+}
+if(hasValue($_REQUEST['filterRetroact'])) {
+	$filterRetroact = $_REQUEST['filterRetroact'];
 }
 if(hasValue($_REQUEST['page'])) {
 	$page = (Int)$_REQUEST['page'];
@@ -53,10 +58,10 @@ if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 // check for table that display special
 switch ($tableName) {
 	case 'orders':
-		header("location:table_data_orders.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
+		header("location:table_data_orders.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter&filterRetroact=$filterRetroact");
 		break;
 	case 'receives':
-		header("location:table_data_receives.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter");
+		header("location:table_data_receives.php?sortCol=$sortCol&sortBy=$sortBySpecial&order=$orderSpecial&searchCol=$searchCol&searchInput=$searchInput&filter=$filter&filterRetroact=$filterRetroact");
 		break;
 }
 
@@ -258,7 +263,10 @@ switch ($tableName) {
 				$like = "(e.emp_name like '%$searchInput%' OR e.emp_surname like '%$searchInput%') ";
 			}
 			$where .= " AND $like";
-		}//timeatt_id	emp_id	dateatt_in	timeatt_in	dateatt_out	timeatt_out
+		}
+		if($filterRetroact == 'true') {
+			$where .= " AND t.dateatt_in >= '$retroactDate' ";
+		}
 		$sql = "SELECT t.timeatt_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				t.dateatt_in,
@@ -267,7 +275,8 @@ switch ($tableName) {
 				t.timeatt_out 
 				FROM time_attendances t, employees e 
 				$where 
-				$order";
+				$orderSpecial";
+		$sortBy = $sortBySpecial;
 		break;
  	 	 	 	
 	case 'payrolls':

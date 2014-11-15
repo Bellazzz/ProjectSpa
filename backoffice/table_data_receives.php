@@ -6,12 +6,13 @@ include('../common/common_constant.php');
 include('../common/common_function.php');
 
 // Pre Valiable
-$tableName	= 'receives';
-$sortCol	= $_REQUEST['sortCol'];
-$sortBy		= 'desc';
-$filter 	= $_REQUEST['filter'];
-$where 		= 'WHERE r.ord_id = o.ord_id AND r.emp_id = e.emp_id ';
-$tableInfo	= getTableInfo($tableName);
+$tableName		= 'receives';
+$sortCol		= $_REQUEST['sortCol'];
+$sortBy			= 'desc';
+$filter 		= $_REQUEST['filter'];
+$filterRetroact = $_REQUEST['filterRetroact'];
+$where 			= 'WHERE r.ord_id = o.ord_id AND r.emp_id = e.emp_id ';
+$tableInfo		= getTableInfo($tableName);
 
 if(hasValue($_REQUEST['sortBy'])) {
 	$sortBy	= $_REQUEST['sortBy'];
@@ -20,6 +21,7 @@ if(hasValue($_REQUEST['sortBy'])) {
 // Generate search
 if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 	$searchCol		= $_REQUEST['searchCol'];
+	$searchCol		= str_replace('ord_id', 'o.ord_id', $searchCol);
 	$searchInput	= $_REQUEST['searchInput'];
 	$like			= "$searchCol like '%$searchInput%'";
 
@@ -33,15 +35,22 @@ if(hasValue($_REQUEST['searchCol']) && hasValue($_REQUEST['searchInput'])) {
 if(hasValue($_REQUEST['filter'])) {
 	$filter = $_REQUEST['filter'];
 	if($filter == 'REMAIN') {
-		$where .= "AND o.ordstat_id = 'OS02'";
-		$whereAllRecord = "AND ordstat_id = 'OS02'";
+		$where .= " AND o.ordstat_id = 'OS02' ";
+		$whereAllRecord = " AND ordstat_id = 'OS02' ";
 	} else if($filter == 'COMPLETED') {
-		$retroactDate 	= date('Y-m-d', strtotime('-1 years'));
-		$where 			.= "AND o.ordstat_id = 'OS03'";
-		$where 			.= " AND ord_date >= '$retroactDate'";
+		$where 			.= " AND o.ordstat_id = 'OS03' ";
 		$hideIconCol 	= true; // hide column icon in thead
 		$hideActionCol 	= true; // hide column action in thead
-		$whereAllRecord = "AND o.ordstat_id = 'OS03' AND ord_date >= '$retroactDate'";
+		$whereAllRecord = " AND o.ordstat_id = 'OS03' ";
+	}
+}
+
+// Generate filter retroact
+if(hasValue($_REQUEST['filterRetroact'])) {
+	if($filterRetroact == 'true') {
+		$retroactDate = date('Y-m-d', strtotime('-1 years'));
+		$where .= " AND r.rec_date >= '$retroactDate' ";
+		$whereAllRecord .= " AND r.rec_date >= '$retroactDate' ";
 	}
 }
  	 	 	 	 	 	 	 	 	
