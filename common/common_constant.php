@@ -172,7 +172,7 @@ function dbClose() {
 						'room_id'		=> 'ห้องนวด',
 						'bed_name'		=> 'เตียงนวด'
 				),
-				'searchFields'	=> array('bed_name'),
+				'searchFields'	=> array('bed_name','room_id'),
 				'deleteTxtField'=> array('bed_name')
 			);
 			break;
