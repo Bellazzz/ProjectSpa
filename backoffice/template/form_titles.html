@@ -30,6 +30,14 @@
                 textFieldName: 'title_name',
                 defaultValue: 'T01'
             });
+            selectReference({
+                elem            : $('#sex_id'),
+                tableName       : 'sex',
+                keyFieldName    : 'sex_id',
+                textFieldName   : 'sex_name',
+                searchTool      : false,
+                defaultValue    : '{/literal}{$values.sex_id}{literal}'
+            });
         });
     </script>
     {/literal}
@@ -59,11 +67,14 @@
             <tr>
                 <td>
                     <label class="input-required">เพศ</label>
-                    <label style="display:inline; margin-right:20px;"><input type="radio" name="sex_id" value="X1" {if $values.sex_id == 'X1'}checked{/if}> ชาย</label>
-                    <label style="display:inline; margin-right:20px;"><input type="radio" name="sex_id" value="X2" {if $values.sex_id == 'X2'}checked{/if}> หญิง</label>
-                    <label style="display:inline"><input type="radio" name="sex_id" value="" {if $values.sex_id == ''}checked{/if}> ไม่ระบุ</label>
+                    <div id="sex_id" class="select-reference form-input full" require></div>
                 </td>
-		    </tr>
+            </tr>
+            <tr class="errMsgRow">
+                <td>
+                    <span id="err-sex_id-require" class="errInputMsg err-sex_id">โปรดป้อนเพศ</span>
+                </td>
+            </tr>
 	    </tbody>
     </table>
     </form>
