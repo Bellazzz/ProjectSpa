@@ -124,7 +124,7 @@ switch ($tableName) {
 				b.bkg_transfer_money 
 		FROM booking b, booking_status s, employees e, bank_accounts a, customers c 
 		$where 
-		$order";
+		$orderSpecial";
 		break;
 
 		case 'service_lists':
@@ -589,7 +589,7 @@ if($rows > 0){
 	<tbody id="table-data">
 		<?
 		foreach($tableData as $key => $row) {
-			$code = $row[$tableInfo['keyFieldName']];
+			$code = $row[$tableInfo['keyFieldName']];/*คืนค่ามาเป็นชื่อฟิล์ล PK*/
 			?>
 			<tr id="<?=$code?>">
 				<td class="icon-col">
