@@ -140,6 +140,9 @@ function addEventRecPrdTable() {
 		var max   = parseInt($(this).attr('max'));
 		var unitName = $(this).parent().parent().find('.unit_name').text();
 
+		// Clear err require of unit price
+		$(this).parent().parent().find('input[name="recdtl_price[]"]').removeClass('required');
+
 		// set max if value is not number or value > max
 		if(!isInt($(this).val()) || value > max || value < 0) {
 			var titleDialog   = '';
@@ -230,44 +233,125 @@ function calculate() {
 
 function beforeSaveRecord() {
     // Check input required
-    var returnVal 		= false;
-    var notInputAmount 	= true;
+    var returnVal 				= false;
+    var notInputAmount 			= true;
+    var notInputUnitPrice 		= false;
+    var notReceivePrdList 		= Array();
+    var notInputUnitPriceList 	= Array();
+    var ord_id 				= $('#ord_id').find('.select-reference-input').val();
+
     $('input[name="recdtl_amount[]"]').each(function() {
         if($(this).val() != '' && $(this).val() != '0') {
         	var unitPrice = $(this).parent().parent().find('input[name="recdtl_price[]"]');
         	if(unitPrice.val() == '' || unitPrice.val() == 0) {
         		unitPrice.addClass('required');
         		returnVal = true;
+        		notInputUnitPrice 	= true;
+        		notInputUnitPriceList.push({
+        			elem	: $(this).parent().parent().find('input[name="recdtl_price[]"]'),
+        			prd_name: $(this).parent().parent().find('.prd_name').text()
+        		});
         	}
         	notInputAmount = false;
-        }
-    });
-
-    $('input[name="recdtl_price[]"]').each(function() {
-    	if($(this).val() != '' && $(this).val() != '0') {
-        	var amount = $(this).parent().parent().find('input[name="recdtl_amount[]"]');
-        	if(amount.val() == '' || amount.val() == 0) {
-        		amount.addClass('required');
-        		returnVal = true;
-        	}
+        } else {
+        	var prdName = $(this).parent().parent().find('.prd_name').text();
+        	notReceivePrdList.push(prdName);
         }
     });
 
     // Not input amount (all input amount is 0)
-    if(notInputAmount) {
+    if(typeof(ord_id) == 'undefined' || ord_id == '') {
     	parent.showActionDialog({
-	            title	: 'คุณยังไม่ได้ป้อนข้อมูล',
-	            message : 'โปรดป้อนข้อมูลการรับอย่างน้อย 1 รายการค่ะ',
+            title	: 'คุณยังไม่ได้เลือกรหัสการสั่งซื้อ',
+            message : 'กรุณาเลือกรหัสการสั่งซื้อเพื่อกรอกข้อมูลการรับ',
+            actionList: [
+                {
+                    id: 'ok',
+                    name: 'ตกลง',
+                    func:
+                    function() {
+                        parent.hideActionDialog();
+                    }
+                }
+            ],
+            boxWidth: 450
+        });
+    	returnVal = true;
+    } else if(notInputAmount) {
+    	parent.showActionDialog({
+            title	: 'คุณยังไม่ได้ป้อนข้อมูล',
+            message : 'โปรดป้อนข้อมูลการรับอย่างน้อย 1 รายการค่ะ',
+            actionList: [
+                {
+                    id: 'ok',
+                    name: 'ตกลง',
+                    func:
+                    function() {
+                        parent.hideActionDialog();
+                    }
+                }
+            ]
+        });
+    	returnVal = true;
+    } else if(notInputUnitPrice) {
+    	var msg = 'โปรดป้อนราคาต่อหน่วยของผลิตภัณฑ์ต่อไปนี้'
+    			+ '<ol>';
+    	for(i in notInputUnitPriceList) {
+    		msg += '<li>' + notInputUnitPriceList[i].prd_name + '</li>';
+    	}
+    	msg += '</ol>';
+
+    	parent.showActionDialog({
+            title	: 'คุณยังไม่ได้ป้อนราคาต่อหน่วย',
+            message : msg,
+            actionList: [
+                {
+                    id: 'ok',
+                    name: 'ตกลง',
+                    func:
+                    function() {
+                        parent.hideActionDialog();
+                        notInputUnitPriceList[0].elem.focus();
+                    }
+                }
+            ],
+            boxWidth: 450
+        });
+    } else if(notReceivePrdList.length > 0) {
+    	// กล่องแจ้งเตือนกรณีไม่ได้รับสินค้า
+    	var msg = 'มีสินค้าที่คุณยังไม่ได้รับทั้งหมด ' + notReceivePrdList.length + ' รายการ ได้แก่'
+    			+ '<ol>';
+    	for(i in notReceivePrdList) {
+    		msg += '<li>' + notReceivePrdList[i] + '</li>';
+    	}
+    	msg += '</ol><br>'
+    		 + 'คุณต้องการบันทึกการรับครั้งนี้ใช่หรือไม่?';
+
+    	parent.showActionDialog({
+	            title	: 'มีสินค้าที่ยังไม่ได้รับ',
+	            message : msg,
 	            actionList: [
 	                {
 	                    id: 'ok',
-	                    name: 'ตกลง',
+	                    name: 'บันทึก',
+	                    desc: 'บันทึกการรับ (สินค้าไม่ครบ)',
+	                    func:
+	                    function() {
+	                        parent.hideActionDialog();
+	                        saveRecord();
+	                    }
+	                },
+	                {
+	                    id: 'cancel',
+	                    name: 'ยกเลิก',
+	                    desc: 'กลับไปแก้ไขการรับ',
 	                    func:
 	                    function() {
 	                        parent.hideActionDialog();
 	                    }
 	                }
-	            ]
+	            ],
+	            boxWidth: 500
 	        });
     	returnVal = true;
     }
