@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-27 16:54:30
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 15:28:52
          compiled from "C:\AppServ\www\projectSpa\backoffice\template\manage_table.html" */ ?>
-<?php /*%%SmartyHeaderCode:4339544e16565a39b1-83590457%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:131875468604463bcb9-08210654%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '9a020b9c81648d3d03f178f9f9d6dd68f5ff5d78' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\manage_table.html',
-      1 => 1414227129,
+      1 => 1414720046,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4339544e16565a39b1-83590457',
+  'nocache_hash' => '131875468604463bcb9-08210654',
   'function' => 
   array (
   ),
@@ -23,9 +23,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_544e1656821cb0_96065707',
+  'unifunc' => 'content_546860449de506_48088987',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_544e1656821cb0_96065707')) {function content_544e1656821cb0_96065707($_smarty_tpl) {?>﻿<!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_546860449de506_48088987')) {function content_546860449de506_48088987($_smarty_tpl) {?>﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Spa - Backoffice</title>
@@ -99,18 +99,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 <div class="tree-view">
 			        <div class="tree-view-root">
                         <a>
-                            <span class="root-label">ข้อมูลพื้นฐาน(15)</span>
+                            <span class="root-label">ข้อมูลพื้นฐาน(16)</span>
                             <span class="root-icon"></span>
                         </a>
 			        </div>
 			        <div class="tree-view-child">
 				        <ul>
-                            <!--<li id="tn-sex">
+                            <li id="tn-sex">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-sex"></span>
                                     <span class="item-label">เพศ</span>
                                 </a>
-                            </li>-->
+                            </li>
 					        <li id="tn-titles">
                                 <a class="tree-view-item">
                                     <span class="item-icon mbk-icon icon-titles"></span>
