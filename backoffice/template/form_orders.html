@@ -443,9 +443,11 @@
     </table>
     <!--Order Details Data-->
     <label class="article-title">รายการผลิตภัณฑ์ที่สั่งซื้อ</label>
-    <table class="view-detail-reference">
+    ทั้งหมด {$orderDetailList|@count} รายการ
+    <table class="view-detail-reference" style="margin-top:5px;">
         <thead>
             <tr>
+                <th>ลำดับ</th>
                 <th lass="txtLong-col">ผลิตภัณฑ์</th>
                 <th>ราคา/หน่วย (บาท)</th>
                 <th>จำนวน</th>
@@ -455,6 +457,7 @@
         <tbody>
             {foreach from=$orderDetailList key=i item=orddlt}
             <tr>
+                <td align="center">{$orddlt.no}</td>
                 <td class="txtLong-col">{$orddlt.prd_name}</td>
                 <td align="right">{$orddlt.prd_price|number_format:2:".":","}</td>
                 <td align="right">{$orddlt.orddtl_amount|number_format:0:"":","}</td>

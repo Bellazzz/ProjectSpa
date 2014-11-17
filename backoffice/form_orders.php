@@ -62,6 +62,7 @@ if(!$_REQUEST['ajaxCall']) {
 		$rows 	= mysql_num_rows($result);
 		for($i=0; $i<$rows; $i++) {
 			array_push($orderDetailList, mysql_fetch_assoc($result));
+			$orderDetailList[$i]['no'] = $i+1;
 		}
 		$smarty->assign('orderDetailList', $orderDetailList);
 	}
