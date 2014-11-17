@@ -96,84 +96,85 @@ switch ($tableName) {
 		break;
 
 		case'booking':
-		$where		= 'WHERE b.cus_id = c.cus_id and b.emp_id = e.emp_id and b.status_id = s.bkgstat_id ';
-		if(hasValue($like)) {
-			if($searchCol == 'emp_id') {
-				$like = "(e.emp_name like '%$searchInput%' OR e.emp_surname like '%$searchInput%') ";
-			} else if($searchCol == 'cus_id') {
-				$like = "(c.cus_name like '%$searchInput%' OR c.cus_surname like '%$searchInput%') ";
-			} else {
-				$like		= str_replace('cus_id','c.cus_name', $like);
-				$like		= str_replace('emp_id','e.emp_name', $like);
-				$like		= str_replace('status_id','s.bkgstat_name', $like);
-				$like		= str_replace('bnkacc_id','a.bnkacc_no', $like);
+			$where		= 'WHERE b.cus_id = c.cus_id and b.emp_id = e.emp_id and b.status_id = s.bkgstat_id ';
+			if(hasValue($like)) {
+				if($searchCol == 'emp_id') {
+					$like = "(e.emp_name like '%$searchInput%' OR e.emp_surname like '%$searchInput%') ";
+				} else if($searchCol == 'cus_id') {
+					$like = "(c.cus_name like '%$searchInput%' OR c.cus_surname like '%$searchInput%') ";
+				} else {
+					$like		= str_replace('cus_id','c.cus_name', $like);
+					$like		= str_replace('emp_id','e.emp_name', $like);
+					$like		= str_replace('status_id','s.bkgstat_name', $like);
+					$like		= str_replace('bnkacc_id','a.bnkacc_no', $like);
+				}
+				$where .= " AND $like";						
 			}
-			$where .= " AND $like";						
-		}
-		$sql = "SELECT b.bkg_id,
-				CONCAT(c.cus_name, ' ', c.cus_surname) cus_id,
-				CONCAT(e.emp_name, ' ', e.emp_surname) emp_id,
-				s.bkgstat_name status_id,
-				a.bnkacc_no bnkacc_id,
-				b.bkg_transfer_date,
-				b.bkg_transfer_time,
-				b.bkg_transfer_evidence,
-				b.bkg_total_price,
-				b.bkg_date,
-				b.bkg_time,
-				b.bkg_transfer_money 
-		FROM booking b, booking_status s, employees e, bank_accounts a, customers c 
-		$where 
-		$orderSpecial";
-		break;
+			$sql = "SELECT b.bkg_id,
+					CONCAT(c.cus_name, ' ', c.cus_surname) cus_id,
+					CONCAT(e.emp_name, ' ', e.emp_surname) emp_id,
+					s.bkgstat_name status_id,
+					a.bnkacc_no bnkacc_id,
+					b.bkg_transfer_date,
+					b.bkg_transfer_time,
+					b.bkg_transfer_evidence,
+					b.bkg_total_price,
+					b.bkg_date,
+					b.bkg_time,
+					b.bkg_transfer_money 
+					FROM booking b, booking_status s, employees e, bank_accounts a, customers c 
+					$where 
+					$orderSpecial";
+			$sortBy = $sortBySpecial;
+			break;
 
 		case 'service_lists':
-		$where		= 'WHERE s.svltyp_id = t.svltyp_id';
-		if(hasValue($like)) {
-			$like		= str_replace('svltyp_id', 't.svltyp_name', $like);
-			$where .= " AND $like";
-			//$where	   .= ' AND '.$like;
-		}
-		$sql = "SELECT s.svl_picture,
-				s.svl_id,
-				s.svl_name,
-				t.svltyp_name svltyp_id,
-				s.svl_desc,
-				s.svl_hr,
-				s.svl_min,
-				s.svl_price,
-				s.svl_commission
-		FROM service_lists s, service_list_types t 
-		$where 
-		$order";
-		break;
+			$where		= 'WHERE s.svltyp_id = t.svltyp_id';
+			if(hasValue($like)) {
+				$like		= str_replace('svltyp_id', 't.svltyp_name', $like);
+				$where .= " AND $like";
+				//$where	   .= ' AND '.$like;
+			}
+			$sql = "SELECT s.svl_picture,
+					s.svl_id,
+					s.svl_name,
+					t.svltyp_name svltyp_id,
+					s.svl_desc,
+					s.svl_hr,
+					s.svl_min,
+					s.svl_price,
+					s.svl_commission
+					FROM service_lists s, service_list_types t 
+					$where 
+					$order";
+			break;
 
 		case 'employees':
-		$where = 'WHERE e.sex_id = s.sex_id AND e.title_id = t.title_id AND p.pos_id = e.pos_id ';
-		if(hasValue($like)) {
-			$like		= "$searchCol like '%$searchInput%'";
-			$like		= str_replace('sex_id', 's.sex_name', $like);
-			$like		= str_replace('title_id', 't.title_name', $like);
-			$like		= str_replace('pos_id', 'p.pos_name', $like);
-			$where	   .= ' AND '.$like;
-		}
-		$sql = "SELECT e.emp_pic,
-				e.emp_id,
-				s.sex_name sex_id,
-				t.title_name title_id,
-				e.emp_name,
-				e.emp_surname,
-				e.emp_addr,
-				e.emp_tel,
-				p.pos_name pos_id,
-				e.emp_birthdate,
-				e.emp_indate,
-				e.emp_user,
-				e.emp_pass 
-		FROM employees e, sex s, titles t, positions p 
-		$where
-		$order";
-		break;
+			$where = 'WHERE e.sex_id = s.sex_id AND e.title_id = t.title_id AND p.pos_id = e.pos_id ';
+			if(hasValue($like)) {
+				$like		= "$searchCol like '%$searchInput%'";
+				$like		= str_replace('sex_id', 's.sex_name', $like);
+				$like		= str_replace('title_id', 't.title_name', $like);
+				$like		= str_replace('pos_id', 'p.pos_name', $like);
+				$where	   .= ' AND '.$like;
+			}
+			$sql = "SELECT e.emp_pic,
+					e.emp_id,
+					s.sex_name sex_id,
+					t.title_name title_id,
+					e.emp_name,
+					e.emp_surname,
+					e.emp_addr,
+					e.emp_tel,
+					p.pos_name pos_id,
+					e.emp_birthdate,
+					e.emp_indate,
+					e.emp_user,
+					e.emp_pass 
+					FROM employees e, sex s, titles t, positions p 
+					$where
+					$order";
+			break;
 
 	case 'customers':
 		$where = 'WHERE c.sex_id = s.sex_id AND c.custype_id = ct.custype_id and c.title_id = t.title_id ';
@@ -296,6 +297,7 @@ switch ($tableName) {
 				FROM payrolls p, employees e 
 				$where 
 				$orderSpecial";
+		$sortBy = $sortBySpecial;
 		break;
  	  	 	 	 	 	 	
 	case 'services':
@@ -324,6 +326,7 @@ switch ($tableName) {
 				FROM services s, customers c, employees e, pay_types p, beds b 
 				$where 
 				$orderSpecial ";
+		$sortBy = $sortBySpecial;
 		break;
  	 	 	 	
 	case 'package_details':
@@ -400,6 +403,7 @@ switch ($tableName) {
 				FROM element_checks ec, employees e, customers c, element_types et
 				$where 
 				$orderSpecial ";
+		$sortBy = $sortBySpecial;
 		break;
  	 	 	 	 	
 	case 'orders':
@@ -491,6 +495,7 @@ switch ($tableName) {
 				FROM withdraws w, employees eg, employees e 
 				$where 
 				$orderSpecial ";
+		$sortBy = $sortBySpecial;
 		break;
  	 	 	
 	case 'withdraw_details':
@@ -524,6 +529,7 @@ switch ($tableName) {
 				FROM sales s, employees e 
 				$where 
 				$orderSpecial";
+		$sortBy = $sortBySpecial;
 		break;
  	 	 	 	
 	case 'sale_details':
