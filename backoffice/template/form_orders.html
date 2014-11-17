@@ -235,16 +235,16 @@
             // Create HTML and append
             var prdRowHTML  = '<tr class="product-row">'
                             + '     <td>'
-                            + '         <div id="' + inputKeyId + '" class="select-reference form-input half" require></div>'
+                            + '         <div id="' + inputKeyId + '" class="select-reference form-input half" require style="width:350px;"></div>'
                             + '     </td>'
                             + '     <td>';
 
             // add input product amount
             if(data.defaultValue) {
-                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half" value="' + data.prd_qty + '" maxlength="6" size="6" valuepattern="number" require>';
+                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half" value="' + data.prd_qty + '" maxlength="6" size="6" valuepattern="number" require style="text-align:right; width:80px;">';
                 selectRefDefault = data.prd_id;
             } else {
-                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half" maxlength="6" size="6" valuepattern="numberMoreThanZero" require>';
+                prdRowHTML += '         <input id="' + inputQtyId + '" name="prd_qty[]" type="text" class="form-input half" maxlength="6" size="6" valuepattern="numberMoreThanZero" require style="text-align:right; width:80px;">';
             }
 
             // add order detail id for update
