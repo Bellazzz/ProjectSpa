@@ -138,13 +138,13 @@
 		    <tr>
                 <td>
                     <label class="input-required">ราคา (บาท)</label>
-					 <input id="prd_price" name="prd_price" type="text" class="form-input half" value="{$values.prd_price}" valuepattern="money" require>
+					 <input id="prd_price" name="prd_price" type="text" class="form-input half" value="{$values.prd_price}" valuepattern="money" require style="text-align:right;">
                 </td>
                 <td>
 					<label class="twoInput twoInput-small">จำนวน</label>
 					<label class="twoInput twoInput-large">หน่วยนับ</label>
                     <br>
-					<input id="prd_amount" name="prd_amount" type="text" class="form-input twoInput twoInput-small" value="{$values.prd_amount}" maxlength="6" size="6" valuepattern="number">
+					<input id="prd_amount" name="prd_amount" type="text" class="form-input twoInput twoInput-small" value="{$values.prd_amount}" maxlength="6" size="6" valuepattern="number" style="text-align:right;">
 					<div id="unit_id" class="select-reference form-input twoInput twoInput-large" require>
                 </td>
             </tr>
