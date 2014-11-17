@@ -142,6 +142,7 @@ function selectReference(select) {
     var keyFieldName    = select.keyFieldName;
     var textFieldName   = select.textFieldName;
     var orderFieldName  = select.orderFieldName;
+    var orderType       = '';
     var searchTool      = true;
     var defaultValue    = '';
 	var pattern			= '';
@@ -165,6 +166,9 @@ function selectReference(select) {
     }
     if(typeof(select.clearBtnText) != 'undefined') {
         pleaseSelectText        = select.clearBtnText;
+    }
+    if(typeof(select.orderType) != 'undefined') {
+        orderType        = select.orderType;
     }
     
     function init() {
@@ -273,6 +277,7 @@ function selectReference(select) {
                 'keyFieldName'  : keyFieldName,
                 'textFieldName' : textFieldName,
                 'orderFieldName': orderFieldName,
+                'orderType'     : orderType,
 				'pattern'		: pattern,
                 'searchText'    : $(searchInput).val(),
                 'begin'         : select.elem.attr('begin'),

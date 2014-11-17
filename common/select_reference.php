@@ -7,6 +7,7 @@ $tableName		= $_REQUEST['tableName'];
 $keyFieldName	= $_REQUEST['keyFieldName'];
 $textFieldName	= $_REQUEST['textFieldName'];
 $orderFieldName	= $_REQUEST['orderFieldName'];
+$orderType		= $_REQUEST['orderType'];
 $searchText		= $_REQUEST['searchText'];
 $begin			= $_REQUEST['begin'];
 $limit			= $_REQUEST['limit'];
@@ -63,14 +64,26 @@ if(count($textFieldList) > 1) {
 	if(hasValue($orderFieldName)) {
 		// has define will order by that fields
 		$orderFieldList = explode(',', $orderFieldName);
-		$order 			= 'ORDER BY '.implode(',', $orderFieldList);
+		if(hasValue($orderType)) {
+			$orderTypeList	= explode(',', $orderType);
+			foreach($orderFieldList as $key => $field) {
+				if(isset($orderTypeList[$key])) {
+					$orderFieldList[$key] = $field.' '.$orderTypeList[$key];
+				}
+			}
+		}
+		$order = 'ORDER BY '.implode(',', $orderFieldList);
 	} else {
 		// undefine will default last field
 		$order = 'ORDER BY '.end($textFieldList);
 	}
 } else if(count($textFieldList) == 1) {
 	// has one field use that field
-	$order = 'ORDER BY '.$textFieldList[0];
+	$order 			= 'ORDER BY '.$textFieldList[0];
+	if(hasValue($orderType)) {
+		$orderTypeList	= explode(',', $orderType);
+		$order .= ' '.$orderTypeList[0];
+	}
 }
 
 $sql = "SELECT $keyFieldName, $pattern pattern FROM $tableName $where $order LIMIT $begin,$limit";
