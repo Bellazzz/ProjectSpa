@@ -17,6 +17,12 @@
         #order-detail-table tr:nth-child(2) .removeProductBtn {
             display: none;
         }
+        .prd_unit_name {
+            width: 60px;
+            display: inline-block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
     </style>
     <script type="text/javascript">
         // Global variables
@@ -126,7 +132,8 @@
                         defaultValue : true,
                         orddtl_id   : valuesDetail[i].orddtl_id,
                         prd_id      : valuesDetail[i].prd_id,
-                        prd_qty     : valuesDetail[i].orddtl_amount
+                        prd_qty     : valuesDetail[i].orddtl_amount,
+                        unit_name   : valuesDetail[i].unit_name
                     });
                 }
             }
@@ -226,15 +233,19 @@
         function addProduct(data) {
             var randNum;
             var selectRefDefault = '';
+            var unitName = '';
             do {
                 randNum     = parseInt(Math.random()*1000);
             } while($('prd_id_' + randNum).length > 0);
             var inputKeyId  = 'prd_id_' + randNum;
             var inputQtyId  = 'prd_qty_' + randNum;
+            if(typeof(data.unit_name) != 'undefined' && data.unit_name != '') {
+                unitName = data.unit_name;
+            }
 
             // Create HTML and append
             var prdRowHTML  = '<tr class="product-row">'
-                            + '     <td>'
+                            + '     <td width="350px">'
                             + '         <div id="' + inputKeyId + '" class="select-reference form-input half" require style="width:350px;"></div>'
                             + '     </td>'
                             + '     <td>';
@@ -251,8 +262,8 @@
             if(action == 'EDIT' && typeof(data.orddtl_id) != 'undefined') {
                 prdRowHTML += '         <input name="orddtl_id[]" type="hidden" value="' + data.orddtl_id + '">';
             }
-
-                prdRowHTML += '         <button class="removeProductBtn button button-icon button-icon-delete" onclick="removeProduct(\'' + randNum + '\')"></button>'
+                prdRowHTML += '         <span class="prd_unit_name">' + unitName + '</span>'
+                            + '         <button class="removeProductBtn button button-icon button-icon-delete" onclick="removeProduct(\'' + randNum + '\')"></button>'
                             + '     </td>'
                             + '</tr>'
                             + '<tr id="errMsgRow_' + randNum + '" class="errMsgRow">'
@@ -281,8 +292,13 @@
                 searchTool      : true,
                 defaultValue    : selectRefDefault,
                 allowChangeOption : allowSelectPrdId,
+                onOptionSelect  :
+                function() {
+                    pullUnitName(inputKeyId);
+                },
                 success         : 
                 function() {
+                    //pullUnitName(inputKeyId);
                     $('input[name="' + inputKeyId + '"]').attr('name', 'prd_id[]');
                 }
             });
@@ -353,6 +369,34 @@
                 }
             });
             return notDuplicate;
+        }
+
+        function pullUnitName(inputKeyId) {
+            var prdID = $('#' + inputKeyId).find('.select-reference-input').val();
+            if(typeof(prdID) != 'undefined' && prdID != '') {
+                $.ajax({
+                    url: '../common/ajaxGetUnitName.php',
+                    type: 'POST',
+                    data: {
+                        prd_id: $('#' + inputKeyId).find('.select-reference-input').val()
+                    },
+                    success:
+                    function(responseJSON) {
+                        var response = $.parseJSON(responseJSON);
+                        var prdUnitName = $('#' + inputKeyId).parent().parent().find('.prd_unit_name');
+                        if(response.status == 'PASS') {
+                            if(response.unit_name != '') {
+                                prdUnitName.text(response.unit_name);
+                            } else {
+                                prdUnitName.text('');
+                            }
+                        } else {
+                            prdUnitName.text('');
+                            alert(response.status);
+                        }
+                    }
+                });
+            }
         }
     </script>
     {/literal}
@@ -480,7 +524,7 @@
     </table>
 
     <label class="article-title">รายละเอียดการสั่งซื้อ</label>
-    <table id="order-detail-table" class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
+    <table id="order-detail-table" class="mbk-form-input-normal" cellpadding="0" cellspacing="0" style="width:600px;">
         <tbody>
             <tr>
                 <td><label class="input-required">ผลิตภัณฑ์</label></td>

@@ -23,7 +23,13 @@ if(!$_REQUEST['ajaxCall']) {
 
 		// Get table order_details data
 		$valuesDetail = array();
-		$sql = "SELECT orddtl_id, prd_id, orddtl_amount FROM order_details WHERE ord_id = '$code' ORDER BY orddtl_id";
+		$sql = "SELECT 	o.orddtl_id, 
+						p.prd_id, 
+						o.orddtl_amount,
+						u.unit_name 
+				FROM 	order_details o, products p, units u 
+				WHERE 	o.prd_id = p.prd_id AND p.unit_id = u.unit_id 
+						AND ord_id = '$code' ORDER BY orddtl_id";
 		$result = mysql_query($sql, $dbConn);
 		$rows 	= mysql_num_rows($result);
 		for($i=0; $i<$rows; $i++) {
