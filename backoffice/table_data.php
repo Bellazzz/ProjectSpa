@@ -589,7 +589,7 @@ if($rows > 0){
 	<tbody id="table-data">
 		<?
 		foreach($tableData as $key => $row) {
-			$code = $row[$tableInfo['keyFieldName']];
+			$code = $row[$tableInfo['keyFieldName']];/*คืนค่ามาเป็นชื่อฟิล์ล PK*/
 			?>
 			<tr id="<?=$code?>">
 				<td class="icon-col">

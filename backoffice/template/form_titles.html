@@ -54,7 +54,7 @@
 		    <tr>
 			    <td>
 				    <label class="input-required">คำนำหน้าชื่อ</label>
-				    <input id="title_name" name="title_name" type="text" class="form-input half" value="{$values.title_name}" require valuepattern = "character"> 
+				    <input id="title_name" name="title_name" type="text" class="form-input full" value="{$values.title_name}" require valuepattern = "character"> 
 			    </td>
             </tr>
             <tr class="errMsgRow">
@@ -64,18 +64,10 @@
                     <span id="err-title_name-character" class="errInputMsg err-title_name">โปรดกรอกตัวอักษรภาษาไทย หรือตัวอักษรภาษาอังกฤษเท่านั้น</span>
                 </td>
             </tr>
-            <!--<tr>
-                <td>
-                    <label class="input-required">เพศ</label>
-                    <label style="display:inline; margin-right:20px;"><input type="radio" name="sex_id" value="X1" {if $values.sex_id == 'X1'}checked{/if}> ชาย</label>
-                    <label style="display:inline; margin-right:20px;"><input type="radio" name="sex_id" value="X2" {if $values.sex_id == 'X2'}checked{/if}> หญิง</label>
-                    <label style="display:inline"><input type="radio" name="sex_id" value="" {if $values.sex_id == ''}checked{/if}> ไม่ระบุ</label>
-                </td>
-		    </tr>-->
             <tr>
                 <td>
                     <label class="input-required">เพศ</label>
-                    <div id="sex_id" class="select-reference form-input half" require></div>
+                    <div id="sex_id" class="select-reference form-input full"></div>
                 </td>
             </tr>
 	    </tbody>
