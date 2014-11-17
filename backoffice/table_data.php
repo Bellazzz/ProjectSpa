@@ -110,6 +110,9 @@ switch ($tableName) {
 				}
 				$where .= " AND $like";						
 			}
+			if($filterRetroact == 'true') {
+				$where .= " AND b.bkg_date >= '$retroactDate' ";
+			}
 			$sql = "SELECT b.bkg_id,
 					CONCAT(c.cus_name, ' ', c.cus_surname) cus_id,
 					CONCAT(e.emp_name, ' ', e.emp_surname) emp_id,
@@ -288,6 +291,9 @@ switch ($tableName) {
 			}
 			$where .= " AND $like";
 		}
+		if($filterRetroact == 'true') {
+			$where .= " AND p.payroll_date >= '$retroactDate' ";
+		}
 		$sql = "SELECT p.payroll_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				p.payroll_salary,
@@ -313,6 +319,9 @@ switch ($tableName) {
 				$like	= str_replace('bed_id', 'b.bed_name', $like);
 			}
 			$where .= " AND $like";
+		}
+		if($filterRetroact == 'true') {
+			$where .= " AND s.ser_date >= '$retroactDate' ";
 		}
 		$sql = "SELECT s.ser_id,
 				s.bkg_id,
@@ -393,6 +402,9 @@ switch ($tableName) {
 				$like	= str_replace('eletyp_id', 'et.eletyp_name', $like);
 			}
 			$where .= " AND $like";
+		}
+		if($filterRetroact == 'true') {
+			$where .= " AND ec.elechk_date >= '$retroactDate' ";
 		}
 		$sql = "SELECT ec.elechk_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
@@ -487,6 +499,9 @@ switch ($tableName) {
 			}
 			$where .= " AND $like";
 		}
+		if($filterRetroact == 'true') {
+			$where .= " AND w.wdw_date >= '$retroactDate' ";
+		}
 		$sql = "SELECT w.wdw_id,
 				CONCAT(eg.emp_name, '  ', eg.emp_surname) emp_give_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
@@ -520,6 +535,9 @@ switch ($tableName) {
 				$like = "(e.emp_name like '%$searchInput%' OR e.emp_surname like '%$searchInput%') ";
 			}
 			$where .= " AND $like";
+		}
+		if($filterRetroact == 'true') {
+			$where .= " AND s.sale_date >= '$retroactDate' ";
 		}
 		$sql = "SELECT s.sale_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
