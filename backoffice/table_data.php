@@ -295,7 +295,7 @@ switch ($tableName) {
 				p.payroll_date 
 				FROM payrolls p, employees e 
 				$where 
-				$order";
+				$orderSpecial";
 		break;
  	  	 	 	 	 	 	
 	case 'services':
@@ -323,7 +323,7 @@ switch ($tableName) {
 				s.ser_total_price 
 				FROM services s, customers c, employees e, pay_types p, beds b 
 				$where 
-				$order";
+				$orderSpecial ";
 		break;
  	 	 	 	
 	case 'package_details':
@@ -399,7 +399,7 @@ switch ($tableName) {
 				et.eletyp_name eletyp_id 
 				FROM element_checks ec, employees e, customers c, element_types et
 				$where 
-				$order";
+				$orderSpecial ";
 		break;
  	 	 	 	 	
 	case 'orders':
@@ -490,7 +490,7 @@ switch ($tableName) {
 				w.ser_id 
 				FROM withdraws w, employees eg, employees e 
 				$where 
-				$order";
+				$orderSpecial ";
 		break;
  	 	 	
 	case 'withdraw_details':
@@ -523,7 +523,7 @@ switch ($tableName) {
 				s.sale_total_price 
 				FROM sales s, employees e 
 				$where 
-				$order";
+				$orderSpecial";
 		break;
  	 	 	 	
 	case 'sale_details':
