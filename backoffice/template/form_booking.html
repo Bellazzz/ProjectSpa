@@ -275,9 +275,15 @@
 			<tr>
 				<td colspan="2">
 					<label>จำนวนเงินที่โอน(บาท)</label>
-					<input id="bkg_transfer_money" name="bkg_transfer_money" type="text" class="form-input full" value="{$values.bkg_transfer_money}">
+					<input id="bkg_transfer_money" name="bkg_transfer_money" type="text" class="form-input full" value="{$values.bkg_transfer_money}" valuepattern="money" require>
 				</td>
 			</tr>
+			<tr class="errMsgRow">
+                <td colspan="2">
+                    <span id="err-bkg_transfer_money-require" class="errInputMsg err-bkg_transfer_money">โปรดป้อนจำนวนเงินที่โอน</span>
+                    <span id="err-bkg_transfer_money-money" class="errInputMsg err-bkg_transfer_money">รูปแบบจำนวนเงินไม่ถูกต้อง จำนวนเงินเป็นได้เฉพาะตัวเลข ไม่มีคอมม่าคั่น จุดทศนิยม 2 ตำแหน่ง เช่น 130, 1600.25</span>
+                </td>
+            </tr>
 			<tr>
 				<td colspan="2">
 					<label>รูปภาพหลักฐานการโอนเงิน</label>
