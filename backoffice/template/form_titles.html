@@ -36,7 +36,9 @@
                 keyFieldName    : 'sex_id',
                 textFieldName   : 'sex_name',
                 searchTool      : false,
-                defaultValue    : '{/literal}{$values.sex_id}{literal}'
+                defaultValue    : '{/literal}{$values.sex_id}{literal}',
+                showClearBtn    : true,
+                clearBtnText    : 'ไม่ระบุ'
             });
         });
     </script>
@@ -66,7 +68,7 @@
             </tr>
             <tr>
                 <td>
-                    <label class="input-required">เพศ</label>
+                    <label>เพศ</label>
                     <div id="sex_id" class="select-reference form-input full"></div>
                 </td>
             </tr>

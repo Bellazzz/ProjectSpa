@@ -147,6 +147,9 @@ function selectReference(select) {
 	var pattern			= '';
     var ajaxUrl         = '../common/select_reference.php';
     var condition       = '';
+    var showClearBtn    = false;
+    var clearBtnText    = 'ไม่เลือก';
+    var pleaseSelectText= 'กรุณาเลือก';
     var limit           = 15; //Option item limit
     var selectRefCon;
     var optionCon;
@@ -156,19 +159,31 @@ function selectReference(select) {
     var inputHidden;
     var textShow;
     var timer;
+
+    if(typeof(select.showClearBtn) != 'undefined') {
+        showClearBtn        = select.showClearBtn;
+    }
+    if(typeof(select.clearBtnText) != 'undefined') {
+        pleaseSelectText        = select.clearBtnText;
+    }
     
     function init() {
         var initTag = '<span class="mbk-icon-16 mbk-icon-16-dropdown" style="right: 5px;"></span>'
-                    + '<span class="select-reference-text">กรุณาเลือก</span>'
+                    + '<span class="select-reference-text">' + pleaseSelectText + '</span>'
                     + '<input class="select-reference-input" type="hidden" name="' + select.elem.attr('id') + '">'
                     + '<div class="select-reference-container">';
         if (searchTool) {
             initTag += '     <div class="search-container">'
                      + '         <span class="mbk-icon-16 mbk-icon-16-search"></span>'
                      + '         <input class="search-input" type="text">'
-                     + '     </div>'
-                     + '     <div class="clear-value-btn">'
-                     + '         <span>ไม่เลือก</span>'
+                     + '     </div>';
+        }
+        if(showClearBtn) {
+            if(typeof(select.clearBtnText) != 'undefined') {
+                clearBtnText = select.clearBtnText;
+            }
+            initTag += '     <div class="clear-value-btn">'
+                     + '         <span>' + clearBtnText + '</span>'
                      + '     </div>';
         }
         initTag += '     <ul id="' + select.elem.attr('id') + '-option-container" class="option-container"></ul>'
@@ -190,7 +205,7 @@ function selectReference(select) {
             }
             $(this).parent().parent().parent().removeClass('required');
             $('.err-' + select.elem.attr('id')).css('display', 'none');
-            selectRefCon.siblings('.select-reference-text').text('กรุณาเลือก');
+            selectRefCon.siblings('.select-reference-text').text(clearBtnText);
             selectRefCon.siblings('.select-reference-input').val('');
             hideAllPopup();
             if(typeof(select.onOptionSelect) == 'function') {
