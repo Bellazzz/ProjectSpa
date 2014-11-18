@@ -125,7 +125,7 @@
 			    </td>
 			    <td>
 				    <label class="input-required">เวลาที่เข้า</label>
-				    <input id="timeatt_in" name="timeatt_in" type="text" class="form-input half" value="{$values.timeatt_in}" require>
+				    <input id="timeatt_in" name="timeatt_in" type="text" class="form-input half" value="{if $values.timeatt_in}{$values.timeatt_in}{else}{$nowTime}{/if}" require>
 			    </td>
 		    </tr>
             <tr class="errMsgRow">

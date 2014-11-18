@@ -9,7 +9,9 @@
 	
 	date_default_timezone_set('Asia/Bangkok');
 	$nowDate = date('Y/m/d');
+	$nowTime = date('H:i');
 	$smarty->assign('nowDate', date('Y/m/d'));
+	$smarty->assign('nowTime', date('H:i'));
 
 	// Session
 	if(isset($_SESSION['loggedin'])) {

@@ -31,11 +31,18 @@ if(!$_REQUEST['ajaxCall']) {
 		$tableRecord = new TableSpa($tableName, $code);
 		$values      = array();
 		foreach($tableInfo['fieldNameList'] as $field => $value) {
-			$values[$field] = $tableRecord->getFieldValue($field);
+			$colFieldType = $tableRecord->getFieldType($field);
+			if($colFieldType == 'time'){
+				$tmpTime = $tableRecord->getFieldValue($field);//get time from database
+				$newTmpTime = substr($tmpTime, 0, 5);
+				$values[$field] = $newTmpTime;
+			}else{
+				$values[$field] = $tableRecord->getFieldValue($field);
+			}
 
 			if($action == 'VIEW_DETAIL') {
 				if(hasValue($values[$field])) {
-					$colFieldType = $tableRecord->getFieldType($field);
+					
 					if($colFieldType == 'date' || $colFieldType == 'datetime') {
 						$values[$field] = dateThaiFormat($values[$field]);
 					}
