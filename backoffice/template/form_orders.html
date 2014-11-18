@@ -298,8 +298,8 @@
                 },
                 success         : 
                 function() {
-                    //pullUnitName(inputKeyId);
                     $('input[name="' + inputKeyId + '"]').attr('name', 'prd_id[]');
+                    setAllOrdPrd();
                 }
             });
             // Check Input required and pattern
@@ -330,6 +330,7 @@
                             parent.hideActionDialog();
                             tr.remove();
                             $('#errMsgRow_' + randNum).remove();
+                            setAllOrdPrd();
                         }
                     },
                     {
@@ -397,6 +398,10 @@
                     }
                 });
             }
+        }
+
+        function setAllOrdPrd() {
+            $('#allOrdPrd').text($('input[name="prd_id[]"').length);
         }
     </script>
     {/literal}
@@ -527,6 +532,7 @@
     </table>
 
     <label class="article-title">รายละเอียดการสั่งซื้อ</label>
+    รายการผลิตภัณฑ์ทั้งหมด <span id="allOrdPrd"></span> รายการ<br><br>
     <table id="order-detail-table" class="mbk-form-input-normal" cellpadding="0" cellspacing="0" style="width:600px;">
         <tbody>
             <tr>
