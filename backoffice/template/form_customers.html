@@ -408,7 +408,7 @@
             <tr>
                 <td colspan="2">
                     <label class="input-required">วันที่สมัคร</label>
-                    <input id="cus_registered_date" name="cus_registered_date" type="text" class="mbk-dtp-th form-input full" value="{$values.cus_registered_date}" require>
+                    <input id="cus_registered_date" name="cus_registered_date" type="text" class="mbk-dtp-th form-input full" value="{if $values.cus_registered_date}{$values.cus_registered_date}{else}{$nowDate}{/if}" require>
                 </td>
             </tr>
             <tr class="errMsgRow">
