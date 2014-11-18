@@ -13,11 +13,13 @@
 			margin-right: 15px;
 		}
 		.empCard {
-			width: 244px;
-			height: 292px;
+			/*width: 244px;
+			height: 292px;*/
+			width: 204px;
+			height: 303px;
 			border: 1px solid #888;
 			border-radius: 10px;
-			font-size: 11px;
+			font-size: 10px;
 			padding: 8px;
 			position: relative;
 			float: left;
@@ -40,6 +42,8 @@
 			display: block;
 			text-align: center;
 			margin: 5px 0 10px 0;
+			font-size: 12px;
+			font-weight: bold;
 		}
 		.empCard-emp-pic {
 			text-align: center;
@@ -147,7 +151,7 @@
 		<div class="empCard-logo-container">
 			<img class="empCard-logo" src="../img/backoffice/logo-back-office.png">
 		</div>
-		<span class="empCard-spa-name">สปาเพื่อสุขภาพ โรงพยาบาลเจ้าพระยาอภัยภูเบศร</span>
+		<span class="empCard-spa-name">สปาเพื่อสุขภาพ<br>โรงพยาบาลเจ้าพระยาอภัยภูเบศร</span>
 		<div class="empCard-emp-pic">
 			<img src="../img/employees/{$empInfo.emp_pic}?rand={$randNum}">
 		</div>
@@ -161,18 +165,19 @@
 			<td class="empCard-info-value">{$empInfo.emp_name}&nbsp;&nbsp;&nbsp;&nbsp;{$empInfo.emp_surname}</td>
 		  </tr>
 		  <tr>
-			<td class="empCard-pos-name" colspan="2">{$empInfo.pos_name}</td>
+		  	<td class="empCard-info-label">ตำแหน่ง</td>
+			<td class="empCard-info-value">{$empInfo.pos_name}</td>
 		  </tr>
 		</table>
 		<div class="empCard-date">
 			<table>
 				<tr>
-					<td class="empCard-info-label">วันที่ออกบัตร</td>
-					<td class="empCard-info-value">{$datePrint}</td>
+					<td class="empCard-info-label" style="font-size:9px; font-weigth:bold;">วันที่ออกบัตร</td>
+					<td class="empCard-info-value" style="font-size:8px; color:white;">{$datePrint}</td>
 				</tr>
 				<tr>
-					<td class="empCard-info-label">วันที่บัตรหมดอายุ</td>
-					<td class="empCard-info-value">{$dateExpire}</td>
+					<td class="empCard-info-label" style="font-size:9px; font-weigth:bold;">วันที่บัตรหมดอายุ</td>
+					<td class="empCard-info-value" style="font-size:8px; color:white;">{$dateExpire}</td>
 				</tr>
 			</table>
 		</div>
