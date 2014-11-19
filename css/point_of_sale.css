@@ -61,7 +61,7 @@ body {
 	height: 100%;
 	padding-top: 60px;
 	padding-left: 600px;
-	background: #A6D23D;
+	background: #83B019;
 	z-index: 1;
 }
 #quick-product {
@@ -76,7 +76,7 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background: #555;
+	background: #83B019;
 }
 #quick-product-body {
 	width: 100%;
@@ -89,46 +89,50 @@ body {
 }
 #columns {
 	-webkit-column-count: 4;
-	-webkit-column-gap: 10px;
-	-webkit-column-fill: auto;
+	-webkit-column-gap: 20px;
+	/*-webkit-column-fill: auto;*/
 	-moz-column-count: 4;
-	-moz-column-gap: 10px;
-	-moz-column-fill: auto;
+	-moz-column-gap: 20px;
+	/*-moz-column-fill: auto;*/
 	column-count: 4;
 	column-gap: 15px;
-	column-fill: auto;
+	/*column-fill: auto;*/
 }
 
 .pin-container {
-	/*display: inline-block;*/
+	display: inline-block;
+	width: 100%;
 	-webkit-column-break-inside: avoid;
 	-moz-column-break-inside: avoid;
 	column-break-inside: avoid;
 }
 .pin {
-	display: inline-block;
-	background: #FEFEFE;
-	/* border: 2px solid #FAFAFA; */
+	display: block;
+	background: #8AC007;
+	border: 1px solid #D6EF9A;
 	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
-	margin: 0 2px 15px;
-	padding: 15px;
-	padding-bottom: 5px;
-	background: -webkit-linear-gradient(45deg, #FFFFFF, #FEFEFE);
+	margin: 0 2px 20px;
+	background: -moz-linear-gradient(90deg, #8AC007, #B5DB58);
+	background: -webkit-linear-gradient(90deg, #8AC007, #B5DB58);
 	opacity: 1;
 	-webkit-transition: all .2s ease;
 	-moz-transition: all .2s ease;
 	-o-transition: all .2s ease;
 	transition: all .2s ease;
-	padding: 5px 5px 0 5px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-o-border-radius: 4px;
 	border-radius: 4px;
 }
 
+.pin .prd-image-container {
+	width: 100%;
+	height: 130px;
+	padding: 0 5px;
+}
 .pin .prd-image {
 	width: 100%;
-	height: 200px;
+	height: 100%;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -138,12 +142,29 @@ body {
 	border-radius: 4px;
 }
 
+.pin .prd-name-container {
+	width: 100%;
+	padding: 5px;
+	background: #ADD254;
+	overflow: hidden;
+	-webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	-o-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+}
 .pin p {
-	font: 12px/18px Arial, sans-serif;
+	display: block;
+	display: -moz-box;
+	display: -webkit-box;
+	font: 16px/18px Arial, sans-serif;
 	color: #FFF;
-	margin: 0;
-	padding: 10px;
-	color: #666;
+	-moz-line-clamp: 2;
+  	-moz-box-orient: vertical;
+  	-webkit-line-clamp: 2;
+  	-webkit-box-orient: vertical;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	height: 2.2em;
 }
 
 @media (min-width: 960px) {
@@ -174,7 +195,7 @@ body {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	padding: 60px 10px 100px 10px;
+	padding: 80px 10px 100px 10px;
 	position: relative;
 }
 #sale-tranaction-inner-header {
@@ -182,10 +203,23 @@ body {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 60px;
+	height: 80px;
 	padding: 8px;
 	vertical-align: bottom;
 	text-align: center;
+}
+#total-price-container {
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+	background: #5A5A5A;
+	text-align: right;
+	line-height: 44px;
+	font-size: 40px;
+	padding: 10px 20px;
+	font-family: Tahoma;
+	color: rgb(88, 223, 88);
+	position: relative;
 }
 #sale-tranaction-inner-header h1 {
 	font-size: 26px;
@@ -236,6 +270,16 @@ body {
 	width: 100%;
 	border-collapse: collapse;
 }
+#sale-product-list tr {
+	background: white;
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease;
+}
+#sale-product-list tr.hilight {
+	background: rgb(199, 242, 173);
+}
 #sale-product-list th, #sale-product-list td {
 	padding: 10px;
 	border-bottom: 1px dotted #aaa;
@@ -252,7 +296,7 @@ body {
 #sale-product-list-container .qty-col {
 	text-align: right;
 }
-#sale-product-list-container .money-col {
+#sale-product-list-container .unitPrice-col, #sale-product-list-container .sumPrice-col {
 	text-align: right;
 	width: 120px;
 	max-width: 120px;
@@ -266,8 +310,12 @@ body {
 #summary-sale-tranaction td {
 	vertical-align: middle;
 }
-#total-price {
-	font-size: 40px;
-	color: rgb(255, 84, 84);
-	font-family: Tahoma;
+
+#sale-transaction-control {
+	width: 100%;
+	height: 80px;
+	border-top: 1px solid #ddd;
+	position: absolute;
+	left: 0;
+	bottom: 0;
 }
