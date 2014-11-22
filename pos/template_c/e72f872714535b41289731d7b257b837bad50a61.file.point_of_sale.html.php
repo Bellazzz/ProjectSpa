@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-16 15:41:37
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-22 15:32:31
          compiled from "C:\AppServ\www\projectSpa\pos\template\point_of_sale.html" */ ?>
 <?php /*%%SmartyHeaderCode:230454686341b9e7a9-38643476%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e72f872714535b41289731d7b257b837bad50a61' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\pos\\template\\point_of_sale.html',
-      1 => 1416122986,
+      1 => 1416645149,
       2 => 'file',
     ),
   ),
@@ -15,29 +15,60 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.18',
   'unifunc' => 'content_54686341c0e105_68914625',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_54686341c0e105_68914625')) {function content_54686341c0e105_68914625($_smarty_tpl) {?><!DOCTYPE html>
 <html>
 <head>
 	<title>Spa - Point of sale</title>
 	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/point_of_sale.css">
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$('#sale-product-list').css('height', '100%');
-	});
-	</script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/mbk_common_function.js"></script>
+	<script type="text/javascript" src="../js/point_of_sale.js"></script>
 </head>
 <body>
+<div id="edit-quantity-product">
+	<div id="edit-quantity-product-inner">
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<button type="button" class="qty-circle-btn">					<i class="fa fa-minus"></i>
+						</button>
+						<img src="../img/products/PD0047.jpeg" class="prd_image">
+					</td>
+					<td style="width: 100%;padding-left: 20px;">
+						<h1>เกี้ยวกุ้ง</h1>
+						<span>ราคา <span id="eqp-unitPrice">250.00</span> บาท</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button type="button" class="qty-circle-btn">					<i class="fa fa-minus"></i>
+						</button>
+						<input type="text">
+						<button type="button" class="qty-circle-btn">					<i class="fa fa-plus"></i>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
 <div id="header"></div>
 <div id="control-sale">
 	<div id="sale-transaction">
 		<div id="sale-transaction-inner">
 			<div id="sale-tranaction-inner-header">
-				<h1>รหัสการขาย : S0000001</h1>
+				<div id="total-price-container">
+					<span style="float:left">฿</span>
+					<span id="total-price">0.00</span>
+				</div>
 			</div>
 			<div id="sale-product-list-container">
 				<div id="sale-product-list-header">
@@ -45,48 +76,39 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						<thead>
 							<th class="prdName-col">ชื่อสินค้า</th>
 							<th class="qty-col">จำนวน</th>
-							<th class="money-col">ราคา/หน่วย</th>
-							<th class="money-col">ราคารวม</th>
+							<th class="unitPrice-col">หน่วยละ</th>
+							<th class="sumPrice-col">ราคารวม</th>
 						</thead>
 					</table>
 				</div>
 				<div id="sale-product-list-body">
-					<table id="sale-product-list">
-						<tbody>
-							<tr>
-								<td class="prdName-col">น้ำมันไพรนวดตัว</td>
-								<td class="qty-col">1</td>
-								<td class="money-col">฿150</td>
-								<td class="money-col">฿150</td>
-							</tr>
-							<tr>
-								<td class="prdName-col">น้ำมันไพรนวดตัว</td>
-								<td class="qty-col">1</td>
-								<td class="money-col">฿150</td>
-								<td class="money-col">฿150</td>
-							</tr>
-							<tr>
-								<td class="prdName-col">น้ำมันไพรนวดตัว</td>
-								<td class="qty-col">1</td>
-								<td class="money-col">฿150</td>
-								<td class="money-col">฿150</td>
-							</tr>
-						</tbody>
-					</table>
+					<form id="formSale" method="post">
+						<table id="sale-product-list">
+							<tbody>
+							</tbody>
+						</table>
+						<input type="hidden" name="total-price">
+					</form>
 				</div>
 			</div>
 			<table id="summary-sale-tranaction">
 				<tbody>
 					<tr>
-						<td>จำนวนรายการ:</td>
-						<td>3</td>
-						<td align="right">ราคาสุทธิ</td>
-						<td align="right"><span id="total-price">฿350</span></td>
+						<td>รายการสินค้าทั้งหมด:</td>
+						<td id="total-product">0</td>
+						<!--<td align="right">ราคาสุทธิ</td>
+						<td align="right"><span id="total-price">฿0.00</span></td>-->
+					</tr>
+					<tr>
+						<td>จำนวนสินค้าทั้งหมด</td>
+						<td id="total-qty">0</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
+		<div id="sale-transaction-control"></div>
 	</div>
+	
 </div>
 <div id="quick-product-container">
 	<div id="quick-product">
@@ -95,78 +117,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</div>
 		<div id="quick-product-body">
 			<div id="columns">
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
-			    <div class="pin-container">
-			    	<div class="pin">
-			    		<img src="../img/products/PD0009.jpeg" alt="PlaceKitten" />
-			        	<p>Leggings pour-over banksy, DIY wolf tattooed ... </p>
-			    	</div>
-			    </div>
 			    <!-- and so on ...  -->
 			</div>
 		</div>

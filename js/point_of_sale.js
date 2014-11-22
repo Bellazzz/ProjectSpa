@@ -52,21 +52,22 @@ function addSaleDetail(data) {
 
 	if(prdRow.length > 0) {
 		// Add to old product row
-		prdQty 		= parseFloat(prdRow.find('.qty-col').text().replace(',',''));
-
-		unitPrice 	= parseFloat(prdRow.find('.unitPrice-col').text().replace('฿', '').replace(',',''));
-		prdQty 		= prdQty + data.qty;
-		sumPrice 	= parseFloat(prdQty * unitPrice);
-
-		prdRow.find('.qty-col').text(prdQty.formatMoney(0, '.', ','));
-		prdRow.find('.sumPrice-col').text('฿' + sumPrice.formatMoney(2, '.', ','));
-		prdRow.find('input[name="qty[]"]').val(prdQty);
-		prdRow.find('input[name="sumPrice[]"]').val(sumPrice);
+		plusOrMinusQty(data.prd_id, data.qty, 'plus');
 	} else {
 		// First product row
 		html 	= '<tr id="' + data.prd_id + '">'
 				+ '		<td class="prdName-col">' + prdName + '</td>'
-				+ '		<td class="qty-col">' + prdQty + '</td>'
+				+ '		<td class="qty-col">'
+				+ ' 		<button type="button" class="qty-circle-btn" style="position: absolute;left: 0;top: 2px;" '
+				+ '			onclick="plusOrMinusQty(\'' + data.prd_id + '\',1,\'minus\')">'
+				+ '				<i class="fa fa-minus"></i>'
+				+ '			</button>'
+				+ '			<span class="prd_qty">' + prdQty + '</span>'
+				+ ' 		<button type="button" class="qty-circle-btn" style="position: absolute;right: 0;top: 2px;" '
+				+ '			onclick="plusOrMinusQty(\'' + data.prd_id + '\',1,\'plus\')">'
+				+ '				<i class="fa fa-plus"></i>'
+				+ '			</button>'
+				+ '		</td>'
 				+ '		<td class="unitPrice-col">฿' + unitPrice.formatMoney(2, '.', ',') + '</td>'
 				+ '		<td class="sumPrice-col">฿' + unitPrice.formatMoney(2, '.', ',') + '</td>'
 				+ '		<input type="hidden" name="prd_id[]" value="' + data.prd_id + '">'
@@ -74,6 +75,23 @@ function addSaleDetail(data) {
 				+ '		<input type="hidden" name="sumPrice[]" value="' + unitPrice + '">'
 				+ '</tr>';
 		$('#sale-product-list tbody').append(html);
+		// cal total price
+		calSummary();
+		// add event
+		$('#' + data.prd_id).click(function(){
+			$(this).siblings('tr').removeClass('selected');
+			if($(this).hasClass('selected')) {
+				// Close edit qty box
+				$(this).removeClass('selected');
+			} else {
+				// Open edit qty box
+				$(this).addClass('selected');
+				openEditQtyBox(data.prd_id);
+			}
+		});
+		$('#' + data.prd_id).find('.qty-circle-btn').click(function(e) {
+			e.stopPropagation();
+		});
 	}
 
 	// animate scroll bar
@@ -87,8 +105,7 @@ function addSaleDetail(data) {
 	setTimeout(function(){
 		$('#' + data.prd_id).removeClass('hilight');
 	}, 1000)
-	// cal total price
-	calSummary();
+	
 }
 
 function calSummary() {
@@ -100,7 +117,7 @@ function calSummary() {
 
 	$('#sale-product-list tbody tr').each(function() {
 		sumPrice = parseFloat($(this).find('.sumPrice-col').text().replace('฿','').replace(',',''));
-		qty 	 = parseInt($(this).find('.qty-col').text().replace(',',''));
+		qty 	 = parseInt($(this).find('.prd_qty').text().replace(',',''));
 		totalPrice += sumPrice;
 		totalQty   += qty;
 	});
@@ -109,4 +126,41 @@ function calSummary() {
 	$('#total-product').text(totalProduct.formatMoney(0, '.', ','));
 	$('#total-qty').text(totalQty.formatMoney(0, '.', ','));
 	$('input[name="total-price"]').val(totalPrice);
+}
+
+function plusOrMinusQty(prd_id, qty, action) {
+	var prdRow 		= $('#' + prd_id);
+	var prdQty		= 1;
+	var unitPrice 	= 0;
+	var sumPrice 	= 0;
+
+	prdQty 		= parseFloat(prdRow.find('.prd_qty').text().replace(',',''));
+	unitPrice 	= parseFloat(prdRow.find('.unitPrice-col').text().replace('฿', '').replace(',',''));
+	if(action == 'plus') {
+		// plus
+		prdQty 		= prdQty + qty;
+	} else {
+		// minus
+		if(prdQty <= 1) {
+			//remove product
+			prdRow.remove();
+			// cal total price
+			calSummary();
+			return;
+		}
+		prdQty 		= prdQty - qty;
+	}
+	sumPrice 	= parseFloat(prdQty * unitPrice);
+
+	prdRow.find('.prd_qty').text(prdQty.formatMoney(0, '.', ','));
+	prdRow.find('.sumPrice-col').text('฿' + sumPrice.formatMoney(2, '.', ','));
+	prdRow.find('input[name="qty[]"]').val(prdQty);
+	prdRow.find('input[name="sumPrice[]"]').val(sumPrice);
+	// cal total price
+	calSummary();
+}
+
+function openEditQtyBox(prd_id) {
+	//var editQtyBoxHtml = '<div id="edit-quantity-product"></div>';
+	//$('body').prepend(editQtyBoxHtml);
 }
