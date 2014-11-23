@@ -338,6 +338,9 @@ body {
 .qty-circle-btn {
 	width: 36px;
 	height: 36px;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	-o-border-radius: 100%;
 	border-radius: 100%;
 	border: 2px solid #ddd;
 	background: -moz-linear-gradient(90deg, #eee, #FFF);
@@ -345,6 +348,8 @@ body {
 	color: rgb(71, 71, 158);
 	outline: none;
 	cursor: pointer;
+}
+#sale-transaction .qty-circle-btn {
 	display: none;
 }
 #sale-product-list tr.selected .qty-circle-btn {
@@ -370,7 +375,8 @@ body {
 #edit-quantity-product table {
 	width: 100%;
 	font-family: ThaiSansNeue-Regular;
-	border-bottom: 2px solid #CFE29F;
+	border-bottom: 1px solid #CFE29F;
+	padding-bottom: 10px;
 }
 #edit-quantity-product .prd_image {
 	-webkit-border-radius: 10px;
@@ -390,4 +396,54 @@ body {
 }
 #eqp-unitPrice {
 	font-size: 35px;
+}
+#edit-quantity-product .qty-circle-btn.minus {
+	position: absolute;
+	top: 0px;
+	left: 0;
+	width: 40px;
+	height: 40px;
+	font-size: 20px;
+}
+#edit-quantity-product .qty-circle-btn.plus {
+	position: absolute;
+	top: 0px;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	font-size: 20px;
+}
+#eqp-qty {
+	font-size: 28px;
+	width: 100%;
+	padding: 3px 0;
+	background: rgb(153, 194, 58);
+	border: none;
+	color: rgb(255, 255, 255);
+	text-align: center;
+	outline: none;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-o-border-radius: 20px;
+	border-radius: 20px;
+}
+
+.pos-btn {
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	-o-border-radius: 30px;
+	border-radius: 30px;
+	border: 2px solid #ddd;
+	outline: none;
+	cursor: pointer;
+	padding: 3px 20px;
+	font-family: ThaiSansNeue-Bold;
+	font-size: 25px;
+}
+.pos-btn.green {
+	color: white;
+	background: -webkit-linear-gradient(90deg, #83B019, #9FD520);
+	background: -moz-linear-gradient(90deg, #83B019, #9FD520);
+	box-shadow: 0 2px 1px rgba(255,255,255,0.5);
+	border: 2px solid #697B40
 }

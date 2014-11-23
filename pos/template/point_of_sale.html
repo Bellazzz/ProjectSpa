@@ -15,9 +15,12 @@
 		<table>
 			<tbody>
 				<tr>
+					<td colspan="2" style="padding-bottom:10px;">
+						<button type="button" class="pos-btn green">ปิด</button>
+					</td>
+				</tr>
+				<tr>
 					<td>
-						<button type="button" class="qty-circle-btn">					<i class="fa fa-minus"></i>
-						</button>
 						<img src="../img/products/PD0047.jpeg" class="prd_image">
 					</td>
 					<td style="width: 100%;padding-left: 20px;">
@@ -26,11 +29,16 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<button type="button" class="qty-circle-btn">					<i class="fa fa-minus"></i>
+					<td colspan="2" style="text-align:center;padding-top:20px;">จำนวน</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="position:relative;">
+						<button type="button" class="qty-circle-btn minus">
+							<i class="fa fa-minus"></i>
 						</button>
-						<input type="text">
-						<button type="button" class="qty-circle-btn">					<i class="fa fa-plus"></i>
+						<input id="eqp-qty" type="text">
+						<button type="button" class="qty-circle-btn plus">
+							<i class="fa fa-plus"></i>
 						</button>
 					</td>
 				</tr>
