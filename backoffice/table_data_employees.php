@@ -32,7 +32,7 @@ $sql = "SELECT e.emp_pic,
 		e.emp_addr,
 		e.emp_tel,
 		p.pos_name pos_id,
-		e.emp_user,
+		e.emp_email,
 		e.emp_pass 
 		FROM employees e, titles t, positions p 
 		$where

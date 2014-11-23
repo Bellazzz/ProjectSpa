@@ -94,7 +94,7 @@
 				addInputPassword();
 			}
 
-			$('#emp_user').focusout(checkUserAndPass);
+			$('#emp_email').focusout(checkUserAndPass);
 		});
 		
 		function beforeSaveRecord() {
@@ -145,15 +145,15 @@
 			if($('#emp_pass').length > 0) {
 				// Check username
 				if($('#emp_pass').val() != '' || $('#emp_re_pass').val() != '') {
-					if($('#emp_user').val() == '') {
-						$('#emp_user').addClass('required');
-						$('#err-emp_user-require').css('display', 'block');
+					if($('#emp_email').val() == '') {
+						$('#emp_email').addClass('required');
+						$('#err-emp_email-require').css('display', 'block');
 					}
 				}
 			}
 			
 			// Check password
-			if($('#emp_user').val() != '' && $('#emp_pass').val() == '') {
+			if($('#emp_email').val() != '' && $('#emp_pass').val() == '') {
 				$('#emp_pass').addClass('required');
 				$('#err-emp_pass-require').css('display', 'block');
 			} else {
@@ -281,8 +281,8 @@
 				<td>{if $values.emp_indate}{$values.emp_indate}{else}-{/if}</td>
 			</tr>
 			<tr>
-				<td>ชื่อผู้ใช้งาน :</td>
-				<td>{if $values.emp_user}{$values.emp_user}{else}-{/if}</td>
+				<td>E-mail(ชื่อผู้ใช้งาน) :</td>
+				<td>{if $values.emp_email}{$values.emp_email}{else}-{/if}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -290,7 +290,7 @@
 	<!-- ADD, EDIT -->	 	 	 	 	 	
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="pos_id,title_id,emp_name,emp_surname,emp_addr,emp_tel,emp_indate,sex_id">
-    <input type="hidden" name="uniqueFields" value="emp_user">
+    <input type="hidden" name="uniqueFields" value="emp_email">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
 			<tr>
@@ -387,14 +387,14 @@
 		<tbody>
 			<tr>
 				<td colspan=2>
-					<label>ชื่อผู้ใช้งาน</label>
-					<input id="emp_user" name="emp_user" type="text" class="form-input full" value="{$values.emp_user}" valuepattern="username">
+					<label>E-mail(E-mailนี้จะถูกนำไปใช้เป็นชื่อผู้ใช้งาน)</label>
+					<input id="emp_email" name="emp_email" type="text" class="form-input full" value="{$values.emp_email}" valuepattern="email">
 				</td>
 			</tr>
 			<tr class="errMsgRow">
-                <td colspan=2>
-                    <span id="err-emp_user-require" class="errInputMsg err-emp_user">โปรดป้อนชื่อผู้ใช้งาน</span>
-                    <span id="err-emp_user-username" class="errInputMsg err-emp_user">ชื่อผู้ใช้เป็นได้เฉพาะตัวอักษรภาษาอังกฤษและตัวเลขอย่างน้อย 6 ตัวอักษร ห้ามมีช่องว่าง และอักระพิเศษ</span>
+                <td colspan="2">
+                	<span id="err-emp_email-require" class="errInputMsg err-emp_email">โปรดป้อนอีเมล</span>
+                    <span id="err-emp_email-email" class="errInputMsg err-emp_email">รูปแบบอีเมลไม่ถูกต้อง</span>
                 </td>
             </tr>
 			{if $action == 'EDIT'}

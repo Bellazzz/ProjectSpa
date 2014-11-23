@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-11-22 15:32:31
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-23 11:56:36
          compiled from "C:\AppServ\www\projectSpa\pos\template\point_of_sale.html" */ ?>
 <?php /*%%SmartyHeaderCode:230454686341b9e7a9-38643476%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e72f872714535b41289731d7b257b837bad50a61' => 
     array (
       0 => 'C:\\AppServ\\www\\projectSpa\\pos\\template\\point_of_sale.html',
-      1 => 1416645149,
+      1 => 1416672178,
       2 => 'file',
     ),
   ),
@@ -36,9 +36,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<table>
 			<tbody>
 				<tr>
+					<td colspan="2" style="padding-bottom:10px;">
+						<button type="button" class="pos-btn green">ปิด</button>
+					</td>
+				</tr>
+				<tr>
 					<td>
-						<button type="button" class="qty-circle-btn">					<i class="fa fa-minus"></i>
-						</button>
 						<img src="../img/products/PD0047.jpeg" class="prd_image">
 					</td>
 					<td style="width: 100%;padding-left: 20px;">
@@ -47,11 +50,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
-						<button type="button" class="qty-circle-btn">					<i class="fa fa-minus"></i>
+					<td colspan="2" style="text-align:center;padding-top:20px;">จำนวน</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="position:relative;">
+						<button type="button" class="qty-circle-btn minus">
+							<i class="fa fa-minus"></i>
 						</button>
-						<input type="text">
-						<button type="button" class="qty-circle-btn">					<i class="fa fa-plus"></i>
+						<input id="eqp-qty" type="text">
+						<button type="button" class="qty-circle-btn plus">
+							<i class="fa fa-plus"></i>
 						</button>
 					</td>
 				</tr>
