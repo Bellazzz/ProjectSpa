@@ -172,7 +172,7 @@ switch ($tableName) {
 					p.pos_name pos_id,
 					e.emp_birthdate,
 					e.emp_indate,
-					e.emp_user,
+					e.emp_email,
 					e.emp_pass 
 					FROM employees e, sex s, titles t, positions p 
 					$where
@@ -195,13 +195,12 @@ switch ($tableName) {
 				c.cus_surname,
 				c.cus_addr,
 				c.cus_tel,
-				c.cus_user,
+				c.cus_email,
 				c.cus_pass,
 				c.cus_birthdate,
 				c.cus_registered_date,
 				c.cus_line_id,
-				c.cus_facebook,
-				c.cus_email 
+				c.cus_facebook 
 				FROM customers c, sex s, customer_types ct, titles t 
 				$where 
 				$order";

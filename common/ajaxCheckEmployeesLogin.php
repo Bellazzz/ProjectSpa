@@ -16,11 +16,11 @@ if(hasValue($formData['password'])) {
 }
 
 $sql = "SELECT 	emp_id,
-				emp_user,
+				emp_email,
 				emp_name,
 				emp_surname 
 		FROM 	employees 
-		WHERE 	emp_user = '$username' 
+		WHERE 	emp_email = '$username' 
 				AND emp_pass = '$password'
 		LIMIT 	1";
 $result = mysql_query($sql, $dbConn);
@@ -29,7 +29,7 @@ if($row > 0) {
 	$empRow = mysql_fetch_assoc($result);
 	$_SESSION['loggedin'] 		= true;
 	$_SESSION['emp_id'] 		= $empRow['emp_id'];
-	$_SESSION['emp_user'] 		= $empRow['emp_user'];
+	$_SESSION['emp_email'] 		= $empRow['emp_email'];
 	$_SESSION['emp_name'] 		= $empRow['emp_name'];
 	$_SESSION['emp_surname'] 	= $empRow['emp_surname'];
 	echo "PASS";

@@ -297,13 +297,12 @@ function dbClose() {
 						'cus_surname'   => 'นามสกุล',
 						'cus_addr'      => 'ที่อยู่',
 						'cus_tel'       => 'เบอร์โทรศัพท์',
-						'cus_user'      => 'ชื่อผู้ใช้',
+						'cus_email'      => 'E-mail/ชื่อผู้ใช้',
 						'cus_pass'      => 'รหัสผ่าน',
 						'cus_birthdate' => 'วันที่เกิด',
 						'cus_registered_date'  => 'วันที่สมัคร',
 						'cus_facebook'  => 'facebook',
-						'cus_line_id'   => 'Line',
-						'cus_email'     => 'E-mail' 
+						'cus_line_id'   => 'Line'  
 				)
 			);
 			break;

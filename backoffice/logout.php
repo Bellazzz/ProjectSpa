@@ -9,8 +9,8 @@ if(isset($_SESSION['loggedin'])) {
 if(isset($_SESSION['emp_id'])) {
 	unset($_SESSION['emp_id']);
 }
-if(isset($_SESSION['emp_user'])) {
-	unset($_SESSION['emp_user']);
+if(isset($_SESSION['emp_email'])) {
+	unset($_SESSION['emp_email']);
 }
 header("location:login.php");
 ?>
