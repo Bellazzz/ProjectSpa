@@ -33,9 +33,18 @@ if(!$_REQUEST['ajaxCall']) {
 		foreach($tableInfo['fieldNameList'] as $field => $value) {
 			$colFieldType = $tableRecord->getFieldType($field);
 			if($colFieldType == 'time'){
+<<<<<<< HEAD
 				$tmpTime = $tableRecord->getFieldValue($field);
 				$newtmpTime = substr($tmpTime, 0,5);
 				$values[$field] = $newtmpTime;
+=======
+				$tmpTime = $tableRecord->getFieldValue($field);//get time from database
+				$newTmpTime = substr($tmpTime, 0, 5);
+				$values[$field] = $newTmpTime;
+			}else{
+				$values[$field] = $tableRecord->getFieldValue($field);
+			}
+>>>>>>> faa74fe0d3d1df3c270d889e4a70065e5631cc86
 
 			}
 			else {
@@ -43,6 +52,10 @@ if(!$_REQUEST['ajaxCall']) {
 			}
 			if($action == 'VIEW_DETAIL') {
 				if(hasValue($values[$field])) {
+<<<<<<< HEAD
+=======
+					
+>>>>>>> faa74fe0d3d1df3c270d889e4a70065e5631cc86
 					if($colFieldType == 'date' || $colFieldType == 'datetime') {
 						$values[$field] = dateThaiFormat($values[$field]);
 					}

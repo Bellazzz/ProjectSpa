@@ -106,7 +106,7 @@
 			<tr>
                 <td>
                     <label class="input-required">วันที่ตรวจ</label>
-				      <input id="elechk_date" name="elechk_date" type="text" class="mbk-dtp-th form-input half" value="{$values.elechk_date}" require>
+				      <input id="elechk_date" name="elechk_date" type="text" class="mbk-dtp-th form-input half" value="{if $values.elechk_date}{$values.elechk_date}{else}{$nowDate}{/if}" require>
 			    </td>
 			    <td>
                     <label class="input-required">เวลาที่ตรวจ</label>

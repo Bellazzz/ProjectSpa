@@ -172,7 +172,7 @@ switch ($tableName) {
 					p.pos_name pos_id,
 					e.emp_birthdate,
 					e.emp_indate,
-					e.emp_user,
+					e.emp_email,
 					e.emp_pass 
 					FROM employees e, sex s, titles t, positions p 
 					$where
@@ -195,13 +195,12 @@ switch ($tableName) {
 				c.cus_surname,
 				c.cus_addr,
 				c.cus_tel,
-				c.cus_user,
+				c.cus_email,
 				c.cus_pass,
 				c.cus_birthdate,
 				c.cus_registered_date,
 				c.cus_line_id,
-				c.cus_facebook,
-				c.cus_email 
+				c.cus_facebook 
 				FROM customers c, sex s, customer_types ct, titles t 
 				$where 
 				$order";
@@ -274,9 +273,15 @@ switch ($tableName) {
 		$sql = "SELECT t.timeatt_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				t.dateatt_in,
+<<<<<<< HEAD
 				SUBSTRING(t.timeatt_in,1,5) AS timeatt_in,
 				t.dateatt_out,
 				SUBSTRING(t.timeatt_out,1,5) AS timeatt_out
+=======
+				SUBSTRING(t.timeatt_in,1,5) as timeatt_in,
+				t.dateatt_out,
+				SUBSTRING(t.timeatt_out,1,5) as timeatt_out  
+>>>>>>> faa74fe0d3d1df3c270d889e4a70065e5631cc86
 				FROM time_attendances t, employees e 
 				$where 
 				$orderSpecial";
@@ -410,7 +415,11 @@ switch ($tableName) {
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				CONCAT(c.cus_name, '  ', c.cus_surname) cus_id,
 				ec.elechk_date,
+<<<<<<< HEAD
 				SUBSTRING(ec.elechk_time,1,5) AS elechk_time,
+=======
+				SUBSTRING(ec.elechk_time,1,5) as elechk_time,
+>>>>>>> faa74fe0d3d1df3c270d889e4a70065e5631cc86
 				et.eletyp_name eletyp_id 
 				FROM element_checks ec, employees e, customers c, element_types et
 				$where 

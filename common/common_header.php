@@ -11,7 +11,11 @@
 	$nowDate = date('Y/m/d');
 	$nowTime = date('H:i');
 	$smarty->assign('nowDate', date('Y/m/d'));
+<<<<<<< HEAD
 	$smarty->assign('nowTime',date('H:i'));
+=======
+	$smarty->assign('nowTime', date('H:i'));
+>>>>>>> faa74fe0d3d1df3c270d889e4a70065e5631cc86
 
 	// Session
 	if(isset($_SESSION['loggedin'])) {
@@ -21,8 +25,8 @@
 		$session_emp_id = $_SESSION['emp_id'];
 		$smarty->assign('session_emp_id', $_SESSION['emp_id']);
 	}
-	if(isset($_SESSION['emp_user'])) {
-		$smarty->assign('session_emp_user', $_SESSION['emp_user']);
+	if(isset($_SESSION['emp_email'])) {
+		$smarty->assign('session_emp_user', $_SESSION['emp_email']);
 	}
 	if(isset($_SESSION['emp_name'])) {
 		$smarty->assign('session_emp_name', $_SESSION['emp_name']);

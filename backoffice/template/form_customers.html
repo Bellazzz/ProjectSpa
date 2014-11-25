@@ -87,7 +87,7 @@
                 addInputPassword();
             }
 
-            $('#cus_user').focusout(checkUserAndPass);
+            $('#cus_email').focusout(checkUserAndPass);
         });
 
         function beforeSaveRecord() {
@@ -138,15 +138,15 @@
             if($('#cus_pass').length > 0) {
                 // Check username
                 if($('#cus_pass').val() != '' || $('#cus_re_pass').val() != '') {
-                    if($('#cus_user').val() == '') {
-                        $('#cus_user').addClass('required');
-                        $('#err-cus_user-require').css('display', 'block');
+                    if($('#cus_email').val() == '') {
+                        $('#cus_email').addClass('required');
+                        $('#err-cus_email-require').css('display', 'block');
                     }
                 }
             }
             
             // Check password
-            if($('#cus_user').val() != '' && $('#cus_pass').val() == '') {
+            if($('#cus_email').val() != '' && $('#cus_pass').val() == '') {
                 $('#cus_pass').addClass('required');
                 $('#err-cus_pass-require').css('display', 'block');
             } else {
@@ -267,10 +267,6 @@
                 <td>{$values.cus_tel}</td>
             </tr>
             <tr>
-                <td>ชื่อผู้ใช้งาน :</td>
-                <td>{$values.cus_user}</td>
-            </tr>
-            <tr>
                 <td>วันเกิด :</td>
                 <td>{$values.cus_birthdate}</td>
             </tr>
@@ -279,15 +275,15 @@
                 <td>{$values.cus_registered_date}</td>
             </tr>
             <tr>
-                <td>ชื่อเฟสบุ๊ค :</td>
+                <td>Facebook(Link) :</td>
                 <td>{$values.cus_facebook}</td>
             </tr>
             <tr>
-                <td>ไลน์ :</td>
+                <td>Line(ID) :</td>
                 <td>{$values.cus_line_id}</td>
             </tr>
             <tr>
-                <td>อีเมล์ :</td>
+                <td>E-mail/ชื่อผู้ใช้งาน :</td>
                 <td>{$values.cus_email}</td>
             </tr>
         </tbody> 
@@ -297,7 +293,7 @@
 
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="custype_id,sex_id,title_id,cus_name,cus_surname,cus_addr,cus_tel,cus_registered_date,sex_id">
-    <input type="hidden" name="uniqueFields" value="cus_user">
+    <input type="hidden" name="uniqueFields" value="cus_email">
     <table class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
 	    <tbody>
             <tr>
@@ -381,30 +377,6 @@
                 </td>
                 <td></td>
             </tr>
-             <tr>
-                <td colspan="2">
-                    <label>Faceook(Link)</label>
-                    <input id="cus_facebook" name="cus_facebook" type="text" class="form-input full" value="{$values.cus_facebook}">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <label>Line(ID)</label>
-                    <input id="cus_line_id" name="cus_line_id" type="text" class="form-input full"  value="{$values.cus_line_id}">
-                </td>
-            </tr>
-             <tr>
-                <td colspan="2">
-                    <label>E-mail</label>
-                    <input id="cus_email" name="cus_email" type="text" class="form-input full" 
-                    value="{$values.cus_email}" valuepattern="email">
-                </td>
-            </tr>
-            <tr class="errMsgRow">
-                <td colspan="2">
-                    <span id="err-cus_email-email" class="errInputMsg err-cus_email">รูปแบบอีเมลไม่ถูกต้อง</span>
-                </td>
-            </tr>
             <tr>
                 <td colspan="2">
                     <label class="input-required">วันที่สมัคร</label>
@@ -416,20 +388,41 @@
                     <span id="err-cus_registered_date-require" class="errInputMsg err-cus_registered_date">โปรดป้อนวันที่สมัคร</span>
                 </td>
             </tr>
+             <tr>
+                <td colspan="2">
+<<<<<<< HEAD
+                    <label class="input-required">วันที่สมัคร</label>
+                    <input id="cus_registered_date" name="cus_registered_date" type="text" class="mbk-dtp-th form-input full" value="{if $values.cus_registered_date}{$values.cus_registered_date}{else}{$nowDate}{/if}" require>
+=======
+                    <label>Faceook(Link)</label>
+                    <input id="cus_facebook" name="cus_facebook" type="text" class="form-input full" value="{$values.cus_facebook}">
+>>>>>>> faa74fe0d3d1df3c270d889e4a70065e5631cc86
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label>Line(ID)</label>
+                    <input id="cus_line_id" name="cus_line_id" type="text" class="form-input full"  value="{$values.cus_line_id}">
+                </td>
+            </tr>
         </tbody>
     </table>
+
     <table id="tableforAddPass" class="mbk-form-input-normal" cellpadding="0" cellspacing="0">
         <tbody>
              <tr>
-                <td>
-                    <label>ชื่อผู้ใช้งาน</label>
-                    <input id="cus_user" name="cus_user" type="text" class="form-input full" value="{$values.cus_user}" valuepattern="username">
+                <td colspan="2">
+                    <label>E-mail(E-mailนี้จะถูกนำไปใช้เป็นชื่อผู้ใช้งาน)</label>
+                    <input id="cus_email" name="cus_email" type="text" class="form-input full" 
+                    value="{$values.cus_email}" valuepattern="email">
                 </td>
             </tr>
             <tr class="errMsgRow">
                 <td colspan=2>
-                    <span id="err-cus_user-require" class="errInputMsg err-cus_user">โปรดป้อนชื่อผู้ใช้งาน</span>
-                    <span id="err-cus_user-username" class="errInputMsg err-cus_user">ชื่อผู้ใช้เป็นได้เฉพาะตัวอักษรภาษาอังกฤษและตัวเลขอย่างน้อย 6 ตัวอักษร ห้ามมีช่องว่าง และอักระพิเศษ</span>
+                    <span id="err-cus_email-require" class="errInputMsg err-cus_email">โปรดป้อนอีเมล</span>
+                    <td colspan="2">
+                    <span id="err-cus_email-email" class="errInputMsg err-cus_email">รูปแบบอีเมลไม่ถูกต้อง</span>
+                </td>
                 </td>
             </tr>
             {if $action == 'EDIT'}

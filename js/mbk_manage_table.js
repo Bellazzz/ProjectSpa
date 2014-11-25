@@ -476,11 +476,18 @@ function refreshFilterQuery() {
     }
 
     if(allowFilterRetroact.indexOf(this.table.name) != -1) {
-        filterRecordQueryHTML  += '&emsp;&emsp;ขอบเขตการแสดง '
+        var filterRetroactName = 'ขอบเขตการแสดง';
+        var filterRetroactFrom = '';
+        /*if (this.table.name == 'orders'){
+            filterRetroactName = 'ขอบเขตการแสดงการสั่งซื้อ';
+            filterRetroactFrom = 'จากวันที่สั่งซื้อ';
+        }*/
+        filterRecordQueryHTML  += '&emsp;&emsp;' + filterRetroactName + ' '
                                 + '<select id="query-record-filter-retroact" class="mbk-select">'
                                 + '     <option value="true">12 เดือนก่อน - ปัจจุบัน</option>'
                                 + '     <option value="false">ข้อมูลทั้งหมด</option>'
-                                + '</select>';
+                                + '</select>'
+                                + ' ' + filterRetroactFrom;
     }
 
 

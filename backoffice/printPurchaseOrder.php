@@ -13,7 +13,7 @@ $number = str_replace(" ","",$number);
 $number = str_replace("บาท","",$number); 
 $number = explode(".",$number); 
 if(sizeof($number)>2){ 
-return 'ทศนิยมหลายตัวนะจ๊ะ'; 
+return 'ทศนิยมหลายตัว'; 
 exit; 
 } 
 $strlen = strlen($number[0]); 

@@ -120,7 +120,8 @@
 			<tr>
                 <td>
                     <label class="input-required">วันที่เข้า</label>
-				    <input id="dateatt_in" name="dateatt_in" type="text" class="mbk-dtp-th form-input half" value="{$values.dateatt_in}" require>
+				    <input id="dateatt_in" name="dateatt_in" type="text" class="mbk-dtp-th form-input half" value="{if $values.dateatt_in}{$values.dateatt_in}{else}{$nowDate}{/if}" require>
+
 			    </td>
 			    <td>
 				    <label class="input-required">เวลาที่เข้า</label>
