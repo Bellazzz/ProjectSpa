@@ -1,9 +1,39 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 11:11:20
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_customers.html" */ ?>
+<?php /*%%SmartyHeaderCode:1882546ac6e85f3539-93635609%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '2a1643d9f3b7447d1c25ce2a05226a857b050290' => 
+    array (
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_customers.html',
+      1 => 1416283871,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1882546ac6e85f3539-93635609',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'action' => 0,
+    'tableName' => 0,
+    'tableNameTH' => 0,
+    'code' => 0,
+    'values' => 0,
+    'nowDate' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_546ac6e87b8439_72991183',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_546ac6e87b8439_72991183')) {function content_546ac6e87b8439_72991183($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
 	<meta charset="UTF-8"/>
-    {literal}
+    
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
     <link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
@@ -15,10 +45,14 @@
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
     <script type="text/javascript">
         // Global variables
-        var action      = '{/literal}{$action}{literal}';
-        var tableName   = '{/literal}{$tableName}{literal}';
-		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
-        var code        = '{/literal}{$code}{literal}';
+        var action      = '<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
+';
+        var tableName   = '<?php echo $_smarty_tpl->tpl_vars['tableName']->value;?>
+';
+		var tableNameTH = '<?php echo $_smarty_tpl->tpl_vars['tableNameTH']->value;?>
+';
+        var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+';
         var ajaxUrl     = 'form_customers.php';
         var sexIdOfTitle = '';
 
@@ -57,7 +91,8 @@
                 keyFieldName    : 'sex_id',
                 textFieldName   : 'sex_name',
                 searchTool      : false,
-                defaultValue    : '{/literal}{$values.sex_id}{literal}',
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['sex_id'];?>
+',
                 beforeShow      : allowSelectSex
             });
             selectReference({
@@ -65,14 +100,16 @@
                 tableName		: 'customer_types',
                 keyFieldName	: 'custype_id',
                 textFieldName	: 'custype_name',
-                defaultValue	: '{/literal}{$values.custype_id}{literal}'
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['custype_id'];?>
+'
             });
             selectReference({
                 elem            : $('#title_id'),
                 tableName       : 'titles',
                 keyFieldName    : 'title_id',
                 textFieldName   : 'title_name',
-                defaultValue    : '{/literal}{$values.title_id}{literal}',
+                defaultValue    : '<?php echo $_smarty_tpl->tpl_vars['values']->value['title_id'];?>
+',
                 onOptionSelect  : changeTitleId,
                 success         :
                 function() {
@@ -220,14 +257,15 @@
             }
         }
     </script>
-    {/literal}
+    
 </head>
 <body>
 
-{include file="form_table_header.html"}
+<?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <div class="ftb-body">
     <div class="ftb-body">
-    {if $action == 'VIEW_DETAIL'}
+    <?php if ($_smarty_tpl->tpl_vars['action']->value=='VIEW_DETAIL') {?>
     <!-- VIEW_DETAIL -->
     <div class="table-view-detail-image full">
        
@@ -236,7 +274,8 @@
         <tbody>
             <tr>
                 <td>รหัสผู้ใช้บริการ :</td>
-                <td>{$code}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+</td>
             </tr>
             <tr>
                 <td>ประเภทผู้ใช้บริการ :</td>
@@ -248,11 +287,13 @@
             </tr>
             <tr>
                 <td>ชื่อผู้ใช้บริการ :</td>
-                <td>{$values.cus_name}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_name'];?>
+</td>
             </tr>
             <tr>
                 <td>นามสกุล :</td>
-                <td>{$values.cus_surname}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_surname'];?>
+</td>
             </tr>
             <tr>
                 <td>เพศ :</td>
@@ -260,39 +301,47 @@
             </tr>
             <tr>
                 <td>ที่อยู่ :</td>
-                <td>{$values.cus_addr}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_addr'];?>
+</td>
             </tr>
             <tr>
                 <td>เบอร์โทรศัพท์ :</td>
-                <td>{$values.cus_tel}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_tel'];?>
+</td>
             </tr>
             <tr>
                 <td>ชื่อผู้ใช้งาน :</td>
-                <td>{$values.cus_user}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_user'];?>
+</td>
             </tr>
             <tr>
                 <td>วันเกิด :</td>
-                <td>{$values.cus_birthdate}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_birthdate'];?>
+</td>
             </tr>
             <tr>
                 <td>วันที่สมัคร :</td>
-                <td>{$values.cus_registered_date}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_registered_date'];?>
+</td>
             </tr>
             <tr>
                 <td>ชื่อเฟสบุ๊ค :</td>
-                <td>{$values.cus_facebook}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_facebook'];?>
+</td>
             </tr>
             <tr>
                 <td>ไลน์ :</td>
-                <td>{$values.cus_line_id}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_line_id'];?>
+</td>
             </tr>
             <tr>
                 <td>อีเมล์ :</td>
-                <td>{$values.cus_email}</td>
+                <td><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_email'];?>
+</td>
             </tr>
         </tbody> 
     </table> 
-    {else}      
+    <?php } else { ?>      
     <!-- ADD, EDIT -->                      
 
     <form id="form-table" name="form-table" onsubmit="return false;">
@@ -321,7 +370,8 @@
 		    <tr>
 			    <td colspan="2">
 				    <label class="input-required">ชื่อผู้ใช้บริการ</label>
-				    <input id="cus_name" name="cus_name" type="text" class="form-input full" value="{$values.cus_name}" valuepattern="character" require>
+				    <input id="cus_name" name="cus_name" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_name'];?>
+" valuepattern="character" require>
 			    </td>
             </tr>
             <tr class="errMsgRow">
@@ -333,7 +383,8 @@
             <tr>
                 <td colspan="2">
                     <label class="input-required">นามสกุลผู้ใช้บริการ</label>
-                    <input id="cus_surname" name="cus_surname" type="text" class="form-input full" value="{$values.cus_surname}" valuepattern="character" require>
+                    <input id="cus_surname" name="cus_surname" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_surname'];?>
+" valuepattern="character" require>
                 </td>
 		    </tr>
             <tr class="errMsgRow">
@@ -356,7 +407,8 @@
             <tr>
                 <td colspan="2">
                     <label class="input-required">ที่อยู่</label>
-                    <textarea id="cus_addr" name="cus_addr" type="text" class="form-input full" require>{$values.cus_addr}</textarea>
+                    <textarea id="cus_addr" name="cus_addr" type="text" class="form-input full" require><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_addr'];?>
+</textarea>
                 </td>
             </tr>
             <tr class="errMsgRow">
@@ -367,11 +419,13 @@
             <tr>
                 <td>
                     <label class="input-required">เบอร์โทร</label>
-                    <input id="cus_tel" name="cus_tel" type="text" class="form-input half" value="{$values.cus_tel}" valuepattern="tel" maxlength="10" size="10" require>
+                    <input id="cus_tel" name="cus_tel" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_tel'];?>
+" valuepattern="tel" maxlength="10" size="10" require>
                 </td>
                 <td>
                     <label>วันเกิด</label>
-                    <input id="cus_birthdate" name="cus_birthdate" type="text" class="mbk-dtp-th form-input half" value="{$values.cus_birthdate}">
+                    <input id="cus_birthdate" name="cus_birthdate" type="text" class="mbk-dtp-th form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_birthdate'];?>
+">
                 </td>
             </tr>
             <tr class="errMsgRow">
@@ -384,20 +438,23 @@
              <tr>
                 <td colspan="2">
                     <label>Faceook(Link)</label>
-                    <input id="cus_facebook" name="cus_facebook" type="text" class="form-input full" value="{$values.cus_facebook}">
+                    <input id="cus_facebook" name="cus_facebook" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_facebook'];?>
+">
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <label>Line(ID)</label>
-                    <input id="cus_line_id" name="cus_line_id" type="text" class="form-input full"  value="{$values.cus_line_id}">
+                    <input id="cus_line_id" name="cus_line_id" type="text" class="form-input full"  value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_line_id'];?>
+">
                 </td>
             </tr>
              <tr>
                 <td colspan="2">
                     <label>E-mail</label>
                     <input id="cus_email" name="cus_email" type="text" class="form-input full" 
-                    value="{$values.cus_email}" valuepattern="email">
+                    value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_email'];?>
+" valuepattern="email">
                 </td>
             </tr>
             <tr class="errMsgRow">
@@ -408,7 +465,9 @@
             <tr>
                 <td colspan="2">
                     <label class="input-required">วันที่สมัคร</label>
-                    <input id="cus_registered_date" name="cus_registered_date" type="text" class="mbk-dtp-th form-input full" value="{if $values.cus_registered_date}{$values.cus_registered_date}{else}{$nowDate}{/if}" require>
+                    <input id="cus_registered_date" name="cus_registered_date" type="text" class="mbk-dtp-th form-input full" value="<?php if ($_smarty_tpl->tpl_vars['values']->value['cus_registered_date']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['cus_registered_date'];?>
+<?php } else { ?><?php echo $_smarty_tpl->tpl_vars['nowDate']->value;?>
+<?php }?>" require>
                 </td>
             </tr>
             <tr class="errMsgRow">
@@ -423,7 +482,8 @@
              <tr>
                 <td>
                     <label>ชื่อผู้ใช้งาน</label>
-                    <input id="cus_user" name="cus_user" type="text" class="form-input full" value="{$values.cus_user}" valuepattern="username">
+                    <input id="cus_user" name="cus_user" type="text" class="form-input full" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['cus_user'];?>
+" valuepattern="username">
                 </td>
             </tr>
             <tr class="errMsgRow">
@@ -432,17 +492,17 @@
                     <span id="err-cus_user-username" class="errInputMsg err-cus_user">ชื่อผู้ใช้เป็นได้เฉพาะตัวอักษรภาษาอังกฤษและตัวเลขอย่างน้อย 6 ตัวอักษร ห้ามมีช่องว่าง และอักระพิเศษ</span>
                 </td>
             </tr>
-            {if $action == 'EDIT'}
+            <?php if ($_smarty_tpl->tpl_vars['action']->value=='EDIT') {?>
             <tr id="trResetPass">
                 <td colspan="2">
                     <a href="javascript:resetPass();" class="normal-link">ตั้งรหัสผ่านใหม่</a>
                 </td>
             </tr>
-            {/if}
+            <?php }?>
 	    </tbody>
     </table>
     </form>
-    {/if}
+    <?php }?>
 </div>
 </body>
 </html>
@@ -451,4 +511,4 @@
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
 	3.  input[name="uniqueFields"] ใส่ชื่อฟิลด์ที่ต้องการเช็คว่าห้ามซ้ำ
--->
+--><?php }} ?>

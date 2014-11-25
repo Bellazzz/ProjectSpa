@@ -274,9 +274,9 @@ switch ($tableName) {
 		$sql = "SELECT t.timeatt_id,
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				t.dateatt_in,
-				t.timeatt_in,
+				SUBSTRING(t.timeatt_in,1,5) AS timeatt_in,
 				t.dateatt_out,
-				t.timeatt_out 
+				SUBSTRING(t.timeatt_out,1,5) AS timeatt_out
 				FROM time_attendances t, employees e 
 				$where 
 				$orderSpecial";
@@ -410,7 +410,7 @@ switch ($tableName) {
 				CONCAT(e.emp_name, '  ', e.emp_surname) emp_id,
 				CONCAT(c.cus_name, '  ', c.cus_surname) cus_id,
 				ec.elechk_date,
-				ec.elechk_time,
+				SUBSTRING(ec.elechk_time,1,5) AS elechk_time,
 				et.eletyp_name eletyp_id 
 				FROM element_checks ec, employees e, customers c, element_types et
 				$where 

@@ -1,9 +1,39 @@
-<!DOCTYPE html>
+<?php /* Smarty version Smarty-3.1.18, created on 2014-11-18 11:22:30
+         compiled from "C:\AppServ\www\projectSpa\backoffice\template\form_time_attendances.html" */ ?>
+<?php /*%%SmartyHeaderCode:29312546ac9867b4a66-34148611%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '295699239a84b69240c01c78752ca400e4ba34ff' => 
+    array (
+      0 => 'C:\\AppServ\\www\\projectSpa\\backoffice\\template\\form_time_attendances.html',
+      1 => 1416284543,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '29312546ac9867b4a66-34148611',
+  'function' => 
+  array (
+  ),
+  'variables' => 
+  array (
+    'action' => 0,
+    'tableName' => 0,
+    'tableNameTH' => 0,
+    'code' => 0,
+    'values' => 0,
+    'nowTime' => 0,
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_546ac9868a0e34_90879062',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_546ac9868a0e34_90879062')) {function content_546ac9868a0e34_90879062($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="th">
 <head>
 	<title>Spa - Backoffice</title>
 	<meta charset="UTF-8"/>
-    {literal}
+    
 	<link rel="stylesheet" type="text/css" href="../inc/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/lazybingo.css">
 	<link rel="stylesheet" type="text/css" href="../inc/datetimepicker/jquery.datetimepicker.css">
@@ -15,10 +45,14 @@
     <script type="text/javascript" src="../js/mbk_form_table.js"></script>
     <script type="text/javascript">
         // Global variables
-        var action      = '{/literal}{$action}{literal}';
-        var tableName   = '{/literal}{$tableName}{literal}';
-		var tableNameTH = '{/literal}{$tableNameTH}{literal}';
-        var code        = '{/literal}{$code}{literal}';
+        var action      = '<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
+';
+        var tableName   = '<?php echo $_smarty_tpl->tpl_vars['tableName']->value;?>
+';
+		var tableNameTH = '<?php echo $_smarty_tpl->tpl_vars['tableNameTH']->value;?>
+';
+        var code        = '<?php echo $_smarty_tpl->tpl_vars['code']->value;?>
+';
         var ajaxUrl     = 'form_table.php';
 
         $(document).ready(function () {
@@ -91,16 +125,18 @@
                 textFieldName	: 'emp_id,emp_name,emp_surname',
                 orderFieldName  : 'emp_name',
 				searchTool		: true,
-                defaultValue	: '{/literal}{$values.emp_id}{literal}',
+                defaultValue	: '<?php echo $_smarty_tpl->tpl_vars['values']->value['emp_id'];?>
+',
 				pattern			: 'CONCAT("(",emp_id,") ",emp_name," ",emp_surname)'
             });
         });
     </script>
-    {/literal}
+    
 </head>
 <body>
 
-{include file="form_table_header.html"}
+<?php echo $_smarty_tpl->getSubTemplate ("form_table_header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
 <div class="ftb-body">
     <form id="form-table" name="form-table" onsubmit="return false;">
 	<input type="hidden" name="requiredFields" value="emp_id,timeatt_in,dateatt_in">
@@ -120,11 +156,14 @@
 			<tr>
                 <td>
                     <label class="input-required">วันที่เข้า</label>
-				    <input id="dateatt_in" name="dateatt_in" type="text" class="mbk-dtp-th form-input half" value="{$values.dateatt_in}" require>
+				    <input id="dateatt_in" name="dateatt_in" type="text" class="mbk-dtp-th form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['dateatt_in'];?>
+" require>
 			    </td>
 			    <td>
 				    <label class="input-required">เวลาที่เข้า</label>
-				    <input id="timeatt_in" name="timeatt_in" type="text" class="form-input half" value="{if $values.timeatt_in}{$values.timeatt_in}{else}{$nowTime}{/if}" require>
+				    <input id="timeatt_in" name="timeatt_in" type="text" class="form-input half" value="<?php if ($_smarty_tpl->tpl_vars['values']->value['timeatt_in']) {?><?php echo $_smarty_tpl->tpl_vars['values']->value['timeatt_in'];?>
+<?php } else { ?><?php echo $_smarty_tpl->tpl_vars['nowTime']->value;?>
+<?php }?>" require>
 			    </td>
 		    </tr>
             <tr class="errMsgRow">
@@ -138,11 +177,13 @@
             <tr>
                 <td>
                     <label>วันที่ออก</label>
-                    <input id="dateatt_out" name="dateatt_out" type="text" class="mbk-dtp-th form-input half" value="{$values.dateatt_out}">
+                    <input id="dateatt_out" name="dateatt_out" type="text" class="mbk-dtp-th form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['dateatt_out'];?>
+">
                 </td>
                 <td>
                     <label>เวลาที่ออก</label>
-                    <input id="timeatt_out" name="timeatt_out" type="text" class="form-input half" value="{$values.timeatt_out}">
+                    <input id="timeatt_out" name="timeatt_out" type="text" class="form-input half" value="<?php echo $_smarty_tpl->tpl_vars['values']->value['timeatt_out'];?>
+">
                 </td>
             </tr>
 	    </tbody>
@@ -156,4 +197,4 @@
     1. ให้ใส่ field ที่ต้องการเช็คใน input[name="requiredFields"] โดยกำหนดชื่อฟิลด์ลงใน value หากมีมากกว่า 1 field ให้คั่นด้วยเครื่องหมาย คอมม่า (,) และห้ามมีช่องว่าง เช่น value="name,surname,address" เป็นต้น
     2. input จะต้องกำหนด id, name ให้ตรงกับชื่อฟิลด์ของตารางนั้นๆ และกำหนด value ให้มีรูปแบบ value="$values.ชื่อฟิลด์"
 	3.  input[name="uniqueFields"] ใส่ชื่อฟิลด์ที่ต้องการเช็คว่าห้ามซ้ำ
--->
+--><?php }} ?>
